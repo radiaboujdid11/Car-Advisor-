@@ -1,6 +1,6 @@
 # 🚗 AutoAssist — Car Advisor
 
-> **L'Akinator des voitures.** Réponds à 7 questions sociales, l'algorithme devine la voiture de ta vie.
+> **L'Akinator des voitures.** Réponds à des questions sociales, l'algorithme devine la voiture de ta vie.
 
 ---
 
