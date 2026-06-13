@@ -93,7 +93,7 @@ function Intro({ onStart }) {
         </p>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1px', background: 'rgba(232,184,75,.1)', border: '1px solid rgba(232,184,75,.1)', borderRadius: '12px', overflow: 'hidden', marginBottom: '2.5rem' }}>
-          {[{ label: 'Adaptatif', sub: 'Bayésien' }, { label: '5 – 7', sub: 'Questions' }, { label: 'Top 3', sub: 'Sur mesure' }].map(({ label, sub }) => (
+          {[{ label: 'Adaptatif', sub: 'Bayésien' }, { label: '15 – 30', sub: 'Questions' }, { label: 'Top 3', sub: 'Sur mesure' }].map(({ label, sub }) => (
             <div key={label} style={{ background: 'var(--bg-2)', padding: '1.25rem .5rem', textAlign: 'center' }}>
               <p style={{ fontFamily: 'var(--serif-display)', fontSize: '1.4rem', fontWeight: 800, color: 'var(--gold)', lineHeight: 1, marginBottom: '4px' }}>{label}</p>
               <p style={{ fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--ink-mute)' }}>{sub}</p>

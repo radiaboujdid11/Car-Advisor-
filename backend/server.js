@@ -9,7 +9,14 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // ─── MIDDLEWARE ───
-app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:3000' }));
+const allowedOrigins = process.env.FRONTEND_URL
+  ? [process.env.FRONTEND_URL, 'http://localhost:3000']
+  : ['http://localhost:3000'];
+
+app.use(cors({
+  origin: (origin, cb) => (!origin || allowedOrigins.includes(origin) ? cb(null, true) : cb(new Error('CORS'))),
+  credentials: false
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
