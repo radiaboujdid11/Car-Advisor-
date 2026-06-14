@@ -29,7 +29,7 @@ const byCO2 = (...tiers) => car => {
 const luxuryOrPerf = (luxScore, perfScore, rest = 0.08) => car =>
   car.category === 'luxury' ? luxScore : car.category === 'performance' ? perfScore : rest;
 
-// ─── QUESTION BANK (75 questions: 50 original + 25 from diagnostic bank) ─────
+// ─── QUESTION BANK (71 questions: 50 core + 21 from diagnostic bank) ─────────
 
 const QUESTIONS = [
 
@@ -1518,33 +1518,6 @@ const QUESTIONS = [
   },
 
   {
-    id: 'perf_reprises_vives',
-    question: 'Tu appuies sur l\'accélérateur — tu veux ressentir quoi ?',
-    answers: [
-      {
-        text: 'Rien de spécial — doux et progressif',
-        sub: 'Conduite apaisée, économie de carburant',
-        likelihood: byHP([90, 1.0], [130, 0.7], [200, 0.15], [Infinity, 0.03])
-      },
-      {
-        text: 'Une réponse franche, sans temps mort',
-        sub: 'Turbo ou moteur nerveux, réactivité',
-        likelihood: byHP([80, 0.2], [160, 1.0], [230, 0.7], [Infinity, 0.4])
-      },
-      {
-        text: 'Un kick dans le dos — ça décolle',
-        sub: '200 ch+, 0-100 en moins de 6s',
-        likelihood: byHP([160, 0.1], [250, 0.6], [Infinity, 1.0])
-      },
-      {
-        text: 'Le silence — accélération électrique immédiate',
-        sub: 'Couple instantané, zéro décalage',
-        likelihood: byCO2([0, 1.0], [80, 0.5], [120, 0.1], [Infinity, 0.02])
-      }
-    ]
-  },
-
-  {
     id: 'perf_freinage_qualite',
     question: 'Le freinage de ta prochaine voiture, tu veux qu\'il soit...',
     answers: [
@@ -1653,33 +1626,6 @@ const QUESTIONS = [
   },
 
   {
-    id: 'confort_insonorisation_ext',
-    question: 'En roulant en ville, tu veux entendre...',
-    answers: [
-      {
-        text: 'Rien — isolation parfaite, cocon silencieux',
-        sub: 'Insonorisation premium, vitrages feuilletés',
-        likelihood: byCat({ luxury: 1.0, practical: 0.5, performance: 0.2, eco: 0.4 })
-      },
-      {
-        text: 'Un léger bruit de fond — je reste connecté à l\'environnement',
-        sub: 'Isolation correcte, standard moderne',
-        likelihood: byCat({ practical: 0.9, eco: 0.9, luxury: 0.4, performance: 0.5 })
-      },
-      {
-        text: 'Mon moteur — j\'aime la bande-son mécanique',
-        sub: 'Échappement audible, son sport',
-        likelihood: byCat({ performance: 1.0, luxury: 0.2, eco: 0.05, practical: 0.15 })
-      },
-      {
-        text: 'La musique seulement — bonne sono, bonne isolation',
-        sub: 'Audio premium + isolation correcte',
-        likelihood: byCat({ luxury: 0.9, practical: 0.7, eco: 0.6, performance: 0.4 })
-      }
-    ]
-  },
-
-  {
     id: 'tech_bluetooth_connectivite',
     question: 'La connectivité de ta prochaine voiture doit...',
     answers: [
@@ -1756,60 +1702,6 @@ const QUESTIONS = [
         text: 'Peu importe — halogène ça éclaire aussi',
         sub: 'Budget prioritaire, technologie secondaire',
         likelihood: byPrice([15000, 1.0], [25000, 0.7], [Infinity, 0.05])
-      }
-    ]
-  },
-
-  {
-    id: 'tech_infotainment_ecran',
-    question: 'L\'écran multimédia de ta voiture idéale...',
-    answers: [
-      {
-        text: 'Grand écran tactile 12"+ avec tout intégré',
-        sub: 'Navigation, streaming, voiture intelligente',
-        likelihood: byCat({ luxury: 1.0, practical: 0.6, performance: 0.5, eco: 0.4 })
-      },
-      {
-        text: 'Écran standard 8-10" avec CarPlay — simple et efficace',
-        sub: 'Fonctionnel, pas de complication',
-        likelihood: byCat({ practical: 1.0, eco: 0.9, luxury: 0.5, performance: 0.6 })
-      },
-      {
-        text: 'Double écran — conducteur + passager',
-        sub: 'Expérience passager premium',
-        likelihood: byCat({ luxury: 1.0, practical: 0.4, eco: 0.2, performance: 0.3 })
-      },
-      {
-        text: 'Le moins d\'écran possible — les boutons physiques d\'abord',
-        sub: 'Puriste, simplicité, moins de distraction',
-        likelihood: byCat({ performance: 0.9, eco: 0.7, practical: 0.5, luxury: 0.1 })
-      }
-    ]
-  },
-
-  {
-    id: 'tech_securite_active',
-    question: 'Les systèmes de sécurité active (ABS, ESP, freinage d\'urgence auto)...',
-    answers: [
-      {
-        text: 'Je veux tout — chaque technologie qui sauve des vies',
-        sub: 'Pack sécurité maximal, famille à bord',
-        likelihood: byCat({ practical: 1.0, luxury: 0.9, eco: 0.8, performance: 0.3 })
-      },
-      {
-        text: 'ABS + ESP de série — le minimum sérieux',
-        sub: 'Standard moderne, sécurité de base',
-        likelihood: byCat({ eco: 1.0, practical: 0.85, luxury: 0.6, performance: 0.5 })
-      },
-      {
-        text: 'Surveillance angle mort + freinage auto — l\'essentiel moderne',
-        sub: 'Sécurité pratique du quotidien',
-        likelihood: byCat({ luxury: 0.9, practical: 1.0, eco: 0.7, performance: 0.45 })
-      },
-      {
-        text: 'Je préfère conduire sans filet — mes réflexes suffisent',
-        sub: 'Puriste, contrôle total',
-        likelihood: byCat({ performance: 1.0, eco: 0.4, practical: 0.2, luxury: 0.15 })
       }
     ]
   },
