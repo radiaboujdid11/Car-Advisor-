@@ -29,7 +29,7 @@ const byCO2 = (...tiers) => car => {
 const luxuryOrPerf = (luxScore, perfScore, rest = 0.08) => car =>
   car.category === 'luxury' ? luxScore : car.category === 'performance' ? perfScore : rest;
 
-// ─── QUESTION BANK (50 questions — batch 1/4) ────────────────────────────────
+// ─── QUESTION BANK (75 questions: 50 original + 25 from diagnostic bank) ─────
 
 const QUESTIONS = [
 
@@ -1427,6 +1427,693 @@ const QUESTIONS = [
         text: 'Les deux — je valide le coup de cœur avec les chiffres',
         sub: 'Équilibre entre émotion et raison',
         likelihood: byCat({ luxury: 1.0, performance: 0.7, practical: 0.65, eco: 0.55 })
+      }
+    ]
+  },
+
+  // ════════════════════════════════════════════════════════════════════════════
+  // BLOC 6 — FIABILITÉ, TECH & CONFORT RECHERCHÉS (25 questions)
+  // Adapted from the 200-question diagnostic bank (car_questions.json)
+  // ════════════════════════════════════════════════════════════════════════════
+
+  {
+    id: 'fiab_demarrage',
+    question: 'Ta prochaine voiture doit démarrer comment ?',
+    answers: [
+      {
+        text: 'Du premier coup, toujours — zéro tolérance pour les surprises',
+        sub: 'Fiabilité légendaire — Toyota, Kia, Hyundai',
+        likelihood: byBrands(['toyota', 'honda', 'kia', 'hyundai', 'dacia'])
+      },
+      {
+        text: 'Sans bouton — démarrage automatique ou à distance',
+        sub: 'Confort moderne, accès mains libres',
+        likelihood: byCat({ luxury: 1.0, practical: 0.7, eco: 0.5, performance: 0.6 })
+      },
+      {
+        text: 'En silence complet — électrique ou hybride',
+        sub: 'Zéro bruit, zéro vibration',
+        likelihood: byCO2([0, 1.0], [90, 0.55], [140, 0.1], [Infinity, 0.02])
+      },
+      {
+        text: 'Avec du caractère — un vrai moteur qui se réveille',
+        sub: 'Sonorité franche, présence mécanique assumée',
+        likelihood: byCat({ performance: 1.0, luxury: 0.4, eco: 0.05, practical: 0.2 })
+      }
+    ]
+  },
+
+  {
+    id: 'fiab_panne_zero',
+    question: 'Ta tolérance aux pannes imprévues, c\'est...',
+    answers: [
+      {
+        text: 'Zéro — je veux une voiture qui n\'a jamais besoin de moi',
+        sub: 'Fiabilité absolue, marque reconnue',
+        likelihood: byBrands(['toyota', 'honda', 'kia', 'hyundai'])
+      },
+      {
+        text: 'Basse — une révision de temps en temps, c\'est normal',
+        sub: 'Entretien classique, rien d\'exceptionnel',
+        likelihood: byPrice([15000, 0.4], [45000, 1.0], [70000, 0.7], [Infinity, 0.3])
+      },
+      {
+        text: 'Je l\'accepte — l\'important c\'est que ça se répare facilement',
+        sub: 'Pièces disponibles au Maroc, réseau large',
+        likelihood: byBrands(['renault', 'peugeot', 'citroen', 'volkswagen', 'dacia', 'fiat'])
+      },
+      {
+        text: 'Peu importe — j\'ai une assistance et une garantie',
+        sub: 'Voiture récente ou premium avec assistance',
+        likelihood: byPrice([50000, 0.2], [90000, 0.8], [Infinity, 1.0])
+      }
+    ]
+  },
+
+  {
+    id: 'fiab_entretien_facilite',
+    question: 'Pour l\'entretien de ta prochaine voiture, tu veux...',
+    answers: [
+      {
+        text: 'Pièces faciles à trouver partout au Maroc',
+        sub: 'Mécano de quartier, accessibilité',
+        likelihood: byBrands(['dacia', 'renault', 'peugeot', 'hyundai', 'kia', 'fiat'])
+      },
+      {
+        text: 'Intervalles d\'entretien longs — je ne veux pas y penser',
+        sub: '20 000 km+ entre révisions',
+        likelihood: byBrands(['toyota', 'honda', 'bmw', 'mercedes', 'audi', 'volkswagen'])
+      },
+      {
+        text: 'Concessionnaire officiel — garantie et traçabilité',
+        sub: 'Sérénité, carnet officiel, revente facilitée',
+        likelihood: byCat({ luxury: 1.0, practical: 0.6, eco: 0.5, performance: 0.7 })
+      },
+      {
+        text: 'Peu importe — je roule peu, ça reviendra pas souvent',
+        sub: 'Faible kilométrage annuel',
+        likelihood: byCat({ performance: 0.9, luxury: 0.8, eco: 0.6, practical: 0.4 })
+      }
+    ]
+  },
+
+  {
+    id: 'perf_reprises_vives',
+    question: 'Tu appuies sur l\'accélérateur — tu veux ressentir quoi ?',
+    answers: [
+      {
+        text: 'Rien de spécial — doux et progressif',
+        sub: 'Conduite apaisée, économie de carburant',
+        likelihood: byHP([90, 1.0], [130, 0.7], [200, 0.15], [Infinity, 0.03])
+      },
+      {
+        text: 'Une réponse franche, sans temps mort',
+        sub: 'Turbo ou moteur nerveux, réactivité',
+        likelihood: byHP([80, 0.2], [160, 1.0], [230, 0.7], [Infinity, 0.4])
+      },
+      {
+        text: 'Un kick dans le dos — ça décolle',
+        sub: '200 ch+, 0-100 en moins de 6s',
+        likelihood: byHP([160, 0.1], [250, 0.6], [Infinity, 1.0])
+      },
+      {
+        text: 'Le silence — accélération électrique immédiate',
+        sub: 'Couple instantané, zéro décalage',
+        likelihood: byCO2([0, 1.0], [80, 0.5], [120, 0.1], [Infinity, 0.02])
+      }
+    ]
+  },
+
+  {
+    id: 'perf_freinage_qualite',
+    question: 'Le freinage de ta prochaine voiture, tu veux qu\'il soit...',
+    answers: [
+      {
+        text: 'Endurant et sûr — freinage progressif et rassurant',
+        sub: 'Famille, sécurité, ABS performant',
+        likelihood: byCat({ practical: 1.0, luxury: 0.8, eco: 0.8, performance: 0.4 })
+      },
+      {
+        text: 'Mordant et direct — je veux sentir le frein',
+        sub: 'Sport, étriers améliorés, réponse vive',
+        likelihood: byCat({ performance: 1.0, luxury: 0.5, eco: 0.2, practical: 0.3 })
+      },
+      {
+        text: 'Avec freinage d\'urgence automatique — la sécurité avant tout',
+        sub: 'Systèmes AEB, collision auto',
+        likelihood: byCat({ luxury: 1.0, practical: 0.85, eco: 0.65, performance: 0.35 })
+      },
+      {
+        text: 'Standard — ça s\'arrête, c\'est le principal',
+        sub: 'Pragmatique, sans exigence particulière',
+        likelihood: byPrice([15000, 1.0], [30000, 0.8], [60000, 0.2], [Infinity, 0.05])
+      }
+    ]
+  },
+
+  {
+    id: 'perf_direction_feeling',
+    question: 'La direction de ta prochaine voiture, tu veux qu\'elle soit...',
+    answers: [
+      {
+        text: 'Légère — surtout en ville et au parking',
+        sub: 'Direction assistée électrique légère, citadine',
+        likelihood: byPrice([15000, 1.0], [30000, 0.9], [55000, 0.4], [Infinity, 0.1])
+      },
+      {
+        text: 'Précise et communicative — je veux sentir la route',
+        sub: 'Direction sportive, retour d\'info naturel',
+        likelihood: byCat({ performance: 1.0, luxury: 0.5, practical: 0.4, eco: 0.3 })
+      },
+      {
+        text: 'Progressive — légère en ville, ferme sur route',
+        sub: 'Direction variable, adaptative',
+        likelihood: byCat({ luxury: 1.0, practical: 0.75, eco: 0.5, performance: 0.55 })
+      },
+      {
+        text: 'Je m\'en fous — ça tourne à gauche et à droite, c\'est suffisant',
+        sub: 'Aucune préférence',
+        likelihood: byPrice([15000, 1.0], [28000, 0.7], [Infinity, 0.1])
+      }
+    ]
+  },
+
+  {
+    id: 'confort_clim_auto',
+    question: 'La climatisation dans ta prochaine voiture, c\'est...',
+    answers: [
+      {
+        text: 'Clim automatique bi-zone — chacun sa température',
+        sub: 'Premium confort — indispensable pour famille',
+        likelihood: byCat({ luxury: 1.0, practical: 0.85, eco: 0.5, performance: 0.6 })
+      },
+      {
+        text: 'Clim manuelle — j\'ajuste moi-même, pas de problème',
+        sub: 'Fonctionnel, modèle d\'entrée de gamme',
+        likelihood: byPrice([15000, 1.0], [28000, 0.75], [50000, 0.15], [Infinity, 0.03])
+      },
+      {
+        text: 'Prérefroidissement à distance — elle est fraîche quand je monte',
+        sub: 'Connectée, app mobile, clim à distance',
+        likelihood: byCat({ luxury: 1.0, practical: 0.5, eco: 0.6, performance: 0.4 })
+      },
+      {
+        text: 'La clim c\'est le minimum vital — pas de négociation',
+        sub: 'Non-négociable — standard Maroc',
+        likelihood: () => 0.75
+      }
+    ]
+  },
+
+  {
+    id: 'confort_sieges_qualite',
+    question: 'Les sièges de ta prochaine voiture, tu veux qu\'ils soient...',
+    answers: [
+      {
+        text: 'En cuir, chauffants et ventilés — le maximum',
+        sub: 'Premium — Maroc été/hiver, tout confort',
+        likelihood: byCat({ luxury: 1.0, performance: 0.65, practical: 0.35, eco: 0.1 })
+      },
+      {
+        text: 'Confortables pour les longs trajets — lombaires OK',
+        sub: 'Voyage, autoroute, qualité de mousse',
+        likelihood: byCat({ practical: 1.0, luxury: 0.8, eco: 0.5, performance: 0.3 })
+      },
+      {
+        text: 'Baquets sport — maintien latéral, position basse',
+        sub: 'Conduite sportive, environnement cockpit',
+        likelihood: byCat({ performance: 1.0, luxury: 0.3, eco: 0.1, practical: 0.15 })
+      },
+      {
+        text: 'Corrects — juste bien assis, sans plus',
+        sub: 'Usage court, pas de long trajet',
+        likelihood: byPrice([15000, 1.0], [28000, 0.8], [55000, 0.2], [Infinity, 0.05])
+      }
+    ]
+  },
+
+  {
+    id: 'confort_insonorisation_ext',
+    question: 'En roulant en ville, tu veux entendre...',
+    answers: [
+      {
+        text: 'Rien — isolation parfaite, cocon silencieux',
+        sub: 'Insonorisation premium, vitrages feuilletés',
+        likelihood: byCat({ luxury: 1.0, practical: 0.5, performance: 0.2, eco: 0.4 })
+      },
+      {
+        text: 'Un léger bruit de fond — je reste connecté à l\'environnement',
+        sub: 'Isolation correcte, standard moderne',
+        likelihood: byCat({ practical: 0.9, eco: 0.9, luxury: 0.4, performance: 0.5 })
+      },
+      {
+        text: 'Mon moteur — j\'aime la bande-son mécanique',
+        sub: 'Échappement audible, son sport',
+        likelihood: byCat({ performance: 1.0, luxury: 0.2, eco: 0.05, practical: 0.15 })
+      },
+      {
+        text: 'La musique seulement — bonne sono, bonne isolation',
+        sub: 'Audio premium + isolation correcte',
+        likelihood: byCat({ luxury: 0.9, practical: 0.7, eco: 0.6, performance: 0.4 })
+      }
+    ]
+  },
+
+  {
+    id: 'tech_bluetooth_connectivite',
+    question: 'La connectivité de ta prochaine voiture doit...',
+    answers: [
+      {
+        text: 'Apple CarPlay / Android Auto — c\'est la base',
+        sub: 'Standard moderne, écran tactile requis',
+        likelihood: byCat({ practical: 1.0, eco: 0.85, luxury: 0.8, performance: 0.7 })
+      },
+      {
+        text: 'Bluetooth stable + 2 ports USB au moins',
+        sub: 'Connectivité famille, chargement multiple',
+        likelihood: byCat({ practical: 1.0, luxury: 0.7, eco: 0.8, performance: 0.4 })
+      },
+      {
+        text: 'Wifi embarqué + connexion illimitée',
+        sub: 'Voiture connectée, OTA updates',
+        likelihood: byCat({ luxury: 1.0, performance: 0.55, practical: 0.4, eco: 0.3 })
+      },
+      {
+        text: 'Peu importe — mon téléphone sur le support, ça suffit',
+        sub: 'Pragmatique, pas de techno pour la techno',
+        likelihood: byPrice([15000, 1.0], [28000, 0.75], [50000, 0.2], [Infinity, 0.05])
+      }
+    ]
+  },
+
+  {
+    id: 'tech_camera_aide_parking',
+    question: 'Pour te garer, tu as besoin de quoi ?',
+    answers: [
+      {
+        text: 'Caméra 360° + radar avant/arrière — je veux voir partout',
+        sub: 'Parking assisté complet, premium',
+        likelihood: byCat({ luxury: 1.0, practical: 0.75, eco: 0.45, performance: 0.4 })
+      },
+      {
+        text: 'Caméra de recul + radars arrière — le classique',
+        sub: 'Standard confort, modèle milieu de gamme',
+        likelihood: byCat({ practical: 1.0, eco: 0.8, luxury: 0.6, performance: 0.5 })
+      },
+      {
+        text: 'Parking auto — la voiture se gare seule',
+        sub: 'Technologie avancée, confort total',
+        likelihood: byCat({ luxury: 1.0, practical: 0.5, eco: 0.4, performance: 0.2 })
+      },
+      {
+        text: 'Mes yeux — je gare à l\'ancienne, je n\'ai pas besoin d\'aide',
+        sub: 'Confiance en soi, pas de gadget',
+        likelihood: byCat({ performance: 0.9, eco: 0.7, practical: 0.4, luxury: 0.2 })
+      }
+    ]
+  },
+
+  {
+    id: 'tech_phares_led',
+    question: 'Les phares de ta prochaine voiture, tu veux...',
+    answers: [
+      {
+        text: 'LED ou laser — nuit comme en plein jour',
+        sub: 'Sécurité maximale, design moderne',
+        likelihood: byCat({ luxury: 1.0, practical: 0.7, performance: 0.75, eco: 0.5 })
+      },
+      {
+        text: 'LED de série — standard raisonnable',
+        sub: 'Bonne visibilité, pas de surcoût',
+        likelihood: byPrice([20000, 0.4], [45000, 1.0], [80000, 0.8], [Infinity, 0.6])
+      },
+      {
+        text: 'Adaptatifs — ils tournent avec les virages',
+        sub: 'Montagne, routes sinueuses',
+        likelihood: byCat({ luxury: 1.0, performance: 0.7, practical: 0.55, eco: 0.2 })
+      },
+      {
+        text: 'Peu importe — halogène ça éclaire aussi',
+        sub: 'Budget prioritaire, technologie secondaire',
+        likelihood: byPrice([15000, 1.0], [25000, 0.7], [Infinity, 0.05])
+      }
+    ]
+  },
+
+  {
+    id: 'tech_infotainment_ecran',
+    question: 'L\'écran multimédia de ta voiture idéale...',
+    answers: [
+      {
+        text: 'Grand écran tactile 12"+ avec tout intégré',
+        sub: 'Navigation, streaming, voiture intelligente',
+        likelihood: byCat({ luxury: 1.0, practical: 0.6, performance: 0.5, eco: 0.4 })
+      },
+      {
+        text: 'Écran standard 8-10" avec CarPlay — simple et efficace',
+        sub: 'Fonctionnel, pas de complication',
+        likelihood: byCat({ practical: 1.0, eco: 0.9, luxury: 0.5, performance: 0.6 })
+      },
+      {
+        text: 'Double écran — conducteur + passager',
+        sub: 'Expérience passager premium',
+        likelihood: byCat({ luxury: 1.0, practical: 0.4, eco: 0.2, performance: 0.3 })
+      },
+      {
+        text: 'Le moins d\'écran possible — les boutons physiques d\'abord',
+        sub: 'Puriste, simplicité, moins de distraction',
+        likelihood: byCat({ performance: 0.9, eco: 0.7, practical: 0.5, luxury: 0.1 })
+      }
+    ]
+  },
+
+  {
+    id: 'tech_securite_active',
+    question: 'Les systèmes de sécurité active (ABS, ESP, freinage d\'urgence auto)...',
+    answers: [
+      {
+        text: 'Je veux tout — chaque technologie qui sauve des vies',
+        sub: 'Pack sécurité maximal, famille à bord',
+        likelihood: byCat({ practical: 1.0, luxury: 0.9, eco: 0.8, performance: 0.3 })
+      },
+      {
+        text: 'ABS + ESP de série — le minimum sérieux',
+        sub: 'Standard moderne, sécurité de base',
+        likelihood: byCat({ eco: 1.0, practical: 0.85, luxury: 0.6, performance: 0.5 })
+      },
+      {
+        text: 'Surveillance angle mort + freinage auto — l\'essentiel moderne',
+        sub: 'Sécurité pratique du quotidien',
+        likelihood: byCat({ luxury: 0.9, practical: 1.0, eco: 0.7, performance: 0.45 })
+      },
+      {
+        text: 'Je préfère conduire sans filet — mes réflexes suffisent',
+        sub: 'Puriste, contrôle total',
+        likelihood: byCat({ performance: 1.0, eco: 0.4, practical: 0.2, luxury: 0.15 })
+      }
+    ]
+  },
+
+  {
+    id: 'tech_gps_navigation',
+    question: 'Pour la navigation, tu préfères...',
+    answers: [
+      {
+        text: 'GPS intégré avec trafic en temps réel — embarqué natif',
+        sub: 'Maps offline, mise à jour, écran principal',
+        likelihood: byCat({ luxury: 1.0, practical: 0.65, eco: 0.4, performance: 0.5 })
+      },
+      {
+        text: 'Google Maps / Waze sur l\'écran via CarPlay — plus fiable',
+        sub: 'Applications mobiles, mise à jour constante',
+        likelihood: byCat({ practical: 1.0, eco: 0.9, luxury: 0.6, performance: 0.7 })
+      },
+      {
+        text: 'Waze sur mon téléphone sur un support — ça suffit',
+        sub: 'Simple, économique, pas besoin de plus',
+        likelihood: byPrice([15000, 1.0], [28000, 0.8], [50000, 0.2], [Infinity, 0.05])
+      },
+      {
+        text: 'Je connais mes routes — pas besoin de navigation',
+        sub: 'Conducteur expérimenté, usage local',
+        likelihood: byPrice([15000, 0.9], [30000, 0.7], [Infinity, 0.15])
+      }
+    ]
+  },
+
+  {
+    id: 'fiab_confiance_famille',
+    question: 'Ta prochaine voiture, toute ta famille peut la conduire ?',
+    answers: [
+      {
+        text: 'Oui — elle doit convenir à tout le monde',
+        sub: 'Boîte auto, conduite simple, fiable',
+        likelihood: byCat({ practical: 1.0, eco: 0.85, luxury: 0.7, performance: 0.15 })
+      },
+      {
+        text: 'Ma femme/mon mari seulement — on partage',
+        sub: 'Duo, pas de conduite partagée large',
+        likelihood: byCat({ luxury: 0.9, practical: 0.7, eco: 0.6, performance: 0.4 })
+      },
+      {
+        text: 'Moi seul — personne ne touche à ma voiture',
+        sub: 'Voiture personnelle, passion exclusive',
+        likelihood: byCat({ performance: 1.0, luxury: 0.65, eco: 0.35, practical: 0.2 })
+      },
+      {
+        text: 'N\'importe qui — c\'est un outil, pas un trésor',
+        sub: 'Détachement total, voiture utilitaire',
+        likelihood: byPrice([15000, 1.0], [28000, 0.8], [45000, 0.3], [Infinity, 0.05])
+      }
+    ]
+  },
+
+  {
+    id: 'style_couleur_exterieur',
+    question: 'La couleur de ta prochaine voiture...',
+    answers: [
+      {
+        text: 'Noir, blanc ou gris — classe intemporelle',
+        sub: 'Valeur de revente, élégance neutre',
+        likelihood: byCat({ luxury: 1.0, performance: 0.7, practical: 0.65, eco: 0.5 })
+      },
+      {
+        text: 'Une couleur qui me représente — rouge, bleu, vert',
+        sub: 'Personnalité, style affirmé',
+        likelihood: byCat({ performance: 1.0, eco: 0.8, practical: 0.5, luxury: 0.3 })
+      },
+      {
+        text: 'Blanc uniquement — c\'est ce qu\'il y a de mieux au Maroc',
+        sub: 'Chaleur, revente, tradition',
+        likelihood: () => 0.65
+      },
+      {
+        text: 'Peu importe — la mécanique d\'abord, la couleur après',
+        sub: 'Pragmatique, couleur = secondaire',
+        likelihood: byPrice([15000, 1.0], [30000, 0.75], [Infinity, 0.2])
+      }
+    ]
+  },
+
+  {
+    id: 'style_badge_marque',
+    question: 'Le badge de ta voiture dans la rue, il doit...',
+    answers: [
+      {
+        text: 'Parler pour moi — les gens reconnaissent direct',
+        sub: 'Badge premium iconique, prestige immédiat',
+        likelihood: byBrands(['bmw', 'mercedes', 'audi', 'porsche', 'ferrari'])
+      },
+      {
+        text: 'Inspirer confiance et qualité — pas forcément luxe',
+        sub: 'Réputation solide, sérieux reconnu',
+        likelihood: byBrands(['toyota', 'honda', 'volkswagen', 'volvo', 'subaru'])
+      },
+      {
+        text: 'M\'identifier comme quelqu\'un de malin — bon rapport qualité/prix',
+        sub: 'Choix intelligent, pas de surévaluation',
+        likelihood: byBrands(['kia', 'hyundai', 'dacia', 'seat', 'skoda'])
+      },
+      {
+        text: 'Ne rien dire — je ne veux pas qu\'on juge par l\'écusson',
+        sub: 'Discret, contenu compte plus que le badge',
+        likelihood: byPrice([20000, 0.3], [50000, 0.7], [80000, 1.0], [Infinity, 0.6])
+      }
+    ]
+  },
+
+  {
+    id: 'usage_vacances_maroc',
+    question: 'En vacances au Maroc, ta voiture sert à...',
+    answers: [
+      {
+        text: 'Casa → Agadir → Marrakech — l\'autoroute principalement',
+        sub: 'Confort de croisière, fiabilité longue distance',
+        likelihood: byCat({ luxury: 1.0, practical: 0.8, eco: 0.6, performance: 0.5 })
+      },
+      {
+        text: 'Pistes dans le sud — Zagora, Merzouga, Aït Ben Haddou',
+        sub: 'SUV robuste, garde au sol, 4x4',
+        likelihood: car =>
+          car.category === 'practical' && (car.price_eur || 0) >= 19000 ? 1.0
+          : (car.make || '').toLowerCase().includes('toyota') ? 0.9
+          : 0.15
+      },
+      {
+        text: 'Visites de villes — Fès, Meknès, Essaouira en urbain',
+        sub: 'Maniable, petite, facile à garer dans les médinas',
+        likelihood: byPrice([15000, 1.0], [28000, 0.85], [50000, 0.3], [Infinity, 0.1])
+      },
+      {
+        text: 'Cols de l\'Atlas — routes sinueuses, sensations',
+        sub: 'Châssis vif, puissance en montée',
+        likelihood: byCat({ performance: 1.0, luxury: 0.55, practical: 0.4, eco: 0.2 })
+      }
+    ]
+  },
+
+  {
+    id: 'perso_fierte_voiture',
+    question: 'Dans 2 ans, est-ce que tu seras encore fier de ta voiture ?',
+    answers: [
+      {
+        text: 'Oui — je choisis des valeurs sûres qui vieillissent bien',
+        sub: 'Intemporel, design durable, revente facile',
+        likelihood: byBrands(['toyota', 'bmw', 'mercedes', 'porsche', 'honda'])
+      },
+      {
+        text: 'Oui — je vais la personnaliser, elle sera unique',
+        sub: 'Modifiable, communauté passionnée',
+        likelihood: byCat({ performance: 1.0, eco: 0.65, practical: 0.4, luxury: 0.3 })
+      },
+      {
+        text: 'Pas sûr — je change souvent, 2 ans c\'est long pour moi',
+        sub: 'Rotation courte, leasing ou crédit court',
+        likelihood: byCat({ luxury: 0.8, performance: 0.75, practical: 0.4, eco: 0.3 })
+      },
+      {
+        text: 'Je ne me pose pas cette question — la voiture doit faire son travail',
+        sub: 'Utilitaire pur, pas d\'attachement émotionnel',
+        likelihood: byPrice([15000, 1.0], [28000, 0.75], [50000, 0.2], [Infinity, 0.05])
+      }
+    ]
+  },
+
+  {
+    id: 'perso_regard_rue',
+    question: 'Quand ta voiture est garée dans la rue et que les gens passent...',
+    answers: [
+      {
+        text: 'Je veux qu\'ils se retournent — elle mérite l\'attention',
+        sub: 'Design iconique, présence visuelle forte',
+        likelihood: byCat({ performance: 1.0, luxury: 0.85, eco: 0.2, practical: 0.15 })
+      },
+      {
+        text: 'Je veux qu\'ils la respectent — pas de retournement, juste du respect',
+        sub: 'Élégance discrète, standing reconnu',
+        likelihood: byCat({ luxury: 1.0, practical: 0.6, performance: 0.5, eco: 0.25 })
+      },
+      {
+        text: 'Rien — elle se fond dans le décor, c\'est parfait',
+        sub: 'Voiture outil, discrétion totale',
+        likelihood: byPrice([15000, 1.0], [30000, 0.8], [50000, 0.3], [Infinity, 0.1])
+      },
+      {
+        text: 'Qu\'elle soit reconnue par ceux qui s\'y connaissent',
+        sub: 'Connoisseur\'s choice — rare ou spéciale',
+        likelihood: byCat({ performance: 0.9, luxury: 0.8, practical: 0.3, eco: 0.2 })
+      }
+    ]
+  },
+
+  {
+    id: 'confort_qualite_habitacle',
+    question: 'La qualité perçue à l\'intérieur de ta prochaine voiture...',
+    answers: [
+      {
+        text: 'Tout doit être parfait — aucun plastique dur, aucun bruit parasite',
+        sub: 'Finitions haut de gamme, matériaux premium',
+        likelihood: byCat({ luxury: 1.0, performance: 0.6, practical: 0.3, eco: 0.1 })
+      },
+      {
+        text: 'Bonne qualité d\'assemblage — solide, rien qui grince',
+        sub: 'Robustesse et sérieux, Volkswagen/Toyota niveau',
+        likelihood: byBrands(['volkswagen', 'toyota', 'honda', 'kia', 'hyundai', 'bmw'])
+      },
+      {
+        text: 'Correct pour le prix — je suis réaliste',
+        sub: 'Rapport qualité/prix honnête',
+        likelihood: byPrice([15000, 1.0], [30000, 0.9], [50000, 0.5], [Infinity, 0.1])
+      },
+      {
+        text: 'Peu importe — je passe peu de temps dedans',
+        sub: 'Déplacements courts, intérieur secondaire',
+        likelihood: byPrice([15000, 0.9], [25000, 0.7], [Infinity, 0.1])
+      }
+    ]
+  },
+
+  {
+    id: 'usage_recharger_electrique',
+    question: 'Tu as accès à une borne de recharge chez toi ou au bureau ?',
+    answers: [
+      {
+        text: 'Oui — borne à la maison, je peux recharger la nuit',
+        sub: 'Électrique ou hybride rechargeable parfaitement viable',
+        likelihood: byCO2([0, 1.0], [80, 0.75], [140, 0.2], [Infinity, 0.05])
+      },
+      {
+        text: 'Pas encore — mais j\'envisage d\'en installer une',
+        sub: 'Hybride rechargeable intéressant, électrique possible',
+        likelihood: byCO2([0, 0.6], [110, 1.0], [160, 0.5], [Infinity, 0.1])
+      },
+      {
+        text: 'Non — je dépends des stations publiques seulement',
+        sub: 'Hybride non rechargeable ou thermique classique',
+        likelihood: byCO2([80, 0.3], [160, 1.0], [220, 0.6], [Infinity, 0.2])
+      },
+      {
+        text: 'Non et c\'est pas prévu — essence ou diesel uniquement',
+        sub: 'Thermique classique, infrastructure existante',
+        likelihood: byCO2([120, 0.2], [200, 1.0], [Infinity, 0.7])
+      }
+    ]
+  },
+
+  {
+    id: 'social_recommandation_ami',
+    question: 'Ton meilleur ami te demande conseil pour sa prochaine voiture. Tu lui recommandes quoi ?',
+    answers: [
+      {
+        text: 'La même que moi — si c\'est bon pour moi, c\'est bon pour lui',
+        sub: 'Fidélité et conviction dans son choix',
+        likelihood: car => {
+          const m = (car.make || '').toLowerCase();
+          if (['toyota', 'bmw', 'mercedes', 'kia', 'volkswagen'].some(b => m.includes(b))) return 1.0;
+          return 0.5;
+        }
+      },
+      {
+        text: 'Ce qui correspond à SA vie — pas forcément la mienne',
+        sub: 'Conseil objectif, écoute des besoins',
+        likelihood: byCat({ practical: 1.0, eco: 0.9, luxury: 0.7, performance: 0.5 })
+      },
+      {
+        text: 'La meilleure dans son budget — rapport qualité/prix d\'abord',
+        sub: 'Pragmatisme, Kia/Hyundai/Dacia en tête',
+        likelihood: byBrands(['kia', 'hyundai', 'dacia', 'toyota', 'honda'])
+      },
+      {
+        text: 'Je l\'amène chez le concessionnaire — rien de mieux que l\'essai',
+        sub: 'L\'expérience de conduite décide',
+        likelihood: byCat({ performance: 1.0, luxury: 0.8, practical: 0.55, eco: 0.4 })
+      }
+    ]
+  },
+
+  {
+    id: 'fiab_age_kilometrage',
+    question: 'Pour ta prochaine voiture, tu accepterais...',
+    answers: [
+      {
+        text: 'Neuf uniquement — zéro kilomètre, zéro compromis',
+        sub: 'Garantie totale, aucune surprise',
+        likelihood: byCat({ eco: 0.8, practical: 0.85, luxury: 0.75, performance: 0.7 })
+      },
+      {
+        text: 'Occasion avec moins de 30 000 km et moins de 3 ans',
+        sub: 'Quasi-neuf, économies réelles',
+        likelihood: byPrice([20000, 0.3], [55000, 1.0], [90000, 0.8], [Infinity, 0.5])
+      },
+      {
+        text: 'N\'importe quelle occasion fiable — je fais inspecter avant',
+        sub: 'Budget serré, pragmatique',
+        likelihood: byPrice([12000, 1.0], [25000, 0.8], [40000, 0.3], [Infinity, 0.05])
+      },
+      {
+        text: 'Un modèle de démonstration ou fin de série — prix réduit',
+        sub: 'Voiture quasiment neuve à prix négocié',
+        likelihood: byPrice([20000, 0.4], [55000, 1.0], [80000, 0.7], [Infinity, 0.3])
       }
     ]
   }
