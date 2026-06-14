@@ -70,7 +70,7 @@ export default function HeroCanvas() {
             ctx.beginPath();
             ctx.moveTo(proj[i].px, proj[i].py);
             ctx.lineTo(proj[j].px, proj[j].py);
-            ctx.strokeStyle = `rgba(232,184,75,${(1 - d / 90) * .18})`;
+            ctx.strokeStyle = `rgba(201,168,76,${(1 - d / 90) * .18})`;
             ctx.lineWidth = .6;
             ctx.stroke();
           }
@@ -80,7 +80,7 @@ export default function HeroCanvas() {
       proj.forEach(p => {
         ctx.beginPath();
         ctx.arc(p.px, p.py, p.scale * 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(232,184,75,${p.scale * 3 * .4})`;
+        ctx.fillStyle = `rgba(201,168,76,${p.scale * 3 * .4})`;
         ctx.fill();
       });
 
@@ -91,7 +91,7 @@ export default function HeroCanvas() {
         if (p.z < 0 || p.z > 1) p.vz *= -1;
         ctx.beginPath();
         ctx.arc(p.x * W, p.y * H, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(79,195,247,${(.25 + p.z * .4) * .5})`;
+        ctx.fillStyle = `rgba(245,240,232,${(.15 + p.z * .25) * .4})`;
         ctx.fill();
       });
 

@@ -16,7 +16,7 @@ export default function Header({ compareCars = [] }) {
       position: 'sticky', top: 0, zIndex: 100,
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       padding: '0 4rem', height: '68px',
-      borderBottom: '1px solid rgba(232,184,75,.08)',
+      borderBottom: '1px solid rgba(201,168,76,.08)',
       background: 'rgba(10,11,15,.85)',
       backdropFilter: 'blur(20px)',
     }}>

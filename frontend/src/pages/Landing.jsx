@@ -79,7 +79,7 @@ export default function Landing() {
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '1.5rem 4rem',
-        borderBottom: '1px solid rgba(232,184,75,.08)',
+        borderBottom: '1px solid rgba(201,168,76,.08)',
         background: 'rgba(10,11,15,.6)',
         backdropFilter: 'blur(20px)',
       }}>
@@ -108,7 +108,7 @@ export default function Landing() {
 
       {/* ── HERO ── */}
       <section style={{ position: 'relative', zIndex: 1, minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', textAlign: 'center', paddingTop: '6rem' }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', background: 'rgba(232,184,75,.12)', border: '1px solid rgba(232,184,75,.3)', color: 'var(--gold)', fontSize: '.78rem', letterSpacing: '.12em', textTransform: 'uppercase', padding: '.45rem 1.2rem', borderRadius: '50px', marginBottom: '2rem', animation: 'fadeDown .8s ease both' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', background: 'rgba(201,168,76,.12)', border: '1px solid rgba(201,168,76,.3)', color: 'var(--gold)', fontSize: '.78rem', letterSpacing: '.12em', textTransform: 'uppercase', padding: '.45rem 1.2rem', borderRadius: '50px', marginBottom: '2rem', animation: 'fadeDown .8s ease both' }}>
           <span style={{ width: 6, height: 6, background: 'var(--gold)', borderRadius: '50%', animation: 'pulse-dot 1.5s infinite', display: 'inline-block' }} />
           IA Automobile · Propulsé par l'inférence bayésienne
         </div>
@@ -135,9 +135,9 @@ export default function Landing() {
       </section>
 
       {/* ── STATS ── */}
-      <div style={{ position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'center', borderTop: '1px solid rgba(232,184,75,.1)', borderBottom: '1px solid rgba(232,184,75,.1)', background: 'rgba(18,20,26,.8)', backdropFilter: 'blur(10px)' }}>
+      <div style={{ position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'center', borderTop: '1px solid rgba(201,168,76,.1)', borderBottom: '1px solid rgba(201,168,76,.1)', background: 'rgba(18,20,26,.8)', backdropFilter: 'blur(10px)' }}>
         {STATS.map((s, i) => (
-          <div key={s.label} style={{ flex: 1, maxWidth: '220px', padding: '2.5rem 2rem', textAlign: 'center', borderRight: i < STATS.length - 1 ? '1px solid rgba(232,184,75,.08)' : 'none' }}>
+          <div key={s.label} style={{ flex: 1, maxWidth: '220px', padding: '2.5rem 2rem', textAlign: 'center', borderRight: i < STATS.length - 1 ? '1px solid rgba(201,168,76,.08)' : 'none' }}>
             <div style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '2.4rem', color: 'var(--gold)', lineHeight: 1 }}>{s.num}</div>
             <div style={{ color: 'var(--ink-mute)', fontSize: '.82rem', marginTop: '.4rem', letterSpacing: '.04em' }}>{s.label}</div>
           </div>
@@ -169,7 +169,7 @@ export default function Landing() {
       </section>
 
       {/* ── QUIZ PREVIEW ── */}
-      <section id="quiz" style={{ position: 'relative', zIndex: 1, padding: '6rem 4rem', background: 'var(--bg-2)', borderTop: '1px solid rgba(232,184,75,.08)', borderBottom: '1px solid rgba(232,184,75,.08)' }}>
+      <section id="quiz" style={{ position: 'relative', zIndex: 1, padding: '6rem 4rem', background: 'var(--bg-2)', borderTop: '1px solid rgba(201,168,76,.08)', borderBottom: '1px solid rgba(201,168,76,.08)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6rem', alignItems: 'center' }}>
           <div className="reveal">
             <div className="section-tag">Questionnaire intelligent</div>
@@ -182,18 +182,18 @@ export default function Landing() {
             <button onClick={() => navigate('/quiz')} className="btn-primary">Commencer maintenant →</button>
           </div>
 
-          <div ref={previewRef} className="reveal" style={{ background: 'var(--bg-3)', border: '1px solid rgba(232,184,75,.2)', borderRadius: '20px', padding: '2.5rem', boxShadow: '0 40px 80px rgba(0,0,0,.4)', transform: 'perspective(1000px) rotateY(-8deg) rotateX(2deg)', transition: 'transform .5s ease' }}
+          <div ref={previewRef} className="reveal" style={{ background: 'var(--bg-3)', border: '1px solid rgba(201,168,76,.2)', borderRadius: '20px', padding: '2.5rem', boxShadow: '0 40px 80px rgba(0,0,0,.4)', transform: 'perspective(1000px) rotateY(-8deg) rotateX(2deg)', transition: 'transform .5s ease' }}
             onMouseEnter={e => { e.currentTarget.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)'; }}
             onMouseLeave={e => { e.currentTarget.style.transform = 'perspective(1000px) rotateY(-8deg) rotateX(2deg)'; }}
           >
             <style>{`
-              .pq-opt{padding:.75rem 1.2rem;border-radius:10px;border:1px solid rgba(255,255,255,.08);color:var(--ink-mute);font-size:.9rem;margin-bottom:.5rem;transition:all .2s;background:rgba(255,255,255,.02)}
-              .pq-opt.active{background:rgba(232,184,75,.12);border-color:var(--gold);color:var(--ink)}
+              .pq-opt{padding:.75rem 1.2rem;border-radius:10px;border:1px solid rgba(245,240,232,.08);color:var(--ink-mute);font-size:.9rem;margin-bottom:.5rem;transition:all .2s;background:rgba(245,240,232,.03)}
+              .pq-opt.active{background:rgba(201,168,76,.12);border-color:var(--gold);color:var(--ink)}
             `}</style>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.8rem', marginBottom: '1.5rem', color: 'var(--ink-mute)', fontSize: '.82rem', letterSpacing: '.06em', textTransform: 'uppercase' }}>
               <span>Question</span><span id="pq-num" style={{ color: 'var(--gold)', fontFamily: 'var(--serif-display)', fontSize: '1.2rem' }}>1</span><span>/ {QUIZ_PREVIEW.length}</span>
             </div>
-            <div style={{ height: '3px', background: 'rgba(255,255,255,.06)', borderRadius: '3px', marginBottom: '1.5rem', overflow: 'hidden' }}>
+            <div style={{ height: '3px', background: 'rgba(245,240,232,.06)', borderRadius: '3px', marginBottom: '1.5rem', overflow: 'hidden' }}>
               <div id="pq-bar" style={{ height: '100%', background: 'var(--gold)', borderRadius: '3px', transition: 'width .5s', width: '33%' }} />
             </div>
             <div id="pq-text" style={{ fontFamily: 'var(--serif-display)', fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.25rem', lineHeight: 1.4 }}>Quel est votre usage principal ?</div>
@@ -215,7 +215,7 @@ export default function Landing() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
           {FEATURES.map(f => (
             <div key={f.title} className="reveal card" style={{ padding: '2rem' }}>
-              <div style={{ width: 44, height: 44, background: 'rgba(232,184,75,.1)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', fontSize: '1.3rem' }}>
+              <div style={{ width: 44, height: 44, background: 'rgba(201,168,76,.1)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', fontSize: '1.3rem' }}>
                 {f.icon}
               </div>
               <h3 style={{ fontFamily: 'var(--serif-display)', fontWeight: 700, fontSize: '.98rem', marginBottom: '.5rem' }}>{f.title}</h3>
@@ -226,7 +226,7 @@ export default function Landing() {
       </section>
 
       {/* ── CTA ── */}
-      <div style={{ position: 'relative', zIndex: 1, padding: '8rem 4rem', textAlign: 'center', background: 'radial-gradient(ellipse 80% 50% at 50% 100%, rgba(232,184,75,.12) 0%, transparent 70%)' }}>
+      <div style={{ position: 'relative', zIndex: 1, padding: '8rem 4rem', textAlign: 'center', background: 'radial-gradient(ellipse 80% 50% at 50% 100%, rgba(201,168,76,.12) 0%, transparent 70%)' }}>
         <h2 className="reveal" style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: 'clamp(2.5rem,5vw,4rem)', letterSpacing: '-.04em', marginBottom: '1.2rem' }}>
           Prêt à trouver<br /><span style={{ color: 'var(--gold)' }}>votre voiture ?</span>
         </h2>
@@ -239,7 +239,7 @@ export default function Landing() {
       </div>
 
       {/* ── FOOTER ── */}
-      <footer style={{ position: 'relative', zIndex: 1, borderTop: '1px solid rgba(255,255,255,.06)', padding: '2rem 4rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: 'var(--ink-mute)', fontSize: '.8rem' }}>
+      <footer style={{ position: 'relative', zIndex: 1, borderTop: '1px solid rgba(245,240,232,.06)', padding: '2rem 4rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: 'var(--ink-mute)', fontSize: '.8rem' }}>
         <div style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '1.1rem' }}>
           Auto<span style={{ color: 'var(--gold)' }}>Assist</span>
         </div>
