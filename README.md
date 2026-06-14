@@ -1,76 +1,107 @@
-# 🚗 AutoAssist — Car Advisor
+# AutoAssist — Conseiller automobile IA pour le marché marocain
 
-> **L'Akinator des voitures.** Réponds à des questions sociales, l'algorithme devine la voiture de ta vie.
+**🔗 [car-advisor-omega.vercel.app](https://car-advisor-omega.vercel.app)**
 
----
-
-## C'est quoi ?
-
-AutoAssist pose des questions comme un ami qui te connaît bien — pas des specs techniques ennuyeuses, mais des scénarios de la vraie vie :
-
-- *"Tu vas chez les parents de ta fiancée pour la première fois. Tu gares quoi devant leur porte ?"*
-- *"Ton père vient de changer de voiture. La tienne par rapport à la sienne ?"*
-- *"Vendredi soir, la bande sort à Casablanca. Ton rôle ce soir-là ?"*
-
-Après 7 questions max, l'algorithme te sort ton top 3 de voitures avec un score de correspondance.
+Trouve ta prochaine voiture en répondant à 15–30 questions. Pas de hasard — un vrai moteur d'inférence bayésienne recalcule les probabilités après chaque réponse.
 
 ---
 
-## Stack
+## Ce n'est pas du hasard — c'est des probabilités
 
-| Côté | Techno |
-|------|--------|
+Le système affiche **les probabilités bayésiennes en temps réel** pendant le quiz :
+
+```
+● Probabilités bayésiennes — mise à jour en direct
+
+▲ Toyota Corolla     ████████████████  18.4%
+  Dacia Sandero      ████████           8.1%
+  Renault Clio       ██████             5.6%
+  Hyundai i20        █████              4.2%
+  Peugeot 208        ████               3.8%
+
+P(voiture | réponses) ∝ P(voiture) × ∏ P(réponse | voiture) · Théorème de Bayes
+```
+
+Les barres s'animent après chaque réponse — preuve que c'est de la vraie math, pas de l'aléatoire.
+
+---
+
+## Comment fonctionne l'algorithme
+
+### 1. Initialisation — prior uniforme
+Toutes les voitures partent avec la même probabilité :
+```
+P(voiture) = 1 / 59  ≈  1.69%
+```
+
+### 2. Sélection de question par gain d'information maximum
+Le système ne choisit pas les questions au hasard. Il calcule le **gain d'information** de chaque question et pose celle qui réduit le plus l'incertitude :
+```
+Gain(Q) = H(P) − Σ P(réponse_i) × H(P | réponse_i)
+```
+où `H` est l'entropie de Shannon. La question la plus discriminante est toujours choisie.
+
+### 3. Mise à jour bayésienne après chaque réponse
+```
+P(voiture | réponse) =  P(voiture) × L(réponse | voiture)
+                        ────────────────────────────────────
+                          Σ P(voiture_k) × L(réponse | voiture_k)
+```
+`L(réponse | voiture)` est la vraisemblance : chaque réponse attribue un score différent selon le **prix**, la **catégorie**, la **marque**, la **puissance** ou les **émissions CO₂** de chaque voiture.
+
+### 4. Critère d'arrêt intelligent
+Le quiz s'arrête dès que :
+- ✅ Minimum **15 questions** posées, **ET**
+- La voiture de tête dépasse **60% de probabilité**, OU
+- Le rapport probabilité top-1 / top-2 dépasse **8×**, OU
+- Maximum **30 questions** atteint
+
+### 5. Score de compatibilité
+```
+matchScore = min( round(52 + probabilité × 140) , 99 )
+```
+
+---
+
+## Stack technique
+
+| Couche | Technologie |
+|--------|-------------|
 | Frontend | React 18 + Vite + Tailwind CSS |
-| Backend | Node.js + Express |
-| Base de données | SQLite |
-| Algorithme | Inférence bayésienne (sélection par entropie maximale) |
-| Design | Dark theme `#0A0B0F`, gold `#E8B84B`, Syne + DM Sans |
+| Routing | React Router v6 |
+| Moteur quiz | Bayesian engine — ES module pur |
+| Données | 59 voitures marché marocain — array statique |
+| Déploiement | Vercel free tier — 100% client-side static |
+
+**Aucun backend. Aucune base de données. Aucun serveur.** Tout tourne dans le navigateur.
 
 ---
 
-## L'algorithme
+## Dataset — 59 voitures du marché marocain
 
-Le moteur fonctionne comme Akinator :
+| Catégorie | Modèles |
+|-----------|---------|
+| **Éco / Budget** (17) | Dacia Sandero, Logan, Kwid · Renault Clio, Symbol · Hyundai i10, i20 · Kia Picanto · Peugeot 208 · Citroën C3, C1 · Toyota Yaris, C-HR · VW Polo · BYD Seagull, Yuan Plus · Tesla Model 3, Model Y |
+| **Pratique / Famille** (21) | Dacia Duster · Renault Mégane, Espace · Peugeot 2008, 308, 3008, 5008 · Citroën C4 · Toyota Corolla, RAV4, Land Cruiser · Hyundai Tucson, Creta · Kia Sportage · VW Golf · Seat Leon · Nissan Juke, Qashqai, X-Trail · Ford Focus, Galaxy |
+| **Performance** (7) | VW Golf GTI · BMW M140i · Renault Mégane RS · Peugeot 308 GTi · Toyota GR86 · Nissan 370Z · Ford Mustang |
+| **Luxe** (10) | Audi A3, A4 · BMW Série 3, Série 5, X5 · Mercedes Classe C, Classe E, GLE, GLC · Land Rover Range Rover Sport |
 
-1. **Prior uniforme** — toutes les voitures ont la même probabilité au départ
-2. **Sélection par gain d'information** — à chaque tour, la question qui réduit le plus l'incertitude est choisie
-3. **Mise à jour bayésienne** — chaque réponse met à jour les probabilités de toutes les voitures
-4. **Arrêt intelligent** — quand une voiture dépasse 40% de probabilité ou après 7 questions
-
-```
-P(voiture | réponse) ∝ P(réponse | voiture) × P(voiture)
-```
+Prix : **8 500 €** (Dacia Sandero) → **194 444 €** (Range Rover Sport)
 
 ---
 
-## Dataset
+## Quiz — 71 questions adaptatives
 
-**155 voitures** issues de deux sources :
+| Bloc | Thème | Nb |
+|------|-------|----|
+| 1 | **Social marocain** — gendre, mariage, voisin, WhatsApp famille, ramadan, Instagram, station-service... | 15 |
+| 2 | **Budget** — mensualité, carburant, entretien, valeur de revente, occasion/neuf... | 8 |
+| 3 | **Usage** — trajet quotidien, routes du Maroc, km annuels, weekend, parking... | 8 |
+| 4 | **Motorisation** — essence/hybride/électrique, puissance, boîte, accélération... | 7 |
+| 5 | **Confort / Style / Famille** — suspension, insonorisation, tableau de bord, carrosserie, sécurité, marque... | 12 |
+| 6 | **Fiabilité & Tech** — démarrage, freinage, direction, clim, sièges, GPS, caméra recul... | 21 |
 
-- **120 voitures internationales** — via CarQuery API (BMW, Mercedes, Audi, Toyota, Tesla...)
-- **35 voitures du marché marocain** — dataset local (Dacia Sandero/Logan/Duster, Renault Clio/Symbol, Hyundai i10/Tucson, Kia Picanto/Sportage, Peugeot 208/2008, Citroën C3, Toyota Land Cruiser, BMW Série 3/5, Mercedes Classe C/E/GLE...)
-
----
-
-## Lancer le projet
-
-**Prérequis :** Node.js 18+
-
-```bash
-# Backend
-cd backend
-cp .env.example .env
-npm install
-npm run dev
-# → http://localhost:3001
-
-# Frontend (autre terminal)
-cd frontend
-cp .env.example .env
-npm install
-npm run dev
-# → http://localhost:3000
-```
+Le système ne pose **jamais** les 71 questions — il sélectionne dynamiquement les plus informatives à chaque étape.
 
 ---
 
@@ -78,46 +109,43 @@ npm run dev
 
 | Route | Description |
 |-------|-------------|
-| `/` | Landing page avec canvas 3D et aperçu du quiz |
-| `/quiz` | Quiz interactif Akinator-style |
-| `/results` | Top 3 avec scores de correspondance |
-| `/catalog` | Catalogue filtrable des 155 voitures |
-| `/search` | Recherche par marque, budget, catégorie |
+| `/` | Landing page avec canvas 3D animé |
+| `/quiz` | Quiz adaptatif avec panel de probabilités en direct |
+| `/results` | Top 3 avec score de compatibilité et raison |
+| `/cars` | Catalogue filtrable (marque, catégorie, budget) |
+| `/cars/:id` | Fiche détaillée + voitures similaires |
 | `/compare` | Comparateur côte à côte |
 
 ---
 
-## Structure
+## Lancer en local
 
+```bash
+cd frontend
+npm install
+npm run dev      # → http://localhost:3000
 ```
-car-advisor/
-├── backend/
-│   ├── routes/          # cars, quiz, favorites
-│   ├── services/
-│   │   ├── quizEngine.js      # moteur bayésien + questions
-│   │   ├── moroccanSeed.js    # dataset marocain
-│   │   └── carqueryService.js # sync CarQuery API
-│   ├── database.js
-│   └── server.js
-└── frontend/
-    └── src/
-        ├── components/  # Header, HeroCanvas, Cursor
-        ├── pages/       # Landing, Quiz, Results, Catalog...
-        └── hooks/
+
+```bash
+npm run build    # build de production
+npm run preview  # → http://localhost:4173
 ```
 
 ---
 
-## Variables d'environnement
+## Palette de couleurs
 
-**backend/.env**
-```
-PORT=3001
-DATABASE_PATH=./database/cars.db
-FRONTEND_URL=http://localhost:3000
-```
+| Couleur | Hex | Usage |
+|---------|-----|-------|
+| Midnight Black | `#0D0D0D` | Fond |
+| Champagne Gold | `#C9A84C` | Accent / highlights |
+| Ivory Cream | `#F5F0E8` | Texte |
 
-**frontend/.env**
-```
-VITE_API_URL=http://localhost:3001
-```
+---
+
+## Déploiement
+
+Hébergé sur **Vercel** (free tier, sans carte bancaire).
+Chaque `git push` sur `master` redéploie automatiquement en ~1 minute.
+
+**Live :** [car-advisor-omega.vercel.app](https://car-advisor-omega.vercel.app)
