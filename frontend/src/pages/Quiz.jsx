@@ -1,13 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-
-const API = import.meta.env.VITE_API_URL || '';
+import { CARS } from '../data/cars';
+import {
+  createSession, getBestQuestion, applyAnswer, isDone,
+  getTopCars, displayConfidence, formatQuestion, getMatchReason
+} from '../engine/quiz';
 
 export default function Quiz({ onComplete }) {
   const navigate = useNavigate();
-  const [phase, setPhase] = useState('intro');   // intro | asking | thinking | error
-  const [sessionId, setSessionId] = useState(null);
+  const [phase, setPhase] = useState('intro');   // intro | asking | thinking
+  const [session, setSession] = useState(null);
   const [question, setQuestion] = useState(null);
   const [confidence, setConfidence] = useState(0);
   const [leadingCar, setLeadingCar] = useState(null);
@@ -15,19 +17,23 @@ export default function Quiz({ onComplete }) {
   const [visible, setVisible] = useState(false);
   const [thinkLabel, setThinkLabel] = useState('');
   const submitting = useRef(false);
+  const rawQuestionRef = useRef(null);
 
   async function startQuiz() {
     setPhase('thinking');
     setThinkLabel('Initialisation');
-    try {
-      const res = await axios.post(`${API}/api/quiz/start`);
-      setSessionId(res.data.sessionId);
-      setQuestion(res.data.question);
-      setConfidence(0);
-      setVisible(false);
-      setPhase('asking');
-      requestAnimationFrame(() => setVisible(true));
-    } catch { setPhase('error'); }
+    await delay(400);
+    const s = createSession(CARS);
+    const rawQ = getBestQuestion(s, CARS);
+    rawQuestionRef.current = rawQ;
+    setSession(s);
+    setQuestion(formatQuestion(rawQ, 1));
+    setConfidence(0);
+    setLeadingCar(null);
+    setSelected(null);
+    setVisible(false);
+    setPhase('asking');
+    requestAnimationFrame(() => setVisible(true));
   }
 
   async function handleAnswer(answerIndex) {
@@ -39,33 +45,47 @@ export default function Quiz({ onComplete }) {
     await delay(220);
     setPhase('thinking');
     setThinkLabel('Analyse en cours');
-    try {
-      const res = await axios.post(`${API}/api/quiz/answer`, { sessionId, questionId: question.id, answerIndex });
-      setConfidence(res.data.confidence || 0);
-      if (res.data.leadingCar) setLeadingCar(res.data.leadingCar);
-      if (res.data.done) {
-        setThinkLabel('Résultats trouvés');
-        await delay(600);
-        onComplete({ top3: res.data.top3, scores: {} });
-        navigate('/results');
-        return;
-      }
-      await delay(700);
-      setSelected(null);
-      setQuestion(res.data.question);
-      submitting.current = false;
-      setPhase('asking');
-      requestAnimationFrame(() => setVisible(true));
-    } catch {
-      submitting.current = false;
-      setPhase('asking');
-      setVisible(true);
+
+    const s = {
+      ...session,
+      carProbs: { ...session.carProbs },
+      askedIds: new Set(session.askedIds),
+      answers: [...session.answers]
+    };
+    applyAnswer(s, rawQuestionRef.current, answerIndex, CARS);
+
+    const conf = displayConfidence(s, CARS);
+    setConfidence(conf);
+    const top1 = getTopCars(s, CARS, 1);
+    if (top1.length > 0) setLeadingCar({ make: top1[0].make, model: top1[0].model });
+
+    if (isDone(s, CARS)) {
+      setThinkLabel('Résultats trouvés');
+      await delay(600);
+      const top3 = getTopCars(s, CARS, 3).map(car => ({
+        ...car,
+        matchScore: Math.min(Math.round(52 + car._prob * 140), 99),
+        matchReason: getMatchReason(car)
+      }));
+      setSession(s);
+      onComplete({ top3, scores: {} });
+      navigate('/results');
+      return;
     }
+
+    await delay(700);
+    const rawQ = getBestQuestion(s, CARS);
+    rawQuestionRef.current = rawQ;
+    setSelected(null);
+    setQuestion(formatQuestion(rawQ, s.askedIds.size + 1));
+    setSession(s);
+    submitting.current = false;
+    setPhase('asking');
+    requestAnimationFrame(() => setVisible(true));
   }
 
   if (phase === 'intro')    return <Intro onStart={startQuiz} />;
   if (phase === 'thinking') return <Thinking label={thinkLabel} confidence={confidence} leadingCar={leadingCar} />;
-  if (phase === 'error')    return <ErrorScreen onRetry={startQuiz} />;
   return <QuestionCard question={question} confidence={confidence} leadingCar={leadingCar} selected={selected} visible={visible} onAnswer={handleAnswer} />;
 }
 
@@ -246,17 +266,5 @@ function AnswerButton({ answer, isSelected, isDimmed, disabled, onClick }) {
   );
 }
 
-/* ── ERROR ── */
-function ErrorScreen({ onRetry }) {
-  return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-      <div style={{ textAlign: 'center', maxWidth: '360px' }}>
-        <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '2rem', marginBottom: '1rem' }}>Connexion impossible</p>
-        <p style={{ fontSize: '.9rem', color: 'var(--ink-mute)', lineHeight: 1.6, marginBottom: '2.5rem' }}>Vérifiez que le serveur est actif sur le port 3001.</p>
-        <button onClick={onRetry} className="btn-outline">Réessayer</button>
-      </div>
-    </div>
-  );
-}
 
 function delay(ms) { return new Promise(r => setTimeout(r, ms)); }

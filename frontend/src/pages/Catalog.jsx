@@ -1,8 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-
-const API = import.meta.env.VITE_API_URL || '';
+import { CARS, ALL_MAKES } from '../data/cars';
 
 const CATEGORIES = [
   { value: '', label: 'Toutes catégories' },
@@ -24,43 +22,21 @@ const inputStyle = {
 
 export default function Catalog({ addToCompare }) {
   const navigate = useNavigate();
-  const [cars, setCars] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [makes, setMakes] = useState([]);
   const [search, setSearch] = useState('');
   const [make, setMake] = useState('');
   const [category, setCategory] = useState('');
   const [maxBudget, setMaxBudget] = useState('');
 
-  const fetchCars = useCallback(async () => {
-    setLoading(true);
-    try {
-      const params = { limit: 120 };
-      if (make) params.make = make;
-      if (category) params.category = category;
-      if (maxBudget) params.max_budget = maxBudget;
-
-      const endpoint = search
-        ? `${API}/api/cars/search`
-        : `${API}/api/cars`;
-      if (search) params.q = search;
-
-      const res = await axios.get(endpoint, { params });
-      setCars(res.data.cars || []);
-    } catch {
-      setCars([]);
-    } finally {
-      setLoading(false);
-    }
+  const cars = useMemo(() => {
+    const q = search.toLowerCase();
+    return CARS.filter(car => {
+      if (q && !`${car.make} ${car.model}`.toLowerCase().includes(q)) return false;
+      if (make && car.make !== make) return false;
+      if (category && car.category !== category) return false;
+      if (maxBudget && car.price_eur > Number(maxBudget)) return false;
+      return true;
+    });
   }, [search, make, category, maxBudget]);
-
-  useEffect(() => {
-    if (cars.length > 0) {
-      setMakes([...new Set(cars.map(c => c.make))].sort());
-    }
-  }, [cars]);
-
-  useEffect(() => { fetchCars(); }, [fetchCars]);
 
   function reset() { setSearch(''); setMake(''); setCategory(''); setMaxBudget(''); }
 
@@ -93,7 +69,7 @@ export default function Catalog({ addToCompare }) {
             onBlur={e => e.target.style.borderColor = 'var(--line)'}
           >
             <option value="">Toutes les marques</option>
-            {makes.map(m => <option key={m} value={m}>{m}</option>)}
+            {ALL_MAKES.map(m => <option key={m} value={m}>{m}</option>)}
           </select>
           <select
             style={{ ...inputStyle, appearance: 'none', cursor: 'pointer' }}
@@ -124,11 +100,7 @@ export default function Catalog({ addToCompare }) {
         </div>
 
         {/* Grid */}
-        {loading ? (
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
-            <PulsingDot />
-          </div>
-        ) : cars.length === 0 ? (
+        {cars.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '6rem 0', color: 'var(--ink-mute)' }}>
             <p style={{ fontFamily: 'var(--serif-display)', fontSize: '28px', color: 'var(--ink)', marginBottom: '1rem' }}>Aucun résultat</p>
             <p style={{ fontFamily: 'var(--sans)', fontSize: '13px' }}>Élargissez vos critères de recherche.</p>

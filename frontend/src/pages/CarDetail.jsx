@@ -1,36 +1,28 @@
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { CARS } from '../data/cars';
 
-const API = import.meta.env.VITE_API_URL || '';
 const CAT_LABEL = { eco: 'Écologique', luxury: 'Luxe', practical: 'Pratique', performance: 'Performance' };
 
 export default function CarDetail({ addToCompare }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [car, setCar] = useState(null);
-  const [similar, setSimilar] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [added, setAdded] = useState(false);
 
-  useEffect(() => {
-    setLoading(true);
-    Promise.all([
-      axios.get(`${API}/api/cars/${id}`),
-      axios.get(`${API}/api/cars/${id}/similar`),
-    ]).then(([carRes, simRes]) => {
-      setCar(carRes.data);
-      setSimilar(simRes.data.cars || []);
-    }).catch(() => navigate('/cars'))
-      .finally(() => setLoading(false));
-  }, [id, navigate]);
+  const car = useMemo(() => CARS.find(c => c.id === Number(id)) || null, [id]);
+  const similar = useMemo(() => {
+    if (!car) return [];
+    return CARS
+      .filter(c => c.category === car.category && c.id !== car.id)
+      .sort((a, b) => Math.abs(a.price_eur - car.price_eur) - Math.abs(b.price_eur - car.price_eur))
+      .slice(0, 4);
+  }, [car]);
 
   function handleCompare() {
     if (car) { addToCompare(car); setAdded(true); }
   }
 
-  if (loading) return <LoadingScreen />;
-  if (!car) return null;
+  if (!car) { navigate('/cars'); return null; }
 
   const formatPrice = p => p ? `${Math.round(p).toLocaleString('fr-FR')} €` : 'Prix sur demande';
   const isElectric = car.consumption_l100k === 0 || car.co2_g_km === 0;
@@ -187,14 +179,3 @@ export default function CarDetail({ addToCompare }) {
   );
 }
 
-function LoadingScreen() {
-  return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <style>{`@keyframes lx-ping3{0%{transform:scale(1);opacity:.6}70%,100%{transform:scale(2.2);opacity:0}}@keyframes lx-p3{0%,100%{opacity:1}50%{opacity:.4}}`}</style>
-      <div style={{ position: 'relative', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ position: 'absolute', width: '10px', height: '10px', borderRadius: '50%', background: 'var(--gold)', animation: 'lx-ping3 1.4s infinite' }} />
-        <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: 'var(--gold)', animation: 'lx-p3 1.4s ease-in-out infinite' }} />
-      </div>
-    </div>
-  );
-}
