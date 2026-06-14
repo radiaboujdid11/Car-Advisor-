@@ -16,6 +16,7 @@ export default function Quiz({ onComplete }) {
   const [selected, setSelected] = useState(null);
   const [visible, setVisible] = useState(false);
   const [thinkLabel, setThinkLabel] = useState('');
+  const [topProbs, setTopProbs] = useState([]);
   const submitting = useRef(false);
   const rawQuestionRef = useRef(null);
 
@@ -56,8 +57,9 @@ export default function Quiz({ onComplete }) {
 
     const conf = displayConfidence(s, CARS);
     setConfidence(conf);
-    const top1 = getTopCars(s, CARS, 1);
-    if (top1.length > 0) setLeadingCar({ make: top1[0].make, model: top1[0].model });
+    const top5 = getTopCars(s, CARS, 5);
+    if (top5.length > 0) setLeadingCar({ make: top5[0].make, model: top5[0].model });
+    setTopProbs(top5.map(c => ({ make: c.make, model: c.model, prob: c._prob })));
 
     if (isDone(s, CARS)) {
       setThinkLabel('Résultats trouvés');
@@ -85,8 +87,8 @@ export default function Quiz({ onComplete }) {
   }
 
   if (phase === 'intro')    return <Intro onStart={startQuiz} />;
-  if (phase === 'thinking') return <Thinking label={thinkLabel} confidence={confidence} leadingCar={leadingCar} />;
-  return <QuestionCard question={question} confidence={confidence} leadingCar={leadingCar} selected={selected} visible={visible} onAnswer={handleAnswer} />;
+  if (phase === 'thinking') return <Thinking label={thinkLabel} confidence={confidence} leadingCar={leadingCar} topProbs={topProbs} />;
+  return <QuestionCard question={question} confidence={confidence} leadingCar={leadingCar} selected={selected} visible={visible} onAnswer={handleAnswer} topProbs={topProbs} />;
 }
 
 /* ── INTRO ── */
@@ -129,8 +131,50 @@ function Intro({ onStart }) {
   );
 }
 
+/* ── BAYES PANEL ── */
+function BayesPanel({ topProbs }) {
+  if (!topProbs || topProbs.length === 0) return null;
+  const maxProb = topProbs[0].prob || 1;
+
+  return (
+    <div style={{ marginTop: '2rem', borderTop: '1px solid var(--line)', paddingTop: '1.5rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', marginBottom: '1.1rem' }}>
+        <span style={{ width: 5, height: 5, background: 'var(--gold)', borderRadius: '50%', flexShrink: 0, animation: 'pulse-dot 1.5s infinite' }} />
+        <p style={{ fontSize: '.66rem', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--gold)', fontFamily: 'var(--sans)' }}>
+          Probabilités bayésiennes — mise à jour en direct
+        </p>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        {topProbs.map((car, i) => {
+          const pct = (car.prob * 100).toFixed(1);
+          const barWidth = (car.prob / maxProb) * 100;
+          return (
+            <div key={`${car.make}-${car.model}`}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }}>
+                <span style={{ fontSize: '.8rem', color: i === 0 ? 'var(--ink)' : 'var(--ink-mute)', fontFamily: 'var(--sans)', fontWeight: i === 0 ? 500 : 400 }}>
+                  {i === 0 && <span style={{ color: 'var(--gold)', marginRight: '6px', fontSize: '.65rem' }}>▲</span>}
+                  {car.make} {car.model}
+                </span>
+                <span style={{ fontFamily: 'var(--mono)', fontSize: '.72rem', color: i === 0 ? 'var(--gold)' : 'var(--ink-mute)', letterSpacing: '.05em' }}>
+                  {pct}%
+                </span>
+              </div>
+              <div style={{ height: '2px', background: 'rgba(245,240,232,.06)', borderRadius: '2px', overflow: 'hidden' }}>
+                <div style={{ height: '100%', width: `${barWidth}%`, background: i === 0 ? 'var(--gold)' : 'rgba(201,168,76,.3)', borderRadius: '2px', transition: 'width .9s cubic-bezier(.4,0,.2,1)' }} />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <p style={{ fontSize: '.62rem', color: 'var(--ink-mute)', opacity: .4, marginTop: '1.1rem', letterSpacing: '.12em', textTransform: 'uppercase', fontFamily: 'var(--sans)' }}>
+        P(voiture | réponses) ∝ P(voiture) × ∏ P(réponse | voiture) · Théorème de Bayes
+      </p>
+    </div>
+  );
+}
+
 /* ── THINKING ── */
-function Thinking({ label, confidence, leadingCar }) {
+function Thinking({ label, confidence, leadingCar, topProbs }) {
   const [dots, setDots] = useState('');
   useEffect(() => {
     const t = setInterval(() => setDots(d => d.length >= 3 ? '' : d + '.'), 400);
@@ -169,12 +213,18 @@ function Thinking({ label, confidence, leadingCar }) {
           </p>
         </div>
       )}
+
+      {topProbs.length > 0 && (
+        <div style={{ marginTop: '2.5rem', width: '320px', maxWidth: '90vw' }}>
+          <BayesPanel topProbs={topProbs} />
+        </div>
+      )}
     </div>
   );
 }
 
 /* ── QUESTION CARD ── */
-function QuestionCard({ question, confidence, leadingCar, selected, visible, onAnswer }) {
+function QuestionCard({ question, confidence, leadingCar, selected, visible, onAnswer, topProbs }) {
   if (!question) return null;
 
   return (
@@ -230,6 +280,8 @@ function QuestionCard({ question, confidence, leadingCar, selected, visible, onA
           <p style={{ textAlign: 'center', fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--ink-mute)', opacity: .5, marginTop: '2.5rem' }}>
             Sélectionnez une réponse pour continuer
           </p>
+
+          <BayesPanel topProbs={topProbs} />
         </div>
       </div>
     </div>
