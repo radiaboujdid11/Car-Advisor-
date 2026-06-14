@@ -145,7 +145,6 @@ npm run preview  # → http://localhost:4173
 
 ## Déploiement
 
-Hébergé sur **Vercel** (free tier, sans carte bancaire).
-Chaque `git push` sur `master` redéploie automatiquement en ~1 minute.
+Hébergé sur **Vercel**. Chaque `git push` sur `master` redéploie automatiquement en ~1 minute.
 
 **Live :** [car-advisor-omega.vercel.app](https://car-advisor-omega.vercel.app)
