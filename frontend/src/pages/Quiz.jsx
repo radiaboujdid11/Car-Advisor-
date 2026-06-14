@@ -75,7 +75,8 @@ export default function Quiz({ onComplete }) {
       return;
     }
 
-    await delay(700);
+    await delay(5000);
+
     const rawQ = getBestQuestion(s, CARS);
     rawQuestionRef.current = rawQ;
     setSelected(null);
