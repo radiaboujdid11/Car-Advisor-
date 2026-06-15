@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+﻿import { Link, useLocation } from 'react-router-dom';
 
 export default function Header({ compareCars = [] }) {
   const { pathname } = useLocation();
@@ -16,8 +16,8 @@ export default function Header({ compareCars = [] }) {
       position: 'sticky', top: 0, zIndex: 100,
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       padding: '0 4rem', height: '68px',
-      borderBottom: '1px solid rgba(201,168,76,.08)',
-      background: 'rgba(10,11,15,.85)',
+      borderBottom: '1px solid rgba(128,0,32,.08)',
+      background: 'rgba(0,15,38,.85)',
       backdropFilter: 'blur(20px)',
     }}>
       <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>

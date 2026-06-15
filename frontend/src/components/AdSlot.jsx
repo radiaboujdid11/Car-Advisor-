@@ -1,12 +1,12 @@
-export default function AdSlot({ size = 'banner', children }) {
+﻿export default function AdSlot({ size = 'banner', children }) {
   const isBanner = size === 'banner';
 
   const wrapper = {
     position: 'relative',
     width: '100%',
     minHeight: isBanner ? '120px' : '280px',
-    background: 'rgba(201,168,76,.04)',
-    border: '1px dashed rgba(201,168,76,.25)',
+    background: 'rgba(128,0,32,.04)',
+    border: '1px dashed rgba(128,0,32,.25)',
     borderRadius: '12px',
     display: 'flex',
     alignItems: 'center',

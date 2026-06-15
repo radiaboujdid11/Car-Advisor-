@@ -4,24 +4,24 @@
 
 :root {
   /* ── PALETTE: 3 colors only ── */
-  --black:  #0D0D0D;
-  --gold:   #C9A84C;
-  --ivory:  #F5F0E8;
+  --black:  #001F3F;
+  --gold:   #800020;
+  --ivory:  #F2E4C8;
 
-  /* ── Derived backgrounds (black family) ── */
-  --bg:     #0D0D0D;
-  --bg-2:   #141414;
-  --bg-3:   #1A1A1A;
+  /* ── Derived backgrounds (navy family) ── */
+  --bg:     #001F3F;
+  --bg-2:   #012447;
+  --bg-3:   #032D58;
 
-  /* ── Derived text (ivory family) ── */
-  --ink:      #F5F0E8;
-  --ink-soft: rgba(245,240,232,.65);
-  --ink-mute: rgba(245,240,232,.4);
+  /* ── Derived text (cream family) ── */
+  --ink:      #F2E4C8;
+  --ink-soft: rgba(242,228,200,.65);
+  --ink-mute: rgba(242,228,200,.4);
 
-  /* ── Derived gold ── */
-  --gold-2:   #DDB95A;
-  --gold-deep:#A8893A;
-  --line:     rgba(201,168,76,.1);
+  /* ── Derived burgundy ── */
+  --gold-2:   #9A1528;
+  --gold-deep:#600018;
+  --line:     rgba(128,0,32,.18);
 
   /* ── Typography ── */
   --serif-display: 'Syne', sans-serif;

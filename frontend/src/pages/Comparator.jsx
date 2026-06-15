@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 
 const SPECS = [
   { key: 'price_eur',         label: 'Prix',        format: v => v ? `${Math.round(v).toLocaleString('fr-FR')} €` : '—', lowerIsBetter: true },

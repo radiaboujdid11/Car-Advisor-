@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+﻿import { useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import HeroCanvas from '../components/HeroCanvas';
 import AdSlot from '../components/AdSlot';
@@ -74,8 +74,8 @@ export default function Landing() {
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '1.5rem 4rem',
-        borderBottom: '1px solid rgba(201,168,76,.08)',
-        background: 'rgba(10,11,15,.6)',
+        borderBottom: '1px solid rgba(128,0,32,.08)',
+        background: 'rgba(0,15,38,.6)',
         backdropFilter: 'blur(20px)',
       }}>
         <div style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '1.4rem', letterSpacing: '-.02em' }}>
@@ -117,19 +117,19 @@ export default function Landing() {
         {/* Dark gradient — solid left, fades right */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(to right, #0D0D0D 0%, #0D0D0D 30%, rgba(13,13,13,.75) 55%, rgba(13,13,13,.15) 100%)',
+          background: 'linear-gradient(to right, #001F3F 0%, rgba(0,31,63,.9) 25%, rgba(0,31,63,.4) 50%, rgba(0,31,63,.05) 100%)',
         }} />
 
         {/* On mobile: full dark overlay so text is readable */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(to top, rgba(13,13,13,.6) 0%, transparent 40%)',
+          background: 'linear-gradient(to top, rgba(0,31,63,.6) 0%, transparent 40%)',
         }} />
 
         {/* Content */}
         <div className="hero-content" style={{ position: 'relative', zIndex: 1, padding: '0 4rem', maxWidth: '700px', paddingTop: '7rem', paddingBottom: '4rem' }}>
 
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', background: 'rgba(201,168,76,.12)', border: '1px solid rgba(201,168,76,.3)', color: 'var(--gold)', fontSize: '.75rem', letterSpacing: '.14em', textTransform: 'uppercase', padding: '.4rem 1.1rem', borderRadius: '50px', marginBottom: '2.5rem', animation: 'fadeDown .8s ease both' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', background: 'rgba(128,0,32,.12)', border: '1px solid rgba(128,0,32,.3)', color: 'var(--gold)', fontSize: '.75rem', letterSpacing: '.14em', textTransform: 'uppercase', padding: '.4rem 1.1rem', borderRadius: '50px', marginBottom: '2.5rem', animation: 'fadeDown .8s ease both' }}>
             <span style={{ width: 6, height: 6, background: 'var(--gold)', borderRadius: '50%', animation: 'pulse-dot 1.5s infinite', display: 'inline-block' }} />
             Kachow · Inférence Bayésienne
           </div>
@@ -195,7 +195,7 @@ export default function Landing() {
       </section>
 
       {/* ── QUIZ PREVIEW ── */}
-      <section id="quiz" className="section-pad" style={{ position: 'relative', zIndex: 1, padding: '6rem 4rem', background: 'var(--bg-2)', borderTop: '1px solid rgba(201,168,76,.08)', borderBottom: '1px solid rgba(201,168,76,.08)' }}>
+      <section id="quiz" className="section-pad" style={{ position: 'relative', zIndex: 1, padding: '6rem 4rem', background: 'var(--bg-2)', borderTop: '1px solid rgba(128,0,32,.08)', borderBottom: '1px solid rgba(128,0,32,.08)' }}>
         <div className="grid-2" style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6rem', alignItems: 'center' }}>
           <div className="reveal">
             <div className="section-tag">Questionnaire intelligent</div>
@@ -208,18 +208,18 @@ export default function Landing() {
             <button onClick={() => navigate('/quiz')} className="btn-primary">Commencer maintenant →</button>
           </div>
 
-          <div ref={previewRef} className="reveal quiz-preview-card" style={{ background: 'var(--bg-3)', border: '1px solid rgba(201,168,76,.2)', borderRadius: '20px', padding: '2.5rem', boxShadow: '0 40px 80px rgba(0,0,0,.4)', transform: 'perspective(1000px) rotateY(-8deg) rotateX(2deg)', transition: 'transform .5s ease' }}
+          <div ref={previewRef} className="reveal quiz-preview-card" style={{ background: 'var(--bg-3)', border: '1px solid rgba(128,0,32,.2)', borderRadius: '20px', padding: '2.5rem', boxShadow: '0 40px 80px rgba(0,0,0,.4)', transform: 'perspective(1000px) rotateY(-8deg) rotateX(2deg)', transition: 'transform .5s ease' }}
             onMouseEnter={e => { e.currentTarget.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)'; }}
             onMouseLeave={e => { e.currentTarget.style.transform = 'perspective(1000px) rotateY(-8deg) rotateX(2deg)'; }}
           >
             <style>{`
-              .pq-opt{padding:.75rem 1.2rem;border-radius:10px;border:1px solid rgba(245,240,232,.08);color:var(--ink-mute);font-size:.9rem;margin-bottom:.5rem;transition:all .2s;background:rgba(245,240,232,.03)}
-              .pq-opt.active{background:rgba(201,168,76,.12);border-color:var(--gold);color:var(--ink)}
+              .pq-opt{padding:.75rem 1.2rem;border-radius:10px;border:1px solid rgba(242,228,200,.08);color:var(--ink-mute);font-size:.9rem;margin-bottom:.5rem;transition:all .2s;background:rgba(242,228,200,.03)}
+              .pq-opt.active{background:rgba(128,0,32,.12);border-color:var(--gold);color:var(--ink)}
             `}</style>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.8rem', marginBottom: '1.5rem', color: 'var(--ink-mute)', fontSize: '.82rem', letterSpacing: '.06em', textTransform: 'uppercase' }}>
               <span>Question</span><span id="pq-num" style={{ color: 'var(--gold)', fontFamily: 'var(--serif-display)', fontSize: '1.2rem' }}>1</span><span>/ {QUIZ_PREVIEW.length}</span>
             </div>
-            <div style={{ height: '3px', background: 'rgba(245,240,232,.06)', borderRadius: '3px', marginBottom: '1.5rem', overflow: 'hidden' }}>
+            <div style={{ height: '3px', background: 'rgba(242,228,200,.06)', borderRadius: '3px', marginBottom: '1.5rem', overflow: 'hidden' }}>
               <div id="pq-bar" style={{ height: '100%', background: 'var(--gold)', borderRadius: '3px', transition: 'width .5s', width: '33%' }} />
             </div>
             <div id="pq-text" style={{ fontFamily: 'var(--serif-display)', fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.25rem', lineHeight: 1.4 }}>Quel est votre usage principal ?</div>
@@ -241,7 +241,7 @@ export default function Landing() {
         <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
           {FEATURES.map(f => (
             <div key={f.title} className="reveal card" style={{ padding: '2rem' }}>
-              <div style={{ width: 44, height: 44, background: 'rgba(201,168,76,.1)', border: '1px solid rgba(201,168,76,.2)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: f.icon.length > 1 ? '.8rem' : '1.1rem', color: 'var(--gold)', letterSpacing: '-.01em' }}>
+              <div style={{ width: 44, height: 44, background: 'rgba(128,0,32,.1)', border: '1px solid rgba(128,0,32,.2)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: f.icon.length > 1 ? '.8rem' : '1.1rem', color: 'var(--gold)', letterSpacing: '-.01em' }}>
                 {f.icon}
               </div>
               <h3 style={{ fontFamily: 'var(--serif-display)', fontWeight: 700, fontSize: '.98rem', marginBottom: '.5rem' }}>{f.title}</h3>
@@ -252,7 +252,7 @@ export default function Landing() {
       </section>
 
       {/* ── CTA ── */}
-      <div className="section-pad" style={{ position: 'relative', zIndex: 1, padding: '8rem 4rem', textAlign: 'center', background: 'radial-gradient(ellipse 80% 50% at 50% 100%, rgba(201,168,76,.12) 0%, transparent 70%)' }}>
+      <div className="section-pad" style={{ position: 'relative', zIndex: 1, padding: '8rem 4rem', textAlign: 'center', background: 'radial-gradient(ellipse 80% 50% at 50% 100%, rgba(128,0,32,.12) 0%, transparent 70%)' }}>
         <h2 className="reveal" style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: 'clamp(2.5rem,5vw,4rem)', letterSpacing: '-.04em', marginBottom: '1.2rem' }}>
           Prêt à trouver<br /><span style={{ color: 'var(--gold)' }}>votre voiture ?</span>
         </h2>
@@ -265,7 +265,7 @@ export default function Landing() {
       </div>
 
       {/* ── FOOTER ── */}
-      <footer className="landing-footer" style={{ position: 'relative', zIndex: 1, borderTop: '1px solid rgba(245,240,232,.06)', padding: '2rem 4rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: 'var(--ink-mute)', fontSize: '.8rem' }}>
+      <footer className="landing-footer" style={{ position: 'relative', zIndex: 1, borderTop: '1px solid rgba(242,228,200,.06)', padding: '2rem 4rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: 'var(--ink-mute)', fontSize: '.8rem' }}>
         <div style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '1.1rem' }}>
           Auto<span style={{ color: 'var(--gold)' }}>Assist</span>
         </div>
