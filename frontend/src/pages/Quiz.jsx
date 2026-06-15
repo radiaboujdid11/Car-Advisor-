@@ -230,11 +230,11 @@ function QuestionCard({ question, confidence, leadingCar, selected, visible, onA
   if (!question) return null;
 
   return (
-    <div style={{ minHeight: '100vh', background: '#6B001A', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ minHeight: '100vh', background: '#1C1408', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ position: 'fixed', top: 0, left: '50%', transform: 'translateX(-50%)', width: '800px', height: '500px', background: 'radial-gradient(ellipse at center top, rgba(245,237,216,.08) 0%, transparent 65%)', pointerEvents: 'none' }} />
 
       {/* Top bar */}
-      <div style={{ position: 'sticky', top: 0, zIndex: 10, borderBottom: '1px solid rgba(245,237,216,.15)', background: 'rgba(128,0,32,.95)', backdropFilter: 'blur(16px)', padding: '.875rem 1.5rem' }}>
+      <div style={{ position: 'sticky', top: 0, zIndex: 10, borderBottom: '1px solid rgba(245,237,216,.15)', background: 'rgba(16,12,4,.95)', backdropFilter: 'blur(16px)', padding: '.875rem 1.5rem' }}>
         <div style={{ maxWidth: '640px', margin: '0 auto' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
             <span style={{ fontSize: '.72rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(245,237,216,.55)' }}>
@@ -268,7 +268,7 @@ function QuestionCard({ question, confidence, leadingCar, selected, visible, onA
             <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-60%)', fontFamily: 'var(--serif-display)', fontSize: 'clamp(80px,18vw,140px)', color: 'var(--gold)', opacity: .06, lineHeight: 1, userSelect: 'none', pointerEvents: 'none', whiteSpace: 'nowrap', fontWeight: 800 }}>
               {String(question.number).padStart(2, '0')}
             </span>
-            <h2 style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: 'clamp(1.6rem,4vw,2.8rem)', lineHeight: 1.1, letterSpacing: '-.03em', position: 'relative', color: '#F5EDD8' }}>
+            <h2 style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: 'clamp(1.6rem,4vw,2.8rem)', lineHeight: 1.1, letterSpacing: '-.03em', position: 'relative', color: 'var(--ink)' }}>
               {question.question}
             </h2>
           </div>
@@ -299,7 +299,7 @@ function AnswerButton({ answer, isSelected, isDimmed, disabled, onClick }) {
   const [hovered, setHovered] = useState(false);
   const LETTERS = ['A', 'B', 'C', 'D'];
 
-  const borderColor = isSelected ? 'var(--gold)' : hovered && !disabled ? 'rgba(128,0,32,.5)' : 'rgba(245,237,216,.18)';
+  const borderColor = isSelected ? 'var(--gold)' : hovered && !disabled ? 'rgba(202,43,11,.5)' : 'rgba(245,237,216,.18)';
   const bg = isSelected ? 'rgba(245,237,216,.16)' : hovered && !disabled ? 'rgba(245,237,216,.08)' : 'rgba(245,237,216,.05)';
 
   return (

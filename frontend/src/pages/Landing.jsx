@@ -117,13 +117,13 @@ export default function Landing() {
         {/* Dark gradient — solid left, fades right */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(to right, #800020 0%, rgba(128,0,32,.95) 20%, rgba(128,0,32,.0) 50%, rgba(128,0,32,.0) 100%)',
+          background: 'linear-gradient(to right, #100C04 0%, rgba(16,12,4,.95) 20%, rgba(16,12,4,0) 50%, rgba(16,12,4,0) 100%)',
         }} />
 
         {/* On mobile: full dark overlay so text is readable */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(to top, rgba(128,0,32,.6) 0%, transparent 40%)',
+          background: 'linear-gradient(to top, rgba(16,12,4,.6) 0%, transparent 40%)',
         }} />
 
         {/* Content */}

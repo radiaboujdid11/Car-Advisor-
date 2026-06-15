@@ -49,7 +49,7 @@ function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
 
   return (
     <div
-      style={{ background: hovered ? 'var(--bg-3)' : 'var(--bg-2)', padding: '2.5rem', borderRadius: '16px', border: isFirst ? '1px solid rgba(128,0,32,.4)' : '1px solid rgba(245,237,216,.14)', position: 'relative', overflow: 'hidden', cursor: 'pointer', transition: 'background .2s, border-color .2s, transform .2s', transform: hovered ? 'translateY(-4px)' : 'none' }}
+      style={{ background: hovered ? 'var(--bg-3)' : 'var(--bg-2)', padding: '2.5rem', borderRadius: '16px', border: isFirst ? '1px solid rgba(16,12,4,.4)' : '1px solid rgba(245,237,216,.14)', position: 'relative', overflow: 'hidden', cursor: 'pointer', transition: 'background .2s, border-color .2s, transform .2s', transform: hovered ? 'translateY(-4px)' : 'none' }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={onDetail}
