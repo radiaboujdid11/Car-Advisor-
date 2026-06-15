@@ -69,6 +69,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: non
 @keyframes lx-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
 @keyframes scrollPulse { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 100% { transform: scaleY(0); transform-origin: bottom; } }
 @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .4; transform: scale(.7); } }
+@keyframes slowZoom { from { transform: scale(1.04); } to { transform: scale(1.12); } }
 .page-enter { animation: fadeIn .45s ease both; }
 
 /* ── Scrollbar ── */

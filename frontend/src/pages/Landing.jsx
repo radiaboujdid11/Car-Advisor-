@@ -107,29 +107,71 @@ export default function Landing() {
       </nav>
 
       {/* ── HERO ── */}
-      <section style={{ position: 'relative', zIndex: 1, minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', textAlign: 'center', paddingTop: '6rem' }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', background: 'rgba(201,168,76,.12)', border: '1px solid rgba(201,168,76,.3)', color: 'var(--gold)', fontSize: '.78rem', letterSpacing: '.12em', textTransform: 'uppercase', padding: '.45rem 1.2rem', borderRadius: '50px', marginBottom: '2rem', animation: 'fadeDown .8s ease both' }}>
-          <span style={{ width: 6, height: 6, background: 'var(--gold)', borderRadius: '50%', animation: 'pulse-dot 1.5s infinite', display: 'inline-block' }} />
-          IA Automobile · Propulsé par l'inférence bayésienne
+      <section style={{ position: 'relative', zIndex: 1, minHeight: '100vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+
+        {/* Cars image — full bleed right */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          backgroundImage: 'url(/mcqueen.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center right',
+          transform: 'scale(1.04)',
+          animation: 'slowZoom 18s ease-in-out infinite alternate',
+        }} />
+
+        {/* Dark gradient — solid left, fades right */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(to right, #0D0D0D 0%, #0D0D0D 30%, rgba(13,13,13,.75) 55%, rgba(13,13,13,.15) 100%)',
+        }} />
+
+        {/* Bottom vignette for readability */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(to top, rgba(13,13,13,.6) 0%, transparent 40%)',
+        }} />
+
+        {/* Content */}
+        <div style={{ position: 'relative', zIndex: 1, padding: '0 4rem', maxWidth: '700px', paddingTop: '7rem', paddingBottom: '4rem' }}>
+
+          {/* Badge */}
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', background: 'rgba(201,168,76,.12)', border: '1px solid rgba(201,168,76,.3)', color: 'var(--gold)', fontSize: '.75rem', letterSpacing: '.14em', textTransform: 'uppercase', padding: '.4rem 1.1rem', borderRadius: '50px', marginBottom: '2.5rem', animation: 'fadeDown .8s ease both' }}>
+            <span style={{ width: 6, height: 6, background: 'var(--gold)', borderRadius: '50%', animation: 'pulse-dot 1.5s infinite', display: 'inline-block' }} />
+            Kachow · Inférence Bayésienne
+          </div>
+
+          {/* Headline — editorial oversized */}
+          <h1 style={{ fontFamily: 'var(--serif-display)', fontWeight: 900, fontSize: 'clamp(3.8rem,9vw,7.5rem)', lineHeight: .9, letterSpacing: '-.04em', animation: 'fadeUp .9s .1s ease both', marginBottom: '2rem' }}>
+            Trouve<br />
+            <em style={{ fontStyle: 'normal', color: 'var(--gold)' }}>ton McQueen</em><br />
+            <span style={{ fontSize: '55%', color: 'var(--ink-soft)', fontWeight: 700 }}>maintenant.</span>
+          </h1>
+
+          {/* Funny subtitle */}
+          <p style={{ color: 'var(--ink-mute)', fontSize: '1.05rem', fontWeight: 300, maxWidth: '400px', lineHeight: 1.75, margin: '0 0 2.5rem', animation: 'fadeUp .9s .28s ease both' }}>
+            Tout le monde mérite de rouler dans sa voiture idéale.{' '}
+            <span style={{ color: 'var(--ivory)', fontStyle: 'italic' }}>Même Mater avait la sienne.</span>
+          </p>
+
+          {/* Buttons */}
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', animation: 'fadeUp .9s .42s ease both' }}>
+            <button onClick={() => navigate('/quiz')} className="btn-primary" style={{ fontSize: '1rem', padding: '.85rem 2rem' }}>
+              ⚡ Kachow — Démarrer
+            </button>
+            <button onClick={() => navigate('/cars')} className="btn-ghost">
+              Explorer le catalogue
+            </button>
+          </div>
+
+          {/* Cheeky footnote */}
+          <p style={{ marginTop: '2rem', color: 'var(--ink-mute)', fontSize: '.78rem', letterSpacing: '.04em', animation: 'fadeUp .9s .56s ease both' }}>
+            Aucune Fiat Multipla dans les résultats — on vous le garantit.
+          </p>
         </div>
 
-        <h1 style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: 'clamp(3rem,7vw,6rem)', lineHeight: 1.0, letterSpacing: '-.04em', animation: 'fadeUp .9s .1s ease both' }}>
-          Trouvez votre<br />
-          <em style={{ fontStyle: 'normal', color: 'var(--gold)' }}>voiture idéale</em><br />
-          en 3 minutes
-        </h1>
-
-        <p style={{ color: 'var(--ink-mute)', fontSize: '1.1rem', fontWeight: 300, maxWidth: '520px', lineHeight: 1.7, margin: '1.5rem auto 0', animation: 'fadeUp .9s .25s ease both' }}>
-          Un questionnaire intelligent analyse vos besoins, votre budget et votre style de vie pour vous recommander le véhicule parfait.
-        </p>
-
-        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '2.5rem', animation: 'fadeUp .9s .4s ease both' }}>
-          <button onClick={() => navigate('/quiz')} className="btn-primary">Démarrer le questionnaire</button>
-          <button onClick={() => navigate('/cars')} className="btn-ghost">Explorer le catalogue</button>
-        </div>
-
-        <div style={{ position: 'absolute', bottom: '3rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '.5rem', color: 'var(--ink-mute)', fontSize: '.75rem', letterSpacing: '.08em', textTransform: 'uppercase', animation: 'fadeIn 1s 1s both' }}>
-          <div style={{ width: 1, height: 50, background: 'linear-gradient(to bottom, var(--gold), transparent)', animation: 'scrollPulse 2s infinite' }} />
+        {/* Scroll indicator */}
+        <div style={{ position: 'absolute', bottom: '2.5rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '.5rem', color: 'var(--ink-mute)', fontSize: '.72rem', letterSpacing: '.08em', textTransform: 'uppercase', animation: 'fadeIn 1s 1.2s both' }}>
+          <div style={{ width: 1, height: 44, background: 'linear-gradient(to bottom, var(--gold), transparent)', animation: 'scrollPulse 2s infinite' }} />
           Découvrir
         </div>
       </section>
