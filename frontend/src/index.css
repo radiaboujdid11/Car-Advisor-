@@ -3,26 +3,26 @@
 @tailwind utilities;
 
 :root {
-  /* ── PALETTE — image #b5571f #836928 ── */
-  --black:    #100C04;
-  --gold:     #b5571f;   /* orange-brown — primary CTA, highlights */
-  --ivory:    #F2E4C0;
+  /* ── PALETTE — #3E2621 #674C1E #F2D8A7 #D98859 ── */
+  --black:    #3E2621;
+  --gold:     #D98859;   /* warm orange — primary CTA, highlights */
+  --ivory:    #F2D8A7;
 
-  /* ── Backgrounds (deep desert warm) ── */
-  --bg:     #100C04;
-  --bg-2:   #1C1408;
-  --bg-3:   #281B0C;
+  /* ── Backgrounds ── */
+  --bg:     #3E2621;
+  --bg-2:   #4f3520;
+  --bg-3:   #674C1E;
 
   /* ── Text (warm cream) ── */
-  --ink:      #F2E4C0;
-  --ink-soft: rgba(242,228,192,.68);
-  --ink-mute: rgba(242,228,192,.42);
+  --ink:      #F2D8A7;
+  --ink-soft: rgba(242,216,167,.68);
+  --ink-mute: rgba(242,216,167,.42);
 
   /* ── Palette accents ── */
-  --gold-2:   #836928;   /* desert gold — hover, secondary */
-  --gold-deep:#836928;   /* desert gold — subtle accents */
-  --terracotta: #836928; /* desert gold — muted borders */
-  --line:     rgba(131,105,40,.22); /* golden subtle line */
+  --gold-2:   #c07840;   /* darker orange — hover */
+  --gold-deep:#674C1E;   /* medium brown — subtle accents */
+  --terracotta: #674C1E; /* medium brown — muted borders */
+  --line:     rgba(103,76,30,.30); /* brown subtle line */
 
   /* ── Typography ── */
   --serif-display: 'Abril Fatface', serif;          /* hero h1, big display — retro bold */

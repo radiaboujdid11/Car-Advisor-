@@ -10,13 +10,13 @@ export default function Results({ results, addToCompare }) {
 
   return (
     <div style={{ background: 'var(--bg)', minHeight: '100vh', padding: '5rem 2rem', position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'fixed', top: 0, left: '50%', transform: 'translateX(-50%)', width: '700px', height: '400px', background: 'radial-gradient(ellipse at center top, rgba(245,237,216,.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'fixed', top: 0, left: '50%', transform: 'translateX(-50%)', width: '700px', height: '400px', background: 'radial-gradient(ellipse at center top, rgba(242,216,167,.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
       <div style={{ maxWidth: '960px', margin: '0 auto', position: 'relative' }}>
 
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', background: 'rgba(245,237,216,.14)', border: '1px solid rgba(245,237,216,.3)', color: 'var(--gold)', fontSize: '.75rem', letterSpacing: '.12em', textTransform: 'uppercase', padding: '.4rem 1rem', borderRadius: '50px', marginBottom: '1.5rem' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', background: 'rgba(242,216,167,.14)', border: '1px solid rgba(242,216,167,.3)', color: 'var(--gold)', fontSize: '.75rem', letterSpacing: '.12em', textTransform: 'uppercase', padding: '.4rem 1rem', borderRadius: '50px', marginBottom: '1.5rem' }}>
             Analyse complète
           </div>
           <h1 style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: 'clamp(2.5rem,6vw,5rem)', lineHeight: 1, letterSpacing: '-.04em', marginBottom: '1.5rem' }}>
@@ -49,7 +49,7 @@ function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
 
   return (
     <div
-      style={{ background: hovered ? 'var(--bg-3)' : 'var(--bg-2)', padding: '2.5rem', borderRadius: '16px', border: isFirst ? '1px solid rgba(16,12,4,.4)' : '1px solid rgba(245,237,216,.14)', position: 'relative', overflow: 'hidden', cursor: 'pointer', transition: 'background .2s, border-color .2s, transform .2s', transform: hovered ? 'translateY(-4px)' : 'none' }}
+      style={{ background: hovered ? 'var(--bg-3)' : 'var(--bg-2)', padding: '2.5rem', borderRadius: '16px', border: isFirst ? '1px solid rgba(62,38,33,.4)' : '1px solid rgba(242,216,167,.14)', position: 'relative', overflow: 'hidden', cursor: 'pointer', transition: 'background .2s, border-color .2s, transform .2s', transform: hovered ? 'translateY(-4px)' : 'none' }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={onDetail}
