@@ -3,25 +3,25 @@
 @tailwind utilities;
 
 :root {
-  /* ── PALETTE: 3 colors only ── */
-  --black:  #F5EDD8;
-  --gold:   #800020;
-  --ivory:  #1A0808;
+  /* ── PALETTE ── */
+  --black:  #800020;
+  --gold:   #F5EDD8;
+  --ivory:  #F5EDD8;
 
-  /* ── Derived backgrounds (cream family) ── */
-  --bg:     #F5EDD8;
-  --bg-2:   #EDE0C4;
-  --bg-3:   #E4D0A8;
+  /* ── Derived backgrounds (burgundy family) ── */
+  --bg:     #800020;
+  --bg-2:   #6B001A;
+  --bg-3:   #560015;
 
-  /* ── Derived text (dark warm) ── */
-  --ink:      #1A0808;
-  --ink-soft: rgba(26,8,8,.65);
-  --ink-mute: rgba(26,8,8,.4);
+  /* ── Derived text (cream) ── */
+  --ink:      #F5EDD8;
+  --ink-soft: rgba(245,237,216,.7);
+  --ink-mute: rgba(245,237,216,.45);
 
-  /* ── Derived burgundy ── */
-  --gold-2:   #9A1528;
-  --gold-deep:#600018;
-  --line:     rgba(128,0,32,.2);
+  /* ── Derived cream accent ── */
+  --gold-2:   #EDE0C4;
+  --gold-deep:#D4C5A5;
+  --line:     rgba(245,237,216,.15);
 
   /* ── Typography ── */
   --serif-display: 'Montserrat', sans-serif;   /* display headings, hero, big titles */
@@ -102,7 +102,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: non
     @apply font-normal transition-all duration-300 active:scale-95;
     background: transparent;
     color: var(--ink);
-    border: 1px solid rgba(26,8,8,.2);
+    border: 1px solid rgba(245,237,216,.2);
     padding: .85rem 2rem;
     border-radius: 50px;
     font-family: var(--serif-body);
@@ -110,7 +110,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: non
     cursor: none;
     font-weight: 500;
   }
-  .btn-ghost:hover { border-color: rgba(26,8,8,.45); transform: translateY(-3px); }
+  .btn-ghost:hover { border-color: rgba(245,237,216,.45); transform: translateY(-3px); }
 
   .btn-outline {
     @apply font-semibold transition-all duration-300 active:scale-95;
@@ -129,7 +129,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: non
 
   .btn-secondary {
     @apply font-semibold transition-all duration-300 active:scale-95;
-    border: 1px solid rgba(26,8,8,.15);
+    border: 1px solid rgba(245,237,216,.15);
     color: var(--ink-mute);
     background: transparent;
     padding: .7rem 1.6rem;
