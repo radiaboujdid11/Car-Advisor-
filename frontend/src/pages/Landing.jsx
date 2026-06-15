@@ -1,13 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import HeroCanvas from '../components/HeroCanvas';
+import AdSlot from '../components/AdSlot';
 
-const STATS = [
-  { num: '94%',  label: 'Satisfaction client' },
-  { num: '850+', label: 'Modèles analysés' },
-  { num: '3 min',label: 'Pour un résultat complet' },
-  { num: '12 K+',label: 'Utilisateurs satisfaits' },
-];
 
 const STEPS = [
   { n: '1', title: 'Vos besoins', body: 'Usage quotidien, kilométrage, nombre de passagers, route ou ville.' },
@@ -17,12 +12,12 @@ const STEPS = [
 ];
 
 const FEATURES = [
-  { icon: '🧠', title: 'IA Contextuelle', body: "S'adapte à chaque réponse pour poser les bonnes questions suivantes." },
-  { icon: '📊', title: 'Score de compatibilité', body: 'Chaque véhicule reçoit un score personnalisé basé sur votre profil.' },
-  { icon: '💰', title: 'Coût réel calculé', body: 'Carburant, entretien, budget total sur la durée estimés.' },
-  { icon: '🔍', title: 'Comparatif détaillé', body: 'Vos 3 matchs côte à côte avec tous les critères techniques.' },
-  { icon: '🚗', title: '120 modèles', body: 'De la citadine au SUV, thermique, hybride ou électrique.' },
-  { icon: '⚡', title: 'Résultat en 3 min', body: 'Quiz adaptatif de 5 à 7 questions, résultats immédiats.' },
+  { icon: 'AI', title: 'IA Contextuelle', body: "S'adapte à chaque réponse pour poser les bonnes questions suivantes." },
+  { icon: '%', title: 'Score de compatibilité', body: 'Chaque véhicule reçoit un score personnalisé basé sur votre profil.' },
+  { icon: '€', title: 'Coût réel calculé', body: 'Carburant, entretien, budget total sur la durée estimés.' },
+  { icon: 'VS', title: 'Comparatif détaillé', body: 'Vos 3 matchs côte à côte avec tous les critères techniques.' },
+  { icon: '59', title: '59 modèles', body: 'De la citadine au SUV, thermique, hybride ou électrique.' },
+  { icon: '3\'', title: 'Résultat en 3 min', body: 'Quiz adaptatif de 15 à 30 questions, résultats immédiats.' },
 ];
 
 const QUIZ_PREVIEW = [
@@ -176,14 +171,9 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ── STATS ── */}
-      <div style={{ position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'center', borderTop: '1px solid rgba(201,168,76,.1)', borderBottom: '1px solid rgba(201,168,76,.1)', background: 'rgba(18,20,26,.8)', backdropFilter: 'blur(10px)' }}>
-        {STATS.map((s, i) => (
-          <div key={s.label} style={{ flex: 1, maxWidth: '220px', padding: '2.5rem 2rem', textAlign: 'center', borderRight: i < STATS.length - 1 ? '1px solid rgba(201,168,76,.08)' : 'none' }}>
-            <div style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '2.4rem', color: 'var(--gold)', lineHeight: 1 }}>{s.num}</div>
-            <div style={{ color: 'var(--ink-mute)', fontSize: '.82rem', marginTop: '.4rem', letterSpacing: '.04em' }}>{s.label}</div>
-          </div>
-        ))}
+      {/* ── AD BANNER ── */}
+      <div style={{ position: 'relative', zIndex: 1, padding: '3rem 4rem', maxWidth: '1200px', margin: '0 auto', width: '100%', boxSizing: 'border-box' }}>
+        <AdSlot size="banner" />
       </div>
 
       {/* ── HOW IT WORKS ── */}
@@ -257,7 +247,7 @@ export default function Landing() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
           {FEATURES.map(f => (
             <div key={f.title} className="reveal card" style={{ padding: '2rem' }}>
-              <div style={{ width: 44, height: 44, background: 'rgba(201,168,76,.1)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', fontSize: '1.3rem' }}>
+              <div style={{ width: 44, height: 44, background: 'rgba(201,168,76,.1)', border: '1px solid rgba(201,168,76,.2)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: f.icon.length > 1 ? '.8rem' : '1.1rem', color: 'var(--gold)', letterSpacing: '-.01em' }}>
                 {f.icon}
               </div>
               <h3 style={{ fontFamily: 'var(--serif-display)', fontWeight: 700, fontSize: '.98rem', marginBottom: '.5rem' }}>{f.title}</h3>

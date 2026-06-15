@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CARS, ALL_MAKES } from '../data/cars';
+import AdSlot from '../components/AdSlot';
 
 const CATEGORIES = [
   { value: '', label: 'Toutes catégories' },
@@ -97,6 +98,11 @@ export default function Catalog({ addToCompare }) {
           >
             Réinitialiser
           </button>
+        </div>
+
+        {/* ── AD BANNER ── */}
+        <div style={{ marginBottom: '2rem' }}>
+          <AdSlot size="banner" />
         </div>
 
         {/* Grid */}
