@@ -161,7 +161,7 @@ function BayesPanel({ topProbs }) {
                   {pct}%
                 </span>
               </div>
-              <div style={{ height: '2px', background: 'rgba(242,228,200,.06)', borderRadius: '2px', overflow: 'hidden' }}>
+              <div style={{ height: '2px', background: 'rgba(26,8,8,.06)', borderRadius: '2px', overflow: 'hidden' }}>
                 <div style={{ height: '100%', width: `${barWidth}%`, background: i === 0 ? 'var(--gold)' : 'rgba(128,0,32,.3)', borderRadius: '2px', transition: 'width .9s cubic-bezier(.4,0,.2,1)' }} />
               </div>
             </div>
@@ -201,7 +201,7 @@ function Thinking({ label, confidence, leadingCar, topProbs }) {
             <span style={{ fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--ink-mute)' }}>Confiance</span>
             <span style={{ fontFamily: 'var(--serif-display)', fontSize: '.9rem', color: 'var(--gold)' }}>{confidence}%</span>
           </div>
-          <div style={{ height: '2px', background: 'rgba(242,228,200,.06)', borderRadius: '2px', overflow: 'hidden' }}>
+          <div style={{ height: '2px', background: 'rgba(26,8,8,.06)', borderRadius: '2px', overflow: 'hidden' }}>
             <div style={{ height: '100%', width: `${confidence}%`, background: 'var(--gold)', borderRadius: '2px', transition: 'width .7s cubic-bezier(.4,0,.2,1)' }} />
           </div>
         </div>
@@ -230,30 +230,30 @@ function QuestionCard({ question, confidence, leadingCar, selected, visible, onA
   if (!question) return null;
 
   return (
-    <div style={{ minHeight: '100vh', background: '#001829', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ minHeight: '100vh', background: '#EDE0C4', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ position: 'fixed', top: 0, left: '50%', transform: 'translateX(-50%)', width: '800px', height: '500px', background: 'radial-gradient(ellipse at center top, rgba(128,0,32,.07) 0%, transparent 65%)', pointerEvents: 'none' }} />
 
       {/* Top bar */}
-      <div style={{ position: 'sticky', top: 0, zIndex: 10, borderBottom: '1px solid rgba(128,0,32,.15)', background: 'rgba(0,20,45,.95)', backdropFilter: 'blur(16px)', padding: '.875rem 1.5rem' }}>
+      <div style={{ position: 'sticky', top: 0, zIndex: 10, borderBottom: '1px solid rgba(128,0,32,.15)', background: 'rgba(245,237,216,.95)', backdropFilter: 'blur(16px)', padding: '.875rem 1.5rem' }}>
         <div style={{ maxWidth: '640px', margin: '0 auto' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-            <span style={{ fontSize: '.72rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(242,228,200,.55)' }}>
+            <span style={{ fontSize: '.72rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(26,8,8,.55)' }}>
               Question{' '}
               <span style={{ color: 'var(--gold)', fontFamily: 'var(--serif-display)', fontSize: '1rem', fontWeight: 800, letterSpacing: 'normal' }}>
                 {question.number}
               </span>
             </span>
-            <span style={{ fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'rgba(242,228,200,.55)' }}>
+            <span style={{ fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'rgba(26,8,8,.55)' }}>
               {confidence > 0
                 ? <><span style={{ color: 'var(--gold)', fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '1rem', letterSpacing: 'normal' }}>{confidence}%</span>{' '}confiance</>
                 : 'Déduction en cours'}
             </span>
           </div>
-          <div style={{ height: '3px', background: 'rgba(242,228,200,.1)', borderRadius: '3px', overflow: 'hidden' }}>
+          <div style={{ height: '3px', background: 'rgba(26,8,8,.1)', borderRadius: '3px', overflow: 'hidden' }}>
             <div style={{ height: '100%', width: `${Math.max(confidence, 2)}%`, background: 'var(--gold)', borderRadius: '3px', transition: 'width .7s cubic-bezier(.4,0,.2,1)' }} />
           </div>
           {leadingCar && confidence > 15 && (
-            <p style={{ fontSize: '.72rem', letterSpacing: '.15em', textTransform: 'uppercase', color: 'rgba(242,228,200,.45)', marginTop: '8px' }}>
+            <p style={{ fontSize: '.72rem', letterSpacing: '.15em', textTransform: 'uppercase', color: 'rgba(26,8,8,.45)', marginTop: '8px' }}>
               En tête :{' '}
               <span style={{ color: 'var(--gold)', fontWeight: 500 }}>{leadingCar.make} {leadingCar.model}</span>
             </p>
@@ -268,7 +268,7 @@ function QuestionCard({ question, confidence, leadingCar, selected, visible, onA
             <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-60%)', fontFamily: 'var(--serif-display)', fontSize: 'clamp(80px,18vw,140px)', color: 'var(--gold)', opacity: .06, lineHeight: 1, userSelect: 'none', pointerEvents: 'none', whiteSpace: 'nowrap', fontWeight: 800 }}>
               {String(question.number).padStart(2, '0')}
             </span>
-            <h2 style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: 'clamp(1.6rem,4vw,2.8rem)', lineHeight: 1.1, letterSpacing: '-.03em', position: 'relative', color: '#F2E4C8' }}>
+            <h2 style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: 'clamp(1.6rem,4vw,2.8rem)', lineHeight: 1.1, letterSpacing: '-.03em', position: 'relative', color: '#1A0808' }}>
               {question.question}
             </h2>
           </div>
@@ -279,7 +279,7 @@ function QuestionCard({ question, confidence, leadingCar, selected, visible, onA
             ))}
           </div>
 
-          <p style={{ textAlign: 'center', fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'rgba(242,228,200,.35)', marginTop: '2.5rem' }}>
+          <p style={{ textAlign: 'center', fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'rgba(26,8,8,.35)', marginTop: '2.5rem' }}>
             Sélectionnez une réponse pour continuer
           </p>
 
@@ -299,8 +299,8 @@ function AnswerButton({ answer, isSelected, isDimmed, disabled, onClick }) {
   const [hovered, setHovered] = useState(false);
   const LETTERS = ['A', 'B', 'C', 'D'];
 
-  const borderColor = isSelected ? 'var(--gold)' : hovered && !disabled ? 'rgba(128,0,32,.5)' : 'rgba(242,228,200,.18)';
-  const bg = isSelected ? 'rgba(128,0,32,.14)' : hovered && !disabled ? 'rgba(128,0,32,.06)' : 'rgba(242,228,200,.05)';
+  const borderColor = isSelected ? 'var(--gold)' : hovered && !disabled ? 'rgba(128,0,32,.5)' : 'rgba(26,8,8,.18)';
+  const bg = isSelected ? 'rgba(128,0,32,.14)' : hovered && !disabled ? 'rgba(128,0,32,.06)' : 'rgba(26,8,8,.05)';
 
   return (
     <button onClick={onClick} disabled={disabled}

@@ -4,24 +4,24 @@
 
 :root {
   /* ── PALETTE: 3 colors only ── */
-  --black:  #001F3F;
+  --black:  #F5EDD8;
   --gold:   #800020;
-  --ivory:  #F2E4C8;
+  --ivory:  #1A0808;
 
-  /* ── Derived backgrounds (navy family) ── */
-  --bg:     #001F3F;
-  --bg-2:   #012447;
-  --bg-3:   #032D58;
+  /* ── Derived backgrounds (cream family) ── */
+  --bg:     #F5EDD8;
+  --bg-2:   #EDE0C4;
+  --bg-3:   #E4D0A8;
 
-  /* ── Derived text (cream family) ── */
-  --ink:      #F2E4C8;
-  --ink-soft: rgba(242,228,200,.65);
-  --ink-mute: rgba(242,228,200,.4);
+  /* ── Derived text (dark warm) ── */
+  --ink:      #1A0808;
+  --ink-soft: rgba(26,8,8,.65);
+  --ink-mute: rgba(26,8,8,.4);
 
   /* ── Derived burgundy ── */
   --gold-2:   #9A1528;
   --gold-deep:#600018;
-  --line:     rgba(128,0,32,.18);
+  --line:     rgba(128,0,32,.2);
 
   /* ── Typography ── */
   --serif-display: 'Syne', sans-serif;
@@ -75,7 +75,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: non
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: rgba(201,168,76,.3); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: rgba(128,0,32,.3); border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
 /* ── Selection ── */
@@ -95,20 +95,20 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: non
     cursor: none;
     letter-spacing: .02em;
   }
-  .btn-primary:hover { background: var(--gold-2); transform: translateY(-3px); box-shadow: 0 20px 50px rgba(201,168,76,.3); }
+  .btn-primary:hover { background: var(--gold-2); transform: translateY(-3px); box-shadow: 0 20px 50px rgba(128,0,32,.3); }
 
   .btn-ghost {
     @apply font-normal transition-all duration-300 active:scale-95;
     background: transparent;
     color: var(--ink);
-    border: 1px solid rgba(245,240,232,.15);
+    border: 1px solid rgba(26,8,8,.2);
     padding: .85rem 2rem;
     border-radius: 50px;
     font-family: var(--sans);
     font-size: .95rem;
     cursor: none;
   }
-  .btn-ghost:hover { border-color: rgba(245,240,232,.4); transform: translateY(-3px); }
+  .btn-ghost:hover { border-color: rgba(26,8,8,.45); transform: translateY(-3px); }
 
   .btn-outline {
     @apply font-semibold transition-all duration-300 active:scale-95;
@@ -127,7 +127,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: non
 
   .btn-secondary {
     @apply font-semibold transition-all duration-300 active:scale-95;
-    border: 1px solid rgba(245,240,232,.12);
+    border: 1px solid rgba(26,8,8,.15);
     color: var(--ink-mute);
     background: transparent;
     padding: .7rem 1.6rem;
@@ -152,7 +152,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: non
   .badge {
     @apply inline-flex items-center gap-1 text-xs font-medium;
     background: rgba(201,168,76,.12);
-    border: 1px solid rgba(201,168,76,.3);
+    border: 1px solid rgba(128,0,32,.3);
     color: var(--gold);
     padding: .35rem 1rem;
     border-radius: 50px;

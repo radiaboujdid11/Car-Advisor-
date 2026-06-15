@@ -75,7 +75,7 @@ export default function Landing() {
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '1.5rem 4rem',
         borderBottom: '1px solid rgba(128,0,32,.08)',
-        background: 'rgba(0,15,38,.6)',
+        background: 'rgba(245,237,216,.6)',
         backdropFilter: 'blur(20px)',
       }}>
         <div style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '1.4rem', letterSpacing: '-.02em' }}>
@@ -117,13 +117,13 @@ export default function Landing() {
         {/* Dark gradient — solid left, fades right */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(to right, #001F3F 0%, rgba(0,31,63,.9) 25%, rgba(0,31,63,.4) 50%, rgba(0,31,63,.05) 100%)',
+          background: 'linear-gradient(to right, #F5EDD8 0%, rgba(245,237,216,.9) 25%, rgba(245,237,216,.4) 50%, rgba(245,237,216,.05) 100%)',
         }} />
 
         {/* On mobile: full dark overlay so text is readable */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(to top, rgba(0,31,63,.6) 0%, transparent 40%)',
+          background: 'linear-gradient(to top, rgba(245,237,216,.6) 0%, transparent 40%)',
         }} />
 
         {/* Content */}
@@ -213,13 +213,13 @@ export default function Landing() {
             onMouseLeave={e => { e.currentTarget.style.transform = 'perspective(1000px) rotateY(-8deg) rotateX(2deg)'; }}
           >
             <style>{`
-              .pq-opt{padding:.75rem 1.2rem;border-radius:10px;border:1px solid rgba(242,228,200,.08);color:var(--ink-mute);font-size:.9rem;margin-bottom:.5rem;transition:all .2s;background:rgba(242,228,200,.03)}
+              .pq-opt{padding:.75rem 1.2rem;border-radius:10px;border:1px solid rgba(26,8,8,.08);color:var(--ink-mute);font-size:.9rem;margin-bottom:.5rem;transition:all .2s;background:rgba(26,8,8,.03)}
               .pq-opt.active{background:rgba(128,0,32,.12);border-color:var(--gold);color:var(--ink)}
             `}</style>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.8rem', marginBottom: '1.5rem', color: 'var(--ink-mute)', fontSize: '.82rem', letterSpacing: '.06em', textTransform: 'uppercase' }}>
               <span>Question</span><span id="pq-num" style={{ color: 'var(--gold)', fontFamily: 'var(--serif-display)', fontSize: '1.2rem' }}>1</span><span>/ {QUIZ_PREVIEW.length}</span>
             </div>
-            <div style={{ height: '3px', background: 'rgba(242,228,200,.06)', borderRadius: '3px', marginBottom: '1.5rem', overflow: 'hidden' }}>
+            <div style={{ height: '3px', background: 'rgba(26,8,8,.06)', borderRadius: '3px', marginBottom: '1.5rem', overflow: 'hidden' }}>
               <div id="pq-bar" style={{ height: '100%', background: 'var(--gold)', borderRadius: '3px', transition: 'width .5s', width: '33%' }} />
             </div>
             <div id="pq-text" style={{ fontFamily: 'var(--serif-display)', fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.25rem', lineHeight: 1.4 }}>Quel est votre usage principal ?</div>
@@ -265,7 +265,7 @@ export default function Landing() {
       </div>
 
       {/* ── FOOTER ── */}
-      <footer className="landing-footer" style={{ position: 'relative', zIndex: 1, borderTop: '1px solid rgba(242,228,200,.06)', padding: '2rem 4rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: 'var(--ink-mute)', fontSize: '.8rem' }}>
+      <footer className="landing-footer" style={{ position: 'relative', zIndex: 1, borderTop: '1px solid rgba(26,8,8,.06)', padding: '2rem 4rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: 'var(--ink-mute)', fontSize: '.8rem' }}>
         <div style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '1.1rem' }}>
           Auto<span style={{ color: 'var(--gold)' }}>Assist</span>
         </div>

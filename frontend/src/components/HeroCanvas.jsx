@@ -91,7 +91,7 @@ export default function HeroCanvas() {
         if (p.z < 0 || p.z > 1) p.vz *= -1;
         ctx.beginPath();
         ctx.arc(p.x * W, p.y * H, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(242,228,200,${(.15 + p.z * .25) * .4})`;
+        ctx.fillStyle = `rgba(26,8,8,${(.15 + p.z * .25) * .4})`;
         ctx.fill();
       });
 
