@@ -117,7 +117,7 @@ export default function Landing() {
         {/* Dark gradient — solid left, fades right */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(to right, #100C04 0%, rgba(16,12,4,.95) 20%, rgba(16,12,4,0) 50%, rgba(16,12,4,0) 100%)',
+          background: 'linear-gradient(to right, #836928 0%, rgba(131,105,40,.95) 20%, rgba(131,105,40,0) 50%, rgba(131,105,40,0) 100%)',
         }} />
 
         {/* On mobile: full dark overlay so text is readable */}
