@@ -84,7 +84,7 @@ export default function Landing() {
         <ul className="nav-mobile-links" style={{ display: 'flex', gap: '2.5rem', listStyle: 'none' }}>
           {[['#how', 'Comment ça marche'], ['#quiz', 'Questionnaire'], ['#features', 'Fonctionnalités']].map(([href, label]) => (
             <li key={href}>
-              <a href={href} style={{ color: 'var(--ink-mute)', fontSize: '.88rem', letterSpacing: '.04em', textTransform: 'uppercase', transition: 'color .2s' }}
+              <a href={href} style={{ color: 'var(--ink-mute)', fontSize: '.82rem', letterSpacing: '.06em', textTransform: 'uppercase', transition: 'color .2s', fontFamily: 'var(--serif-body)', fontWeight: 500 }}
                 onMouseEnter={e => e.currentTarget.style.color = 'var(--ink)'}
                 onMouseLeave={e => e.currentTarget.style.color = 'var(--ink-mute)'}
               >{label}</a>
