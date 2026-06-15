@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  /* ── PALETTE — image #b5571f #9f5551 #836928 ── */
+  /* ── PALETTE — image #b5571f #836928 ── */
   --black:    #100C04;
   --gold:     #b5571f;   /* orange-brown — primary CTA, highlights */
   --ivory:    #F2E4C0;
@@ -19,9 +19,9 @@
   --ink-mute: rgba(242,228,192,.42);
 
   /* ── Palette accents ── */
-  --gold-2:   #9f5551;   /* dusty rose — hover, secondary */
+  --gold-2:   #836928;   /* desert gold — hover, secondary */
   --gold-deep:#836928;   /* desert gold — subtle accents */
-  --terracotta: #9f5551; /* dusty rose — muted borders */
+  --terracotta: #836928; /* desert gold — muted borders */
   --line:     rgba(131,105,40,.22); /* golden subtle line */
 
   /* ── Typography ── */
