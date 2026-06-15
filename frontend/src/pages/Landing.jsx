@@ -110,7 +110,7 @@ export default function Landing() {
           backgroundImage: 'url(/mcqueen.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center right',
-          transform: 'scale(1.04)',
+          transform: 'scale(1.04) translateX(80px)',
           animation: 'slowZoom 18s ease-in-out infinite alternate',
         }} />
 
