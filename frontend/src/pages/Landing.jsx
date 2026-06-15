@@ -74,8 +74,8 @@ export default function Landing() {
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '1.5rem 4rem',
-        borderBottom: '1px solid rgba(245,237,216,.1)',
-        background: 'rgba(128,0,32,.6)',
+        borderBottom: '1px solid rgba(245,237,216,.12)',
+        background: 'linear-gradient(to right, rgba(38,24,12,.92), rgba(55,38,20,.88))',
         backdropFilter: 'blur(20px)',
       }}>
         <div style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '1.4rem', letterSpacing: '-.02em' }}>
