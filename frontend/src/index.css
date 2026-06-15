@@ -1,11 +1,11 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* ── PALETTE — image #b5571f #9f5551 #836928 #ca2b0b ── */
+  /* ── PALETTE — image #b5571f #9f5551 #836928 ── */
   --black:    #100C04;
-  --gold:     #ca2b0b;   /* McQueen red — CTA, highlights */
+  --gold:     #b5571f;   /* orange-brown — primary CTA, highlights */
   --ivory:    #F2E4C0;
 
   /* ── Backgrounds (deep desert warm) ── */
@@ -19,8 +19,8 @@
   --ink-mute: rgba(242,228,192,.42);
 
   /* ── Palette accents ── */
-  --gold-2:   #b5571f;   /* orange-brown hover */
-  --gold-deep:#836928;   /* desert gold deep */
+  --gold-2:   #9f5551;   /* dusty rose — hover, secondary */
+  --gold-deep:#836928;   /* desert gold — subtle accents */
   --terracotta: #9f5551; /* dusty rose — muted borders */
   --line:     rgba(131,105,40,.22); /* golden subtle line */
 
@@ -77,7 +77,7 @@ input, select, textarea { transition: border-color .25s ease, background .25s ea
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: rgba(202,43,11,.35); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: rgba(181,87,31,.35); border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
 /* ── Selection ── */
@@ -98,7 +98,7 @@ input, select, textarea { transition: border-color .25s ease, background .25s ea
     letter-spacing: .02em;
     font-weight: 600;
   }
-  .btn-primary:hover { background: var(--gold-2); transform: translateY(-3px); box-shadow: 0 20px 50px rgba(202,43,11,.35); }
+  .btn-primary:hover { background: var(--gold-2); transform: translateY(-3px); box-shadow: 0 20px 50px rgba(181,87,31,.35); }
 
   .btn-ghost {
     @apply font-normal transition-all duration-300 active:scale-95;
@@ -156,7 +156,7 @@ input, select, textarea { transition: border-color .25s ease, background .25s ea
   .badge {
     @apply inline-flex items-center gap-1 text-xs font-medium;
     background: rgba(201,168,76,.12);
-    border: 1px solid rgba(202,43,11,.35);
+    border: 1px solid rgba(181,87,31,.35);
     color: var(--gold);
     padding: .35rem 1rem;
     border-radius: 50px;

@@ -1,4 +1,4 @@
-export const CARS = [
+﻿export const CARS = [
   // ── ECO / BUDGET ──────────────────────────────────────────────────────────
   { id: 1, make: 'Dacia', model: 'Sandero', year: 2023, price_eur: 8500, power_hp: 65, consumption_l100k: 5.8, co2_g_km: 133, category: 'eco', description: "La voiture la plus vendue au Maroc. Fiable, économique, accessible. La Dacia Sandero c'est la voiture du peuple marocain." },
   { id: 2, make: 'Dacia', model: 'Logan', year: 2023, price_eur: 9500, power_hp: 75, consumption_l100k: 5.6, co2_g_km: 128, category: 'eco', description: 'Berline spacieuse et économique, référence absolue au Maroc depuis 2004.' },

@@ -299,7 +299,7 @@ function AnswerButton({ answer, isSelected, isDimmed, disabled, onClick }) {
   const [hovered, setHovered] = useState(false);
   const LETTERS = ['A', 'B', 'C', 'D'];
 
-  const borderColor = isSelected ? 'var(--gold)' : hovered && !disabled ? 'rgba(202,43,11,.5)' : 'rgba(245,237,216,.18)';
+  const borderColor = isSelected ? 'var(--gold)' : hovered && !disabled ? 'rgba(181,87,31,.5)' : 'rgba(245,237,216,.18)';
   const bg = isSelected ? 'rgba(245,237,216,.16)' : hovered && !disabled ? 'rgba(245,237,216,.08)' : 'rgba(245,237,216,.05)';
 
   return (
