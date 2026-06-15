@@ -179,3 +179,39 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: non
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* ── Mobile responsive ── */
+@media (max-width: 768px) {
+  /* Hide custom cursor on touch */
+  #cursor { display: none; }
+  html, body { cursor: auto; }
+  button { cursor: pointer; }
+
+  /* Nav */
+  .nav-mobile-links { display: none !important; }
+  .nav-wrap { padding: 1rem 1.25rem !important; }
+
+  /* Sections padding */
+  .section-pad { padding: 4rem 1.25rem !important; }
+  .hero-content { padding: 0 1.25rem !important; padding-top: 7rem !important; padding-bottom: 3rem !important; }
+
+  /* Grids */
+  .grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
+  .grid-3 { grid-template-columns: 1fr !important; }
+  .grid-2 { grid-template-columns: 1fr !important; }
+  .grid-2 .quiz-preview-card { display: none !important; }
+
+  /* Quiz card */
+  .quiz-q-wrap { padding: 2rem 1rem !important; }
+
+  /* Footer */
+  .landing-footer { flex-direction: column !important; gap: 1.25rem !important; text-align: center !important; padding: 2rem 1.25rem !important; }
+
+  /* Ad banner */
+  .ad-wrap { padding: 1.5rem 1.25rem !important; }
+}
+
+@media (max-width: 480px) {
+  .grid-4 { grid-template-columns: 1fr !important; }
+  .hero-headline { font-size: 3.2rem !important; }
+}

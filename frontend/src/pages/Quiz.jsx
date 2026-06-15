@@ -262,7 +262,7 @@ function QuestionCard({ question, confidence, leadingCar, selected, visible, onA
       </div>
 
       {/* Question + answers */}
-      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '3rem 1.5rem' }}>
+      <div className="quiz-q-wrap" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '3rem 1.5rem' }}>
         <div style={{ width: '100%', maxWidth: '640px', opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(18px)', transition: 'opacity .3s ease, transform .3s ease' }}>
           <div style={{ position: 'relative', textAlign: 'center', marginBottom: '3rem' }}>
             <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-60%)', fontFamily: 'var(--serif-display)', fontSize: 'clamp(80px,18vw,140px)', color: 'var(--gold)', opacity: .06, lineHeight: 1, userSelect: 'none', pointerEvents: 'none', whiteSpace: 'nowrap', fontWeight: 800 }}>
