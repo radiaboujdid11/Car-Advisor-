@@ -166,7 +166,7 @@ export default function Landing() {
         <div className="hero-image" style={{ position: 'relative', minHeight: '60vh', overflow: 'hidden' }}>
           <div style={{
             position: 'absolute', inset: 0,
-            backgroundImage: 'url(/mcqueen.jpg)',
+            backgroundImage: 'url(/hero-rabat.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             animation: 'slowZoom 22s ease-in-out infinite alternate',
