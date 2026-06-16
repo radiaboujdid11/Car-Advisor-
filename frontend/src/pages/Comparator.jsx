@@ -1,7 +1,7 @@
 ﻿import { useNavigate } from 'react-router-dom';
 
 const SPECS = [
-  { key: 'price_eur',         label: 'Prix',        format: v => v ? `${Math.round(v).toLocaleString('fr-FR')} €` : '—', lowerIsBetter: true },
+  { key: 'price_eur',         label: 'Prix',        format: v => v ? `${Math.round(v).toLocaleString('fr-FR')} DH` : '—', lowerIsBetter: true },
   { key: 'power_hp',          label: 'Puissance',   format: v => v ? `${v} ch` : '—',                                     lowerIsBetter: false },
   { key: 'consumption_l100k', label: 'Consommation',format: v => v === 0 ? 'Électrique' : v ? `${v} L/100` : '—',         lowerIsBetter: true },
   { key: 'co2_g_km',          label: 'CO₂',         format: v => v === 0 ? 'Zéro' : v ? `${v} g/km` : '—',               lowerIsBetter: true },

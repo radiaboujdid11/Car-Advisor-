@@ -45,7 +45,7 @@ export default function Results({ results, addToCompare }) {
 
 function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
   const [hovered, setHovered] = useState(false);
-  const formatPrice = p => p ? `${Math.round(p).toLocaleString('fr-FR')} €` : '—';
+  const formatPrice = p => p ? `${Math.round(p).toLocaleString('fr-FR')} DH` : '—';
 
   return (
     <div

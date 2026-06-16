@@ -24,7 +24,7 @@ export default function CarDetail({ addToCompare }) {
 
   if (!car) { navigate('/cars'); return null; }
 
-  const formatPrice = p => p ? `${Math.round(p).toLocaleString('fr-FR')} €` : 'Prix sur demande';
+  const formatPrice = p => p ? `${Math.round(p * 10.8).toLocaleString('fr-FR')} DH` : 'Prix sur demande';
   const isElectric = car.consumption_l100k === 0 || car.co2_g_km === 0;
 
   const SPECS = [
@@ -175,7 +175,7 @@ export default function CarDetail({ addToCompare }) {
                   </p>
                   <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: 'var(--ink-mute)', marginBottom: '8px' }}>{s.year}</p>
                   <p style={{ fontFamily: 'var(--serif-display)', fontSize: '16px', color: 'var(--gold)' }}>
-                    {s.price_eur ? `${Math.round(s.price_eur).toLocaleString('fr-FR')} €` : '—'}
+                    {s.price_eur ? `${Math.round(s.price_eur * 10.8).toLocaleString('fr-FR')} DH` : '—'}
                   </p>
                 </div>
               ))}

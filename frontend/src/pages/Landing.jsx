@@ -105,74 +105,70 @@ export default function Landing() {
         >Commencer</button>
       </nav>
 
-      {/* ── HERO: split screen ── */}
-      <section className="hero-split" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '100vh' }}>
+      {/* ── HERO: full bleed ── */}
+      <section style={{ position: 'relative', width: '100%', height: '100vh', minHeight: '600px', overflow: 'hidden' }}>
 
-        {/* Left — editorial type */}
-        <div className="hero-text" style={{
-          background: '#0d0d0d',
-          display: 'flex', flexDirection: 'column', justifyContent: 'center',
-          padding: 'clamp(7rem,11vw,10rem) clamp(2rem,5vw,5.5rem) 5rem',
-          borderRight: `1px solid rgba(240,240,240,.06)`,
+        {/* Full image */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          backgroundImage: 'url(/hero-rabat.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          animation: 'slowZoom 22s ease-in-out infinite alternate',
+        }} />
+
+        {/* Gradient at bottom so text is readable */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(to top, rgba(0,0,0,.8) 0%, rgba(0,0,0,.3) 45%, transparent 75%)',
+        }} />
+
+        {/* Text overlay — bottom left */}
+        <div style={{
+          position: 'absolute',
+          bottom: 'clamp(2.5rem,6vh,5rem)',
+          left: 'clamp(1.5rem,5vw,5rem)',
+          maxWidth: '600px',
         }}>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '.62rem', letterSpacing: '.28em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '2.5rem', opacity: .85 }}>
-            Conseil automobile · IA bayésienne
-          </p>
-
           <h1 style={{
-            fontFamily: 'var(--serif-display)',
-            fontSize: 'clamp(4.2rem,7.5vw,8rem)',
-            lineHeight: .88,
-            letterSpacing: '-.04em',
-            color: 'var(--ink)',
-            marginBottom: '2.5rem',
+            fontFamily: 'var(--sans)',
+            fontWeight: 900,
+            fontSize: 'clamp(3rem,7vw,6rem)',
+            lineHeight: 1,
+            letterSpacing: '-.01em',
+            textTransform: 'uppercase',
+            color: '#ffffff',
+            marginBottom: '.85rem',
           }}>
-            Trouve<br />
-            <span style={{ color: 'var(--gold)' }}>ton</span><br />
-            McQueen
+            TROUVE TON<br />MCQUEEN
           </h1>
 
-          <div style={{ width: '2.5rem', height: '1px', background: 'var(--gold)', marginBottom: '2rem', opacity: .6 }} />
-
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '.92rem', color: 'var(--ink-soft)', lineHeight: 1.8, maxWidth: '370px', marginBottom: '3rem' }}>
-            Quinze questions. Un moteur bayésien. Le véhicule qui correspond exactement à votre vie — pas celui que tout le monde achète.
+          <p style={{
+            fontFamily: 'var(--sans)',
+            fontWeight: 400,
+            fontSize: 'clamp(.82rem,1vw,.95rem)',
+            color: 'rgba(255,255,255,.8)',
+            lineHeight: 1.65,
+            marginBottom: '1.75rem',
+            maxWidth: '480px',
+          }}>
+            Quinze questions. Un moteur bayésien. Le véhicule qui correspond exactement à votre vie.
           </p>
 
-          <div style={{ display: 'flex', gap: '.85rem', flexWrap: 'wrap', marginBottom: '2.5rem' }}>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <button
               onClick={() => navigate('/quiz')}
-              style={{ background: 'var(--gold)', color: '#0d0d0d', border: 'none', padding: '.95rem 2.4rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.78rem', letterSpacing: '.12em', textTransform: 'uppercase', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '.7rem' }}
-              onMouseEnter={e => e.currentTarget.style.background = '#f0f0f0'}
-              onMouseLeave={e => e.currentTarget.style.background = 'var(--gold)'}
-            >
-              Démarrer le quiz <span style={{ fontSize: '1rem', fontFamily: 'serif' }}>→</span>
-            </button>
+              style={{ background: '#ffffff', color: '#000000', border: '2px solid #ffffff', padding: '.72rem 1.9rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.7rem', letterSpacing: '.15em', textTransform: 'uppercase', cursor: 'pointer', transition: 'background .2s, color .2s' }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#ffffff'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = '#ffffff'; e.currentTarget.style.color = '#000000'; }}
+            >DÉMARRER LE QUIZ</button>
             <button
               onClick={() => navigate('/cars')}
-              style={{ background: 'transparent', color: 'var(--ink-mute)', border: '1px solid rgba(240,240,240,.18)', padding: '.95rem 1.8rem', fontFamily: 'var(--sans)', fontWeight: 500, fontSize: '.78rem', letterSpacing: '.1em', textTransform: 'uppercase', cursor: 'pointer' }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(240,240,240,.45)'; e.currentTarget.style.color = 'var(--ink)'; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(240,240,240,.18)'; e.currentTarget.style.color = 'var(--ink-mute)'; }}
-            >
-              Catalogue
-            </button>
+              style={{ background: 'transparent', color: '#ffffff', border: '2px solid #ffffff', padding: '.72rem 1.9rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.7rem', letterSpacing: '.15em', textTransform: 'uppercase', cursor: 'pointer', transition: 'background .2s, color .2s' }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#ffffff'; e.currentTarget.style.color = '#000000'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#ffffff'; }}
+            >CATALOGUE</button>
           </div>
-
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '.65rem', letterSpacing: '.04em', color: 'var(--ink-mute)', opacity: .55 }}>
-            Aucune Fiat Multipla dans les résultats — garanti.
-          </p>
-        </div>
-
-        {/* Right — image */}
-        <div className="hero-image" style={{ position: 'relative', minHeight: '60vh', overflow: 'hidden' }}>
-          <div style={{
-            position: 'absolute', inset: 0,
-            backgroundImage: 'url(/hero-rabat.jpg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            animation: 'slowZoom 22s ease-in-out infinite alternate',
-          }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #0d0d0d 0%, transparent 12%)' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(13,13,13,.55) 0%, transparent 35%)' }} />
         </div>
       </section>
 
@@ -318,7 +314,7 @@ export default function Landing() {
                   <p style={{ fontFamily: 'var(--sans)', fontSize: '.6rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--ink-mute)', marginBottom: '.4rem' }}>{car.category}</p>
                   <h3 style={{ fontFamily: 'var(--serif-display)', fontSize: '1.1rem', color: 'var(--ink)', lineHeight: 1.1, marginBottom: '.5rem' }}>{car.make} {car.model}</h3>
                   <p style={{ fontFamily: 'var(--mono)', fontSize: '.78rem', color: 'var(--gold)' }}>
-                    {car.price_eur ? `${Math.round(car.price_eur).toLocaleString('fr-FR')} €` : 'Sur demande'}
+                    {car.price_eur ? `${Math.round(car.price_eur * 10.8).toLocaleString('fr-FR')} DH` : 'Sur demande'}
                   </p>
                 </div>
               </Link>

@@ -125,7 +125,7 @@ export default function Catalog({ addToCompare }) {
 
 function CarCard({ car, onDetail, onCompare }) {
   const [hovered, setHovered] = useState(false);
-  const formatPrice = p => p ? `${Math.round(p).toLocaleString('fr-FR')} €` : 'Sur demande';
+  const formatPrice = p => p ? `${Math.round(p * 10.8).toLocaleString('fr-FR')} DH` : 'Sur demande';
 
   return (
     <div
