@@ -172,14 +172,21 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ── BRAND MARQUEE ── */}
-      <div style={{ ...rule, position: 'relative' }} />
-      <div style={{ background: '#1a0d06', padding: '.9rem 0', overflow: 'hidden', borderBottom: '1px solid rgba(240,240,240,.06)' }}>
+      {/* ── PHOTO MARQUEE ── */}
+      <div style={{ background: '#1a0d06', padding: '1.2rem 0', overflow: 'hidden', borderTop: '1px solid rgba(242,216,167,.06)', borderBottom: '1px solid rgba(242,216,167,.06)' }}>
         <div className="marquee-track">
-          {[...BRANDS, ...BRANDS].map((b, i) => (
-            <span key={i} style={{ fontFamily: 'var(--sans)', fontSize: '.6rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'var(--ink-mute)', paddingRight: '2.5rem', opacity: .55 }}>
-              {b}<span style={{ color: 'var(--gold)', marginLeft: '2.5rem', opacity: .6 }}>·</span>
-            </span>
+          {[...CARS.filter(c => c.image), ...CARS.filter(c => c.image)].map((car, i) => (
+            <div key={i} style={{ flexShrink: 0, width: '220px', height: '130px', marginRight: '1rem', overflow: 'hidden', borderRadius: '6px', position: 'relative' }}>
+              <img
+                src={car.image}
+                alt={`${car.make} ${car.model}`}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+              />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,13,6,.65) 0%, transparent 55%)' }} />
+              <p style={{ position: 'absolute', bottom: '0.5rem', left: '0.75rem', fontFamily: 'var(--sans)', fontSize: '0.6rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#fff', opacity: 0.9 }}>
+                {car.make} {car.model}
+              </p>
+            </div>
           ))}
         </div>
       </div>
