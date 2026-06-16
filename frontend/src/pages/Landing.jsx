@@ -10,12 +10,12 @@ const STEPS = [
 ];
 
 const FEATURES = [
-  { label: 'AI', title: 'IA Contextuelle', body: "Chaque réponse réoriente l'algorithme vers les questions les plus révélatrices." },
-  { label: '%',  title: 'Score personnalisé', body: 'Chaque véhicule reçoit un score calculé sur votre profil exact, pas une moyenne.' },
-  { label: '€',  title: 'Coût réel', body: 'Carburant, entretien et budget total estimés sur la durée de possession.' },
-  { label: 'VS', title: 'Comparatif', body: 'Vos 3 matchs côte à côte avec tous les critères techniques et économiques.' },
-  { label: '59', title: '59 modèles', body: 'Citadine, SUV, berline — thermique, hybride ou électrique. Aucun oublié.' },
-  { label: "3'", title: 'Résultat immédiat', body: 'De 15 à 30 questions adaptatives. Le meilleur rapport précision / rapidité.' },
+  { label: 'AI', title: 'IA Contextuelle', body: "Chaque réponse réoriente l'algorithme vers les questions les plus révélatrices.", img: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80&auto=format&fit=crop' },
+  { label: '%',  title: 'Score personnalisé', body: 'Chaque véhicule reçoit un score calculé sur votre profil exact, pas une moyenne.', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format&fit=crop' },
+  { label: '€',  title: 'Coût réel', body: 'Carburant, entretien et budget total estimés sur la durée de possession.', img: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&q=80&auto=format&fit=crop' },
+  { label: 'VS', title: 'Comparatif', body: 'Vos 3 matchs côte à côte avec tous les critères techniques et économiques.', img: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80&auto=format&fit=crop' },
+  { label: '59', title: '59 modèles', body: 'Citadine, SUV, berline — thermique, hybride ou électrique. Aucun oublié.', img: 'https://images.unsplash.com/photo-1537984822441-cff330075342?w=800&q=80&auto=format&fit=crop' },
+  { label: "3'", title: 'Résultat immédiat', body: 'De 15 à 30 questions adaptatives. Le meilleur rapport précision / rapidité.', img: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&q=80&auto=format&fit=crop' },
 ];
 
 const QUIZ_PREVIEW = [
@@ -286,13 +286,23 @@ export default function Landing() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem' }}>
             {FEATURES.map((f, i) => (
-              <div key={i} className="reveal" style={{ background: '#341A0E', border: '1px solid rgba(255,255,255,.07)', borderRadius: '12px', padding: '2.5rem', transition: 'border-color .25s, background .25s' }}
-                onMouseEnter={e => { e.currentTarget.style.background = '#3d2010'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.16)'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = '#341A0E'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.07)'; }}
+              <div key={i} className="reveal" style={{ background: '#341A0E', border: '1px solid rgba(242,216,167,.1)', borderRadius: '12px', overflow: 'hidden', transition: 'border-color .25s, transform .25s' }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(242,216,167,.3)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(242,216,167,.1)'; e.currentTarget.style.transform = 'translateY(0)'; }}
               >
-                <span style={{ display: 'inline-block', fontFamily: 'var(--mono)', fontSize: '.62rem', letterSpacing: '.1em', color: 'var(--gold)', border: '1px solid rgba(255,255,255,.2)', borderRadius: '4px', padding: '.2rem .55rem', marginBottom: '1.25rem' }}>{f.label}</span>
-                <h3 style={{ fontFamily: 'var(--serif-body)', fontSize: '1.05rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '.55rem', lineHeight: 1.3 }}>{f.title}</h3>
-                <p style={{ fontFamily: 'var(--sans)', fontSize: '.82rem', color: 'var(--ink-mute)', lineHeight: 1.78 }}>{f.body}</p>
+                <div style={{ height: '160px', overflow: 'hidden', position: 'relative' }}>
+                  <img src={f.img} alt={f.title}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block', transition: 'transform .6s ease' }}
+                    onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.07)'}
+                    onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                  />
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #341A0E 0%, transparent 60%)' }} />
+                  <span style={{ position: 'absolute', top: '.75rem', left: '.75rem', fontFamily: 'var(--mono)', fontSize: '.58rem', letterSpacing: '.1em', color: 'var(--gold)', border: '1px solid rgba(242,216,167,.4)', borderRadius: '4px', padding: '.2rem .5rem', background: 'rgba(26,13,6,.5)', backdropFilter: 'blur(6px)' }}>{f.label}</span>
+                </div>
+                <div style={{ padding: '1.25rem 1.5rem 1.75rem' }}>
+                  <h3 style={{ fontFamily: 'var(--serif-body)', fontSize: '1.05rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '.5rem', lineHeight: 1.3 }}>{f.title}</h3>
+                  <p style={{ fontFamily: 'var(--sans)', fontSize: '.82rem', color: 'var(--ink-mute)', lineHeight: 1.78 }}>{f.body}</p>
+                </div>
               </div>
             ))}
           </div>
