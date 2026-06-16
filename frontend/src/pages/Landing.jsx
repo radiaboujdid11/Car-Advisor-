@@ -4,9 +4,9 @@ import AdSlot from '../components/AdSlot';
 import { CARS } from '../data/cars';
 
 const STEPS = [
-  { n: '01', title: 'Vos besoins', body: 'Usage, kilométrage, passagers, route ou ville. Chaque détail oriente l\'algorithme.' },
-  { n: '02', title: 'Votre budget', body: 'Achat, leasing ou coût total sur la durée. On calcule tout, frais compris.' },
-  { n: '03', title: 'Votre voiture', body: 'Le moteur bayésien croise votre profil et 59 modèles. Résultat en 3 minutes.' },
+  { n: '01', title: 'Vos besoins', body: 'Usage, kilométrage, passagers, route ou ville. Chaque détail oriente l\'algorithme.', img: '/COROLLA.jpg' },
+  { n: '02', title: 'Votre budget', body: 'Achat, leasing ou coût total sur la durée. On calcule tout, frais compris.', img: '/bmw-serie-5.jpg' },
+  { n: '03', title: 'Votre voiture', body: 'Le moteur bayésien croise votre profil et 59 modèles. Résultat en 3 minutes.', img: '/PORSHE.jpg' },
 ];
 
 const FEATURES = [
@@ -202,13 +202,24 @@ export default function Landing() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem' }}>
             {STEPS.map((s, i) => (
-              <div key={i} className="reveal" style={{ background: '#341A0E', border: '1px solid rgba(255,255,255,.07)', borderRadius: '12px', padding: '3rem 2.5rem', transition: 'border-color .25s, background .25s' }}
-                onMouseEnter={e => { e.currentTarget.style.background = '#3d2010'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.16)'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = '#341A0E'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.07)'; }}
+              <div key={i} className="reveal" style={{ background: '#341A0E', border: '1px solid rgba(242,216,167,.1)', borderRadius: '12px', overflow: 'hidden', transition: 'border-color .25s, transform .25s' }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(242,216,167,.28)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(242,216,167,.1)'; e.currentTarget.style.transform = 'translateY(0)'; }}
               >
-                <div style={{ fontFamily: 'var(--mono)', fontSize: '2.8rem', fontWeight: 700, color: 'rgba(255,255,255,.1)', lineHeight: 1, marginBottom: '2rem', letterSpacing: '-.02em' }}>{s.n}</div>
-                <h3 style={{ fontFamily: 'var(--serif-body)', fontSize: '1.2rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '.75rem', lineHeight: 1.2 }}>{s.title}</h3>
-                <p style={{ fontFamily: 'var(--sans)', fontSize: '.84rem', color: 'var(--ink-mute)', lineHeight: 1.8 }}>{s.body}</p>
+                {/* Image */}
+                <div style={{ height: '200px', overflow: 'hidden', position: 'relative' }}>
+                  <img src={s.img} alt={s.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block', transition: 'transform .6s ease' }}
+                    onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.06)'}
+                    onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                  />
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #341A0E 0%, transparent 55%)' }} />
+                  <span style={{ position: 'absolute', top: '1rem', left: '1.25rem', fontFamily: 'var(--mono)', fontSize: '1.1rem', fontWeight: 700, color: 'rgba(242,216,167,.7)', letterSpacing: '-.02em' }}>{s.n}</span>
+                </div>
+                {/* Text */}
+                <div style={{ padding: '1.5rem 1.75rem 2rem' }}>
+                  <h3 style={{ fontFamily: 'var(--serif-body)', fontSize: '1.15rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '.6rem', lineHeight: 1.2 }}>{s.title}</h3>
+                  <p style={{ fontFamily: 'var(--sans)', fontSize: '.83rem', color: 'var(--ink-mute)', lineHeight: 1.8 }}>{s.body}</p>
+                </div>
               </div>
             ))}
           </div>
