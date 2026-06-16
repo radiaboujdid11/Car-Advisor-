@@ -1,6 +1,6 @@
 ﻿export const CARS = [
   // ── ECO / BUDGET ──────────────────────────────────────────────────────────
-  { id: 1, make: 'Dacia', model: 'Sandero', year: 2023, price_eur: 8500, power_hp: 65, consumption_l100k: 5.8, co2_g_km: 133, category: 'eco', description: "La voiture la plus vendue au Maroc. Fiable, économique, accessible. La Dacia Sandero c'est la voiture du peuple marocain." },
+  { id: 1, make: 'Dacia', model: 'Sandero', year: 2023, price_eur: 8500, power_hp: 65, consumption_l100k: 5.8, co2_g_km: 133, category: 'eco', image: '/SANDERO.jpg', description: "La voiture la plus vendue au Maroc. Fiable, économique, accessible. La Dacia Sandero c'est la voiture du peuple marocain." },
   { id: 2, make: 'Dacia', model: 'Logan', year: 2023, price_eur: 9500, power_hp: 75, consumption_l100k: 5.6, co2_g_km: 128, category: 'eco', description: 'Berline spacieuse et économique, référence absolue au Maroc depuis 2004.' },
   { id: 3, make: 'Renault', model: 'Clio', year: 2023, price_eur: 13000, power_hp: 100, consumption_l100k: 5.4, co2_g_km: 122, category: 'eco', description: 'Citadine polyvalente, très populaire en milieu urbain marocain.' },
   { id: 4, make: 'Renault', model: 'Symbol', year: 2022, price_eur: 10500, power_hp: 75, consumption_l100k: 5.9, co2_g_km: 134, category: 'eco', description: 'Berline compacte économique, très répandue dans les villes marocaines.' },
@@ -19,12 +19,12 @@
   { id: 17, make: 'Toyota', model: 'C-HR', year: 2023, price_eur: 36574, power_hp: 122, consumption_l100k: 6.0, co2_g_km: 140, category: 'eco', description: 'SUV hybride au design avant-gardiste — moderne et économique.' },
 
   // ── PRACTICAL / MID-RANGE ─────────────────────────────────────────────────
-  { id: 18, make: 'Dacia', model: 'Duster', year: 2023, price_eur: 19000, power_hp: 130, consumption_l100k: 6.5, co2_g_km: 148, category: 'practical', image: '/cars/duster.jpg', description: 'Le SUV abordable par excellence. Parfait pour les routes de montagne et les pistes du Maroc.' },
-  { id: 19, make: 'Renault', model: 'Mégane', year: 2023, price_eur: 22000, power_hp: 115, consumption_l100k: 5.8, co2_g_km: 132, category: 'practical', description: 'Berline familiale élégante, le bon équilibre entre confort et agrément de conduite.' },
+  { id: 18, make: 'Dacia', model: 'Duster', year: 2023, price_eur: 19000, power_hp: 130, consumption_l100k: 6.5, co2_g_km: 148, category: 'practical', description: 'Le SUV abordable par excellence. Parfait pour les routes de montagne et les pistes du Maroc.' },
+  { id: 19, make: 'Renault', model: 'Mégane', year: 2023, price_eur: 22000, power_hp: 115, consumption_l100k: 5.8, co2_g_km: 132, category: 'practical', image: '/Renault-Megane.jpg', description: 'Berline familiale élégante, le bon équilibre entre confort et agrément de conduite.' },
   { id: 20, make: 'Peugeot', model: '2008', year: 2023, price_eur: 24000, power_hp: 130, consumption_l100k: 6.1, co2_g_km: 139, category: 'practical', description: "SUV compact au style distinctif — l'un des favoris des familles marocaines." },
   { id: 21, make: 'Peugeot', model: '308', year: 2023, price_eur: 26000, power_hp: 130, consumption_l100k: 5.9, co2_g_km: 134, category: 'practical', description: "Berline compacte à l'intérieur luxueux — la 308 fait son effet à l'arrivée." },
   { id: 22, make: 'Citroën', model: 'C4', year: 2023, price_eur: 25000, power_hp: 130, consumption_l100k: 5.8, co2_g_km: 132, category: 'practical', description: 'Fastback confortable — coussin de suspension unique, parfait Casablanca-Marrakech.' },
-  { id: 23, make: 'Toyota', model: 'Corolla', year: 2023, price_eur: 24000, power_hp: 122, consumption_l100k: 5.5, co2_g_km: 125, category: 'practical', image: '/cars/corolla.jpg', description: 'Berline hybride mondiale, plébiscitée pour sa fiabilité légendaire au Maroc.' },
+  { id: 23, make: 'Toyota', model: 'Corolla', year: 2023, price_eur: 24000, power_hp: 122, consumption_l100k: 5.5, co2_g_km: 125, category: 'practical', image: '/COROLLA.jpg', description: 'Berline hybride mondiale, plébiscitée pour sa fiabilité légendaire au Maroc.' },
   { id: 24, make: 'Toyota', model: 'Land Cruiser', year: 2023, price_eur: 78000, power_hp: 309, consumption_l100k: 12.0, co2_g_km: 280, category: 'practical', description: 'Le 4x4 légendaire — incontournable pour les pistes du désert et les montagnes du Haut Atlas.' },
   { id: 25, make: 'Hyundai', model: 'Tucson', year: 2023, price_eur: 32000, power_hp: 150, consumption_l100k: 7.2, co2_g_km: 164, category: 'practical', description: 'SUV familial élégant — un choix prisé de la classe moyenne marocaine montante.' },
   { id: 26, make: 'Kia', model: 'Sportage', year: 2023, price_eur: 29000, power_hp: 150, consumption_l100k: 7.0, co2_g_km: 159, category: 'practical', description: "SUV coréen au style affirmé — très apprécié au Maroc pour son rapport qualité/prix." },
@@ -53,7 +53,7 @@
   // ── LUXURY ────────────────────────────────────────────────────────────────
   { id: 46, make: 'Audi', model: 'A3 Sportback', year: 2023, price_eur: 44000, power_hp: 150, consumption_l100k: 6.2, co2_g_km: 142, category: 'luxury', description: 'Premium compact allemand au cockpit virtuel — le premier niveau du luxe accessible.' },
   { id: 47, make: 'BMW', model: 'Série 3', year: 2023, price_eur: 52000, power_hp: 156, consumption_l100k: 6.4, co2_g_km: 145, category: 'luxury', description: 'La BMW Série 3 — le rêve de beaucoup de Marocains. Symbole de réussite.' },
-  { id: 48, make: 'BMW', model: 'Série 5', year: 2023, price_eur: 82000, power_hp: 184, consumption_l100k: 6.9, co2_g_km: 157, category: 'luxury', description: "La berline executive — tu es arrivé. Les cadres et chefs d'entreprise la plébiscitent au Maroc." },
+  { id: 48, make: 'BMW', model: 'Série 5', year: 2023, price_eur: 82000, power_hp: 184, consumption_l100k: 6.9, co2_g_km: 157, category: 'luxury', image: '/bmw-serie-5.jpg', description: "La berline executive — tu es arrivé. Les cadres et chefs d'entreprise la plébiscitent au Maroc." },
   { id: 49, make: 'BMW', model: 'X5', year: 2023, price_eur: 98000, power_hp: 340, consumption_l100k: 9.8, co2_g_km: 225, category: 'luxury', description: 'SUV premium imposant — très prisé parmi les familles aisées de Casablanca et Rabat.' },
   { id: 50, make: 'Mercedes', model: 'Classe C', year: 2023, price_eur: 54000, power_hp: 170, consumption_l100k: 6.6, co2_g_km: 150, category: 'luxury', description: 'La berline premium qui définit le standing à Casablanca. La Classe C, ça se remarque.' },
   { id: 51, make: 'Mercedes', model: 'Classe E', year: 2023, price_eur: 88000, power_hp: 197, consumption_l100k: 7.1, co2_g_km: 161, category: 'luxury', description: "L'excellence executive de Mercedes — pour ceux qui ont tout accompli. Le choix des grands patrons." },
@@ -69,9 +69,10 @@
   { id: 59, make: 'Tesla', model: 'Model Y', year: 2023, price_eur: 82407, power_hp: 300, consumption_l100k: 11.5, co2_g_km: 0, category: 'eco', description: "SUV électrique le plus vendu au monde — espace, technologie, autonomie." },
 
   // ── NOUVELLES ENTRÉES ─────────────────────────────────────────────────────
-  { id: 60, make: 'Jeep', model: 'Wrangler', year: 2023, price_eur: 62000, power_hp: 272, consumption_l100k: 11.2, co2_g_km: 256, category: 'performance', image: '/cars/wrangler.jpg', description: 'Le tout-terrain légendaire. Aucune piste ne lui résiste — Sahara, Haut Atlas, désert.' },
-  { id: 61, make: 'Volvo', model: 'XC40 Recharge', year: 2023, price_eur: 55000, power_hp: 408, consumption_l100k: 0, co2_g_km: 0, category: 'eco', image: '/cars/xc40.jpg', description: 'SUV électrique scandinave — design épuré, sécurité maximale, zéro émission, 418 km d\'autonomie.' },
-  { id: 62, make: 'BMW', model: 'X6', year: 2023, price_eur: 95000, power_hp: 340, consumption_l100k: 9.4, co2_g_km: 214, category: 'luxury', image: '/cars/bmw-x6.jpg', description: 'Le SUV Coupé BMW — allure de sport, confort de berline. Exclusif et immédiatement reconnaissable.' },
+  { id: 60, make: 'Jeep', model: 'Wrangler', year: 2023, price_eur: 62000, power_hp: 272, consumption_l100k: 11.2, co2_g_km: 256, category: 'performance', image: '/images (5).jpg', description: 'Le tout-terrain légendaire. Aucune piste ne lui résiste — Sahara, Haut Atlas, désert.' },
+  { id: 61, make: 'Volvo', model: 'XC40 Recharge', year: 2023, price_eur: 55000, power_hp: 408, consumption_l100k: 0, co2_g_km: 0, category: 'eco', description: 'SUV électrique scandinave — design épuré, sécurité maximale, zéro émission, 418 km d\'autonomie.' },
+  { id: 62, make: 'BMW', model: 'X6', year: 2023, price_eur: 95000, power_hp: 340, consumption_l100k: 9.4, co2_g_km: 214, category: 'luxury', description: 'Le SUV Coupé BMW — allure de sport, confort de berline. Exclusif et immédiatement reconnaissable.' },
+  { id: 63, make: 'Porsche', model: 'Cayenne Coupé E-Hybrid', year: 2023, price_eur: 140000, power_hp: 462, consumption_l100k: 3.4, co2_g_km: 79, category: 'luxury', image: '/PORSHE.jpg', description: 'Le SUV Coupé hybride rechargeable Porsche — performance absolue et sobriété en ville. Prestige maximal.' },
 ];
 
 export const ALL_MAKES = [...new Set(CARS.map(c => c.make))].sort();
