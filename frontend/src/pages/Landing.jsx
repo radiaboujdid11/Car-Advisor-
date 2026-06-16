@@ -1,6 +1,7 @@
 ﻿import { useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import AdSlot from '../components/AdSlot';
+import { CARS } from '../data/cars';
 
 const STEPS = [
   { n: '01', title: 'Vos besoins', body: 'Usage, kilométrage, passagers, route ou ville. Chaque détail oriente l\'algorithme.' },
@@ -196,14 +197,14 @@ export default function Landing() {
             <div style={{ flex: 1, height: '1px', background: copper }} />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', borderLeft: '1px solid rgba(240,240,240,.07)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem' }}>
             {STEPS.map((s, i) => (
-              <div key={i} className="reveal" style={{ borderRight: '1px solid rgba(240,240,240,.07)', padding: '3.5rem 3rem' }}
-                onMouseEnter={e => e.currentTarget.style.background = '#161616'}
-                onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+              <div key={i} className="reveal" style={{ background: '#161616', border: '1px solid rgba(255,255,255,.07)', borderRadius: '12px', padding: '3rem 2.5rem', transition: 'border-color .25s, background .25s' }}
+                onMouseEnter={e => { e.currentTarget.style.background = '#1e1e1e'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.16)'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = '#161616'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.07)'; }}
               >
-                <div style={{ fontFamily: 'var(--mono)', fontSize: '3rem', fontWeight: 700, color: 'rgba(255,255,255,.15)', lineHeight: 1, marginBottom: '2.5rem', letterSpacing: '-.02em' }}>{s.n}</div>
-                <h3 style={{ fontFamily: 'var(--serif-body)', fontSize: '1.25rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '.85rem', lineHeight: 1.2 }}>{s.title}</h3>
+                <div style={{ fontFamily: 'var(--mono)', fontSize: '2.8rem', fontWeight: 700, color: 'rgba(255,255,255,.1)', lineHeight: 1, marginBottom: '2rem', letterSpacing: '-.02em' }}>{s.n}</div>
+                <h3 style={{ fontFamily: 'var(--serif-body)', fontSize: '1.2rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '.75rem', lineHeight: 1.2 }}>{s.title}</h3>
                 <p style={{ fontFamily: 'var(--sans)', fontSize: '.84rem', color: 'var(--ink-mute)', lineHeight: 1.8 }}>{s.body}</p>
               </div>
             ))}
@@ -270,16 +271,57 @@ export default function Landing() {
             <div style={{ flex: 1, height: '1px', background: copper }} />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', borderLeft: '1px solid rgba(240,240,240,.07)', borderTop: '1px solid rgba(240,240,240,.07)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem' }}>
             {FEATURES.map((f, i) => (
-              <div key={i} className="reveal" style={{ borderRight: '1px solid rgba(240,240,240,.07)', borderBottom: '1px solid rgba(240,240,240,.07)', padding: '2.75rem 2.5rem', transition: 'background .25s' }}
-                onMouseEnter={e => e.currentTarget.style.background = '#161616'}
-                onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+              <div key={i} className="reveal" style={{ background: '#161616', border: '1px solid rgba(255,255,255,.07)', borderRadius: '12px', padding: '2.5rem', transition: 'border-color .25s, background .25s' }}
+                onMouseEnter={e => { e.currentTarget.style.background = '#1e1e1e'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.16)'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = '#161616'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.07)'; }}
               >
-                <span style={{ display: 'inline-block', fontFamily: 'var(--mono)', fontSize: '.65rem', letterSpacing: '.1em', color: 'var(--gold)', border: '1px solid rgba(255,255,255,.28)', padding: '.22rem .6rem', marginBottom: '1.4rem' }}>{f.label}</span>
-                <h3 style={{ fontFamily: 'var(--serif-body)', fontSize: '1.05rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '.6rem', lineHeight: 1.3 }}>{f.title}</h3>
+                <span style={{ display: 'inline-block', fontFamily: 'var(--mono)', fontSize: '.62rem', letterSpacing: '.1em', color: 'var(--gold)', border: '1px solid rgba(255,255,255,.2)', borderRadius: '4px', padding: '.2rem .55rem', marginBottom: '1.25rem' }}>{f.label}</span>
+                <h3 style={{ fontFamily: 'var(--serif-body)', fontSize: '1.05rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '.55rem', lineHeight: 1.3 }}>{f.title}</h3>
                 <p style={{ fontFamily: 'var(--sans)', fontSize: '.82rem', color: 'var(--ink-mute)', lineHeight: 1.78 }}>{f.body}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CAR SHOWCASE ── */}
+      <section style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(240,240,240,.07)', background: '#000000' }}>
+        <div style={{ maxWidth: '1160px', margin: '0 auto' }}>
+
+          <div className="reveal" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '2rem', marginBottom: '3.5rem', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+              <span style={{ fontFamily: 'var(--sans)', fontSize: '.62rem', letterSpacing: '.26em', textTransform: 'uppercase', color: 'var(--gold)', whiteSpace: 'nowrap' }}>Quelques modèles</span>
+              <div style={{ width: '60px', height: '1px', background: copper }} />
+            </div>
+            <Link to="/cars" style={{ fontFamily: 'var(--sans)', fontSize: '.7rem', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--ink-mute)', display: 'flex', alignItems: 'center', gap: '.5rem' }}
+              onMouseEnter={e => e.currentTarget.style.color = 'var(--ink)'}
+              onMouseLeave={e => e.currentTarget.style.color = 'var(--ink-mute)'}
+            >Voir les 62 modèles →</Link>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem' }}>
+            {CARS.filter(c => c.image).slice(0, 6).map(car => (
+              <Link key={car.id} to={`/cars/${car.id}`} style={{ display: 'block', background: '#161616', border: '1px solid rgba(255,255,255,.07)', borderRadius: '12px', overflow: 'hidden', transition: 'border-color .25s, transform .25s' }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,.2)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,.07)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+              >
+                <div style={{ height: '170px', overflow: 'hidden', background: '#111' }}>
+                  <img src={car.image} alt={`${car.make} ${car.model}`}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', transition: 'transform .5s ease' }}
+                    onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.07)'}
+                    onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                  />
+                </div>
+                <div style={{ padding: '1.25rem 1.5rem' }}>
+                  <p style={{ fontFamily: 'var(--sans)', fontSize: '.6rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--ink-mute)', marginBottom: '.4rem' }}>{car.category}</p>
+                  <h3 style={{ fontFamily: 'var(--serif-display)', fontSize: '1.1rem', color: 'var(--ink)', lineHeight: 1.1, marginBottom: '.5rem' }}>{car.make} {car.model}</h3>
+                  <p style={{ fontFamily: 'var(--mono)', fontSize: '.78rem', color: 'var(--gold)' }}>
+                    {car.price_eur ? `${Math.round(car.price_eur).toLocaleString('fr-FR')} €` : 'Sur demande'}
+                  </p>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
