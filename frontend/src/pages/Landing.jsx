@@ -81,7 +81,7 @@ export default function Landing() {
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '1.1rem 3.5rem',
         borderBottom: `1px solid rgba(240,240,240,.07)`,
-        background: 'rgba(8,8,8,.95)',
+        background: 'rgba(30,15,8,.95)',
         backdropFilter: 'blur(24px)',
       }}>
         <div style={{ fontFamily: 'var(--serif-display)', fontSize: '1.15rem', letterSpacing: '-.02em', userSelect: 'none' }}>
@@ -99,7 +99,7 @@ export default function Landing() {
 
         <button
           onClick={() => navigate('/quiz')}
-          style={{ background: 'var(--gold)', color: '#0d0d0d', border: 'none', padding: '.55rem 1.5rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.72rem', letterSpacing: '.1em', textTransform: 'uppercase', cursor: 'pointer' }}
+          style={{ background: 'var(--gold)', color: '#241209', border: 'none', padding: '.55rem 1.5rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.72rem', letterSpacing: '.1em', textTransform: 'uppercase', cursor: 'pointer' }}
           onMouseEnter={e => e.currentTarget.style.background = '#f0f0f0'}
           onMouseLeave={e => e.currentTarget.style.background = 'var(--gold)'}
         >Commencer</button>
@@ -120,7 +120,7 @@ export default function Landing() {
         {/* Gradient at bottom so text is readable */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(to top, rgba(0,0,0,.8) 0%, rgba(0,0,0,.3) 45%, transparent 75%)',
+          background: 'linear-gradient(to top, rgba(26,13,6,.8) 0%, rgba(26,13,6,.3) 45%, transparent 75%)',
         }} />
 
         {/* Text overlay — bottom left */}
@@ -158,14 +158,14 @@ export default function Landing() {
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <button
               onClick={() => navigate('/quiz')}
-              style={{ background: '#ffffff', color: '#000000', border: '2px solid #ffffff', padding: '.72rem 1.9rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.7rem', letterSpacing: '.15em', textTransform: 'uppercase', cursor: 'pointer', transition: 'background .2s, color .2s' }}
+              style={{ background: '#ffffff', color: '#1a0d06', border: '2px solid #ffffff', padding: '.72rem 1.9rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.7rem', letterSpacing: '.15em', textTransform: 'uppercase', cursor: 'pointer', transition: 'background .2s, color .2s' }}
               onMouseEnter={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#ffffff'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = '#ffffff'; e.currentTarget.style.color = '#000000'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = '#ffffff'; e.currentTarget.style.color = '#1a0d06'; }}
             >DÉMARRER LE QUIZ</button>
             <button
               onClick={() => navigate('/cars')}
               style={{ background: 'transparent', color: '#ffffff', border: '2px solid #ffffff', padding: '.72rem 1.9rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.7rem', letterSpacing: '.15em', textTransform: 'uppercase', cursor: 'pointer', transition: 'background .2s, color .2s' }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#ffffff'; e.currentTarget.style.color = '#000000'; }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#ffffff'; e.currentTarget.style.color = '#1a0d06'; }}
               onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#ffffff'; }}
             >CATALOGUE</button>
           </div>
@@ -174,7 +174,7 @@ export default function Landing() {
 
       {/* ── BRAND MARQUEE ── */}
       <div style={{ ...rule, position: 'relative' }} />
-      <div style={{ background: '#000000', padding: '.9rem 0', overflow: 'hidden', borderBottom: '1px solid rgba(240,240,240,.06)' }}>
+      <div style={{ background: '#1a0d06', padding: '.9rem 0', overflow: 'hidden', borderBottom: '1px solid rgba(240,240,240,.06)' }}>
         <div className="marquee-track">
           {[...BRANDS, ...BRANDS].map((b, i) => (
             <span key={i} style={{ fontFamily: 'var(--sans)', fontSize: '.6rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'var(--ink-mute)', paddingRight: '2.5rem', opacity: .55 }}>
@@ -195,9 +195,9 @@ export default function Landing() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem' }}>
             {STEPS.map((s, i) => (
-              <div key={i} className="reveal" style={{ background: '#161616', border: '1px solid rgba(255,255,255,.07)', borderRadius: '12px', padding: '3rem 2.5rem', transition: 'border-color .25s, background .25s' }}
-                onMouseEnter={e => { e.currentTarget.style.background = '#1e1e1e'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.16)'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = '#161616'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.07)'; }}
+              <div key={i} className="reveal" style={{ background: '#341A0E', border: '1px solid rgba(255,255,255,.07)', borderRadius: '12px', padding: '3rem 2.5rem', transition: 'border-color .25s, background .25s' }}
+                onMouseEnter={e => { e.currentTarget.style.background = '#3d2010'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.16)'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = '#341A0E'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.07)'; }}
               >
                 <div style={{ fontFamily: 'var(--mono)', fontSize: '2.8rem', fontWeight: 700, color: 'rgba(255,255,255,.1)', lineHeight: 1, marginBottom: '2rem', letterSpacing: '-.02em' }}>{s.n}</div>
                 <h3 style={{ fontFamily: 'var(--serif-body)', fontSize: '1.2rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '.75rem', lineHeight: 1.2 }}>{s.title}</h3>
@@ -209,7 +209,7 @@ export default function Landing() {
       </section>
 
       {/* ── QUIZ PREVIEW ── */}
-      <section id="quiz" style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(240,240,240,.07)', background: '#000000' }}>
+      <section id="quiz" style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(240,240,240,.07)', background: '#1a0d06' }}>
         <div style={{ maxWidth: '1160px', margin: '0 auto' }}>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6rem', alignItems: 'center' }}>
@@ -230,7 +230,7 @@ export default function Landing() {
               <button
                 onClick={() => navigate('/quiz')}
                 style={{ background: 'transparent', color: 'var(--gold)', border: '1px solid rgba(255,255,255,.45)', padding: '.9rem 2rem', fontFamily: 'var(--sans)', fontWeight: 600, fontSize: '.75rem', letterSpacing: '.12em', textTransform: 'uppercase', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '.7rem' }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.color = '#0d0d0d'; }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.color = '#241209'; }}
                 onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--gold)'; }}
               >
                 Commencer <span>→</span>
@@ -238,8 +238,8 @@ export default function Landing() {
             </div>
 
             {/* Preview card */}
-            <div ref={previewRef} className="reveal" style={{ background: '#0d0d0d', border: '1px solid rgba(240,240,240,.09)', overflow: 'hidden' }}>
-              <div style={{ padding: '1.1rem 1.4rem', borderBottom: '1px solid rgba(240,240,240,.07)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(0,0,0,.15)' }}>
+            <div ref={previewRef} className="reveal" style={{ background: '#241209', border: '1px solid rgba(240,240,240,.09)', overflow: 'hidden' }}>
+              <div style={{ padding: '1.1rem 1.4rem', borderBottom: '1px solid rgba(240,240,240,.07)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(26,13,6,.15)' }}>
                 <span style={{ fontFamily: 'var(--sans)', fontSize: '.6rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--gold)', opacity: .7 }}>Aperçu du quiz</span>
                 <span id="pq-step" style={{ fontFamily: 'var(--mono)', fontSize: '.7rem', color: 'var(--ink-mute)' }}>1 / 3</span>
               </div>
@@ -269,9 +269,9 @@ export default function Landing() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem' }}>
             {FEATURES.map((f, i) => (
-              <div key={i} className="reveal" style={{ background: '#161616', border: '1px solid rgba(255,255,255,.07)', borderRadius: '12px', padding: '2.5rem', transition: 'border-color .25s, background .25s' }}
-                onMouseEnter={e => { e.currentTarget.style.background = '#1e1e1e'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.16)'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = '#161616'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.07)'; }}
+              <div key={i} className="reveal" style={{ background: '#341A0E', border: '1px solid rgba(255,255,255,.07)', borderRadius: '12px', padding: '2.5rem', transition: 'border-color .25s, background .25s' }}
+                onMouseEnter={e => { e.currentTarget.style.background = '#3d2010'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.16)'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = '#341A0E'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.07)'; }}
               >
                 <span style={{ display: 'inline-block', fontFamily: 'var(--mono)', fontSize: '.62rem', letterSpacing: '.1em', color: 'var(--gold)', border: '1px solid rgba(255,255,255,.2)', borderRadius: '4px', padding: '.2rem .55rem', marginBottom: '1.25rem' }}>{f.label}</span>
                 <h3 style={{ fontFamily: 'var(--serif-body)', fontSize: '1.05rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '.55rem', lineHeight: 1.3 }}>{f.title}</h3>
@@ -283,7 +283,7 @@ export default function Landing() {
       </section>
 
       {/* ── CAR SHOWCASE ── */}
-      <section style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(240,240,240,.07)', background: '#000000' }}>
+      <section style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(240,240,240,.07)', background: '#1a0d06' }}>
         <div style={{ maxWidth: '1160px', margin: '0 auto' }}>
 
           <div className="reveal" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '2rem', marginBottom: '3.5rem', flexWrap: 'wrap' }}>
@@ -299,11 +299,11 @@ export default function Landing() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem' }}>
             {CARS.filter(c => c.image).slice(0, 6).map(car => (
-              <Link key={car.id} to={`/cars/${car.id}`} style={{ display: 'block', background: '#161616', border: '1px solid rgba(255,255,255,.07)', borderRadius: '12px', overflow: 'hidden', transition: 'border-color .25s, transform .25s' }}
+              <Link key={car.id} to={`/cars/${car.id}`} style={{ display: 'block', background: '#341A0E', border: '1px solid rgba(255,255,255,.07)', borderRadius: '12px', overflow: 'hidden', transition: 'border-color .25s, transform .25s' }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,.2)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,.07)'; e.currentTarget.style.transform = 'translateY(0)'; }}
               >
-                <div style={{ height: '170px', overflow: 'hidden', background: '#111' }}>
+                <div style={{ height: '170px', overflow: 'hidden', background: '#2d1509' }}>
                   <img src={car.image} alt={`${car.make} ${car.model}`}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', transition: 'transform .5s ease' }}
                     onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.07)'}
@@ -327,16 +327,16 @@ export default function Landing() {
       <section style={{ background: 'var(--gold)', padding: '7rem 5vw' }}>
         <div style={{ maxWidth: '1160px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '3rem', flexWrap: 'wrap' }}>
           <div>
-            <p style={{ fontFamily: 'var(--sans)', fontSize: '.62rem', letterSpacing: '.26em', textTransform: 'uppercase', color: 'rgba(13,13,13,.55)', marginBottom: '1rem' }}>Prêt ?</p>
-            <h2 style={{ fontFamily: 'var(--serif-display)', fontSize: 'clamp(2.8rem,5vw,5rem)', lineHeight: .88, letterSpacing: '-.04em', color: '#0d0d0d' }}>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '.62rem', letterSpacing: '.26em', textTransform: 'uppercase', color: 'rgba(36,18,9,.55)', marginBottom: '1rem' }}>Prêt ?</p>
+            <h2 style={{ fontFamily: 'var(--serif-display)', fontSize: 'clamp(2.8rem,5vw,5rem)', lineHeight: .88, letterSpacing: '-.04em', color: '#241209' }}>
               Votre McQueen<br />vous attend.
             </h2>
           </div>
           <button
             onClick={() => navigate('/quiz')}
-            style={{ background: '#0d0d0d', color: 'var(--gold)', border: 'none', padding: '1.2rem 3.2rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.78rem', letterSpacing: '.12em', textTransform: 'uppercase', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '.75rem', flexShrink: 0, whiteSpace: 'nowrap' }}
-            onMouseEnter={e => e.currentTarget.style.background = '#000000'}
-            onMouseLeave={e => e.currentTarget.style.background = '#0d0d0d'}
+            style={{ background: '#241209', color: 'var(--gold)', border: 'none', padding: '1.2rem 3.2rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.78rem', letterSpacing: '.12em', textTransform: 'uppercase', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '.75rem', flexShrink: 0, whiteSpace: 'nowrap' }}
+            onMouseEnter={e => e.currentTarget.style.background = '#1a0d06'}
+            onMouseLeave={e => e.currentTarget.style.background = '#241209'}
           >
             Démarrer le quiz <span style={{ fontSize: '1rem' }}>→</span>
           </button>

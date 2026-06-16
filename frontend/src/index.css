@@ -3,27 +3,27 @@
 @tailwind utilities;
 
 :root {
-  /* ── PALETTE — noir blanc gris ── */
-  --black:    #000000;
-  --gold:     #ffffff;   /* blanc — accent principal, CTA */
-  --ivory:    #f0f0f0;
+  /* ── PALETTE — désert chaud ── */
+  --black:    #1a0d06;
+  --gold:     #F2D8A7;   /* sable clair — accent principal, CTA */
+  --ivory:    #FFF5E6;
 
   /* ── Backgrounds ── */
-  --bg-dark: #000000;
-  --bg:     #0d0d0d;
-  --bg-2:   #161616;
-  --bg-3:   #222222;
+  --bg-dark: #1a0d06;
+  --bg:      #241209;
+  --bg-2:    #341A0E;
+  --bg-3:    #472516;
 
   /* ── Text ── */
-  --ink:      #f0f0f0;
-  --ink-soft: rgba(240,240,240,.65);
-  --ink-mute: rgba(240,240,240,.38);
+  --ink:      #F2D8A7;
+  --ink-soft: rgba(242,216,167,.65);
+  --ink-mute: rgba(242,216,167,.38);
 
-  /* ── Accents gris ── */
-  --gold-2:   #cccccc;   /* gris clair — hover */
-  --gold-deep:#888888;   /* gris moyen */
-  --terracotta: #555555; /* gris foncé */
-  --line:     rgba(255,255,255,.08); /* ligne subtile */
+  /* ── Accents terracotta ── */
+  --gold-2:    #D98859;   /* terracotta — hover */
+  --gold-deep: #A0622A;   /* brun ambré */
+  --terracotta: #674C1E;  /* brun moyen */
+  --line:      rgba(242,216,167,.08); /* ligne subtile */
 
   /* ── Typography ── */
   --serif-display: 'Abril Fatface', serif;          /* hero h1, big display — retro bold */
@@ -152,7 +152,7 @@ input, select, textarea { transition: border-color .25s ease, background .25s ea
     overflow: hidden;
     transition: transform .4s cubic-bezier(.4,0,.2,1), border-color .4s ease, box-shadow .4s ease, background .4s ease;
   }
-  .card:hover { transform: translateY(-6px); border-color: rgba(240,240,240,.35); box-shadow: 0 24px 64px rgba(0,0,0,.3); background: var(--bg-3); }
+  .card:hover { transform: translateY(-6px); border-color: rgba(240,240,240,.35); box-shadow: 0 24px 64px rgba(26,13,6,.3); background: var(--bg-3); }
 
   .badge {
     @apply inline-flex items-center gap-1 text-xs font-medium;

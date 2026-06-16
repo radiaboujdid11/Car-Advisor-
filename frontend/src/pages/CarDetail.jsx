@@ -57,9 +57,9 @@ export default function CarDetail({ addToCompare }) {
 
       {/* Car image hero */}
       {car.image && (
-        <div style={{ width: '100%', height: 'clamp(260px, 40vh, 480px)', position: 'relative', overflow: 'hidden', background: '#111' }}>
+        <div style={{ width: '100%', height: 'clamp(260px, 40vh, 480px)', position: 'relative', overflow: 'hidden', background: '#2d1509' }}>
           <img src={car.image} alt={`${car.make} ${car.model}`} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #0d0d0d 0%, transparent 50%)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #241209 0%, transparent 50%)' }} />
         </div>
       )}
 

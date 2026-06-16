@@ -230,11 +230,11 @@ function QuestionCard({ question, confidence, leadingCar, selected, visible, onA
   if (!question) return null;
 
   return (
-    <div style={{ minHeight: '100vh', background: '#161616', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ minHeight: '100vh', background: '#341A0E', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ position: 'fixed', top: 0, left: '50%', transform: 'translateX(-50%)', width: '800px', height: '500px', background: 'radial-gradient(ellipse at center top, rgba(240,240,240,.08) 0%, transparent 65%)', pointerEvents: 'none' }} />
 
       {/* Top bar */}
-      <div style={{ position: 'sticky', top: 0, zIndex: 10, borderBottom: '1px solid rgba(240,240,240,.15)', background: 'rgba(13,13,13,.95)', backdropFilter: 'blur(16px)', padding: '.875rem 1.5rem' }}>
+      <div style={{ position: 'sticky', top: 0, zIndex: 10, borderBottom: '1px solid rgba(240,240,240,.15)', background: 'rgba(36,18,9,.95)', backdropFilter: 'blur(16px)', padding: '.875rem 1.5rem' }}>
         <div style={{ maxWidth: '640px', margin: '0 auto' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
             <span style={{ fontSize: '.72rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(240,240,240,.55)' }}>
