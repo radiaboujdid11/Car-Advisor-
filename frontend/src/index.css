@@ -3,27 +3,27 @@
 @tailwind utilities;
 
 :root {
-  /* ── PALETTE — #3E2621 #674C1E #F2D8A7 #D98859 ── */
-  --black:    #3E2621;
-  --gold:     #D98859;   /* warm orange — primary CTA, highlights */
-  --ivory:    #F2D8A7;
+  /* ── PALETTE — noir blanc gris ── */
+  --black:    #000000;
+  --gold:     #ffffff;   /* blanc — accent principal, CTA */
+  --ivory:    #f0f0f0;
 
   /* ── Backgrounds ── */
-  --bg-dark: #2a1a10;
-  --bg:     #3E2621;
-  --bg-2:   #4f3520;
-  --bg-3:   #674C1E;
+  --bg-dark: #000000;
+  --bg:     #0d0d0d;
+  --bg-2:   #161616;
+  --bg-3:   #222222;
 
-  /* ── Text (warm cream) ── */
-  --ink:      #F2D8A7;
-  --ink-soft: rgba(242,216,167,.68);
-  --ink-mute: rgba(242,216,167,.42);
+  /* ── Text ── */
+  --ink:      #f0f0f0;
+  --ink-soft: rgba(240,240,240,.65);
+  --ink-mute: rgba(240,240,240,.38);
 
-  /* ── Palette accents ── */
-  --gold-2:   #c07840;   /* darker orange — hover */
-  --gold-deep:#674C1E;   /* medium brown — subtle accents */
-  --terracotta: #674C1E; /* medium brown — muted borders */
-  --line:     rgba(103,76,30,.30); /* brown subtle line */
+  /* ── Accents gris ── */
+  --gold-2:   #cccccc;   /* gris clair — hover */
+  --gold-deep:#888888;   /* gris moyen */
+  --terracotta: #555555; /* gris foncé */
+  --line:     rgba(255,255,255,.08); /* ligne subtile */
 
   /* ── Typography ── */
   --serif-display: 'Abril Fatface', serif;          /* hero h1, big display — retro bold */
@@ -78,7 +78,7 @@ input, select, textarea { transition: border-color .25s ease, background .25s ea
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: rgba(181,87,31,.35); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,.15); border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
 /* ── Selection ── */
@@ -99,13 +99,13 @@ input, select, textarea { transition: border-color .25s ease, background .25s ea
     letter-spacing: .02em;
     font-weight: 600;
   }
-  .btn-primary:hover { background: var(--gold-2); transform: translateY(-3px); box-shadow: 0 20px 50px rgba(181,87,31,.35); }
+  .btn-primary:hover { background: var(--gold-2); transform: translateY(-3px); box-shadow: 0 20px 50px rgba(255,255,255,.12); }
 
   .btn-ghost {
     @apply font-normal transition-all duration-300 active:scale-95;
     background: transparent;
     color: var(--ink);
-    border: 1px solid rgba(245,237,216,.2);
+    border: 1px solid rgba(240,240,240,.2);
     padding: .85rem 2rem;
     border-radius: 50px;
     font-family: var(--serif-body);
@@ -113,7 +113,7 @@ input, select, textarea { transition: border-color .25s ease, background .25s ea
     cursor: none;
     font-weight: 500;
   }
-  .btn-ghost:hover { border-color: rgba(245,237,216,.45); transform: translateY(-3px); }
+  .btn-ghost:hover { border-color: rgba(240,240,240,.45); transform: translateY(-3px); }
 
   .btn-outline {
     @apply font-semibold transition-all duration-300 active:scale-95;
@@ -132,7 +132,7 @@ input, select, textarea { transition: border-color .25s ease, background .25s ea
 
   .btn-secondary {
     @apply font-semibold transition-all duration-300 active:scale-95;
-    border: 1px solid rgba(245,237,216,.15);
+    border: 1px solid rgba(240,240,240,.15);
     color: var(--ink-mute);
     background: transparent;
     padding: .7rem 1.6rem;
@@ -147,12 +147,12 @@ input, select, textarea { transition: border-color .25s ease, background .25s ea
 
   .card {
     background: var(--bg-2);
-    border: 1px solid rgba(245,237,216,.12);
+    border: 1px solid rgba(240,240,240,.12);
     border-radius: 16px;
     overflow: hidden;
     transition: transform .4s cubic-bezier(.4,0,.2,1), border-color .4s ease, box-shadow .4s ease, background .4s ease;
   }
-  .card:hover { transform: translateY(-6px); border-color: rgba(245,237,216,.35); box-shadow: 0 24px 64px rgba(0,0,0,.3); background: var(--bg-3); }
+  .card:hover { transform: translateY(-6px); border-color: rgba(240,240,240,.35); box-shadow: 0 24px 64px rgba(0,0,0,.3); background: var(--bg-3); }
 
   .badge {
     @apply inline-flex items-center gap-1 text-xs font-medium;
