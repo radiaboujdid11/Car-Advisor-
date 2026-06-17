@@ -111,7 +111,7 @@ export default function Landing() {
         {/* Full image */}
         <div style={{
           position: 'absolute', inset: 0,
-          backgroundImage: 'url(/hero-maroc.jpg)',
+          backgroundImage: 'url(/hero2.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           animation: 'slowZoom 22s ease-in-out infinite alternate',
