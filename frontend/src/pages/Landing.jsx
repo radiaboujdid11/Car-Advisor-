@@ -56,7 +56,7 @@ export default function Landing() {
         const d = document.createElement('div');
         d.style.cssText = `
           padding:.8rem 1rem;
-          border-top:1px solid rgba(26,13,6,.08);
+          border-top:1px solid rgba(30,58,138,.08);
           font-family:var(--sans);font-size:.82rem;
           color:${i === 0 ? 'var(--gold)' : 'var(--ink-mute)'};
           display:flex;align-items:center;gap:.75rem;
@@ -80,8 +80,8 @@ export default function Landing() {
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '1.1rem 3.5rem',
-        borderBottom: `1px solid rgba(26,13,6,.08)`,
-        background: 'rgba(255,255,255,.95)',
+        borderBottom: `1px solid rgba(30,58,138,.08)`,
+        background: 'rgba(255,255,255,.97)',
         backdropFilter: 'blur(24px)',
       }}>
         <div style={{ fontFamily: 'var(--serif-display)', fontSize: '1.15rem', letterSpacing: '-.02em', userSelect: 'none' }}>
@@ -111,7 +111,7 @@ export default function Landing() {
         {/* Full image */}
         <div style={{
           position: 'absolute', inset: 0,
-          backgroundImage: 'url(/RS3.jpg)',
+          backgroundImage: 'url(/hero-maroc.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           animation: 'slowZoom 22s ease-in-out infinite alternate',
@@ -176,7 +176,7 @@ export default function Landing() {
       </section>
 
       {/* ── PHOTO MARQUEE ── */}
-      <div style={{ background: '#f0ebe3', padding: '1.2rem 0', overflow: 'hidden', borderTop: '1px solid rgba(242,216,167,.06)', borderBottom: '1px solid rgba(242,216,167,.06)' }}>
+      <div style={{ background: '#EFF6FF', padding: '1.2rem 0', overflow: 'hidden', borderTop: '1px solid rgba(242,216,167,.06)', borderBottom: '1px solid rgba(242,216,167,.06)' }}>
         <div className="marquee-track">
           {[...CARS.filter(c => c.image), ...CARS.filter(c => c.image)].map((car, i) => (
             <div key={i} style={{ flexShrink: 0, width: '220px', height: '130px', marginRight: '1rem', overflow: 'hidden', borderRadius: '6px', position: 'relative' }}>
@@ -185,7 +185,7 @@ export default function Landing() {
                 alt={`${car.make} ${car.model}`}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
               />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,13,6,.65) 0%, transparent 55%)' }} />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(30,58,138,.7) 0%, transparent 55%)' }} />
               <p style={{ position: 'absolute', bottom: '0.5rem', left: '0.75rem', fontFamily: 'var(--sans)', fontSize: '0.6rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#fff', opacity: 0.9 }}>
                 {car.make} {car.model}
               </p>
@@ -195,7 +195,7 @@ export default function Landing() {
       </div>
 
       {/* ── HOW IT WORKS ── */}
-      <section id="how" style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(26,13,6,.08)' }}>
+      <section id="how" style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(30,58,138,.08)' }}>
         <div style={{ maxWidth: '1160px', margin: '0 auto' }}>
 
           <div className="reveal" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '5.5rem' }}>
@@ -205,7 +205,7 @@ export default function Landing() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem' }}>
             {STEPS.map((s, i) => (
-              <div key={i} className="reveal" style={{ background: '#faf6f1', border: '1px solid rgba(242,216,167,.1)', borderRadius: '12px', overflow: 'hidden', transition: 'border-color .25s, transform .25s' }}
+              <div key={i} className="reveal" style={{ background: '#F0F7FF', border: '1px solid rgba(242,216,167,.1)', borderRadius: '12px', overflow: 'hidden', transition: 'border-color .25s, transform .25s' }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(242,216,167,.3)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(242,216,167,.1)'; e.currentTarget.style.transform = 'translateY(0)'; }}
               >
@@ -215,7 +215,7 @@ export default function Landing() {
                     onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.06)'}
                     onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
                   />
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #faf6f1 0%, transparent 55%)' }} />
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #F0F7FF 0%, transparent 55%)' }} />
                   <span style={{ position: 'absolute', top: '1rem', left: '1.25rem', fontFamily: 'var(--mono)', fontSize: '1rem', fontWeight: 700, color: 'rgba(242,216,167,.8)' }}>{s.n}</span>
                 </div>
                 <div style={{ padding: '1.5rem 1.75rem 2rem' }}>
@@ -229,7 +229,7 @@ export default function Landing() {
       </section>
 
       {/* ── QUIZ PREVIEW ── */}
-      <section id="quiz" style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(26,13,6,.08)', background: '#f0ebe3' }}>
+      <section id="quiz" style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(30,58,138,.08)', background: '#EFF6FF' }}>
         <div style={{ maxWidth: '1160px', margin: '0 auto' }}>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6rem', alignItems: 'center' }}>
@@ -259,7 +259,7 @@ export default function Landing() {
 
             {/* Preview card */}
             <div ref={previewRef} className="reveal" style={{ background: '#ffffff', border: '1px solid rgba(26,13,6,.09)', overflow: 'hidden' }}>
-              <div style={{ padding: '1.1rem 1.4rem', borderBottom: '1px solid rgba(26,13,6,.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(26,13,6,.15)' }}>
+              <div style={{ padding: '1.1rem 1.4rem', borderBottom: '1px solid rgba(30,58,138,.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(30,58,138,.15)' }}>
                 <span style={{ fontFamily: 'var(--sans)', fontSize: '.6rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--gold)', opacity: .7 }}>Aperçu du quiz</span>
                 <span id="pq-step" style={{ fontFamily: 'var(--mono)', fontSize: '.7rem', color: 'var(--ink-mute)' }}>1 / 3</span>
               </div>
@@ -279,7 +279,7 @@ export default function Landing() {
       </section>
 
       {/* ── FEATURES ── */}
-      <section id="features" style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(26,13,6,.08)' }}>
+      <section id="features" style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(30,58,138,.08)' }}>
         <div style={{ maxWidth: '1160px', margin: '0 auto' }}>
 
           <div className="reveal" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '5.5rem' }}>
@@ -289,7 +289,7 @@ export default function Landing() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem' }}>
             {FEATURES.map((f, i) => (
-              <div key={i} className="reveal" style={{ background: '#faf6f1', border: '1px solid rgba(242,216,167,.1)', borderRadius: '12px', overflow: 'hidden', transition: 'border-color .25s, transform .25s' }}
+              <div key={i} className="reveal" style={{ background: '#F0F7FF', border: '1px solid rgba(242,216,167,.1)', borderRadius: '12px', overflow: 'hidden', transition: 'border-color .25s, transform .25s' }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(242,216,167,.3)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(242,216,167,.1)'; e.currentTarget.style.transform = 'translateY(0)'; }}
               >
@@ -299,7 +299,7 @@ export default function Landing() {
                     onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.07)'}
                     onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
                   />
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #faf6f1 0%, transparent 60%)' }} />
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #F0F7FF 0%, transparent 60%)' }} />
                   <span style={{ position: 'absolute', top: '.75rem', left: '.75rem', fontFamily: 'var(--mono)', fontSize: '.58rem', letterSpacing: '.1em', color: 'var(--gold)', border: '1px solid rgba(242,216,167,.4)', borderRadius: '4px', padding: '.2rem .5rem', background: 'rgba(255,255,255,.5)', backdropFilter: 'blur(6px)' }}>{f.label}</span>
                 </div>
                 <div style={{ padding: '1.25rem 1.5rem 1.75rem' }}>
@@ -313,7 +313,7 @@ export default function Landing() {
       </section>
 
       {/* ── CAR SHOWCASE ── */}
-      <section style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(26,13,6,.08)', background: '#f0ebe3' }}>
+      <section style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(30,58,138,.08)', background: '#EFF6FF' }}>
         <div style={{ maxWidth: '1160px', margin: '0 auto' }}>
 
           <div className="reveal" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '2rem', marginBottom: '3.5rem', flexWrap: 'wrap' }}>
@@ -329,11 +329,11 @@ export default function Landing() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem' }}>
             {CARS.filter(c => c.image).slice(0, 6).map(car => (
-              <Link key={car.id} to={`/cars/${car.id}`} style={{ display: 'block', background: '#faf6f1', border: '1px solid rgba(255,255,255,.07)', borderRadius: '12px', overflow: 'hidden', transition: 'border-color .25s, transform .25s' }}
+              <Link key={car.id} to={`/cars/${car.id}`} style={{ display: 'block', background: '#F0F7FF', border: '1px solid rgba(255,255,255,.07)', borderRadius: '12px', overflow: 'hidden', transition: 'border-color .25s, transform .25s' }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,.2)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,.07)'; e.currentTarget.style.transform = 'translateY(0)'; }}
               >
-                <div style={{ height: '170px', overflow: 'hidden', background: '#f0ebe3' }}>
+                <div style={{ height: '170px', overflow: 'hidden', background: '#EFF6FF' }}>
                   <img src={car.image} alt={`${car.make} ${car.model}`}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', transition: 'transform .5s ease' }}
                     onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.07)'}
@@ -365,7 +365,7 @@ export default function Landing() {
           <button
             onClick={() => navigate('/quiz')}
             style={{ background: '#ffffff', color: 'var(--gold)', border: 'none', padding: '1.2rem 3.2rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.78rem', letterSpacing: '.12em', textTransform: 'uppercase', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '.75rem', flexShrink: 0, whiteSpace: 'nowrap' }}
-            onMouseEnter={e => e.currentTarget.style.background = '#f0ebe3'}
+            onMouseEnter={e => e.currentTarget.style.background = '#EFF6FF'}
             onMouseLeave={e => e.currentTarget.style.background = '#ffffff'}
           >
             Démarrer le quiz <span style={{ fontSize: '1rem' }}>→</span>
@@ -374,7 +374,7 @@ export default function Landing() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer style={{ padding: '2rem 3.5rem', borderTop: '1px solid rgba(26,13,6,.07)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem', flexWrap: 'wrap' }}>
+      <footer style={{ padding: '2rem 3.5rem', borderTop: '1px solid rgba(30,58,138,.07)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem', flexWrap: 'wrap' }}>
         <div style={{ fontFamily: 'var(--serif-display)', fontSize: '1rem' }}>
           Auto<span style={{ color: 'var(--gold)' }}>Assist</span>
         </div>

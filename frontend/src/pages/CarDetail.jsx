@@ -57,7 +57,7 @@ export default function CarDetail({ addToCompare }) {
 
       {/* Car image hero */}
       {car.image && (
-        <div style={{ width: '100%', height: 'clamp(260px, 40vh, 480px)', position: 'relative', overflow: 'hidden', background: '#f0ebe3' }}>
+        <div style={{ width: '100%', height: 'clamp(260px, 40vh, 480px)', position: 'relative', overflow: 'hidden', background: '#EFF6FF' }}>
           <img src={car.image} alt={`${car.make} ${car.model}`} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #ffffff 0%, transparent 50%)' }} />
         </div>
@@ -124,7 +124,7 @@ export default function CarDetail({ addToCompare }) {
             style={{
               fontFamily: 'var(--sans)', fontSize: '11px', fontWeight: 600, letterSpacing: '0.25em', textTransform: 'uppercase',
               background: added ? 'transparent' : 'linear-gradient(180deg, var(--gold-2), var(--gold) 60%, var(--gold-deep))',
-              color: added ? 'var(--gold)' : '#1a1410',
+              color: added ? 'var(--gold)' : '#ffffff',
               border: `1px solid ${added ? 'var(--gold-deep)' : 'var(--gold)'}`,
               padding: '1rem 2rem', cursor: added ? 'default' : 'pointer',
               transition: 'opacity 0.2s',
@@ -140,7 +140,7 @@ export default function CarDetail({ addToCompare }) {
               padding: '1rem 2rem', cursor: 'pointer',
               transition: 'border-color 0.2s, background 0.2s',
             }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--gold)'; e.currentTarget.style.background = 'rgba(201,169,110,0.05)'; }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--gold)'; e.currentTarget.style.background = 'rgba(37,99,235,0.05)'; }}
             onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--gold-deep)'; e.currentTarget.style.background = 'none'; }}
           >
             Refaire le quiz

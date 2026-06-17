@@ -3,27 +3,27 @@
 @tailwind utilities;
 
 :root {
-  /* ── PALETTE — blanc chaud ── */
-  --black:    #f0ebe3;
-  --gold:     #C4722A;   /* terracotta — accent principal, CTA */
-  --ivory:    #FFF5E6;
+  /* ── PALETTE — bleu Maroc ── */
+  --black:    #0F1F5C;
+  --gold:     #2563EB;   /* bleu électrique — accent principal */
+  --ivory:    #EFF6FF;
 
   /* ── Backgrounds ── */
-  --bg-dark: #f0ebe3;
-  --bg:      #ffffff;
-  --bg-2:    #faf6f1;
-  --bg-3:    #f3ece3;
+  --bg-dark:  #EFF6FF;
+  --bg:       #ffffff;
+  --bg-2:     #F0F7FF;
+  --bg-3:     #DBEAFE;
 
   /* ── Text ── */
-  --ink:      #f0ebe3;
-  --ink-soft: rgba(26,13,6,.65);
-  --ink-mute: rgba(26,13,6,.38);
+  --ink:      #1E3A8A;
+  --ink-soft: rgba(30,58,138,.7);
+  --ink-mute: rgba(30,58,138,.45);
 
-  /* ── Accents terracotta ── */
-  --gold-2:    #D98859;   /* terracotta clair — hover */
-  --gold-deep: #A0622A;   /* brun ambré */
-  --terracotta: #674C1E;  /* brun moyen */
-  --line:      rgba(26,13,6,.08); /* ligne subtile */
+  /* ── Accents bleu ── */
+  --gold-2:    #3B82F6;   /* bleu vif */
+  --gold-deep: #1E40AF;   /* bleu royal profond */
+  --terracotta: #60A5FA;  /* bleu ciel */
+  --line:      rgba(30,58,138,.1); /* ligne subtile */
 
   /* ── Typography ── */
   --serif-display: 'Abril Fatface', serif;          /* hero h1, big display — retro bold */
@@ -78,7 +78,7 @@ input, select, textarea { transition: border-color .25s ease, background .25s ea
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: rgba(26,13,6,.15); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: rgba(30,58,138,.15); border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
 /* ── Selection ── */
@@ -152,12 +152,12 @@ input, select, textarea { transition: border-color .25s ease, background .25s ea
     overflow: hidden;
     transition: transform .4s cubic-bezier(.4,0,.2,1), border-color .4s ease, box-shadow .4s ease, background .4s ease;
   }
-  .card:hover { transform: translateY(-6px); border-color: rgba(240,240,240,.35); box-shadow: 0 24px 64px rgba(26,13,6,.3); background: var(--bg-3); }
+  .card:hover { transform: translateY(-6px); border-color: rgba(240,240,240,.35); box-shadow: 0 24px 64px rgba(30,58,138,.25); background: var(--bg-3); }
 
   .badge {
     @apply inline-flex items-center gap-1 text-xs font-medium;
-    background: rgba(201,168,76,.12);
-    border: 1px solid rgba(181,87,31,.35);
+    background: rgba(37,99,235,.1);
+    border: 1px solid rgba(37,99,235,.3);
     color: var(--gold);
     padding: .35rem 1rem;
     border-radius: 6px;

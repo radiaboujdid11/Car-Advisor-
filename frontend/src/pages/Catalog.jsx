@@ -135,19 +135,19 @@ function CarCard({ car, onDetail, onCompare }) {
       onClick={onDetail}
     >
       {/* Image */}
-      <div style={{ height: '185px', background: '#f0ebe3', position: 'relative', overflow: 'hidden', flexShrink: 0 }}>
+      <div style={{ height: '185px', background: '#EFF6FF', position: 'relative', overflow: 'hidden', flexShrink: 0 }}>
         {car.image
           ? <img
               src={car.image} alt={`${car.make} ${car.model}`}
               style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', transition: 'transform .5s ease', transform: hovered ? 'scale(1.06)' : 'scale(1)' }}
             />
-          : <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #faf6f1 0%, #222 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          : <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #F0F7FF 0%, #222 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <span style={{ fontFamily: 'var(--serif-display)', fontSize: '2.2rem', color: 'rgba(255,255,255,.06)' }}>{car.make}</span>
             </div>
         }
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '70px', background: 'linear-gradient(to top, var(--bg-2), transparent)' }} />
         <div style={{ position: 'absolute', top: '0.75rem', left: '0.75rem' }}>
-          <span style={{ fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ink-mute)', background: 'rgba(26,13,6,.55)', backdropFilter: 'blur(8px)', padding: '3px 8px', borderRadius: '4px' }}>
+          <span style={{ fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ink-mute)', background: 'rgba(30,58,138,.6)', backdropFilter: 'blur(8px)', padding: '3px 8px', borderRadius: '4px' }}>
             {CAT_LABEL[car.category] || car.category}
           </span>
         </div>

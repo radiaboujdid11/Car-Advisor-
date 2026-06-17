@@ -97,10 +97,10 @@ export default function Quiz({ onComplete }) {
 function Intro({ onStart }) {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem', position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 600, background: 'radial-gradient(ellipse at center, rgba(26,13,6,.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 600, background: 'radial-gradient(ellipse at center, rgba(30,58,138,.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
       <div style={{ textAlign: 'center', maxWidth: '480px', position: 'relative' }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', background: 'rgba(26,13,6,.14)', border: '1px solid rgba(26,13,6,.3)', color: 'var(--gold)', fontSize: '.75rem', letterSpacing: '.12em', textTransform: 'uppercase', padding: '.4rem 1rem', borderRadius: '50px', marginBottom: '2rem' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', background: 'rgba(26,13,6,.14)', border: '1px solid rgba(30,58,138,.25)', color: 'var(--gold)', fontSize: '.75rem', letterSpacing: '.12em', textTransform: 'uppercase', padding: '.4rem 1rem', borderRadius: '50px', marginBottom: '2rem' }}>
           <span style={{ width: 6, height: 6, background: 'var(--gold)', borderRadius: '50%', display: 'inline-block', animation: 'pulse-dot 1.5s infinite' }} />
           Conseil automobile · IA bayésienne
         </div>
@@ -116,7 +116,7 @@ function Intro({ onStart }) {
           question par question, par inférence bayésienne.
         </p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1px', background: 'rgba(26,13,6,.12)', border: '1px solid rgba(26,13,6,.12)', borderRadius: '12px', overflow: 'hidden', marginBottom: '2.5rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1px', background: 'rgba(30,58,138,.1)', border: '1px solid rgba(30,58,138,.1)', borderRadius: '12px', overflow: 'hidden', marginBottom: '2.5rem' }}>
           {[{ label: 'Adaptatif', sub: 'Bayésien' }, { label: '15 – 30', sub: 'Questions' }, { label: 'Top 3', sub: 'Sur mesure' }].map(({ label, sub }) => (
             <div key={label} style={{ background: 'var(--bg-2)', padding: '1.25rem .5rem', textAlign: 'center' }}>
               <p style={{ fontFamily: 'var(--serif-display)', fontSize: '1.4rem', fontWeight: 800, color: 'var(--gold)', lineHeight: 1, marginBottom: '4px' }}>{label}</p>
@@ -161,8 +161,8 @@ function BayesPanel({ topProbs }) {
                   {pct}%
                 </span>
               </div>
-              <div style={{ height: '2px', background: 'rgba(26,13,6,.07)', borderRadius: '2px', overflow: 'hidden' }}>
-                <div style={{ height: '100%', width: `${barWidth}%`, background: i === 0 ? 'var(--gold)' : 'rgba(26,13,6,.3)', borderRadius: '2px', transition: 'width .9s cubic-bezier(.4,0,.2,1)' }} />
+              <div style={{ height: '2px', background: 'rgba(30,58,138,.07)', borderRadius: '2px', overflow: 'hidden' }}>
+                <div style={{ height: '100%', width: `${barWidth}%`, background: i === 0 ? 'var(--gold)' : 'rgba(30,58,138,.25)', borderRadius: '2px', transition: 'width .9s cubic-bezier(.4,0,.2,1)' }} />
               </div>
             </div>
           );
@@ -201,7 +201,7 @@ function Thinking({ label, confidence, leadingCar, topProbs }) {
             <span style={{ fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--ink-mute)' }}>Confiance</span>
             <span style={{ fontFamily: 'var(--serif-display)', fontSize: '.9rem', color: 'var(--gold)' }}>{confidence}%</span>
           </div>
-          <div style={{ height: '2px', background: 'rgba(26,13,6,.07)', borderRadius: '2px', overflow: 'hidden' }}>
+          <div style={{ height: '2px', background: 'rgba(30,58,138,.07)', borderRadius: '2px', overflow: 'hidden' }}>
             <div style={{ height: '100%', width: `${confidence}%`, background: 'var(--gold)', borderRadius: '2px', transition: 'width .7s cubic-bezier(.4,0,.2,1)' }} />
           </div>
         </div>
@@ -234,7 +234,7 @@ function QuestionCard({ question, confidence, leadingCar, selected, visible, onA
       <div style={{ position: 'fixed', top: 0, left: '50%', transform: 'translateX(-50%)', width: '800px', height: '500px', background: 'radial-gradient(ellipse at center top, rgba(196,114,42,.06) 0%, transparent 65%)', pointerEvents: 'none' }} />
 
       {/* Top bar */}
-      <div style={{ position: 'sticky', top: 0, zIndex: 10, borderBottom: '1px solid rgba(26,13,6,.1)', background: 'rgba(255,255,255,.95)', backdropFilter: 'blur(16px)', padding: '.875rem 1.5rem' }}>
+      <div style={{ position: 'sticky', top: 0, zIndex: 10, borderBottom: '1px solid rgba(30,58,138,.08)', background: 'rgba(255,255,255,.97)', backdropFilter: 'blur(16px)', padding: '.875rem 1.5rem' }}>
         <div style={{ maxWidth: '640px', margin: '0 auto' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
             <span style={{ fontSize: '.72rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'var(--ink-mute)' }}>
@@ -249,11 +249,11 @@ function QuestionCard({ question, confidence, leadingCar, selected, visible, onA
                 : 'Déduction en cours'}
             </span>
           </div>
-          <div style={{ height: '3px', background: 'rgba(26,13,6,.1)', borderRadius: '3px', overflow: 'hidden' }}>
+          <div style={{ height: '3px', background: 'rgba(30,58,138,.08)', borderRadius: '3px', overflow: 'hidden' }}>
             <div style={{ height: '100%', width: `${Math.max(confidence, 2)}%`, background: 'var(--gold)', borderRadius: '3px', transition: 'width .7s cubic-bezier(.4,0,.2,1)' }} />
           </div>
           {leadingCar && confidence > 15 && (
-            <p style={{ fontSize: '.72rem', letterSpacing: '.15em', textTransform: 'uppercase', color: 'rgba(26,13,6,.45)', marginTop: '8px' }}>
+            <p style={{ fontSize: '.72rem', letterSpacing: '.15em', textTransform: 'uppercase', color: 'rgba(30,58,138,.5)', marginTop: '8px' }}>
               En tête :{' '}
               <span style={{ color: 'var(--gold)', fontWeight: 500 }}>{leadingCar.make} {leadingCar.model}</span>
             </p>
@@ -301,7 +301,7 @@ function AnswerButton({ answer, isSelected, isDimmed, disabled, onClick }) {
 
   const skyBlue = '#4A9FD4';
   const skyBlueLight = 'rgba(74,159,212,.12)';
-  const borderColor = isSelected ? skyBlue : hovered && !disabled ? skyBlue : 'rgba(26,13,6,.2)';
+  const borderColor = isSelected ? skyBlue : hovered && !disabled ? skyBlue : 'rgba(30,58,138,.2)';
   const bg = isSelected ? skyBlueLight : hovered && !disabled ? 'rgba(74,159,212,.06)' : '#ffffff';
 
   return (
