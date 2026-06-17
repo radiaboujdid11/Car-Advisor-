@@ -111,16 +111,16 @@ export default function Landing() {
         {/* Full image */}
         <div style={{
           position: 'absolute', inset: 0,
-          backgroundImage: 'url(/hero.webp)',
+          backgroundImage: 'url(/RS3.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           animation: 'slowZoom 22s ease-in-out infinite alternate',
         }} />
 
-        {/* Gradient at bottom so text is readable */}
+        {/* Gradient overlay */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(to top, rgba(26,13,6,.8) 0%, rgba(26,13,6,.3) 45%, transparent 75%)',
+          background: 'linear-gradient(to top, rgba(10,20,60,.85) 0%, rgba(10,20,60,.4) 45%, transparent 75%)',
         }} />
 
         {/* Text overlay — bottom left */}
@@ -137,7 +137,10 @@ export default function Landing() {
             lineHeight: 1,
             letterSpacing: '-.01em',
             textTransform: 'uppercase',
-            color: '#ffffff',
+            background: 'linear-gradient(135deg, #ffffff 0%, #93C5FD 50%, #3B82F6 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
             marginBottom: '.85rem',
           }}>
             TROUVE TON<br />MCQUEEN
@@ -147,7 +150,7 @@ export default function Landing() {
             fontFamily: 'var(--sans)',
             fontWeight: 400,
             fontSize: 'clamp(.82rem,1vw,.95rem)',
-            color: 'rgba(255,255,255,.8)',
+            color: 'rgba(255,255,255,.85)',
             lineHeight: 1.65,
             marginBottom: '1.75rem',
             maxWidth: '480px',
@@ -158,15 +161,15 @@ export default function Landing() {
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <button
               onClick={() => navigate('/quiz')}
-              style={{ background: '#ffffff', color: '#f0ebe3', border: '2px solid #ffffff', padding: '.72rem 1.9rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.7rem', letterSpacing: '.15em', textTransform: 'uppercase', cursor: 'pointer', transition: 'background .2s, color .2s' }}
-              onMouseEnter={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#ffffff'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = '#ffffff'; e.currentTarget.style.color = '#f0ebe3'; }}
+              style={{ background: '#1E3A8A', color: '#ffffff', border: '2px solid #1E3A8A', padding: '.72rem 1.9rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.7rem', letterSpacing: '.15em', textTransform: 'uppercase', cursor: 'pointer', transition: 'background .2s, border-color .2s' }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#2563EB'; e.currentTarget.style.borderColor = '#2563EB'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = '#1E3A8A'; e.currentTarget.style.borderColor = '#1E3A8A'; }}
             >DÉMARRER LE QUIZ</button>
             <button
               onClick={() => navigate('/cars')}
-              style={{ background: 'transparent', color: '#ffffff', border: '2px solid #ffffff', padding: '.72rem 1.9rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.7rem', letterSpacing: '.15em', textTransform: 'uppercase', cursor: 'pointer', transition: 'background .2s, color .2s' }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#ffffff'; e.currentTarget.style.color = '#f0ebe3'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#ffffff'; }}
+              style={{ background: 'transparent', color: '#ffffff', border: '2px solid rgba(255,255,255,.7)', padding: '.72rem 1.9rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.7rem', letterSpacing: '.15em', textTransform: 'uppercase', cursor: 'pointer', transition: 'background .2s, border-color .2s' }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#1E3A8A'; e.currentTarget.style.borderColor = '#1E3A8A'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.7)'; }}
             >CATALOGUE</button>
           </div>
         </div>
