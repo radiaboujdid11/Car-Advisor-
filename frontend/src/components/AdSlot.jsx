@@ -5,7 +5,7 @@
     position: 'relative',
     width: '100%',
     minHeight: isBanner ? '120px' : '280px',
-    background: 'rgba(240,240,240,.06)',
+    background: 'rgba(26,13,6,.07)',
     border: '1px dashed rgba(240,240,240,.25)',
     borderRadius: '12px',
     display: 'flex',

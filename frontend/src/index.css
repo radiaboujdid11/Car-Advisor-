@@ -3,27 +3,27 @@
 @tailwind utilities;
 
 :root {
-  /* ── PALETTE — désert chaud ── */
-  --black:    #1a0d06;
-  --gold:     #F2D8A7;   /* sable clair — accent principal, CTA */
+  /* ── PALETTE — blanc chaud ── */
+  --black:    #f0ebe3;
+  --gold:     #C4722A;   /* terracotta — accent principal, CTA */
   --ivory:    #FFF5E6;
 
   /* ── Backgrounds ── */
-  --bg-dark: #1a0d06;
-  --bg:      #241209;
-  --bg-2:    #341A0E;
-  --bg-3:    #472516;
+  --bg-dark: #f0ebe3;
+  --bg:      #ffffff;
+  --bg-2:    #faf6f1;
+  --bg-3:    #f3ece3;
 
   /* ── Text ── */
-  --ink:      #F2D8A7;
-  --ink-soft: rgba(242,216,167,.65);
-  --ink-mute: rgba(242,216,167,.38);
+  --ink:      #f0ebe3;
+  --ink-soft: rgba(26,13,6,.65);
+  --ink-mute: rgba(26,13,6,.38);
 
   /* ── Accents terracotta ── */
-  --gold-2:    #D98859;   /* terracotta — hover */
+  --gold-2:    #D98859;   /* terracotta clair — hover */
   --gold-deep: #A0622A;   /* brun ambré */
   --terracotta: #674C1E;  /* brun moyen */
-  --line:      rgba(242,216,167,.08); /* ligne subtile */
+  --line:      rgba(26,13,6,.08); /* ligne subtile */
 
   /* ── Typography ── */
   --serif-display: 'Abril Fatface', serif;          /* hero h1, big display — retro bold */
@@ -53,7 +53,7 @@ input, select, textarea { transition: border-color .25s ease, background .25s ea
 /* ── Custom cursor ── */
 #cursor { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; }
 #cursor-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; position: absolute; transform: translate(-50%,-50%); transition: transform .1s; }
-#cursor-ring { width: 36px; height: 36px; border: 1.5px solid var(--gold); border-radius: 50%; position: absolute; transform: translate(-50%,-50%); transition: all .18s ease; opacity: .6; }
+#cursor-ring { width: 36px; height: 36px; border: 1.5px solid var(--gold); border-radius: 50%; position: absolute; transform: translate(-50%,-50%); transition: all .18s ease; opacity: .5; }
 
 /* ── Scroll reveal ── */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.4,0,.2,1), transform .8s cubic-bezier(.4,0,.2,1); }
@@ -78,7 +78,7 @@ input, select, textarea { transition: border-color .25s ease, background .25s ea
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,.15); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: rgba(26,13,6,.15); border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
 /* ── Selection ── */
