@@ -299,24 +299,26 @@ function AnswerButton({ answer, isSelected, isDimmed, disabled, onClick }) {
   const [hovered, setHovered] = useState(false);
   const LETTERS = ['A', 'B', 'C', 'D'];
 
-  const borderColor = isSelected ? 'var(--gold)' : hovered && !disabled ? 'var(--gold-deep)' : 'rgba(26,13,6,.2)';
-  const bg = isSelected ? 'rgba(196,114,42,.12)' : hovered && !disabled ? 'var(--bg-2)' : '#ffffff';
+  const skyBlue = '#4A9FD4';
+  const skyBlueLight = 'rgba(74,159,212,.12)';
+  const borderColor = isSelected ? skyBlue : hovered && !disabled ? skyBlue : 'rgba(26,13,6,.2)';
+  const bg = isSelected ? skyBlueLight : hovered && !disabled ? 'rgba(74,159,212,.06)' : '#ffffff';
 
   return (
     <button onClick={onClick} disabled={disabled}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      style={{ width: '100%', textAlign: 'left', border: `1.5px solid ${borderColor}`, background: bg, padding: '.875rem 1.25rem', borderRadius: '10px', opacity: isDimmed ? .3 : 1, transition: 'border-color .2s, background .2s, opacity .25s', display: 'flex', alignItems: 'center', gap: '1rem', boxShadow: isSelected ? '0 0 0 3px rgba(196,114,42,.15)' : 'none' }}
+      style={{ width: '100%', textAlign: 'left', border: `1.5px solid ${borderColor}`, background: bg, padding: '.875rem 1.25rem', borderRadius: '10px', opacity: isDimmed ? .3 : 1, transition: 'border-color .2s, background .2s, opacity .25s', display: 'flex', alignItems: 'center', gap: '1rem', boxShadow: isSelected ? `0 0 0 3px rgba(74,159,212,.2)` : 'none' }}
     >
-      <span style={{ fontFamily: 'var(--mono)', fontSize: '.8rem', color: isSelected ? 'var(--gold)' : 'var(--gold-deep)', fontWeight: 700, minWidth: '20px', transition: 'color .2s' }}>
+      <span style={{ fontFamily: 'var(--mono)', fontSize: '.8rem', color: '#111111', fontWeight: 700, minWidth: '20px', transition: 'color .2s' }}>
         {LETTERS[answer.index]}
       </span>
       <div>
-        <p style={{ fontFamily: 'var(--sans)', fontSize: '.9rem', fontWeight: isSelected ? 600 : 400, color: 'var(--ink)', lineHeight: 1.4, transition: 'color .2s' }}>
+        <p style={{ fontFamily: 'var(--sans)', fontSize: '.9rem', fontWeight: isSelected ? 600 : 400, color: '#1a2a5e', lineHeight: 1.4, transition: 'color .2s' }}>
           {answer.text}
         </p>
         {answer.sub && (
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '.78rem', color: 'var(--ink-mute)', marginTop: '2px', lineHeight: 1.4 }}>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: '.78rem', color: '#4a6080', marginTop: '2px', lineHeight: 1.4 }}>
             {answer.sub}
           </p>
         )}
