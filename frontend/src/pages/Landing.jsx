@@ -136,20 +136,28 @@ export default function Landing() {
           </div>
         </div>
 
-        {/* By Radia — cache le watermark Gemini bas-droite */}
+        {/* By Radia — bas-droite */}
         <div style={{
           position: 'absolute',
-          bottom: 'clamp(0.8rem,2.5vh,1.5rem)',
-          right: 'clamp(0.8rem,2.5vw,2rem)',
-          background: 'rgba(42,31,18,.75)',
-          backdropFilter: 'blur(10px)',
-          padding: '5px 14px',
-          borderRadius: '20px',
-          border: '1px solid rgba(193,123,90,.3)',
+          bottom: 'clamp(1.5rem,4vh,3rem)',
+          right: 'clamp(1.5rem,4vw,3.5rem)',
         }}>
-          <span style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: 'rgba(255,255,255,.75)', letterSpacing: '0.12em' }}>
+          <p style={{
+            fontFamily: 'var(--serif-display)',
+            fontSize: 'clamp(1.4rem,3vw,2.2rem)',
+            fontWeight: 700,
+            fontStyle: 'italic',
+            background: 'linear-gradient(135deg, #ffffff 0%, #E8D5C4 40%, #C17B5A 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            letterSpacing: '0.04em',
+            lineHeight: 1,
+            textShadow: 'none',
+            filter: 'drop-shadow(0 2px 12px rgba(42,31,18,.6))',
+          }}>
             By Radia
-          </span>
+          </p>
         </div>
 
       </section>
