@@ -139,12 +139,14 @@ export default function Landing() {
         {/* By Radia — bas-droite */}
         <div style={{
           position: 'absolute',
-          bottom: 'clamp(1.5rem,4vh,3rem)',
-          right: 'clamp(1.5rem,4vw,3.5rem)',
+          bottom: 'clamp(1rem,3vh,2rem)',
+          right: 0,
+          background: 'linear-gradient(to right, transparent, rgba(42,31,18,.92) 25%)',
+          padding: 'clamp(0.8rem,2vh,1.2rem) clamp(1.5rem,4vw,3rem) clamp(0.8rem,2vh,1.2rem) clamp(3rem,8vw,6rem)',
         }}>
           <p style={{
             fontFamily: 'var(--serif-display)',
-            fontSize: 'clamp(1.4rem,3vw,2.2rem)',
+            fontSize: 'clamp(2rem,4.5vw,3.5rem)',
             fontWeight: 700,
             fontStyle: 'italic',
             background: 'linear-gradient(135deg, #ffffff 0%, #E8D5C4 40%, #C17B5A 100%)',
@@ -153,8 +155,6 @@ export default function Landing() {
             backgroundClip: 'text',
             letterSpacing: '0.04em',
             lineHeight: 1,
-            textShadow: 'none',
-            filter: 'drop-shadow(0 2px 12px rgba(42,31,18,.6))',
           }}>
             By Radia
           </p>
