@@ -30,7 +30,7 @@ export default function Landing() {
       entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
       { threshold: .1 }
     );
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    document.querySelectorAll('.reveal, .slide-left').forEach(el => obs.observe(el));
     return () => obs.disconnect();
   }, []);
 
@@ -272,36 +272,46 @@ export default function Landing() {
       </section>
 
       {/* ── FEATURES ── */}
-      <section id="features" style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(42,31,18,.08)' }}>
-        <div style={{ maxWidth: '1160px', margin: '0 auto' }}>
+      <section id="features" style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(42,31,18,.08)', overflow: 'hidden' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
-          <div className="reveal" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '5.5rem' }}>
+          <div className="reveal" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '6rem' }}>
             <span style={{ fontFamily: 'var(--sans)', fontSize: '.62rem', letterSpacing: '.26em', textTransform: 'uppercase', color: 'var(--gold)', whiteSpace: 'nowrap' }}>Fonctionnalités</span>
             <div style={{ flex: 1, height: '1px', background: copper }} />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem' }}>
-            {FEATURES.map((f, i) => (
-              <div key={i} className="reveal" style={{ background: 'var(--bg-2)', border: '1px solid rgba(193,123,90,.15)', borderRadius: '12px', overflow: 'hidden', transition: 'border-color .25s, transform .25s' }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(193,123,90,.4)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(193,123,90,.15)'; e.currentTarget.style.transform = 'translateY(0)'; }}
-              >
-                <div style={{ height: '160px', overflow: 'hidden', position: 'relative' }}>
-                  <img src={f.img} alt={f.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block', transition: 'transform .6s ease' }}
-                    onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.07)'}
-                    onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
-                  />
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, var(--bg-2) 0%, transparent 60%)' }} />
-                  <span style={{ position: 'absolute', top: '.75rem', left: '.75rem', fontFamily: 'var(--mono)', fontSize: '.58rem', letterSpacing: '.1em', color: 'var(--gold)', border: '1px solid rgba(193,123,90,.4)', borderRadius: '4px', padding: '.2rem .5rem', background: 'rgba(245,239,227,.7)', backdropFilter: 'blur(6px)' }}>{f.label}</span>
-                </div>
-                <div style={{ padding: '1.25rem 1.5rem 1.75rem' }}>
-                  <h3 style={{ fontFamily: 'var(--serif-body)', fontSize: '1.05rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '.5rem', lineHeight: 1.3 }}>{f.title}</h3>
-                  <p style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--ink-mute)', lineHeight: 2 }}>{f.body}</p>
-                </div>
+          {FEATURES.map((f, i) => (
+            <div
+              key={i}
+              className="slide-left"
+              style={{ '--slide-delay': `${i * 0.07}s`, display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 'clamp(2.5rem,5vw,5rem)', alignItems: 'center', padding: '3.5rem 0', borderBottom: i < FEATURES.length - 1 ? '1px solid rgba(42,31,18,.06)' : 'none' }}
+            >
+              {/* Photo */}
+              <div style={{ borderRadius: '18px', overflow: 'hidden', aspectRatio: '16/10', position: 'relative' }}>
+                <img
+                  src={f.img}
+                  alt={f.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block', transition: 'transform .7s ease' }}
+                  onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.04)'}
+                  onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                />
               </div>
-            ))}
-          </div>
+
+              {/* Texte */}
+              <div style={{ paddingLeft: 'clamp(0px,2vw,1.5rem)' }}>
+                <p style={{ fontFamily: 'var(--sans)', fontSize: '.6rem', letterSpacing: '.3em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '1.1rem' }}>
+                  {f.label}
+                </p>
+                <h3 style={{ fontFamily: 'var(--serif-display)', fontSize: 'clamp(2rem,3.2vw,2.8rem)', fontWeight: 400, color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-.01em', marginBottom: '1.4rem' }}>
+                  {f.title}
+                </h3>
+                <div style={{ width: '32px', height: '1px', background: 'var(--gold)', marginBottom: '1.4rem' }} />
+                <p style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--ink-mute)', lineHeight: 2, maxWidth: '340px' }}>
+                  {f.body}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

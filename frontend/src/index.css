@@ -59,6 +59,10 @@ input, select, textarea { transition: border-color .25s ease, background .25s ea
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.4,0,.2,1), transform .8s cubic-bezier(.4,0,.2,1); }
 .reveal.visible { opacity: 1; transform: none; }
 
+/* ── Slide from left ── */
+.slide-left { opacity: 0; transform: translateX(-90px); transition: opacity .95s cubic-bezier(.4,0,.2,1), transform .95s cubic-bezier(.4,0,.2,1); transition-delay: var(--slide-delay, 0s); }
+.slide-left.visible { opacity: 1; transform: none; }
+
 /* ── Marquee ── */
 @keyframes marquee-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 .marquee-track { display: flex; width: max-content; animation: marquee-scroll 40s linear infinite; }
