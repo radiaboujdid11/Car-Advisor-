@@ -193,7 +193,7 @@ export default function Landing() {
                   <img
                     src={car.photo_url}
                     alt={`${car.make} ${car.model}`}
-                    style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center', display: 'block' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center', display: 'block', mixBlendMode: 'multiply' }}
                   />
                 </div>
               ))}
