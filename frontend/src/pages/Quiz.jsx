@@ -167,7 +167,7 @@ function Intro({ onStart }) {
           fontWeight: 300,
           letterSpacing: '.01em',
         }}>
-          15 questions adaptatives. Un résultat sur mesure.
+          Entre 15 et 30 questions adaptatives. Un résultat sur mesure.
         </p>
 
         {/* CTA blanc arrondi */}
