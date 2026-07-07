@@ -167,6 +167,15 @@ export default function Landing() {
 
       </section>
 
+      {/* ── SÉPARATEUR ── */}
+      <div style={{ background: 'var(--bg)', padding: '4rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+        <div style={{ width: '40px', height: '1px', background: 'var(--gold)' }} />
+        <p style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', letterSpacing: '.25em', textTransform: 'uppercase', color: 'var(--ink-mute)' }}>
+          Nos véhicules
+        </p>
+        <div style={{ width: '40px', height: '1px', background: 'var(--gold)' }} />
+      </div>
+
       {/* ── PHOTO MARQUEE ── */}
       {(() => {
         const marquee20 = CARS.filter(c => c.photo_url).slice(0, 20);
