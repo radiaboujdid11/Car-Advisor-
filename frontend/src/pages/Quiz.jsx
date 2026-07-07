@@ -203,37 +203,37 @@ function BayesPanel({ topProbs }) {
   const maxProb = topProbs[0].prob || 1;
 
   return (
-    <div style={{ marginTop: '2rem', borderTop: '1px solid var(--line)', paddingTop: '1.5rem' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', marginBottom: '1.1rem' }}>
-        <span style={{ width: 5, height: 5, background: 'var(--gold)', borderRadius: '50%', flexShrink: 0, animation: 'pulse-dot 1.5s infinite' }} />
-        <p style={{ fontSize: '.66rem', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--gold)', fontFamily: 'var(--sans)' }}>
-          Probabilités bayésiennes — mise à jour en direct
+    <div style={{ marginTop: '2.5rem', borderTop: '1px solid rgba(232,66,16,.18)', paddingTop: '1.5rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', marginBottom: '1.2rem' }}>
+        <span style={{ width: 5, height: 5, background: '#E84210', borderRadius: '50%', flexShrink: 0, animation: 'pulse-dot 1.5s infinite' }} />
+        <p style={{ fontSize: '.62rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(232,66,16,.7)', fontFamily: 'var(--sans)' }}>
+          Probabilités bayésiennes
         </p>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
         {topProbs.map((car, i) => {
           const pct = (car.prob * 100).toFixed(1);
           const barWidth = (car.prob / maxProb) * 100;
           return (
             <div key={`${car.make}-${car.model}`}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }}>
-                <span style={{ fontSize: '.8rem', color: i === 0 ? 'var(--ink)' : 'var(--ink-mute)', fontFamily: 'var(--sans)', fontWeight: i === 0 ? 500 : 400 }}>
-                  {i === 0 && <span style={{ color: 'var(--gold)', marginRight: '6px', fontSize: '.65rem' }}>▲</span>}
+                <span style={{ fontSize: '.78rem', color: i === 0 ? '#F5EDE2' : 'rgba(245,237,226,.45)', fontFamily: 'var(--sans)', fontWeight: i === 0 ? 500 : 400 }}>
+                  {i === 0 && <span style={{ color: '#E84210', marginRight: '6px', fontSize: '.6rem' }}>▲</span>}
                   {car.make} {car.model}
                 </span>
-                <span style={{ fontFamily: 'var(--mono)', fontSize: '.72rem', color: i === 0 ? 'var(--gold)' : 'var(--ink-mute)', letterSpacing: '.05em' }}>
+                <span style={{ fontFamily: 'var(--mono)', fontSize: '.7rem', color: i === 0 ? '#E84210' : 'rgba(245,237,226,.3)', letterSpacing: '.05em' }}>
                   {pct}%
                 </span>
               </div>
-              <div style={{ height: '2px', background: 'rgba(30,58,138,.07)', borderRadius: '2px', overflow: 'hidden' }}>
-                <div style={{ height: '100%', width: `${barWidth}%`, background: i === 0 ? 'var(--gold)' : 'rgba(30,58,138,.25)', borderRadius: '2px', transition: 'width .9s cubic-bezier(.4,0,.2,1)' }} />
+              <div style={{ height: '1px', background: 'rgba(245,237,226,.08)', overflow: 'hidden' }}>
+                <div style={{ height: '100%', width: `${barWidth}%`, background: i === 0 ? '#E84210' : 'rgba(245,237,226,.2)', transition: 'width .9s cubic-bezier(.4,0,.2,1)' }} />
               </div>
             </div>
           );
         })}
       </div>
-      <p style={{ fontSize: '.62rem', color: 'var(--ink-mute)', opacity: .4, marginTop: '1.1rem', letterSpacing: '.12em', textTransform: 'uppercase', fontFamily: 'var(--sans)' }}>
-        P(voiture | réponses) ∝ P(voiture) × ∏ P(réponse | voiture) · Théorème de Bayes
+      <p style={{ fontSize: '.58rem', color: 'rgba(245,237,226,.2)', marginTop: '1rem', letterSpacing: '.1em', textTransform: 'uppercase', fontFamily: 'var(--sans)' }}>
+        Théorème de Bayes — mise à jour en direct
       </p>
     </div>
   );
@@ -248,34 +248,34 @@ function Thinking({ label, confidence, leadingCar, topProbs }) {
   }, []);
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+    <div style={{ minHeight: '100vh', background: '#140C06', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
       <div style={{ position: 'relative', marginBottom: '2.5rem' }}>
-        <div style={{ position: 'absolute', width: 12, height: 12, borderRadius: '50%', background: 'var(--gold)', animation: 'lx-ping 1.4s cubic-bezier(0,0,.2,1) infinite', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }} />
-        <div style={{ width: 12, height: 12, borderRadius: '50%', background: 'var(--gold)', animation: 'lx-pulse 1.4s ease-in-out infinite', position: 'relative', zIndex: 1 }} />
+        <div style={{ position: 'absolute', width: 12, height: 12, borderRadius: '50%', background: '#E84210', animation: 'lx-ping 1.4s cubic-bezier(0,0,.2,1) infinite', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }} />
+        <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#E84210', animation: 'lx-pulse 1.4s ease-in-out infinite', position: 'relative', zIndex: 1 }} />
       </div>
 
-      <p style={{ fontFamily: 'var(--sans)', fontSize: '.85rem', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--ink-mute)', marginBottom: '.5rem' }}>
+      <p style={{ fontFamily: 'var(--sans)', fontSize: '.8rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(245,237,226,.5)', marginBottom: '.5rem' }}>
         {label}{dots}
       </p>
-      <p style={{ fontSize: '.75rem', letterSpacing: '.15em', color: 'var(--ink-mute)', opacity: .5 }}>Calcul des probabilités</p>
+      <p style={{ fontSize: '.68rem', letterSpacing: '.15em', color: 'rgba(245,237,226,.25)', textTransform: 'uppercase' }}>Calcul des probabilités</p>
 
       {confidence > 0 && (
-        <div style={{ marginTop: '3rem', width: '200px', textAlign: 'center' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-            <span style={{ fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--ink-mute)' }}>Confiance</span>
-            <span style={{ fontFamily: 'var(--serif-display)', fontSize: '.9rem', color: 'var(--gold)' }}>{confidence}%</span>
+        <div style={{ marginTop: '3rem', width: '220px', textAlign: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+            <span style={{ fontSize: '.68rem', letterSpacing: '.2em', textTransform: 'uppercase', color: 'rgba(245,237,226,.35)' }}>Confiance</span>
+            <span style={{ fontFamily: 'var(--serif-display)', fontSize: '1rem', color: '#E84210', fontWeight: 700 }}>{confidence}%</span>
           </div>
-          <div style={{ height: '2px', background: 'rgba(30,58,138,.07)', borderRadius: '2px', overflow: 'hidden' }}>
-            <div style={{ height: '100%', width: `${confidence}%`, background: 'var(--gold)', borderRadius: '2px', transition: 'width .7s cubic-bezier(.4,0,.2,1)' }} />
+          <div style={{ height: '1px', background: 'rgba(245,237,226,.1)', overflow: 'hidden' }}>
+            <div style={{ height: '100%', width: `${confidence}%`, background: '#E84210', transition: 'width .7s cubic-bezier(.4,0,.2,1)' }} />
           </div>
         </div>
       )}
 
       {leadingCar && confidence > 10 && (
-        <div style={{ marginTop: '2rem', borderTop: '1px solid var(--line)', paddingTop: '1.5rem', textAlign: 'center' }}>
-          <p style={{ fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--ink-mute)', marginBottom: '6px' }}>En tête</p>
-          <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '1.2rem', color: 'var(--gold-2)' }}>
-            {leadingCar.make} {leadingCar.model}
+        <div style={{ marginTop: '2.5rem', textAlign: 'center' }}>
+          <p style={{ fontSize: '.62rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(245,237,226,.25)', marginBottom: '8px' }}>En tête</p>
+          <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '1.4rem', color: '#F5EDE2' }}>
+            {leadingCar.make} <span style={{ color: '#E84210' }}>{leadingCar.model}</span>
           </p>
         </div>
       )}
@@ -294,56 +294,61 @@ function QuestionCard({ question, confidence, leadingCar, selected, visible, onA
   if (!question) return null;
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
-      <div style={{ position: 'fixed', top: 0, left: '50%', transform: 'translateX(-50%)', width: '800px', height: '500px', background: 'radial-gradient(ellipse at center top, rgba(196,114,42,.06) 0%, transparent 65%)', pointerEvents: 'none' }} />
+    <div style={{ minHeight: '100vh', background: '#140C06', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+
+      {/* Ambient glow */}
+      <div style={{ position: 'fixed', top: 0, left: '50%', transform: 'translateX(-50%)', width: '900px', height: '500px', background: 'radial-gradient(ellipse at center top, rgba(232,66,16,.07) 0%, transparent 65%)', pointerEvents: 'none' }} />
 
       {/* Top bar */}
-      <div style={{ position: 'sticky', top: 0, zIndex: 10, borderBottom: '1px solid rgba(30,58,138,.08)', background: 'rgba(255,255,255,.97)', backdropFilter: 'blur(16px)', padding: '.875rem 1.5rem' }}>
-        <div style={{ maxWidth: '640px', margin: '0 auto' }}>
+      <div style={{ position: 'sticky', top: 0, zIndex: 10, background: 'rgba(20,12,6,.96)', backdropFilter: 'blur(20px)', padding: '1rem 2.5rem' }}>
+        <div style={{ maxWidth: '620px', margin: '0 auto' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-            <span style={{ fontSize: '.72rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'var(--ink-mute)' }}>
+            <span style={{ fontSize: '.68rem', letterSpacing: '.25em', textTransform: 'uppercase', color: 'rgba(245,237,226,.35)' }}>
               Question{' '}
-              <span style={{ color: 'var(--gold)', fontFamily: 'var(--serif-display)', fontSize: '1rem', fontWeight: 800, letterSpacing: 'normal' }}>
+              <span style={{ color: '#E84210', fontFamily: 'var(--serif-display)', fontSize: '1rem', fontWeight: 800, letterSpacing: 'normal' }}>
                 {question.number}
               </span>
             </span>
-            <span style={{ fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--ink-mute)' }}>
+            <span style={{ fontSize: '.68rem', letterSpacing: '.2em', textTransform: 'uppercase', color: 'rgba(245,237,226,.35)' }}>
               {confidence > 0
-                ? <><span style={{ color: 'var(--gold)', fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '1rem', letterSpacing: 'normal' }}>{confidence}%</span>{' '}confiance</>
+                ? <><span style={{ color: '#E84210', fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '1rem', letterSpacing: 'normal' }}>{confidence}%</span>{' '}confiance</>
                 : 'Déduction en cours'}
             </span>
           </div>
-          <div style={{ height: '3px', background: 'rgba(30,58,138,.08)', borderRadius: '3px', overflow: 'hidden' }}>
-            <div style={{ height: '100%', width: `${Math.max(confidence, 2)}%`, background: 'var(--gold)', borderRadius: '3px', transition: 'width .7s cubic-bezier(.4,0,.2,1)' }} />
+          <div style={{ height: '1px', background: 'rgba(245,237,226,.08)', overflow: 'hidden' }}>
+            <div style={{ height: '100%', width: `${Math.max(confidence, 2)}%`, background: '#E84210', transition: 'width .7s cubic-bezier(.4,0,.2,1)' }} />
           </div>
           {leadingCar && confidence > 15 && (
-            <p style={{ fontSize: '.72rem', letterSpacing: '.15em', textTransform: 'uppercase', color: 'rgba(30,58,138,.5)', marginTop: '8px' }}>
+            <p style={{ fontSize: '.65rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'rgba(245,237,226,.28)', marginTop: '8px' }}>
               En tête :{' '}
-              <span style={{ color: 'var(--gold)', fontWeight: 500 }}>{leadingCar.make} {leadingCar.model}</span>
+              <span style={{ color: '#E84210' }}>{leadingCar.make} {leadingCar.model}</span>
             </p>
           )}
         </div>
       </div>
 
       {/* Question + answers */}
-      <div className="quiz-q-wrap" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '3rem 1.5rem' }}>
-        <div style={{ width: '100%', maxWidth: '640px', opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(18px)', transition: 'opacity .3s ease, transform .3s ease' }}>
-          <div style={{ position: 'relative', textAlign: 'center', marginBottom: '3rem' }}>
-            <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-60%)', fontFamily: 'var(--serif-display)', fontSize: 'clamp(80px,18vw,140px)', color: 'var(--gold)', opacity: .06, lineHeight: 1, userSelect: 'none', pointerEvents: 'none', whiteSpace: 'nowrap', fontWeight: 800 }}>
-              {String(question.number).padStart(2, '0')}
-            </span>
-            <h2 style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: 'clamp(1.6rem,4vw,2.8rem)', lineHeight: 1.1, letterSpacing: '-.03em', position: 'relative', color: 'var(--ink)' }}>
-              {question.question}
-            </h2>
-          </div>
+      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '4rem 2rem' }}>
+        <div style={{ width: '100%', maxWidth: '620px', opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(18px)', transition: 'opacity .35s ease, transform .35s ease' }}>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          {/* Ghost number */}
+          <span style={{ display: 'block', fontFamily: 'var(--serif-display)', fontSize: 'clamp(60px,14vw,110px)', color: '#E84210', opacity: .07, lineHeight: 1, userSelect: 'none', pointerEvents: 'none', fontWeight: 800, marginBottom: '-1.5rem' }}>
+            {String(question.number).padStart(2, '0')}
+          </span>
+
+          {/* Question */}
+          <h2 style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: 'clamp(1.8rem,4.5vw,3rem)', lineHeight: 1.1, letterSpacing: '-.03em', color: '#F5EDE2', marginBottom: '3.5rem' }}>
+            {question.question}
+          </h2>
+
+          {/* Answers — texte pur, aucune bordure */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
             {question.answers.map(answer => (
               <AnswerButton key={answer.index} answer={answer} isSelected={selected === answer.index} isDimmed={selected !== null && selected !== answer.index} disabled={selected !== null} onClick={() => onAnswer(answer.index)} />
             ))}
           </div>
 
-          <p style={{ textAlign: 'center', fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--ink-mute)', marginTop: '2.5rem' }}>
+          <p style={{ fontSize: '.65rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(245,237,226,.2)', marginTop: '3rem' }}>
             Sélectionnez une réponse pour continuer
           </p>
 
@@ -359,30 +364,78 @@ function AnswerButton({ answer, isSelected, isDimmed, disabled, onClick }) {
   const [hovered, setHovered] = useState(false);
   const LETTERS = ['A', 'B', 'C', 'D'];
 
-  const skyBlue = '#4A9FD4';
-  const skyBlueLight = 'rgba(74,159,212,.12)';
-  const borderColor = isSelected ? skyBlue : hovered && !disabled ? skyBlue : 'rgba(30,58,138,.2)';
-  const bg = isSelected ? skyBlueLight : hovered && !disabled ? 'rgba(74,159,212,.06)' : '#ffffff';
-
   return (
-    <button onClick={onClick} disabled={disabled}
+    <button
+      onClick={onClick}
+      disabled={disabled}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      style={{ width: '100%', textAlign: 'left', border: `1.5px solid ${borderColor}`, background: bg, padding: '.875rem 1.25rem', borderRadius: '16px', opacity: isDimmed ? .3 : 1, transition: 'border-color .2s, background .2s, opacity .25s', display: 'flex', alignItems: 'center', gap: '1rem', boxShadow: isSelected ? `0 0 0 3px rgba(74,159,212,.2)` : 'none' }}
+      style={{
+        width: '100%',
+        textAlign: 'left',
+        border: 'none',
+        background: 'none',
+        padding: '1.15rem 0',
+        borderBottom: '1px solid rgba(245,237,226,.07)',
+        opacity: isDimmed ? .2 : 1,
+        transition: 'opacity .25s',
+        display: 'flex',
+        alignItems: 'flex-start',
+        gap: '1.6rem',
+        cursor: disabled ? 'default' : 'pointer',
+      }}
     >
-      <span style={{ fontFamily: 'var(--mono)', fontSize: '.8rem', color: '#111111', fontWeight: 700, minWidth: '20px', transition: 'color .2s' }}>
+      <span style={{
+        fontFamily: 'var(--sans)',
+        fontSize: '.65rem',
+        letterSpacing: '.25em',
+        textTransform: 'uppercase',
+        color: isSelected ? '#E84210' : hovered && !disabled ? '#E84210' : 'rgba(245,237,226,.28)',
+        fontWeight: 600,
+        minWidth: '16px',
+        paddingTop: '5px',
+        flexShrink: 0,
+        transition: 'color .2s',
+      }}>
         {LETTERS[answer.index]}
       </span>
-      <div>
-        <p style={{ fontFamily: 'var(--sans)', fontSize: '.9rem', fontWeight: isSelected ? 600 : 400, color: '#1a2a5e', lineHeight: 1.4, transition: 'color .2s' }}>
+      <div style={{ flex: 1 }}>
+        <p style={{
+          fontFamily: 'var(--serif-display)',
+          fontSize: 'clamp(1.05rem,2.5vw,1.35rem)',
+          fontWeight: isSelected ? 700 : 400,
+          color: isSelected ? '#F5EDE2' : hovered && !disabled ? '#F5EDE2' : 'rgba(245,237,226,.65)',
+          lineHeight: 1.35,
+          letterSpacing: '-.01em',
+          transition: 'color .2s',
+        }}>
           {answer.text}
         </p>
         {answer.sub && (
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '.78rem', color: '#4a6080', marginTop: '2px', lineHeight: 1.4 }}>
+          <p style={{
+            fontFamily: 'var(--sans)',
+            fontSize: '.75rem',
+            color: isSelected ? 'rgba(232,66,16,.65)' : 'rgba(245,237,226,.28)',
+            marginTop: '5px',
+            lineHeight: 1.5,
+            letterSpacing: '.01em',
+            transition: 'color .2s',
+          }}>
             {answer.sub}
           </p>
         )}
       </div>
+      {isSelected && (
+        <span style={{
+          width: 6,
+          height: 6,
+          borderRadius: '50%',
+          background: '#E84210',
+          flexShrink: 0,
+          marginTop: '8px',
+          boxShadow: '0 0 10px rgba(232,66,16,.6)',
+        }} />
+      )}
     </button>
   );
 }
