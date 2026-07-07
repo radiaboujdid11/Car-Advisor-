@@ -135,6 +135,23 @@ export default function Landing() {
             >CATALOGUE</button>
           </div>
         </div>
+
+        {/* By Radia — cache le watermark Gemini bas-droite */}
+        <div style={{
+          position: 'absolute',
+          bottom: 'clamp(0.8rem,2.5vh,1.5rem)',
+          right: 'clamp(0.8rem,2.5vw,2rem)',
+          background: 'rgba(42,31,18,.75)',
+          backdropFilter: 'blur(10px)',
+          padding: '5px 14px',
+          borderRadius: '20px',
+          border: '1px solid rgba(193,123,90,.3)',
+        }}>
+          <span style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: 'rgba(255,255,255,.75)', letterSpacing: '0.12em' }}>
+            By Radia
+          </span>
+        </div>
+
       </section>
 
       {/* ── PHOTO MARQUEE ── */}
