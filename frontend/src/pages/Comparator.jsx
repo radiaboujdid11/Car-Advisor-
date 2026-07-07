@@ -62,8 +62,8 @@ export default function Comparator({ cars = [], removeFromCompare }) {
           <button onClick={() => navigate('/cars')} style={btnGhost}>+ Ajouter</button>
         </div>
 
-        {/* ── Carte sombre — fond = séparateurs ── */}
-        <div style={{ background: BG, borderRadius: '16px', padding: GAP, overflowX: 'auto', border: '1px solid rgba(255,255,255,.08)' }}>
+        {/* ── Grille ── */}
+        <div style={{ background: 'transparent', borderRadius: '16px', padding: GAP, overflowX: 'auto' }}>
           <div style={{ minWidth: `${180 + cols * 160}px` }}>
 
             {/* Ligne en-tête */}
