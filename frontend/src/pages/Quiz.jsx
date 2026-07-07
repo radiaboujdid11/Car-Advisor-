@@ -105,12 +105,14 @@ function Intro({ onStart }) {
       justifyContent: 'center',
     }}>
 
-      {/* Photo plein écran */}
+      {/* Photo plein écran — légèrement floutée */}
       <div style={{
         position: 'absolute', inset: 0,
-        backgroundImage: 'url(/mcqueen.jpg)',
+        backgroundImage: "url('/Orange yellow sunset.jpg')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        filter: 'blur(7px)',
+        transform: 'scale(1.08)',
         animation: 'slowZoom 22s ease-in-out infinite alternate',
       }} />
 
