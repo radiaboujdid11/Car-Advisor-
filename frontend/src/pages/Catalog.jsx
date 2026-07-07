@@ -51,31 +51,34 @@ export default function Catalog({ addToCompare }) {
         </div>
 
         {/* Filters */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '2.5rem', marginBottom: '3rem', borderBottom: '1px solid var(--line)', paddingBottom: '1.25rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: '0', marginBottom: '3rem', borderBottom: '1px solid var(--line)', paddingBottom: '1rem' }}>
           <input
-            style={inputStyle} placeholder="Rechercher un modèle..."
+            style={{ ...inputStyle, flex: 2 }} placeholder="Rechercher un modèle..."
             value={search} onChange={e => setSearch(e.target.value)}
           />
+          <span style={{ color: 'var(--line)', fontSize: '1rem', padding: '0 .5rem', userSelect: 'none' }}>·</span>
           <select
-            style={{ ...inputStyle, appearance: 'none', cursor: 'pointer' }}
+            style={{ ...inputStyle, flex: 1.5, appearance: 'none', cursor: 'pointer' }}
             value={make} onChange={e => setMake(e.target.value)}
           >
             <option value="">Toutes les marques</option>
             {ALL_MAKES.map(m => <option key={m} value={m}>{m}</option>)}
           </select>
+          <span style={{ color: 'var(--line)', fontSize: '1rem', padding: '0 .5rem', userSelect: 'none' }}>·</span>
           <select
-            style={{ ...inputStyle, appearance: 'none', cursor: 'pointer' }}
+            style={{ ...inputStyle, flex: 1.5, appearance: 'none', cursor: 'pointer' }}
             value={category} onChange={e => setCategory(e.target.value)}
           >
             {CATEGORIES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
           </select>
+          <span style={{ color: 'var(--line)', fontSize: '1rem', padding: '0 .5rem', userSelect: 'none' }}>·</span>
           <input
-            style={inputStyle} placeholder="Budget max (DH)" type="number"
+            style={{ ...inputStyle, flex: 1.5 }} placeholder="Budget max (DH)" type="number"
             value={maxBudget} onChange={e => setMaxBudget(e.target.value)}
           />
           <button
             onClick={reset}
-            style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--ink-mute)', background: 'none', border: 'none', padding: '10px 0', cursor: 'pointer', transition: 'color 0.2s', whiteSpace: 'nowrap' }}
+            style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--ink-mute)', background: 'none', border: 'none', padding: '10px 0', paddingLeft: '2rem', cursor: 'pointer', transition: 'color 0.2s', whiteSpace: 'nowrap', flexShrink: 0 }}
             onMouseEnter={e => e.currentTarget.style.color = 'var(--gold)'}
             onMouseLeave={e => e.currentTarget.style.color = 'var(--ink-mute)'}
           >
