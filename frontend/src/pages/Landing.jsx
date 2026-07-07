@@ -51,12 +51,19 @@ export default function Landing() {
         </div>
 
         <div className="nav-mobile-links" style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}>
-          {[['#how', 'Méthode'], ['#quiz', 'Quiz'], ['#features', 'Fonctionnalités']].map(([href, label]) => (
-            <a key={href} href={href} style={{ fontFamily: 'var(--sans)', fontSize: '.72rem', letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--ink-mute)' }}
-              onMouseEnter={e => e.currentTarget.style.color = 'var(--ink)'}
-              onMouseLeave={e => e.currentTarget.style.color = 'var(--ink-mute)'}
-            >{label}</a>
-          ))}
+          {[['#how', 'Méthode'], ['#quiz', 'Quiz'], ['#features', 'Fonctionnalités'], ['/cars', 'Catalogue'], ['/compare', 'Comparateur']].map(([href, label]) => {
+            const isRoute = href.startsWith('/');
+            const style = { fontFamily: 'var(--sans)', fontSize: '.72rem', letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--ink-mute)', cursor: 'pointer', textDecoration: 'none' };
+            return isRoute
+              ? <Link key={href} to={href} style={style}
+                  onMouseEnter={e => e.currentTarget.style.color = 'var(--ink)'}
+                  onMouseLeave={e => e.currentTarget.style.color = 'var(--ink-mute)'}
+                >{label}</Link>
+              : <a key={href} href={href} style={style}
+                  onMouseEnter={e => e.currentTarget.style.color = 'var(--ink)'}
+                  onMouseLeave={e => e.currentTarget.style.color = 'var(--ink-mute)'}
+                >{label}</a>;
+          })}
         </div>
 
         <button
