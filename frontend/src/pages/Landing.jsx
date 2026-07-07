@@ -187,7 +187,7 @@ export default function Landing() {
           <div style={{ background: 'transparent', padding: '1rem 0', overflow: 'hidden' }}>
             <div className="marquee-track">
               {tiles.map((car, i) => (
-                <div key={i} style={{ flexShrink: 0, width: '260px', height: '150px', marginRight: '0.5rem' }}>
+                <div key={i} style={{ flexShrink: 0, width: '260px', height: '150px', marginRight: '0.5rem', background: 'var(--bg)' }}>
                   <img
                     src={car.photo_url}
                     alt={`${car.make} ${car.model}`}
