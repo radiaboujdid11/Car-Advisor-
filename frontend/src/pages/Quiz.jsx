@@ -95,39 +95,102 @@ export default function Quiz({ onComplete }) {
 /* ── INTRO ── */
 function Intro({ onStart }) {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem', position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 600, background: 'radial-gradient(ellipse at center, rgba(30,58,138,.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
+    <div style={{
+      minHeight: '100vh',
+      position: 'relative',
+      overflow: 'hidden',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}>
 
-      <div style={{ textAlign: 'center', maxWidth: '480px', position: 'relative' }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', background: 'rgba(26,13,6,.14)', border: '1px solid rgba(30,58,138,.25)', color: 'var(--gold)', fontSize: '.75rem', letterSpacing: '.12em', textTransform: 'uppercase', padding: '.4rem 1rem', borderRadius: '50px', marginBottom: '2rem' }}>
-          <span style={{ width: 6, height: 6, background: 'var(--gold)', borderRadius: '50%', display: 'inline-block', animation: 'pulse-dot 1.5s infinite' }} />
-          Conseil automobile · IA bayésienne
-        </div>
+      {/* Photo plein écran */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        backgroundImage: 'url(/mcqueen.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        animation: 'slowZoom 22s ease-in-out infinite alternate',
+      }} />
 
-        <h1 style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: 'clamp(3rem,8vw,5.5rem)', lineHeight: 1.0, letterSpacing: '-.04em', marginBottom: '1.5rem' }}>
-          Auto<span style={{ color: 'var(--gold)' }}>Assist</span>
+      {/* Scrim sombre — Daily pattern */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'rgba(18,10,4,.52)',
+      }} />
+
+      {/* Brand mark — top center */}
+      <div style={{
+        position: 'absolute',
+        top: 'clamp(1.8rem,4vh,3rem)',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        textAlign: 'center',
+        zIndex: 1,
+        whiteSpace: 'nowrap',
+      }}>
+        <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 700, fontSize: '1.15rem', color: '#fff', letterSpacing: '-.01em', lineHeight: 1 }}>
+          AutoAssist
+        </p>
+        <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.3em', textTransform: 'uppercase', color: 'rgba(255,255,255,.5)', marginTop: '.35rem' }}>
+          Conseil Automobile
+        </p>
+      </div>
+
+      {/* Contenu centré */}
+      <div style={{ textAlign: 'center', position: 'relative', zIndex: 1, padding: '0 2rem', maxWidth: '860px' }}>
+
+        {/* Titre mixte italic + roman — exactement comme Daily */}
+        <h1 style={{
+          fontFamily: 'var(--serif-display)',
+          fontSize: 'clamp(3.8rem,9.5vw,7rem)',
+          lineHeight: 1.0,
+          letterSpacing: '-.02em',
+          color: '#fff',
+          marginBottom: '1.5rem',
+          textWrap: 'balance',
+        }}>
+          <em style={{ fontStyle: 'italic', fontWeight: 400 }}>Trouve </em>ton
+          <br />
+          <span style={{ fontStyle: 'normal', fontWeight: 700 }}>McQueen.</span>
         </h1>
 
-        <div style={{ width: 40, height: 1, background: 'var(--gold)', margin: '0 auto 1.5rem' }} />
-
-        <p style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--ink-mute)', lineHeight: 2, marginBottom: '2.5rem' }}>
-          Un système adaptatif déduira votre véhicule idéal<br />
-          question par question, par inférence bayésienne.
+        <p style={{
+          fontFamily: 'var(--sans)',
+          fontSize: '1.05rem',
+          color: 'rgba(255,255,255,.72)',
+          lineHeight: 1.6,
+          marginBottom: '2.8rem',
+          fontWeight: 300,
+          letterSpacing: '.01em',
+        }}>
+          Votre véhicule idéal en 15 questions adaptatives.
         </p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1px', background: 'rgba(30,58,138,.1)', border: '1px solid rgba(30,58,138,.1)', borderRadius: '12px', overflow: 'hidden', marginBottom: '2.5rem' }}>
-          {[{ label: 'Adaptatif', sub: 'Bayésien' }, { label: '15 – 30', sub: 'Questions' }, { label: 'Top 3', sub: 'Sur mesure' }].map(({ label, sub }) => (
-            <div key={label} style={{ background: 'var(--bg-2)', padding: '1.25rem .5rem', textAlign: 'center' }}>
-              <p style={{ fontFamily: 'var(--serif-display)', fontSize: '1.4rem', fontWeight: 800, color: 'var(--gold)', lineHeight: 1, marginBottom: '4px' }}>{label}</p>
-              <p style={{ fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--ink-mute)' }}>{sub}</p>
-            </div>
-          ))}
-        </div>
-
-        <button onClick={onStart} className="btn-primary" style={{ fontSize: '1rem', padding: '.9rem 2.5rem' }}>
+        {/* CTA blanc sur fond sombre — contraste Daily */}
+        <button
+          onClick={onStart}
+          style={{
+            background: '#ffffff',
+            color: '#2A1F12',
+            border: 'none',
+            padding: '.95rem 3rem',
+            fontFamily: 'var(--sans)',
+            fontWeight: 600,
+            fontSize: '.9rem',
+            letterSpacing: '.04em',
+            cursor: 'pointer',
+            borderRadius: '4px',
+            transition: 'background .2s, transform .2s',
+          }}
+          onMouseEnter={e => { e.currentTarget.style.background = '#F0E8DE'; }}
+          onMouseLeave={e => { e.currentTarget.style.background = '#ffffff'; }}
+        >
           Commencer l'analyse →
         </button>
       </div>
+
     </div>
   );
 }
