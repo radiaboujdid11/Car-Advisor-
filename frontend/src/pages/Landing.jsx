@@ -1,4 +1,4 @@
-﻿import { useEffect } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { CARS } from '../data/cars';
 
@@ -25,13 +25,16 @@ const copper = 'rgba(42,31,18,.2)';
 
 export default function Landing() {
   const navigate = useNavigate();
+  const [activeStep, setActiveStep] = useState(0);
+
   useEffect(() => {
     const obs = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
       { threshold: .1 }
     );
     document.querySelectorAll('.reveal, .slide-left').forEach(el => obs.observe(el));
-    return () => obs.disconnect();
+    const ticker = setInterval(() => setActiveStep(i => (i + 1) % STEPS.length), 4200);
+    return () => { obs.disconnect(); clearInterval(ticker); };
   }, []);
 
   return (
@@ -203,37 +206,101 @@ export default function Landing() {
         );
       })()}
 
-      {/* ── HOW IT WORKS ── */}
-      <section id="how" style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(42,31,18,.08)' }}>
+      {/* ── HOW IT WORKS — spotlight carousel ── */}
+      <section id="how" style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(42,31,18,.08)', overflow: 'hidden' }}>
         <div style={{ maxWidth: '1160px', margin: '0 auto' }}>
 
-          <div className="reveal" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '5.5rem' }}>
+          <div className="reveal" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '4.5rem' }}>
             <span style={{ fontFamily: 'var(--sans)', fontSize: '.62rem', letterSpacing: '.26em', textTransform: 'uppercase', color: 'var(--gold)', whiteSpace: 'nowrap' }}>Comment ça marche</span>
             <div style={{ flex: 1, height: '1px', background: copper }} />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem' }}>
-            {STEPS.map((s, i) => (
-              <div key={i} className="reveal" style={{ background: 'var(--bg-2)', border: '1px solid rgba(193,123,90,.15)', borderRadius: '12px', overflow: 'hidden', transition: 'border-color .25s, transform .25s' }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(193,123,90,.4)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(193,123,90,.15)'; e.currentTarget.style.transform = 'translateY(0)'; }}
-              >
-                <div style={{ height: '200px', overflow: 'hidden', position: 'relative' }}>
-                  <img src={s.img} alt={s.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block', transition: 'transform .6s ease' }}
-                    onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.06)'}
-                    onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
-                  />
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, var(--bg-2) 0%, transparent 55%)' }} />
-                  <span style={{ position: 'absolute', top: '1rem', left: '1.25rem', fontFamily: 'var(--mono)', fontSize: '1rem', fontWeight: 700, color: 'rgba(193,123,90,.8)' }}>{s.n}</span>
+          {/* Cards */}
+          <div style={{ display: 'flex', gap: '1rem', alignItems: 'stretch', minHeight: '380px' }}>
+            {STEPS.map((s, i) => {
+              const on = i === activeStep;
+              return (
+                <div key={i}
+                  onClick={() => setActiveStep(i)}
+                  style={{
+                    flexGrow: on ? 2.5 : 1,
+                    flexShrink: 1,
+                    flexBasis: 0,
+                    minWidth: 0,
+                    borderRadius: '22px',
+                    overflow: 'hidden',
+                    cursor: on ? 'default' : 'pointer',
+                    opacity: on ? 1 : 0.48,
+                    boxShadow: on ? '0 24px 64px rgba(42,31,18,.16)' : 'none',
+                    border: `1px solid ${on ? 'rgba(193,123,90,.32)' : 'rgba(193,123,90,.1)'}`,
+                    background: 'var(--bg-2)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    transition: 'flex-grow .78s cubic-bezier(.4,0,.2,1), opacity .78s, box-shadow .78s, border-color .78s',
+                  }}
+                >
+                  {/* Image */}
+                  <div style={{ position: 'relative', height: '210px', flexShrink: 0, overflow: 'hidden' }}>
+                    <img src={s.img} alt={s.title}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block', transition: 'transform .9s ease' }}
+                      onMouseEnter={e => { if (on) e.currentTarget.style.transform = 'scale(1.05)'; }}
+                      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                    />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, var(--bg-2) 0%, transparent 55%)' }} />
+                    <span style={{ position: 'absolute', top: '1rem', left: '1.25rem', fontFamily: 'var(--mono)', fontSize: '1rem', fontWeight: 700, color: on ? 'var(--gold)' : 'rgba(193,123,90,.5)', transition: 'color .5s' }}>{s.n}</span>
+                  </div>
+
+                  {/* Text */}
+                  <div style={{ padding: '1.5rem 1.75rem 2rem', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', minWidth: 0 }}>
+                    <h3 style={{
+                      fontFamily: 'var(--serif-display)',
+                      fontSize: on ? '1.55rem' : '1rem',
+                      fontWeight: 400,
+                      color: 'var(--ink)',
+                      lineHeight: 1.1,
+                      marginBottom: '.65rem',
+                      transition: 'font-size .78s cubic-bezier(.4,0,.2,1)',
+                      overflow: 'hidden',
+                      textOverflow: on ? 'clip' : 'ellipsis',
+                      whiteSpace: on ? 'normal' : 'nowrap',
+                    }}>{s.title}</h3>
+
+                    <div style={{ overflow: 'hidden', maxHeight: on ? '100px' : '0', opacity: on ? 1 : 0, transition: 'max-height .6s .12s cubic-bezier(.4,0,.2,1), opacity .5s .18s' }}>
+                      <p style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--ink-mute)', lineHeight: 2 }}>{s.body}</p>
+                    </div>
+                  </div>
                 </div>
-                <div style={{ padding: '1.5rem 1.75rem 2rem' }}>
-                  <h3 style={{ fontFamily: 'var(--serif-body)', fontSize: '1.15rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '.6rem', lineHeight: 1.2 }}>{s.title}</h3>
-                  <p style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--ink-mute)', lineHeight: 2 }}>{s.body}</p>
-                </div>
-              </div>
+              );
+            })}
+          </div>
+
+          {/* Indicateurs */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', marginTop: '2.5rem' }}>
+            {STEPS.map((_, i) => (
+              <button key={i} onClick={() => setActiveStep(i)} style={{
+                width: activeStep === i ? '2.2rem' : '6px',
+                height: '5px',
+                borderRadius: '3px',
+                border: 'none',
+                padding: 0,
+                cursor: 'pointer',
+                background: activeStep === i ? 'var(--gold)' : 'rgba(193,123,90,.25)',
+                position: 'relative',
+                overflow: 'hidden',
+                transition: 'width .45s cubic-bezier(.4,0,.2,1), background .45s',
+              }}>
+                {activeStep === i && (
+                  <span key={activeStep} style={{
+                    position: 'absolute', inset: 0,
+                    background: 'rgba(255,255,255,.35)',
+                    transformOrigin: 'left',
+                    animation: 'fillBar 4.2s linear forwards',
+                  }} />
+                )}
+              </button>
             ))}
           </div>
+
         </div>
       </section>
 
