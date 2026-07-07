@@ -1,11 +1,11 @@
-﻿import { useEffect, useState } from 'react';
+﻿import { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { CARS } from '../data/cars';
 
 const STEPS = [
-  { n: '01', title: 'Vos besoins', body: 'Usage, kilométrage, passagers, route ou ville. Chaque détail oriente l\'algorithme.', img: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80&auto=format&fit=crop' },
-  { n: '02', title: 'Votre budget', body: 'Achat, leasing ou coût total sur la durée. On calcule tout, frais compris.', img: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800&q=80&auto=format&fit=crop' },
-  { n: '03', title: 'Votre voiture', body: 'Le moteur bayésien croise votre profil et 59 modèles. Résultat en 3 minutes.', img: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&q=80&auto=format&fit=crop' },
+  { n: '01', title: 'Vos besoins', body: 'Usage, kilométrage, passagers, route ou ville. Chaque détail oriente l\'algorithme.', img: '/besoins.jpg' },
+  { n: '02', title: 'Votre budget', body: 'Achat, leasing ou coût total sur la durée. On calcule tout, frais compris.', img: '/budget.jpg' },
+  { n: '03', title: 'Votre voiture', body: 'Le moteur bayésien croise votre profil et 59 modèles. Résultat en 3 minutes.', img: '/mcqueen.jpg' },
 ];
 
 const FEATURES = [
@@ -25,16 +25,14 @@ const copper = 'rgba(42,31,18,.2)';
 
 export default function Landing() {
   const navigate = useNavigate();
-  const [activeStep, setActiveStep] = useState(0);
 
   useEffect(() => {
     const obs = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-      { threshold: .1 }
+      { threshold: .12 }
     );
     document.querySelectorAll('.reveal, .slide-left').forEach(el => obs.observe(el));
-    const ticker = setInterval(() => setActiveStep(i => (i + 1) % STEPS.length), 4200);
-    return () => { obs.disconnect(); clearInterval(ticker); };
+    return () => obs.disconnect();
   }, []);
 
   return (
@@ -202,100 +200,42 @@ export default function Landing() {
         );
       })()}
 
-      {/* ── HOW IT WORKS — spotlight carousel ── */}
-      <section id="how" style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(42,31,18,.08)', overflow: 'hidden' }}>
-        <div style={{ maxWidth: '1160px', margin: '0 auto' }}>
+      {/* ── HOW IT WORKS — scroll panels ── */}
+      <section id="how" style={{ padding: '9rem 5vw 6rem', borderBottom: '1px solid rgba(42,31,18,.08)', overflow: 'hidden' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
-          <div className="reveal" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '4.5rem' }}>
+          <div className="reveal" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '6rem' }}>
             <span style={{ fontFamily: 'var(--sans)', fontSize: '.62rem', letterSpacing: '.26em', textTransform: 'uppercase', color: 'var(--gold)', whiteSpace: 'nowrap' }}>Comment ça marche</span>
             <div style={{ flex: 1, height: '1px', background: copper }} />
           </div>
 
-          {/* Cards */}
-          <div style={{ display: 'flex', gap: '1rem', alignItems: 'stretch', minHeight: '380px' }}>
-            {STEPS.map((s, i) => {
-              const on = i === activeStep;
-              return (
-                <div key={i}
-                  onClick={() => setActiveStep(i)}
-                  style={{
-                    flexGrow: on ? 2.5 : 1,
-                    flexShrink: 1,
-                    flexBasis: 0,
-                    minWidth: 0,
-                    borderRadius: '22px',
-                    overflow: 'hidden',
-                    cursor: on ? 'default' : 'pointer',
-                    opacity: on ? 1 : 0.48,
-                    boxShadow: on ? '0 24px 64px rgba(42,31,18,.16)' : 'none',
-                    border: `1px solid ${on ? 'rgba(193,123,90,.32)' : 'rgba(193,123,90,.1)'}`,
-                    background: 'var(--bg-2)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    transition: 'flex-grow .78s cubic-bezier(.4,0,.2,1), opacity .78s, box-shadow .78s, border-color .78s',
-                  }}
-                >
-                  {/* Image */}
-                  <div style={{ position: 'relative', height: '210px', flexShrink: 0, overflow: 'hidden' }}>
-                    <img src={s.img} alt={s.title}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block', transition: 'transform .9s ease' }}
-                      onMouseEnter={e => { if (on) e.currentTarget.style.transform = 'scale(1.05)'; }}
-                      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
-                    />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, var(--bg-2) 0%, transparent 55%)' }} />
-                    <span style={{ position: 'absolute', top: '1rem', left: '1.25rem', fontFamily: 'var(--mono)', fontSize: '1rem', fontWeight: 700, color: on ? 'var(--gold)' : 'rgba(193,123,90,.5)', transition: 'color .5s' }}>{s.n}</span>
-                  </div>
+          {STEPS.map((s, i) => (
+            <div key={i} className="reveal" style={{
+              display: 'grid',
+              gridTemplateColumns: '1.15fr 1fr',
+              gap: 'clamp(3rem,6vw,6rem)',
+              alignItems: 'center',
+              paddingBottom: i < STEPS.length - 1 ? '7rem' : 0,
+              '--reveal-delay': `${i * 0.1}s`,
+            }}>
+              {/* Image — plein, sans cadre */}
+              <div style={{ borderRadius: '20px', overflow: 'hidden', aspectRatio: '16/10' }}>
+                <img src={s.img} alt={s.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block', transition: 'transform .9s ease' }}
+                  onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.04)'}
+                  onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                />
+              </div>
 
-                  {/* Text */}
-                  <div style={{ padding: '1.5rem 1.75rem 2rem', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', minWidth: 0 }}>
-                    <h3 style={{
-                      fontFamily: 'var(--serif-display)',
-                      fontSize: on ? '1.55rem' : '1rem',
-                      fontWeight: 400,
-                      color: 'var(--ink)',
-                      lineHeight: 1.1,
-                      marginBottom: '.65rem',
-                      transition: 'font-size .78s cubic-bezier(.4,0,.2,1)',
-                      overflow: 'hidden',
-                      textOverflow: on ? 'clip' : 'ellipsis',
-                      whiteSpace: on ? 'normal' : 'nowrap',
-                    }}>{s.title}</h3>
-
-                    <div style={{ overflow: 'hidden', maxHeight: on ? '100px' : '0', opacity: on ? 1 : 0, transition: 'max-height .6s .12s cubic-bezier(.4,0,.2,1), opacity .5s .18s' }}>
-                      <p style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--ink-mute)', lineHeight: 2 }}>{s.body}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Indicateurs */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', marginTop: '2.5rem' }}>
-            {STEPS.map((_, i) => (
-              <button key={i} onClick={() => setActiveStep(i)} style={{
-                width: activeStep === i ? '2.2rem' : '6px',
-                height: '5px',
-                borderRadius: '3px',
-                border: 'none',
-                padding: 0,
-                cursor: 'pointer',
-                background: activeStep === i ? 'var(--gold)' : 'rgba(193,123,90,.25)',
-                position: 'relative',
-                overflow: 'hidden',
-                transition: 'width .45s cubic-bezier(.4,0,.2,1), background .45s',
-              }}>
-                {activeStep === i && (
-                  <span key={activeStep} style={{
-                    position: 'absolute', inset: 0,
-                    background: 'rgba(255,255,255,.35)',
-                    transformOrigin: 'left',
-                    animation: 'fillBar 4.2s linear forwards',
-                  }} />
-                )}
-              </button>
-            ))}
-          </div>
+              {/* Texte */}
+              <div>
+                <p style={{ fontFamily: 'var(--mono)', fontSize: '.8rem', fontWeight: 700, color: 'var(--gold)', marginBottom: '1.2rem', letterSpacing: '.06em' }}>{s.n}</p>
+                <h3 style={{ fontFamily: 'var(--serif-display)', fontSize: 'clamp(2rem,3.2vw,2.8rem)', fontWeight: 400, color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-.01em', marginBottom: '1.4rem' }}>{s.title}</h3>
+                <div style={{ width: '32px', height: '1px', background: 'var(--gold)', marginBottom: '1.4rem' }} />
+                <p style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--ink-mute)', lineHeight: 2, maxWidth: '340px' }}>{s.body}</p>
+              </div>
+            </div>
+          ))}
 
         </div>
       </section>
