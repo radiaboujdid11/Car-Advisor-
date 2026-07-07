@@ -41,36 +41,34 @@ export default function Landing() {
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '1.1rem 3.5rem',
-        borderBottom: `1px solid rgba(42,31,18,.08)`,
-        background: 'rgba(245,239,227,.97)',
-        backdropFilter: 'blur(24px)',
+        padding: '1.4rem 3.5rem',
+        background: 'transparent',
       }}>
-        <div style={{ fontFamily: 'var(--serif-display)', fontSize: '1.15rem', letterSpacing: '-.02em', userSelect: 'none' }}>
+        <div style={{ fontFamily: 'var(--serif-display)', fontSize: '1.15rem', letterSpacing: '-.02em', userSelect: 'none', color: '#fff' }}>
           Auto<span style={{ color: 'var(--gold)' }}>Assist</span>
         </div>
 
         <div className="nav-mobile-links" style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}>
           {[['#how', 'Méthode'], ['#quiz', 'Quiz'], ['#features', 'Fonctionnalités'], ['/cars', 'Catalogue'], ['/compare', 'Comparateur']].map(([href, label]) => {
             const isRoute = href.startsWith('/');
-            const style = { fontFamily: 'var(--sans)', fontSize: '.72rem', letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--ink-mute)', cursor: 'pointer', textDecoration: 'none' };
+            const style = { fontFamily: 'var(--sans)', fontSize: '.72rem', letterSpacing: '.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,.8)', cursor: 'pointer', textDecoration: 'none' };
             return isRoute
               ? <Link key={href} to={href} style={style}
-                  onMouseEnter={e => e.currentTarget.style.color = 'var(--ink)'}
-                  onMouseLeave={e => e.currentTarget.style.color = 'var(--ink-mute)'}
+                  onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,.8)'}
                 >{label}</Link>
               : <a key={href} href={href} style={style}
-                  onMouseEnter={e => e.currentTarget.style.color = 'var(--ink)'}
-                  onMouseLeave={e => e.currentTarget.style.color = 'var(--ink-mute)'}
+                  onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,.8)'}
                 >{label}</a>;
           })}
         </div>
 
         <button
           onClick={() => navigate('/quiz')}
-          style={{ background: 'var(--gold)', color: '#ffffff', border: 'none', padding: '.65rem 1.8rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', cursor: 'pointer', borderRadius: '50px' }}
-          onMouseEnter={e => e.currentTarget.style.background = '#f0f0f0'}
-          onMouseLeave={e => e.currentTarget.style.background = 'var(--gold)'}
+          style={{ background: 'rgba(255,255,255,.15)', color: '#fff', border: '1.5px solid rgba(255,255,255,.7)', padding: '.65rem 1.8rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', cursor: 'pointer', borderRadius: '50px', backdropFilter: 'blur(8px)' }}
+          onMouseEnter={e => { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.borderColor = 'var(--gold)'; }}
+          onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,.15)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.7)'; }}
         >Commencer</button>
       </nav>
 
