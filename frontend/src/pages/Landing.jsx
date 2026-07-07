@@ -186,19 +186,15 @@ export default function Landing() {
         const marquee20 = CARS.filter(c => c.photo_url).slice(0, 20);
         const tiles = [...marquee20, ...marquee20];
         return (
-          <div style={{ background: '#2A1F12', padding: '1.4rem 0', overflow: 'hidden', borderTop: '2px solid rgba(193,123,90,.2)', borderBottom: '2px solid rgba(193,123,90,.2)' }}>
+          <div style={{ background: 'transparent', padding: '1rem 0', overflow: 'hidden' }}>
             <div className="marquee-track">
               {tiles.map((car, i) => (
-                <div key={i} style={{ flexShrink: 0, width: '240px', height: '150px', marginRight: '1.1rem', overflow: 'hidden', borderRadius: '10px', position: 'relative', background: '#3D2E1E' }}>
+                <div key={i} style={{ flexShrink: 0, width: '260px', height: '150px', marginRight: '0.5rem' }}>
                   <img
                     src={car.photo_url}
                     alt={`${car.make} ${car.model}`}
-                    style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center', display: 'block', padding: '8px' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center', display: 'block' }}
                   />
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(42,31,18,.85) 0%, transparent 55%)' }} />
-                  <p style={{ position: 'absolute', bottom: '0.55rem', left: '0.8rem', fontFamily: 'var(--sans)', fontSize: '0.58rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#F5EFE3' }}>
-                    {car.make} {car.model}
-                  </p>
                 </div>
               ))}
             </div>
