@@ -92,7 +92,7 @@ function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
       </div>
 
       {car.matchReason && (
-        <p style={{ fontFamily: 'var(--serif-body)', fontStyle: 'italic', fontSize: '.88rem', color: 'var(--ink-mute)', lineHeight: 1.6, borderTop: '1px solid var(--line)', paddingTop: '1.25rem', marginTop: '1.5rem' }}>
+        <p style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--ink-mute)', lineHeight: 2, borderTop: '1px solid var(--line)', paddingTop: '1.25rem', marginTop: '1.5rem' }}>
           {car.matchReason}
         </p>
       )}

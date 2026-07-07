@@ -110,7 +110,7 @@ export default function CarDetail({ addToCompare }) {
         {/* Description */}
         {car.description && (
           <div style={{ borderLeft: '1px solid var(--gold-deep)', paddingLeft: '2rem', marginBottom: '4rem' }}>
-            <p style={{ fontFamily: 'var(--serif-body)', fontStyle: 'italic', fontSize: '18px', color: 'var(--ink-soft)', lineHeight: 1.7 }}>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--ink-soft)', lineHeight: 2 }}>
               {car.description}
             </p>
           </div>

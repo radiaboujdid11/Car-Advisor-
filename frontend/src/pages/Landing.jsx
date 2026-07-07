@@ -116,9 +116,11 @@ export default function Landing() {
           <p style={{
             fontFamily: 'var(--sans)',
             fontWeight: 400,
-            fontSize: 'clamp(.82rem,1vw,.95rem)',
-            color: 'rgba(255,255,255,.85)',
-            lineHeight: 1.65,
+            fontSize: '.72rem',
+            letterSpacing: '.2em',
+            textTransform: 'uppercase',
+            color: 'rgba(255,255,255,.75)',
+            lineHeight: 2,
             marginBottom: '1.75rem',
             maxWidth: '480px',
           }}>
@@ -227,7 +229,7 @@ export default function Landing() {
                 </div>
                 <div style={{ padding: '1.5rem 1.75rem 2rem' }}>
                   <h3 style={{ fontFamily: 'var(--serif-body)', fontSize: '1.15rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '.6rem', lineHeight: 1.2 }}>{s.title}</h3>
-                  <p style={{ fontFamily: 'var(--sans)', fontSize: '.83rem', color: 'var(--ink-mute)', lineHeight: 1.8 }}>{s.body}</p>
+                  <p style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--ink-mute)', lineHeight: 2 }}>{s.body}</p>
                 </div>
               </div>
             ))}
@@ -250,7 +252,7 @@ export default function Landing() {
                 Des questions<br /><span style={{ color: 'var(--gold)' }}>qui comptent.</span>
               </h2>
 
-              <p style={{ fontFamily: 'var(--sans)', fontSize: '.88rem', color: 'var(--ink-mute)', lineHeight: 1.82, maxWidth: '400px', marginBottom: '2.5rem' }}>
+              <p style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--ink-mute)', lineHeight: 2, maxWidth: '400px', marginBottom: '2.5rem' }}>
                 Chaque réponse affine l'algorithme. En 10 questions, le système en sait plus sur vos besoins qu'un vendeur en deux heures.
               </p>
 
@@ -295,7 +297,7 @@ export default function Landing() {
                 </div>
                 <div style={{ padding: '1.25rem 1.5rem 1.75rem' }}>
                   <h3 style={{ fontFamily: 'var(--serif-body)', fontSize: '1.05rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '.5rem', lineHeight: 1.3 }}>{f.title}</h3>
-                  <p style={{ fontFamily: 'var(--sans)', fontSize: '.82rem', color: 'var(--ink-mute)', lineHeight: 1.78 }}>{f.body}</p>
+                  <p style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--ink-mute)', lineHeight: 2 }}>{f.body}</p>
                 </div>
               </div>
             ))}

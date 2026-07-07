@@ -110,7 +110,7 @@ function Intro({ onStart }) {
 
         <div style={{ width: 40, height: 1, background: 'var(--gold)', margin: '0 auto 1.5rem' }} />
 
-        <p style={{ fontFamily: 'var(--sans)', fontSize: '1rem', color: 'var(--ink-mute)', lineHeight: 1.7, marginBottom: '2.5rem', fontWeight: 300 }}>
+        <p style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--ink-mute)', lineHeight: 2, marginBottom: '2.5rem' }}>
           Un système adaptatif déduira votre véhicule idéal<br />
           question par question, par inférence bayésienne.
         </p>
