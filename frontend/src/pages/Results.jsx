@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const CAT_LABEL = { eco: 'Écologique', luxury: 'Luxe', practical: 'Pratique', performance: 'Performance' };
@@ -7,6 +7,19 @@ const RANK = ['01', '02', '03'];
 export default function Results({ results, addToCompare }) {
   const navigate = useNavigate();
   const { top3 = [] } = results;
+
+  useEffect(() => {
+    const cards = document.querySelectorAll('[data-result-card]');
+    cards.forEach((card, i) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(36px)';
+      setTimeout(() => {
+        card.style.transition = 'opacity .75s cubic-bezier(.4,0,.2,1), transform .75s cubic-bezier(.4,0,.2,1)';
+        card.style.opacity = '1';
+        card.style.transform = 'none';
+      }, 180 + i * 160);
+    });
+  }, []);
 
   return (
     <div style={{ background: 'var(--bg)', minHeight: '100vh', padding: '5rem 2rem', position: 'relative', overflow: 'hidden' }}>
@@ -50,6 +63,7 @@ function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
 
   return (
     <div
+      data-result-card
       style={{ background: hovered ? 'var(--bg-3)' : 'var(--bg-2)', padding: '2.5rem', borderRadius: '16px', border: isFirst ? '1px solid rgba(240,235,227,.4)' : '1px solid rgba(240,240,240,.14)', position: 'relative', overflow: 'hidden', cursor: 'pointer', transition: 'background .2s, border-color .2s, transform .2s', transform: hovered ? 'translateY(-4px)' : 'none' }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}

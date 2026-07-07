@@ -27,12 +27,24 @@ export default function Landing() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Scroll reveal
     const obs = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
       { threshold: .12 }
     );
     document.querySelectorAll('.reveal, .slide-left').forEach(el => obs.observe(el));
-    return () => obs.disconnect();
+
+    // Hero parallax — scale + fade text as user scrolls (FeedForge pattern)
+    const heroText = document.getElementById('hero-text');
+    const onScroll = () => {
+      if (!heroText) return;
+      const p = Math.max(0, Math.min(1, window.scrollY / (window.innerHeight * 0.8)));
+      heroText.style.transform = `scale(${1 - p * 0.1}) translateZ(0)`;
+      heroText.style.opacity = String(Math.max(0, 1 - p * 1.6));
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => { obs.disconnect(); window.removeEventListener('scroll', onScroll); };
   }, []);
 
   return (
@@ -92,11 +104,12 @@ export default function Landing() {
         }} />
 
         {/* Text overlay — bottom left */}
-        <div style={{
+        <div id="hero-text" style={{
           position: 'absolute',
           bottom: 'clamp(2.5rem,6vh,5rem)',
           left: 'clamp(1.5rem,5vw,5rem)',
           maxWidth: '600px',
+          willChange: 'transform, opacity',
         }}>
           <h1 style={{
             fontFamily: 'var(--sans)',
@@ -344,8 +357,8 @@ export default function Landing() {
             ];
             return (
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '1.25rem' }}>
-                {showcase.map(car => (
-                  <Link key={car.id} to={`/cars/${car.id}`} style={{ display: 'block', background: 'var(--bg)', border: '1px solid rgba(193,123,90,.15)', borderRadius: '14px', overflow: 'hidden', transition: 'border-color .25s, transform .25s, box-shadow .25s' }}
+                {showcase.map((car, si) => (
+                  <Link key={car.id} to={`/cars/${car.id}`} className="reveal" style={{ '--reveal-delay': `${si * 0.07}s`, display: 'block', background: 'var(--bg)', border: '1px solid rgba(193,123,90,.15)', borderRadius: '14px', overflow: 'hidden', transition: 'border-color .25s, transform .25s, box-shadow .25s' }}
                     onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(193,123,90,.4)'; e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 12px 32px rgba(193,123,90,.1)'; }}
                     onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(193,123,90,.15)'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
                   >

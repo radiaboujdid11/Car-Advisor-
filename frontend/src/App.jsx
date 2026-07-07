@@ -15,11 +15,27 @@ function AppShell({ compareCars, children }) {
   const { pathname } = useLocation();
   const showHeader = HEADER_ROUTES.some(r => pathname === r || pathname.startsWith('/cars/'));
 
+  // Global bounce-out on all buttons (FeedForge pattern)
+  useEffect(() => {
+    const BTN_CLASSES = ['btn-primary','btn-ghost','btn-outline','btn-secondary'];
+    const isBounceTarget = el =>
+      el && (el.tagName === 'BUTTON' || el.tagName === 'A') &&
+      (BTN_CLASSES.some(c => el.classList.contains(c)) || el.closest('nav') || el.closest('header'));
+
+    const onLeave = e => {
+      if (isBounceTarget(e.target)) {
+        e.target.style.animation = 'ff-btn-out .35s cubic-bezier(0.23,1,0.32,1) forwards';
+      }
+    };
+    document.addEventListener('mouseleave', onLeave, true);
+    return () => document.removeEventListener('mouseleave', onLeave, true);
+  }, []);
+
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       <Cursor />
       {showHeader && <Header compareCars={compareCars} />}
-      <main style={{ position: 'relative' }}>
+      <main key={pathname} className="page-enter" style={{ position: 'relative' }}>
         {children}
       </main>
     </div>
