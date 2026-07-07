@@ -108,10 +108,10 @@ function Intro({ onStart }) {
       {/* Photo plein écran — légèrement floutée */}
       <div style={{
         position: 'absolute', inset: 0,
-        backgroundImage: "url('/Orange yellow sunset.jpg')",
+        backgroundImage: 'url(/sunset.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        filter: 'blur(7px)',
+        filter: 'blur(6px)',
         transform: 'scale(1.08)',
         animation: 'slowZoom 22s ease-in-out infinite alternate',
       }} />
@@ -146,16 +146,16 @@ function Intro({ onStart }) {
         {/* Titre mixte italic + roman — exactement comme Daily */}
         <h1 style={{
           fontFamily: 'var(--serif-display)',
-          fontSize: 'clamp(3.8rem,9.5vw,7rem)',
-          lineHeight: 1.0,
+          fontSize: 'clamp(3.2rem,8.5vw,6.5rem)',
+          lineHeight: 1.05,
           letterSpacing: '-.02em',
           color: '#fff',
           marginBottom: '1.5rem',
           textWrap: 'balance',
         }}>
-          <em style={{ fontStyle: 'italic', fontWeight: 400 }}>Trouve </em>ton
+          <em style={{ fontStyle: 'italic', fontWeight: 400 }}>Prêt </em>à trouver
           <br />
-          <span style={{ fontStyle: 'normal', fontWeight: 700 }}>McQueen.</span>
+          <span style={{ fontStyle: 'normal', fontWeight: 700 }}>ta voiture idéale ?</span>
         </h1>
 
         <p style={{
@@ -167,10 +167,10 @@ function Intro({ onStart }) {
           fontWeight: 300,
           letterSpacing: '.01em',
         }}>
-          Votre véhicule idéal en 15 questions adaptatives.
+          15 questions adaptatives. Un résultat sur mesure.
         </p>
 
-        {/* CTA blanc sur fond sombre — contraste Daily */}
+        {/* CTA blanc arrondi */}
         <button
           onClick={onStart}
           style={{
@@ -183,8 +183,8 @@ function Intro({ onStart }) {
             fontSize: '.9rem',
             letterSpacing: '.04em',
             cursor: 'pointer',
-            borderRadius: '4px',
-            transition: 'background .2s, transform .2s',
+            borderRadius: '50px',
+            transition: 'background .2s',
           }}
           onMouseEnter={e => { e.currentTarget.style.background = '#F0E8DE'; }}
           onMouseLeave={e => { e.currentTarget.style.background = '#ffffff'; }}
