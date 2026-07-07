@@ -13,11 +13,10 @@ const CATEGORIES = [
 const CAT_LABEL = { eco: 'Écologique', luxury: 'Luxe', practical: 'Pratique', performance: 'Performance' };
 
 const inputStyle = {
-  fontFamily: 'var(--sans)', fontSize: '12px', letterSpacing: '0.05em',
-  color: 'var(--ink-soft)', background: 'var(--bg-2)',
-  border: '1px solid var(--line)', padding: '10px 14px',
+  fontFamily: 'var(--sans)', fontSize: '12px', letterSpacing: '0.06em',
+  color: 'var(--ink-soft)', background: 'none',
+  border: 'none', padding: '10px 0',
   outline: 'none', width: '100%',
-  transition: 'border-color 0.2s',
 };
 
 export default function Catalog({ addToCompare }) {
@@ -52,18 +51,14 @@ export default function Catalog({ addToCompare }) {
         </div>
 
         {/* Filters */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1px', background: 'var(--line)', border: '1px solid var(--line)', marginBottom: '3rem', borderRadius: '12px', overflow: 'hidden' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '2.5rem', marginBottom: '3rem', borderBottom: '1px solid var(--line)', paddingBottom: '1.25rem', flexWrap: 'wrap' }}>
           <input
             style={inputStyle} placeholder="Rechercher un modèle..."
             value={search} onChange={e => setSearch(e.target.value)}
-            onFocus={e => e.target.style.borderColor = 'var(--gold)'}
-            onBlur={e => e.target.style.borderColor = 'var(--line)'}
           />
           <select
             style={{ ...inputStyle, appearance: 'none', cursor: 'pointer' }}
             value={make} onChange={e => setMake(e.target.value)}
-            onFocus={e => e.target.style.borderColor = 'var(--gold)'}
-            onBlur={e => e.target.style.borderColor = 'var(--line)'}
           >
             <option value="">Toutes les marques</option>
             {ALL_MAKES.map(m => <option key={m} value={m}>{m}</option>)}
@@ -71,20 +66,16 @@ export default function Catalog({ addToCompare }) {
           <select
             style={{ ...inputStyle, appearance: 'none', cursor: 'pointer' }}
             value={category} onChange={e => setCategory(e.target.value)}
-            onFocus={e => e.target.style.borderColor = 'var(--gold)'}
-            onBlur={e => e.target.style.borderColor = 'var(--line)'}
           >
             {CATEGORIES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
           </select>
           <input
             style={inputStyle} placeholder="Budget max (DH)" type="number"
             value={maxBudget} onChange={e => setMaxBudget(e.target.value)}
-            onFocus={e => e.target.style.borderColor = 'var(--gold)'}
-            onBlur={e => e.target.style.borderColor = 'var(--line)'}
           />
           <button
             onClick={reset}
-            style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--ink-mute)', background: 'var(--bg-2)', border: 'none', padding: '10px 14px', cursor: 'pointer', transition: 'color 0.2s' }}
+            style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--ink-mute)', background: 'none', border: 'none', padding: '10px 0', cursor: 'pointer', transition: 'color 0.2s', whiteSpace: 'nowrap' }}
             onMouseEnter={e => e.currentTarget.style.color = 'var(--gold)'}
             onMouseLeave={e => e.currentTarget.style.color = 'var(--ink-mute)'}
           >
