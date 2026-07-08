@@ -248,7 +248,16 @@ export default function Quiz({ onComplete }) {
   if (phase === 'revealing') return <FinalReveal onDone={goToResults} />;
 
   return (
-    <div style={{ height: '100vh', display: 'flex', overflow: 'hidden', background: C.bg }}>
+    <div style={{ height: '100vh', display: 'flex', overflow: 'hidden', background: C.bg, position: 'relative' }}>
+
+      {/* Video background — right panel only */}
+      <video
+        autoPlay muted loop playsInline
+        style={{ position: 'absolute', right: 0, top: 0, width: 'calc(100% - 330px)', height: '100%', objectFit: 'cover', opacity: 0.08, pointerEvents: 'none', zIndex: 0 }}
+      >
+        <source src="/car-bg.mp4" type="video/mp4" />
+      </video>
+
       <LeftPanel
         confidence={confidence}
         leadingCar={leadingCar}
@@ -256,7 +265,7 @@ export default function Quiz({ onComplete }) {
         deductions={deductions}
         refineLeft={refineLeft}
       />
-      <div style={{ flex: 1, overflow: 'hidden auto', position: 'relative' }}>
+      <div style={{ flex: 1, overflow: 'hidden auto', position: 'relative', zIndex: 1 }}>
         {phase === 'asking' && (
           <QuestionCard
             question={question}
