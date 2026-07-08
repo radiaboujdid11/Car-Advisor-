@@ -110,10 +110,8 @@ export default function Quiz({ onComplete }) {
     submittingRef.current = true;
     setPendingAnswer(answerIndex);
     setSubmitting(true);
-
-    await delay(420);
     setVisible(false);
-    await delay(200);
+    await delay(220);
 
     const s = {
       ...session,
