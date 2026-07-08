@@ -71,6 +71,7 @@ export default function Quiz({ onComplete }) {
   const [leadingCar, setLeadingCar]     = useState(null);
   const [pendingAnswer, setPendingAnswer] = useState(null);
   const [submitting, setSubmitting]     = useState(false);
+  const submittingRef = useRef(false);
   const [visible, setVisible]           = useState(false);
   const [topProbs, setTopProbs]         = useState([]);
   const [deductions, setDeductions]     = useState([]);
@@ -94,6 +95,7 @@ export default function Quiz({ onComplete }) {
     setConfidence(0);
     setLeadingCar(null);
     setPendingAnswer(null);
+    submittingRef.current = false;
     setDeductions([]);
     setAnsweredCount(0);
     setInterimDone(false);
@@ -103,11 +105,13 @@ export default function Quiz({ onComplete }) {
     requestAnimationFrame(() => setVisible(true));
   }
 
-  async function handleConfirm() {
-    if (pendingAnswer === null || submitting) return;
+  async function handleAnswer(answerIndex) {
+    if (submittingRef.current) return;
+    submittingRef.current = true;
+    setPendingAnswer(answerIndex);
     setSubmitting(true);
 
-    await delay(320);
+    await delay(420);
     setVisible(false);
     await delay(200);
 
@@ -117,7 +121,7 @@ export default function Quiz({ onComplete }) {
       askedIds: new Set(session.askedIds),
       answers:  [...session.answers],
     };
-    applyAnswer(s, rawQuestionRef.current, pendingAnswer, CARS);
+    applyAnswer(s, rawQuestionRef.current, answerIndex, CARS);
 
     const conf = displayConfidence(s, CARS);
     const top5 = getTopCars(s, CARS, 5);
@@ -144,6 +148,7 @@ export default function Quiz({ onComplete }) {
       setInterimDone(true);
       setPendingAnswer(null);
       setSubmitting(false);
+      submittingRef.current = false;
       setPhase('interim');
       return;
     }
@@ -157,6 +162,7 @@ export default function Quiz({ onComplete }) {
         setFinalTop3(top3);
         setPendingAnswer(null);
         setSubmitting(false);
+        submittingRef.current = false;
         setPhase('revealing');
         return;
       }
@@ -175,6 +181,7 @@ export default function Quiz({ onComplete }) {
       setAiInsight(insight.msg);
       setPendingAnswer(null);
       setSubmitting(false);
+      submittingRef.current = false;
       setPhase('ai-comment');
       return;
     }
@@ -185,6 +192,7 @@ export default function Quiz({ onComplete }) {
     setPendingAnswer(null);
     setQuestion(formatQuestion(rawQ, s.askedIds.size + 1));
     setSubmitting(false);
+    submittingRef.current = false;
     setPhase('asking');
     requestAnimationFrame(() => setVisible(true));
   }
@@ -259,8 +267,7 @@ export default function Quiz({ onComplete }) {
             submitting={submitting}
             confidence={confidence}
             refineLeft={refineLeft}
-            onSelect={setPendingAnswer}
-            onConfirm={handleConfirm}
+            onAnswer={handleAnswer}
           />
         )}
         {phase === 'ai-comment' && (
@@ -449,14 +456,14 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
 }
 
 /* ── QUESTION CARD ── */
-function QuestionCard({ question, pendingAnswer, visible, submitting, confidence, refineLeft, onSelect, onConfirm }) {
+function QuestionCard({ question, pendingAnswer, visible, submitting, confidence, refineLeft, onAnswer }) {
   if (!question) return null;
 
   return (
-    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', padding: '0 3.5rem' }}>
+    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0 3rem' }}>
 
       {/* Progress */}
-      <div style={{ paddingTop: '2rem', paddingBottom: '1.5rem' }}>
+      <div style={{ width: '100%', maxWidth: '560px', paddingBottom: '2rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
           <span style={{ fontFamily: 'var(--sans)', fontSize: '.54rem', letterSpacing: '.25em', textTransform: 'uppercase', color: C.faint }}>
             {refineLeft > 0 ? `Raffinement — ${refineLeft} restante${refineLeft > 1 ? 's' : ''}` : 'Analyse de compatibilité'}
@@ -469,48 +476,27 @@ function QuestionCard({ question, pendingAnswer, visible, submitting, confidence
       </div>
 
       {/* Question + Answers */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '2.2rem', opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(22px)', transition: 'opacity .4s ease, transform .4s ease' }}>
+      <div style={{ width: '100%', maxWidth: '560px', display: 'flex', flexDirection: 'column', gap: '2rem', opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(22px)', transition: 'opacity .4s ease, transform .4s ease' }}>
 
-        <h2 style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: 'clamp(1.7rem,3.8vw,2.6rem)', lineHeight: 1.12, letterSpacing: '-.03em', color: C.text, maxWidth: '520px' }}>
+        <h2 style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: 'clamp(1.7rem,3.8vw,2.6rem)', lineHeight: 1.12, letterSpacing: '-.03em', color: C.text, textAlign: 'center' }}>
           {question.question}
         </h2>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxWidth: '540px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
           {question.answers.map(answer => (
             <AnswerCard
               key={answer.index}
               answer={answer}
               isSelected={pendingAnswer === answer.index}
               disabled={submitting}
-              onClick={() => {
-                if (submitting) return;
-                onSelect(prev => prev === answer.index ? null : answer.index);
-              }}
+              onClick={() => { if (!submitting) onAnswer(answer.index); }}
             />
           ))}
         </div>
-      </div>
 
-      {/* Confirm row */}
-      <div style={{ padding: '1.5rem 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '540px' }}>
-        <p style={{ fontFamily: 'var(--sans)', fontSize: '.54rem', letterSpacing: '.2em', textTransform: 'uppercase', color: C.faint }}>
-          {pendingAnswer === null ? 'Sélectionnez une réponse' : 'Cliquez encore pour changer'}
+        <p style={{ fontFamily: 'var(--sans)', fontSize: '.54rem', letterSpacing: '.2em', textTransform: 'uppercase', color: C.faint, textAlign: 'center' }}>
+          Sélectionnez une réponse pour continuer
         </p>
-        <button
-          onClick={onConfirm}
-          disabled={pendingAnswer === null || submitting}
-          style={{
-            fontFamily: 'var(--sans)', fontSize: '.65rem', letterSpacing: '.18em', textTransform: 'uppercase',
-            color: pendingAnswer !== null ? C.bg : C.faint,
-            background: pendingAnswer !== null ? C.accent : 'transparent',
-            border: `1px solid ${pendingAnswer !== null ? C.accent : C.border}`,
-            padding: '.6rem 1.8rem', borderRadius: '50px', cursor: pendingAnswer !== null ? 'pointer' : 'default',
-            transition: 'all .25s cubic-bezier(.4,0,.2,1)',
-            opacity: submitting ? .5 : 1,
-          }}
-        >
-          {submitting ? 'Analyse…' : 'Confirmer →'}
-        </button>
       </div>
     </div>
   );
