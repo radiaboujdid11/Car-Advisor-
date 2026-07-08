@@ -253,10 +253,12 @@ export default function Quiz({ onComplete }) {
       {/* Video background — right panel only */}
       <video
         autoPlay muted loop playsInline
-        style={{ position: 'absolute', right: 0, top: 0, width: 'calc(100% - 330px)', height: '100%', objectFit: 'cover', opacity: 0.08, pointerEvents: 'none', zIndex: 0 }}
+        style={{ position: 'absolute', right: 0, top: 0, width: 'calc(100% - 330px)', height: '100%', objectFit: 'cover', opacity: 0.38, pointerEvents: 'none', zIndex: 0 }}
       >
         <source src="/car-bg.mp4" type="video/mp4" />
       </video>
+      {/* Overlay to keep text readable over video */}
+      <div style={{ position: 'absolute', right: 0, top: 0, width: 'calc(100% - 330px)', height: '100%', background: 'rgba(240,232,220,0.55)', pointerEvents: 'none', zIndex: 0 }} />
 
       <LeftPanel
         confidence={confidence}
@@ -470,22 +472,23 @@ function QuestionCard({ question, pendingAnswer, visible, submitting, confidence
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0 3rem' }}>
 
       {/* Progress */}
-      <div style={{ width: '100%', maxWidth: '560px', paddingBottom: '2rem' }}>
+      <div style={{ width: '100%', maxWidth: '580px', paddingBottom: '2.5rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-          <span style={{ fontFamily: 'var(--sans)', fontSize: '.54rem', letterSpacing: '.25em', textTransform: 'uppercase', color: C.faint }}>
-            {refineLeft > 0 ? `Raffinement — ${refineLeft} restante${refineLeft > 1 ? 's' : ''}` : 'Analyse de compatibilité'}
+          <span style={{ fontFamily: 'var(--sans)', fontSize: '.58rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#8B6A3E', fontWeight: 600 }}>
+            {refineLeft > 0 ? `Raffinement — ${refineLeft} restant${refineLeft > 1 ? 's' : ''}` : 'Analyse de compatibilité'}
           </span>
-          <span style={{ fontFamily: 'var(--serif-display)', fontSize: '.8rem', color: C.accent }}>{confidence}%</span>
+          <span style={{ fontFamily: 'var(--sans)', fontWeight: 800, fontSize: '.85rem', color: '#5C3D1E' }}>{confidence}%</span>
         </div>
-        <div style={{ height: '1px', background: C.border, overflow: 'hidden' }}>
-          <div style={{ height: '100%', width: `${Math.max(confidence, 2)}%`, background: C.accent, transition: 'width .8s cubic-bezier(.4,0,.2,1)' }} />
+        <div style={{ height: '2px', background: 'rgba(92,61,30,.15)', borderRadius: '2px', overflow: 'hidden' }}>
+          <div style={{ height: '100%', width: `${Math.max(confidence, 2)}%`, background: '#8B6A3E', borderRadius: '2px', transition: 'width .8s cubic-bezier(.4,0,.2,1)' }} />
         </div>
       </div>
 
       {/* Question + Answers */}
-      <div style={{ width: '100%', maxWidth: '560px', display: 'flex', flexDirection: 'column', gap: '2rem', opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(22px)', transition: 'opacity .4s ease, transform .4s ease' }}>
+      <div style={{ width: '100%', maxWidth: '580px', display: 'flex', flexDirection: 'column', gap: '2rem', opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(22px)', transition: 'opacity .4s ease, transform .4s ease' }}>
 
-        <h2 style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: 'clamp(1.7rem,3.8vw,2.6rem)', lineHeight: 1.12, letterSpacing: '-.03em', color: C.text, textAlign: 'center' }}>
+        {/* Bold sans-serif headline — style "Time Out!" */}
+        <h2 style={{ fontFamily: 'var(--sans)', fontWeight: 900, fontSize: 'clamp(2rem,5vw,3.4rem)', lineHeight: 1.05, letterSpacing: '-.02em', color: '#2A1F12', textAlign: 'center' }}>
           {question.question}
         </h2>
 
@@ -501,7 +504,7 @@ function QuestionCard({ question, pendingAnswer, visible, submitting, confidence
           ))}
         </div>
 
-        <p style={{ fontFamily: 'var(--sans)', fontSize: '.54rem', letterSpacing: '.2em', textTransform: 'uppercase', color: C.faint, textAlign: 'center' }}>
+        <p style={{ fontFamily: 'var(--sans)', fontWeight: 500, fontSize: '.58rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#8B6A3E', textAlign: 'center' }}>
           Sélectionnez une réponse pour continuer
         </p>
       </div>
@@ -522,31 +525,29 @@ function AnswerCard({ answer, isSelected, disabled, onClick }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         width: '100%', textAlign: 'left',
-        border: `1px solid ${isSelected ? C.borderHi : hovered ? 'rgba(210,175,130,.18)' : C.border}`,
-        background: isSelected ? 'rgba(200,149,106,.1)' : hovered ? 'rgba(200,149,106,.04)' : C.surface,
-        padding: '.95rem 1.2rem', borderRadius: '10px',
-        opacity: 1,
-        transition: 'all .25s cubic-bezier(.4,0,.2,1)',
+        border: `2px solid ${isSelected ? '#8B6A3E' : hovered ? 'rgba(92,61,30,.25)' : 'rgba(92,61,30,.12)'}`,
+        background: isSelected ? '#5C3D1E' : hovered ? 'rgba(255,255,255,.9)' : 'rgba(255,255,255,.75)',
+        padding: '1rem 1.3rem', borderRadius: '10px',
+        transition: 'all .22s cubic-bezier(.4,0,.2,1)',
         display: 'flex', alignItems: 'center', gap: '1rem',
         cursor: disabled ? 'default' : 'pointer',
         transform: isSelected ? 'scale(1.012)' : 'scale(1)',
-        boxShadow: isSelected ? `0 0 0 1px ${C.accent}, 0 6px 28px rgba(200,149,106,.12)` : 'none',
+        boxShadow: isSelected ? '0 8px 32px rgba(92,61,30,.25)' : hovered ? '0 4px 16px rgba(92,61,30,.1)' : 'none',
       }}
     >
-      <span style={{ fontFamily: 'var(--sans)', fontSize: '.58rem', letterSpacing: '.2em', textTransform: 'uppercase', color: isSelected ? C.accent : C.faint, fontWeight: 600, flexShrink: 0, width: '14px', transition: 'color .2s' }}>
+      <span style={{ fontFamily: 'var(--sans)', fontSize: '.6rem', letterSpacing: '.2em', textTransform: 'uppercase', color: isSelected ? 'rgba(255,255,255,.6)' : '#8B6A3E', fontWeight: 700, flexShrink: 0, width: '16px', transition: 'color .2s' }}>
         {LETTERS[answer.index]}
       </span>
       <div style={{ flex: 1 }}>
-        <p style={{ fontFamily: 'var(--serif-display)', fontSize: 'clamp(.95rem,2vw,1.1rem)', fontWeight: isSelected ? 600 : 400, color: isSelected ? C.text : hovered ? C.text : 'rgba(245,237,226,.78)', lineHeight: 1.3, letterSpacing: '-.01em', transition: 'color .2s' }}>
+        <p style={{ fontFamily: 'var(--sans)', fontSize: 'clamp(.9rem,2vw,1.05rem)', fontWeight: isSelected ? 700 : 500, color: isSelected ? '#FFFFFF' : '#2A1F12', lineHeight: 1.35, transition: 'color .2s' }}>
           {answer.text}
         </p>
         {answer.sub && (
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', color: isSelected ? C.mute : C.faint, marginTop: '3px', lineHeight: 1.5, transition: 'color .2s' }}>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: '.72rem', fontWeight: 400, color: isSelected ? 'rgba(255,255,255,.65)' : '#8B6A3E', marginTop: '3px', lineHeight: 1.5, transition: 'color .2s' }}>
             {answer.sub}
           </p>
         )}
       </div>
-      <div style={{ width: 8, height: 8, borderRadius: '50%', background: isSelected ? C.accent : 'transparent', flexShrink: 0, boxShadow: isSelected ? `0 0 10px ${C.accent}` : 'none', border: isSelected ? 'none' : `1px solid ${C.border}`, transition: 'all .25s' }} />
     </button>
   );
 }
