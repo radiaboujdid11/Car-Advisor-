@@ -386,28 +386,28 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
           background: 'rgba(193,123,90,.06)',
           transition: 'border-color .5s',
         }}>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,.4)', marginBottom: '.6rem' }}>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#fff', marginBottom: '.6rem' }}>
             Correspondance actuelle
           </p>
           {top1 ? (
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
               <div className="lx-breathe">
                 <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 700, fontSize: '1.1rem', color: '#fff', lineHeight: 1.1 }}>{top1.make}</p>
-                <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 400, fontSize: '.9rem', color: 'rgba(255,255,255,.55)', lineHeight: 1.1 }}>{top1.model}</p>
+                <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 400, fontSize: '.9rem', color: 'rgba(255,255,255,.85)', lineHeight: 1.1 }}>{top1.model}</p>
               </div>
               <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '2rem', color: GOLD, lineHeight: 1, transition: 'all .6s' }}>
-                {toScore(top1.prob)}<span style={{ fontSize: '.42em', color: 'rgba(193,123,90,.55)' }}>%</span>
+                {toScore(top1.prob)}<span style={{ fontSize: '.42em', color: 'rgba(193,123,90,.75)' }}>%</span>
               </p>
             </div>
           ) : (
-            <p style={{ fontFamily: 'var(--sans)', fontSize: '.72rem', color: 'rgba(255,255,255,.35)', fontStyle: 'italic' }}>Analyse en cours…</p>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '.72rem', color: 'rgba(255,255,255,.8)', fontStyle: 'italic' }}>Analyse en cours…</p>
           )}
         </section>
 
         {/* Confidence gauge */}
         <section className="lx-reveal" style={{ '--lx-delay': '.38s' }}>
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '8px' }}>
-            <span style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,.4)' }}>Confiance</span>
+            <span style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#fff' }}>Confiance</span>
             <span style={{ fontFamily: 'var(--serif-display)', fontSize: '.85rem', color: GOLD }}>{confidence}%</span>
           </div>
           <div style={{ height: '3px', background: 'rgba(255,255,255,.1)', borderRadius: '3px', overflow: 'hidden' }}>
@@ -418,11 +418,11 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
         {/* Alternatives */}
         {(top2 || top3) && (
           <div className="lx-reveal" style={{ '--lx-delay': '.48s' }}>
-            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,.4)', marginBottom: '.5rem' }}>Alternatives</p>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#fff', marginBottom: '.5rem' }}>Alternatives</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
               {[top2, top3].filter(Boolean).map((car, i) => (
                 <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '.45rem .75rem', background: 'rgba(255,255,255,.05)', borderRadius: '8px', border: '1px solid rgba(255,255,255,.08)' }}>
-                  <span style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', color: 'rgba(255,255,255,.5)' }}>{car.make} {car.model}</span>
+                  <span style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', color: '#fff' }}>{car.make} {car.model}</span>
                   <span style={{ fontFamily: 'var(--serif-display)', fontSize: '.82rem', color: GOLD }}>{toScore(car.prob)}%</span>
                 </div>
               ))}
@@ -433,7 +433,7 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
         {/* Personality */}
         {confidence > 15 && (
           <div>
-            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,.4)', marginBottom: '.5rem' }}>Profil détecté</p>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#fff', marginBottom: '.5rem' }}>Profil détecté</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
               {tags.map(tag => (
                 <span key={tag} style={{ fontFamily: 'var(--sans)', fontSize: '.6rem', letterSpacing: '.08em', color: GOLD, background: 'rgba(193,123,90,.12)', padding: '3px 9px', borderRadius: '20px', border: '1px solid rgba(193,123,90,.25)' }}>{tag}</span>
@@ -445,8 +445,8 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
         {/* Budget */}
         {confidence > 25 && (
           <div style={{ padding: '.65rem .75rem', background: 'rgba(255,255,255,.04)', borderRadius: '8px', border: '1px solid rgba(255,255,255,.08)' }}>
-            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,.38)', marginBottom: '4px' }}>Budget estimé</p>
-            <p style={{ fontFamily: 'var(--serif-display)', fontSize: '.82rem', color: 'rgba(255,255,255,.72)' }}>{BUDGET_MAP[cat]}</p>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#fff', marginBottom: '4px' }}>Budget estimé</p>
+            <p style={{ fontFamily: 'var(--serif-display)', fontSize: '.82rem', color: '#fff' }}>{BUDGET_MAP[cat]}</p>
           </div>
         )}
 
@@ -461,12 +461,12 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
         {/* Deduction log */}
         {deductions.length > 0 && (
           <div style={{ flex: 1 }}>
-            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,.4)', marginBottom: '.5rem' }}>Déductions</p>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#fff', marginBottom: '.5rem' }}>Déductions</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
               {deductions.map((d, i) => (
                 <div key={`${d}-${i}`} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', opacity: Math.max(0.15, 1 - i * 0.13), transition: 'opacity .4s' }}>
                   <span style={{ color: GOLD, fontSize: '.55rem', flexShrink: 0, marginTop: '2px' }}>✓</span>
-                  <span style={{ fontFamily: 'var(--sans)', fontSize: '.65rem', color: 'rgba(255,255,255,.48)', lineHeight: 1.45 }}>{d}</span>
+                  <span style={{ fontFamily: 'var(--sans)', fontSize: '.65rem', color: '#fff', lineHeight: 1.45 }}>{d}</span>
                 </div>
               ))}
             </div>
@@ -481,7 +481,7 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
 
         {/* Footer */}
         <footer className="lx-reveal" style={{ '--lx-delay': '.65s' }}>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.1em', color: 'rgba(255,255,255,.32)', lineHeight: 1.7, display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.1em', color: '#fff', lineHeight: 1.7, display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
             <span style={{ color: GOLD, fontSize: '.6rem', flexShrink: 0, marginTop: '1px' }}>✦</span>
             <span>Analyse parmi {CARS.length} véhicules en temps réel</span>
           </p>
