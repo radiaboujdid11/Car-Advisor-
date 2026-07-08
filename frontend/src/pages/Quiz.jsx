@@ -355,10 +355,14 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
   const GOLDR = '#C17B5A';
 
   return (
-    <div style={{ width: '330px', flexShrink: 0, height: '100vh', background: 'var(--bg-2)', borderRight: '1px solid var(--line)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+    <div style={{ width: '330px', flexShrink: 0, height: '100vh', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column', background: 'var(--bg)' }}>
+
+      {/* Bokeh sunset overlay — multiply blends warm amber into cream, keeps text readable */}
+      <img src="/sunset.jpg" aria-hidden="true"
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.35, mixBlendMode: 'multiply', pointerEvents: 'none', userSelect: 'none' }} />
 
       {/* Content */}
-      <div style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: '1.75rem 1.5rem', gap: '1.15rem', overflowY: 'auto' }}>
+      <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', height: '100%', padding: '1.75rem 1.5rem', gap: '1.15rem', overflowY: 'auto' }}>
 
         {/* Header — pulsing dot + label */}
         <header className="lx-reveal" style={{ '--lx-delay': '.05s', display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -369,14 +373,14 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
         </header>
 
         {/* Top divider */}
-        <hr className="lx-reveal" style={{ '--lx-delay': '.15s', border: 0, height: '1px', background: 'var(--line)' }} />
+        <hr className="lx-reveal" style={{ '--lx-delay': '.15s', border: 0, height: '1px', background: 'rgba(0,0,0,.15)' }} />
 
         {/* Current match card */}
         <section className="lx-reveal" style={{
           '--lx-delay': '.25s',
           borderRadius: '12px', padding: '1.15rem 1.1rem',
-          border: `1px solid rgba(0,0,0,${top1 ? '.15' : '.08'})`,
-          background: 'var(--bg)',
+          border: `1px solid rgba(0,0,0,${top1 ? '.18' : '.09'})`,
+          background: 'rgba(255,255,255,.45)',
           transition: 'border-color .5s',
         }}>
           <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#000', marginBottom: '.6rem' }}>
@@ -414,7 +418,7 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
             <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#000', marginBottom: '.5rem' }}>Alternatives</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
               {[top2, top3].filter(Boolean).map((car, i) => (
-                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '.45rem .75rem', background: 'var(--bg)', borderRadius: '8px', border: '1px solid var(--line)' }}>
+                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '.45rem .75rem', background: 'rgba(255,255,255,.4)', borderRadius: '8px', border: '1px solid rgba(0,0,0,.1)' }}>
                   <span style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', color: '#000' }}>{car.make} {car.model}</span>
                   <span style={{ fontFamily: 'var(--serif-display)', fontSize: '.82rem', color: GOLD }}>{toScore(car.prob)}%</span>
                 </div>
@@ -437,7 +441,7 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
 
         {/* Budget */}
         {confidence > 25 && (
-          <div style={{ padding: '.65rem .75rem', background: 'var(--bg)', borderRadius: '8px', border: '1px solid var(--line)' }}>
+          <div style={{ padding: '.65rem .75rem', background: 'rgba(255,255,255,.4)', borderRadius: '8px', border: '1px solid rgba(0,0,0,.1)' }}>
             <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#000', marginBottom: '4px' }}>Budget estimé</p>
             <p style={{ fontFamily: 'var(--serif-display)', fontSize: '.82rem', color: '#000' }}>{BUDGET_MAP[cat]}</p>
           </div>
@@ -470,7 +474,7 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
         <div style={{ flex: 1 }} />
 
         {/* Bottom divider */}
-        <hr className="lx-reveal" style={{ '--lx-delay': '.55s', border: 0, height: '1px', background: 'var(--line)' }} />
+        <hr className="lx-reveal" style={{ '--lx-delay': '.55s', border: 0, height: '1px', background: 'rgba(0,0,0,.15)' }} />
 
         {/* Footer */}
         <footer className="lx-reveal" style={{ '--lx-delay': '.65s' }}>
