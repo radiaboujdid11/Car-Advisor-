@@ -501,13 +501,13 @@ function QuestionCard({ question, pendingAnswer, visible, submitting, confidence
       {/* Progress */}
       <div style={{ width: '100%', maxWidth: '580px', paddingBottom: '2.5rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-          <span style={{ fontFamily: 'var(--sans)', fontSize: '.58rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#4A2810', fontWeight: 600 }}>
+          <span style={{ fontFamily: 'var(--sans)', fontSize: '.58rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#000', fontWeight: 600 }}>
             {refineLeft > 0 ? `Raffinement — ${refineLeft} restant${refineLeft > 1 ? 's' : ''}` : 'Analyse de compatibilité'}
           </span>
-          <span style={{ fontFamily: 'var(--sans)', fontWeight: 800, fontSize: '.85rem', color: '#1E0E04' }}>{confidence}%</span>
+          <span style={{ fontFamily: 'var(--sans)', fontWeight: 800, fontSize: '.85rem', color: '#000' }}>{confidence}%</span>
         </div>
-        <div style={{ height: '2px', background: 'rgba(30,14,4,.15)', borderRadius: '2px', overflow: 'hidden' }}>
-          <div style={{ height: '100%', width: `${Math.max(confidence, 2)}%`, background: '#4A2810', borderRadius: '2px', transition: 'width .8s cubic-bezier(.4,0,.2,1)' }} />
+        <div style={{ height: '2px', background: 'rgba(0,0,0,.15)', borderRadius: '2px', overflow: 'hidden' }}>
+          <div style={{ height: '100%', width: `${Math.max(confidence, 2)}%`, background: '#000', borderRadius: '2px', transition: 'width .8s cubic-bezier(.4,0,.2,1)' }} />
         </div>
       </div>
 
@@ -515,7 +515,7 @@ function QuestionCard({ question, pendingAnswer, visible, submitting, confidence
       <div style={{ width: '100%', maxWidth: '580px', display: 'flex', flexDirection: 'column', gap: '2rem', opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(22px)', transition: 'opacity .4s ease, transform .4s ease' }}>
 
         {/* Bold sans-serif headline — style "Time Out!" */}
-        <h2 style={{ fontFamily: 'var(--sans)', fontWeight: 900, fontSize: 'clamp(2rem,5vw,3.4rem)', lineHeight: 1.05, letterSpacing: '-.02em', color: '#140A02', textAlign: 'center' }}>
+        <h2 style={{ fontFamily: 'var(--sans)', fontWeight: 900, fontSize: 'clamp(2rem,5vw,3.4rem)', lineHeight: 1.05, letterSpacing: '-.02em', color: '#000', textAlign: 'center' }}>
           {question.question}
         </h2>
 
@@ -531,7 +531,7 @@ function QuestionCard({ question, pendingAnswer, visible, submitting, confidence
           ))}
         </div>
 
-        <p style={{ fontFamily: 'var(--sans)', fontWeight: 500, fontSize: '.58rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#4A2810', textAlign: 'center' }}>
+        <p style={{ fontFamily: 'var(--sans)', fontWeight: 500, fontSize: '.58rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#000', textAlign: 'center' }}>
           Sélectionnez une réponse pour continuer
         </p>
       </div>
@@ -552,25 +552,25 @@ function AnswerCard({ answer, isSelected, disabled, onClick }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         width: '100%', textAlign: 'left',
-        border: `2px solid ${isSelected ? '#2E1508' : hovered ? 'rgba(30,14,4,.3)' : 'rgba(30,14,4,.14)'}`,
-        background: isSelected ? '#1E0E04' : hovered ? 'rgba(255,255,255,.92)' : 'rgba(255,255,255,.78)',
+        border: `2px solid ${isSelected ? '#000' : hovered ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,.14)'}`,
+        background: isSelected ? '#000' : hovered ? 'rgba(255,255,255,.92)' : 'rgba(255,255,255,.78)',
         padding: '1rem 1.3rem', borderRadius: '10px',
         transition: 'all .22s cubic-bezier(.4,0,.2,1)',
         display: 'flex', alignItems: 'center', gap: '1rem',
         cursor: disabled ? 'default' : 'pointer',
         transform: isSelected ? 'scale(1.012)' : 'scale(1)',
-        boxShadow: isSelected ? '0 8px 32px rgba(30,14,4,.35)' : hovered ? '0 4px 16px rgba(30,14,4,.1)' : 'none',
+        boxShadow: isSelected ? '0 8px 32px rgba(0,0,0,.3)' : hovered ? '0 4px 16px rgba(0,0,0,.08)' : 'none',
       }}
     >
-      <span style={{ fontFamily: 'var(--sans)', fontSize: '.6rem', letterSpacing: '.2em', textTransform: 'uppercase', color: isSelected ? 'rgba(255,255,255,.55)' : '#4A2810', fontWeight: 700, flexShrink: 0, width: '16px', transition: 'color .2s' }}>
+      <span style={{ fontFamily: 'var(--sans)', fontSize: '.6rem', letterSpacing: '.2em', textTransform: 'uppercase', color: isSelected ? 'rgba(255,255,255,.55)' : '#000', fontWeight: 700, flexShrink: 0, width: '16px', transition: 'color .2s' }}>
         {LETTERS[answer.index]}
       </span>
       <div style={{ flex: 1 }}>
-        <p style={{ fontFamily: 'var(--sans)', fontSize: 'clamp(.9rem,2vw,1.05rem)', fontWeight: isSelected ? 700 : 500, color: isSelected ? '#FFFFFF' : '#140A02', lineHeight: 1.35, transition: 'color .2s' }}>
+        <p style={{ fontFamily: 'var(--sans)', fontSize: 'clamp(.9rem,2vw,1.05rem)', fontWeight: isSelected ? 700 : 500, color: isSelected ? '#FFF' : '#000', lineHeight: 1.35, transition: 'color .2s' }}>
           {answer.text}
         </p>
         {answer.sub && (
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '.72rem', fontWeight: 400, color: isSelected ? 'rgba(255,255,255,.6)' : '#4A2810', marginTop: '3px', lineHeight: 1.5, transition: 'color .2s' }}>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: '.72rem', fontWeight: 400, color: isSelected ? 'rgba(255,255,255,.6)' : '#000', marginTop: '3px', lineHeight: 1.5, transition: 'color .2s' }}>
             {answer.sub}
           </p>
         )}
