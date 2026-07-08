@@ -6,19 +6,19 @@ import {
   getTopCars, displayConfidence, formatQuestion, getMatchReason
 } from '../engine/quiz';
 
-/* ── Design tokens ── */
+/* ── Design tokens — palette du site ── */
 const C = {
-  bg:       '#0D0906',
-  panel:    '#110C07',
-  surface:  '#1B1009',
-  surface2: '#221408',
-  text:     '#F5EDE2',
-  mute:     'rgba(245,237,226,.45)',
-  faint:    'rgba(245,237,226,.18)',
-  accent:   '#C8956A',
-  gold:     '#D4AA6A',
-  border:   'rgba(210,175,130,.1)',
-  borderHi: 'rgba(210,175,130,.3)',
+  bg:       'var(--bg)',
+  panel:    'var(--bg-2)',
+  surface:  'var(--bg)',
+  surface2: 'var(--bg-2)',
+  text:     'var(--ink)',
+  mute:     'var(--ink-mute)',
+  faint:    'var(--ink-mute)',
+  accent:   'var(--gold)',
+  gold:     'var(--gold-2)',
+  border:   'var(--line)',
+  borderHi: 'var(--gold)',
 };
 
 const DEDUCTION_BANK = {
