@@ -29,9 +29,10 @@ export default function Header({ compareCars = [] }) {
       position: 'sticky', top: 0, zIndex: 100,
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       padding: '0 4rem', height: '68px',
-      borderBottom: '1px solid rgba(240,240,240,.1)',
-      background: 'rgba(240,235,227,.92)',
-      backdropFilter: 'blur(20px)',
+      borderBottom: '1px solid rgba(255,255,255,.08)',
+      backgroundImage: 'linear-gradient(rgba(4,8,14,.72), rgba(4,8,14,.72)), url("/pexels-photo-2770516.avif")',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center 60%',
     }}>
       <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
         <span style={{
@@ -39,7 +40,7 @@ export default function Header({ compareCars = [] }) {
           background: 'linear-gradient(135deg, var(--gold), var(--gold-2))',
           display: 'inline-block', flexShrink: 0,
         }} />
-        <span style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '1.3rem', letterSpacing: '-.02em', color: 'var(--ink)' }}>
+        <span style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '1.3rem', letterSpacing: '-.02em', color: '#fff' }}>
           Auto<span style={{ color: 'var(--gold)' }}>Assist</span>
         </span>
       </Link>
@@ -54,9 +55,9 @@ export default function Header({ compareCars = [] }) {
           height: '32px',
           left: hl.left,
           width: hl.width,
-          background: 'rgba(42,31,18,.07)',
+          background: 'rgba(255,255,255,.1)',
           borderRadius: '100px',
-          border: '1px solid rgba(42,31,18,.06)',
+          border: '1px solid rgba(255,255,255,.08)',
           opacity: hl.opacity,
           transition: 'left .32s cubic-bezier(.4,0,.2,1), width .32s cubic-bezier(.4,0,.2,1), opacity .18s ease',
           pointerEvents: 'none',
@@ -69,7 +70,7 @@ export default function Header({ compareCars = [] }) {
             style={{
               fontFamily: 'var(--sans)', fontSize: '.78rem', letterSpacing: '.06em',
               textTransform: 'uppercase',
-              color: isActive(to) ? 'var(--ink)' : 'var(--ink-mute)',
+              color: isActive(to) ? '#fff' : 'rgba(255,255,255,.6)',
               transition: 'color .2s',
               padding: '.45rem 1rem',
               borderRadius: '100px',
