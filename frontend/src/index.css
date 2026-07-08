@@ -192,6 +192,38 @@ input, select, textarea { transition: border-color .25s ease, background .25s ea
   .section-tag::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
 }
 
+/* ── Quiz Left Panel — dark luxury sidebar ── */
+@keyframes lx-rise    { to { opacity: 1; transform: translateY(0); } }
+@keyframes lx-dot-halo {
+  0%   { box-shadow: 0 0 0 0 rgba(193,123,90,.55); }
+  70%  { box-shadow: 0 0 0 10px rgba(193,123,90,0); }
+  100% { box-shadow: 0 0 0 0 rgba(193,123,90,0); }
+}
+@keyframes lx-breathe { 0%,100% { opacity: .78; } 50% { opacity: 1; } }
+@keyframes lx-shimmer {
+  0%   { transform: translateX(-100%); }
+  60%  { transform: translateX(200%); }
+  100% { transform: translateX(200%); }
+}
+.lx-reveal { opacity: 0; transform: translateY(10px); animation: lx-rise .8s var(--lx-delay,0s) forwards; }
+.lx-status-dot {
+  width: 9px; height: 9px; border-radius: 9999px;
+  background: var(--gold); flex-shrink: 0;
+  animation: lx-dot-halo 2s infinite;
+}
+.lx-breathe { animation: lx-breathe 3.4s ease-in-out infinite; }
+.lx-conf-fill {
+  height: 100%; border-radius: 2px;
+  transition: width 1.8s cubic-bezier(.22,1,.36,1);
+  position: relative; overflow: hidden;
+}
+.lx-conf-fill::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.5), transparent);
+  transform: translateX(-100%);
+  animation: lx-shimmer 2.6s infinite;
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }

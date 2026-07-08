@@ -350,115 +350,142 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
   const tags = PERSONALITY[cat] || PERSONALITY.practical;
   const toScore = p => Math.min(Math.round(50 + (p || 0) * 140), 99);
 
+  const DARK  = '#0F0A07';
+  const GOLD  = 'var(--gold)';
+  const GOLDR = '#C17B5A';
+
   return (
-    <div style={{ width: '330px', flexShrink: 0, background: C.panel, borderRight: `1px solid ${C.border}`, height: '100vh', overflowY: 'auto', padding: '1.75rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '1.4rem' }}>
+    <div style={{ width: '330px', flexShrink: 0, height: '100vh', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
 
-      {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <span style={{ width: 6, height: 6, borderRadius: '50%', background: C.accent, flexShrink: 0, animation: 'pulse-dot 1.5s infinite' }} />
-        <span style={{ fontFamily: 'var(--sans)', fontSize: '.54rem', letterSpacing: '.28em', textTransform: 'uppercase', color: C.accent }}>
-          IA Analysis — En direct
-        </span>
-      </div>
+      {/* Bokeh ambient — sunset at low opacity */}
+      <img src="/sunset.jpg" aria-hidden="true"
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.22, mixBlendMode: 'screen', pointerEvents: 'none', userSelect: 'none' }} />
 
-      {/* Current match */}
-      <div style={{ background: C.surface, borderRadius: '12px', padding: '1.2rem', border: `1px solid ${top1 ? C.borderHi : C.border}`, transition: 'border-color .5s' }}>
-        <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: C.faint, marginBottom: '.65rem' }}>
-          Correspondance actuelle
-        </p>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-          <div>
-            {top1 ? (
-              <>
-                <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '1.1rem', color: C.text, lineHeight: 1.1 }}>{top1.make}</p>
-                <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 400, fontSize: '.9rem', color: C.mute, lineHeight: 1.1 }}>{top1.model}</p>
-              </>
-            ) : (
-              <p style={{ fontFamily: 'var(--sans)', fontSize: '.7rem', color: C.faint }}>Analyse en cours…</p>
-            )}
-          </div>
-          {top1 && (
-            <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '1.9rem', color: C.accent, lineHeight: 1, transition: 'all .6s' }}>
-              {toScore(top1.prob)}<span style={{ fontSize: '.45em', color: C.mute }}>%</span>
-            </p>
+      {/* Dark tint overlay */}
+      <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: `linear-gradient(180deg, rgba(15,10,7,.62) 0%, rgba(15,10,7,.90) 100%)` }} />
+
+      {/* Content */}
+      <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', height: '100%', padding: '1.75rem 1.5rem', gap: '1.15rem', overflowY: 'auto' }}>
+
+        {/* Header — pulsing dot + label */}
+        <header className="lx-reveal" style={{ '--lx-delay': '.05s', display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <span className="lx-status-dot" aria-hidden="true" />
+          <span style={{ fontFamily: 'var(--sans)', fontSize: '.54rem', letterSpacing: '.28em', textTransform: 'uppercase', color: GOLD }}>
+            IA Analysis — En direct
+          </span>
+        </header>
+
+        {/* Top divider */}
+        <hr className="lx-reveal" style={{ '--lx-delay': '.15s', border: 0, height: '1px', background: 'rgba(193,123,90,.22)' }} />
+
+        {/* Current match card */}
+        <section className="lx-reveal" style={{
+          '--lx-delay': '.25s',
+          borderRadius: '12px', padding: '1.15rem 1.1rem',
+          border: `1px solid rgba(193,123,90,${top1 ? '.32' : '.12'})`,
+          background: 'rgba(193,123,90,.06)',
+          transition: 'border-color .5s',
+        }}>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,.4)', marginBottom: '.6rem' }}>
+            Correspondance actuelle
+          </p>
+          {top1 ? (
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+              <div className="lx-breathe">
+                <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 700, fontSize: '1.1rem', color: '#fff', lineHeight: 1.1 }}>{top1.make}</p>
+                <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 400, fontSize: '.9rem', color: 'rgba(255,255,255,.55)', lineHeight: 1.1 }}>{top1.model}</p>
+              </div>
+              <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '2rem', color: GOLD, lineHeight: 1, transition: 'all .6s' }}>
+                {toScore(top1.prob)}<span style={{ fontSize: '.42em', color: 'rgba(193,123,90,.55)' }}>%</span>
+              </p>
+            </div>
+          ) : (
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '.72rem', color: 'rgba(255,255,255,.35)', fontStyle: 'italic' }}>Analyse en cours…</p>
           )}
-        </div>
-      </div>
+        </section>
 
-      {/* Alternatives */}
-      {(top2 || top3) && (
-        <div>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: C.faint, marginBottom: '.65rem' }}>Alternatives</p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-            {[top2, top3].filter(Boolean).map((car, i) => (
-              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '.5rem .75rem', background: C.surface, borderRadius: '8px', border: `1px solid ${C.border}` }}>
-                <span style={{ fontFamily: 'var(--sans)', fontSize: '.72rem', color: C.mute }}>{car.make} {car.model}</span>
-                <span style={{ fontFamily: 'var(--serif-display)', fontSize: '.85rem', color: C.gold }}>{toScore(car.prob)}%</span>
-              </div>
-            ))}
+        {/* Confidence gauge */}
+        <section className="lx-reveal" style={{ '--lx-delay': '.38s' }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '8px' }}>
+            <span style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,.4)' }}>Confiance</span>
+            <span style={{ fontFamily: 'var(--serif-display)', fontSize: '.85rem', color: GOLD }}>{confidence}%</span>
           </div>
-        </div>
-      )}
-
-      {/* Confidence */}
-      <div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '7px' }}>
-          <span style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: C.faint }}>Confiance</span>
-          <span style={{ fontFamily: 'var(--serif-display)', fontSize: '.85rem', color: C.accent }}>{confidence}%</span>
-        </div>
-        <div style={{ height: '2px', background: C.border, borderRadius: '2px', overflow: 'hidden' }}>
-          <div style={{ height: '100%', width: `${confidence}%`, background: `linear-gradient(90deg, ${C.gold}, ${C.accent})`, borderRadius: '2px', transition: 'width .8s cubic-bezier(.4,0,.2,1)' }} />
-        </div>
-      </div>
-
-      {/* Personality */}
-      {confidence > 15 && (
-        <div>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: C.faint, marginBottom: '.65rem' }}>Profil détecté</p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-            {tags.map(tag => (
-              <span key={tag} style={{ fontFamily: 'var(--sans)', fontSize: '.63rem', letterSpacing: '.08em', color: C.accent, background: 'rgba(200,149,106,.1)', padding: '3px 9px', borderRadius: '20px', border: '1px solid rgba(200,149,106,.18)' }}>{tag}</span>
-            ))}
+          <div style={{ height: '3px', background: 'rgba(255,255,255,.1)', borderRadius: '3px', overflow: 'hidden' }}>
+            <div className="lx-conf-fill" style={{ width: `${confidence}%`, background: `linear-gradient(90deg, #7A4A38, ${GOLDR})` }} />
           </div>
-        </div>
-      )}
+        </section>
 
-      {/* Budget */}
-      {confidence > 25 && (
-        <div style={{ padding: '.7rem .75rem', background: C.surface, borderRadius: '8px', border: `1px solid ${C.border}` }}>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.2em', textTransform: 'uppercase', color: C.faint, marginBottom: '4px' }}>Budget estimé</p>
-          <p style={{ fontFamily: 'var(--serif-display)', fontSize: '.8rem', color: C.text }}>{BUDGET_MAP[cat]}</p>
-        </div>
-      )}
-
-      {/* Refinement badge */}
-      {refineLeft > 0 && (
-        <div style={{ padding: '.6rem .75rem', background: 'rgba(200,149,106,.08)', borderRadius: '8px', border: '1px solid rgba(200,149,106,.2)' }}>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.2em', textTransform: 'uppercase', color: C.accent, marginBottom: '3px' }}>Mode raffinement</p>
-          <p style={{ fontFamily: 'var(--serif-display)', fontSize: '.95rem', color: C.text }}>{refineLeft} question{refineLeft > 1 ? 's' : ''} restante{refineLeft > 1 ? 's' : ''}</p>
-        </div>
-      )}
-
-      {/* Deduction log */}
-      {deductions.length > 0 && (
-        <div style={{ flex: 1 }}>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: C.faint, marginBottom: '.65rem' }}>Déductions</p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
-            {deductions.map((d, i) => (
-              <div key={`${d}-${i}`} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', opacity: Math.max(0.15, 1 - i * 0.13), transition: 'opacity .4s' }}>
-                <span style={{ color: C.accent, fontSize: '.58rem', flexShrink: 0, marginTop: '2px' }}>✓</span>
-                <span style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', color: C.mute, lineHeight: 1.45 }}>{d}</span>
-              </div>
-            ))}
+        {/* Alternatives */}
+        {(top2 || top3) && (
+          <div className="lx-reveal" style={{ '--lx-delay': '.48s' }}>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,.4)', marginBottom: '.5rem' }}>Alternatives</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+              {[top2, top3].filter(Boolean).map((car, i) => (
+                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '.45rem .75rem', background: 'rgba(255,255,255,.05)', borderRadius: '8px', border: '1px solid rgba(255,255,255,.08)' }}>
+                  <span style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', color: 'rgba(255,255,255,.5)' }}>{car.make} {car.model}</span>
+                  <span style={{ fontFamily: 'var(--serif-display)', fontSize: '.82rem', color: GOLD }}>{toScore(car.prob)}%</span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Footer */}
-      <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: '1rem', marginTop: 'auto' }}>
-        <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.1em', color: C.faint, lineHeight: 1.7 }}>
-          Analyse parmi {CARS.length} véhicules en temps réel
-        </p>
+        {/* Personality */}
+        {confidence > 15 && (
+          <div>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,.4)', marginBottom: '.5rem' }}>Profil détecté</p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
+              {tags.map(tag => (
+                <span key={tag} style={{ fontFamily: 'var(--sans)', fontSize: '.6rem', letterSpacing: '.08em', color: GOLD, background: 'rgba(193,123,90,.12)', padding: '3px 9px', borderRadius: '20px', border: '1px solid rgba(193,123,90,.25)' }}>{tag}</span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Budget */}
+        {confidence > 25 && (
+          <div style={{ padding: '.65rem .75rem', background: 'rgba(255,255,255,.04)', borderRadius: '8px', border: '1px solid rgba(255,255,255,.08)' }}>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,.38)', marginBottom: '4px' }}>Budget estimé</p>
+            <p style={{ fontFamily: 'var(--serif-display)', fontSize: '.82rem', color: 'rgba(255,255,255,.72)' }}>{BUDGET_MAP[cat]}</p>
+          </div>
+        )}
+
+        {/* Refinement badge */}
+        {refineLeft > 0 && (
+          <div style={{ padding: '.6rem .75rem', background: 'rgba(193,123,90,.09)', borderRadius: '8px', border: '1px solid rgba(193,123,90,.22)' }}>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.2em', textTransform: 'uppercase', color: GOLD, marginBottom: '3px' }}>Mode raffinement</p>
+            <p style={{ fontFamily: 'var(--serif-display)', fontSize: '.95rem', color: '#fff' }}>{refineLeft} question{refineLeft > 1 ? 's' : ''} restante{refineLeft > 1 ? 's' : ''}</p>
+          </div>
+        )}
+
+        {/* Deduction log */}
+        {deductions.length > 0 && (
+          <div style={{ flex: 1 }}>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,.4)', marginBottom: '.5rem' }}>Déductions</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {deductions.map((d, i) => (
+                <div key={`${d}-${i}`} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', opacity: Math.max(0.15, 1 - i * 0.13), transition: 'opacity .4s' }}>
+                  <span style={{ color: GOLD, fontSize: '.55rem', flexShrink: 0, marginTop: '2px' }}>✓</span>
+                  <span style={{ fontFamily: 'var(--sans)', fontSize: '.65rem', color: 'rgba(255,255,255,.48)', lineHeight: 1.45 }}>{d}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Spacer */}
+        <div style={{ flex: 1 }} />
+
+        {/* Bottom divider */}
+        <hr className="lx-reveal" style={{ '--lx-delay': '.55s', border: 0, height: '1px', background: 'rgba(193,123,90,.22)' }} />
+
+        {/* Footer */}
+        <footer className="lx-reveal" style={{ '--lx-delay': '.65s' }}>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.1em', color: 'rgba(255,255,255,.32)', lineHeight: 1.7, display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
+            <span style={{ color: GOLD, fontSize: '.6rem', flexShrink: 0, marginTop: '1px' }}>✦</span>
+            <span>Analyse parmi {CARS.length} véhicules en temps réel</span>
+          </p>
+        </footer>
       </div>
     </div>
   );
