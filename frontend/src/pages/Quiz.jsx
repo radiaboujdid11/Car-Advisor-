@@ -360,9 +360,26 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
   return (
     <div style={{ width: '330px', flexShrink: 0, height: '100vh', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column', background: '#170E00' }}>
 
-      {/* Bokeh — sunset en screen blend crée les cercles dorés sur fond noir */}
-      <img src="/sunset.jpg" aria-hidden="true"
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.28, mixBlendMode: 'screen', pointerEvents: 'none', userSelect: 'none' }} />
+      {/* Bokeh CSS — cercles flous dorés */}
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
+        {[
+          { w: 180, h: 180, top: '4%',  left: '55%',  color: 'rgba(180,130,30,.32)' },
+          { w: 140, h: 140, top: '28%', left: '10%',  color: 'rgba(160,110,20,.25)' },
+          { w: 200, h: 200, top: '42%', left: '50%',  color: 'rgba(170,120,25,.28)' },
+          { w: 120, h: 120, top: '65%', left: '5%',   color: 'rgba(150,100,15,.22)' },
+          { w: 160, h: 160, top: '72%', left: '55%',  color: 'rgba(165,115,22,.26)' },
+          { w: 100, h: 100, top: '88%', left: '30%',  color: 'rgba(140,95,12,.2)'  },
+        ].map((b, i) => (
+          <div key={i} style={{
+            position: 'absolute', borderRadius: '50%',
+            width: b.w, height: b.h,
+            top: b.top, left: b.left,
+            background: b.color,
+            filter: 'blur(38px)',
+            transform: 'translate(-50%, -50%)',
+          }} />
+        ))}
+      </div>
 
       {/* Content */}
       <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', height: '100%', padding: '1.75rem 1.5rem', gap: '1.15rem', overflowY: 'auto' }}>
