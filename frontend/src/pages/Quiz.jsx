@@ -258,7 +258,7 @@ export default function Quiz({ onComplete }) {
         <source src="/car-bg.mp4" type="video/mp4" />
       </video>
       {/* Overlay to keep text readable over video */}
-      <div style={{ position: 'absolute', right: 0, top: 0, width: 'calc(100% - 330px)', height: '100%', background: 'rgba(240,232,220,0.55)', pointerEvents: 'none', zIndex: 0 }} />
+      <div style={{ position: 'absolute', right: 0, top: 0, width: 'calc(100% - 330px)', height: '100%', background: 'rgba(240,232,220,0.28)', pointerEvents: 'none', zIndex: 0 }} />
 
       <LeftPanel
         confidence={confidence}
