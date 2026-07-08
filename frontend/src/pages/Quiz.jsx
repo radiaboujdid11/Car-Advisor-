@@ -354,12 +354,15 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
   const GOLD  = 'var(--gold)';
   const GOLDR = '#C17B5A';
 
-  return (
-    <div style={{ width: '330px', flexShrink: 0, height: '100vh', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column', background: 'var(--bg)' }}>
+  const TXT  = '#D4B07A';   /* crème dorée — texte principal */
+  const MUTE = '#A07840';   /* dorée atténuée — labels */
 
-      {/* Bokeh sunset overlay — multiply blends warm amber into cream, keeps text readable */}
+  return (
+    <div style={{ width: '330px', flexShrink: 0, height: '100vh', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column', background: '#170E00' }}>
+
+      {/* Bokeh — sunset en screen blend crée les cercles dorés sur fond noir */}
       <img src="/sunset.jpg" aria-hidden="true"
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.35, mixBlendMode: 'multiply', pointerEvents: 'none', userSelect: 'none' }} />
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.28, mixBlendMode: 'screen', pointerEvents: 'none', userSelect: 'none' }} />
 
       {/* Content */}
       <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', height: '100%', padding: '1.75rem 1.5rem', gap: '1.15rem', overflowY: 'auto' }}>
@@ -367,8 +370,8 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
         {/* Header — pulsing dot + label */}
         <header className="lx-reveal" style={{ '--lx-delay': '.05s', display: 'flex', alignItems: 'center', gap: '10px' }}>
           <span className="lx-status-dot" aria-hidden="true" />
-          <span style={{ fontFamily: 'var(--sans)', fontSize: '.54rem', letterSpacing: '.28em', textTransform: 'uppercase', color: GOLD }}>
-            IA Analysis — En direct
+          <span style={{ fontFamily: 'var(--sans)', fontSize: '.54rem', letterSpacing: '.28em', textTransform: 'uppercase', color: TXT }}>
+            IA Analyse — En direct
           </span>
         </header>
 
@@ -379,35 +382,35 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
         <section className="lx-reveal" style={{
           '--lx-delay': '.25s',
           borderRadius: '12px', padding: '1.15rem 1.1rem',
-          border: `1px solid rgba(0,0,0,${top1 ? '.18' : '.09'})`,
-          background: 'rgba(255,255,255,.45)',
+          border: `1px solid rgba(212,176,122,${top1 ? '.30' : '.12'})`,
+          background: 'rgba(255,255,255,.05)',
           transition: 'border-color .5s',
         }}>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#000', marginBottom: '.6rem' }}>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: MUTE, marginBottom: '.6rem' }}>
             Correspondance actuelle
           </p>
           {top1 ? (
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
               <div className="lx-breathe">
-                <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 700, fontSize: '1.1rem', color: '#000', lineHeight: 1.1 }}>{top1.make}</p>
-                <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 400, fontSize: '.9rem', color: 'rgba(0,0,0,.6)', lineHeight: 1.1 }}>{top1.model}</p>
+                <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 700, fontSize: '1.1rem', color: TXT, lineHeight: 1.1 }}>{top1.make}</p>
+                <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 400, fontSize: '.9rem', color: MUTE, lineHeight: 1.1 }}>{top1.model}</p>
               </div>
-              <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '2rem', color: GOLD, lineHeight: 1, transition: 'all .6s' }}>
-                {toScore(top1.prob)}<span style={{ fontSize: '.42em', color: GOLDR }}>%</span>
+              <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: '2rem', color: TXT, lineHeight: 1, transition: 'all .6s' }}>
+                {toScore(top1.prob)}<span style={{ fontSize: '.42em', color: MUTE }}>%</span>
               </p>
             </div>
           ) : (
-            <p style={{ fontFamily: 'var(--sans)', fontSize: '.72rem', color: 'rgba(0,0,0,.5)', fontStyle: 'italic' }}>Analyse en cours…</p>
+            <p style={{ fontFamily: 'var(--serif-display)', fontSize: '1rem', color: TXT, fontStyle: 'italic' }}>Analyse en cours…</p>
           )}
         </section>
 
         {/* Confidence gauge */}
         <section className="lx-reveal" style={{ '--lx-delay': '.38s' }}>
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '8px' }}>
-            <span style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#000' }}>Confiance</span>
-            <span style={{ fontFamily: 'var(--serif-display)', fontSize: '.85rem', color: GOLD }}>{confidence}%</span>
+            <span style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: MUTE }}>Confiance</span>
+            <span style={{ fontFamily: 'var(--serif-display)', fontSize: '.85rem', color: TXT }}>{confidence}%</span>
           </div>
-          <div style={{ height: '3px', background: 'rgba(0,0,0,.1)', borderRadius: '3px', overflow: 'hidden' }}>
+          <div style={{ height: '3px', background: 'rgba(212,176,122,.15)', borderRadius: '3px', overflow: 'hidden' }}>
             <div className="lx-conf-fill" style={{ width: `${confidence}%`, background: `linear-gradient(90deg, #7A4A38, ${GOLDR})` }} />
           </div>
         </section>
@@ -415,12 +418,12 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
         {/* Alternatives */}
         {(top2 || top3) && (
           <div className="lx-reveal" style={{ '--lx-delay': '.48s' }}>
-            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#000', marginBottom: '.5rem' }}>Alternatives</p>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: MUTE, marginBottom: '.5rem' }}>Alternatives</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
               {[top2, top3].filter(Boolean).map((car, i) => (
-                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '.45rem .75rem', background: 'rgba(255,255,255,.4)', borderRadius: '8px', border: '1px solid rgba(0,0,0,.1)' }}>
-                  <span style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', color: '#000' }}>{car.make} {car.model}</span>
-                  <span style={{ fontFamily: 'var(--serif-display)', fontSize: '.82rem', color: GOLD }}>{toScore(car.prob)}%</span>
+                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '.45rem .75rem', background: 'rgba(255,255,255,.05)', borderRadius: '8px', border: '1px solid rgba(212,176,122,.15)' }}>
+                  <span style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', color: TXT }}>{car.make} {car.model}</span>
+                  <span style={{ fontFamily: 'var(--serif-display)', fontSize: '.82rem', color: TXT }}>{toScore(car.prob)}%</span>
                 </div>
               ))}
             </div>
@@ -430,10 +433,10 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
         {/* Personality */}
         {confidence > 15 && (
           <div>
-            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#000', marginBottom: '.5rem' }}>Profil détecté</p>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: MUTE, marginBottom: '.5rem' }}>Profil détecté</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
               {tags.map(tag => (
-                <span key={tag} style={{ fontFamily: 'var(--sans)', fontSize: '.6rem', letterSpacing: '.08em', color: GOLD, background: 'rgba(193,123,90,.12)', padding: '3px 9px', borderRadius: '20px', border: '1px solid rgba(193,123,90,.25)' }}>{tag}</span>
+                <span key={tag} style={{ fontFamily: 'var(--sans)', fontSize: '.6rem', letterSpacing: '.08em', color: TXT, background: 'rgba(212,176,122,.1)', padding: '3px 9px', borderRadius: '20px', border: '1px solid rgba(212,176,122,.22)' }}>{tag}</span>
               ))}
             </div>
           </div>
@@ -441,9 +444,9 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
 
         {/* Budget */}
         {confidence > 25 && (
-          <div style={{ padding: '.65rem .75rem', background: 'rgba(255,255,255,.4)', borderRadius: '8px', border: '1px solid rgba(0,0,0,.1)' }}>
-            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#000', marginBottom: '4px' }}>Budget estimé</p>
-            <p style={{ fontFamily: 'var(--serif-display)', fontSize: '.82rem', color: '#000' }}>{BUDGET_MAP[cat]}</p>
+          <div style={{ padding: '.65rem .75rem', background: 'rgba(255,255,255,.05)', borderRadius: '8px', border: '1px solid rgba(212,176,122,.15)' }}>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.2em', textTransform: 'uppercase', color: MUTE, marginBottom: '4px' }}>Budget estimé</p>
+            <p style={{ fontFamily: 'var(--serif-display)', fontSize: '.82rem', color: TXT }}>{BUDGET_MAP[cat]}</p>
           </div>
         )}
 
@@ -458,12 +461,12 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
         {/* Deduction log */}
         {deductions.length > 0 && (
           <div style={{ flex: 1 }}>
-            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#000', marginBottom: '.5rem' }}>Déductions</p>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.22em', textTransform: 'uppercase', color: MUTE, marginBottom: '.5rem' }}>Déductions</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
               {deductions.map((d, i) => (
                 <div key={`${d}-${i}`} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', opacity: Math.max(0.15, 1 - i * 0.13), transition: 'opacity .4s' }}>
                   <span style={{ color: GOLD, fontSize: '.55rem', flexShrink: 0, marginTop: '2px' }}>✓</span>
-                  <span style={{ fontFamily: 'var(--sans)', fontSize: '.65rem', color: '#000', lineHeight: 1.45 }}>{d}</span>
+                  <span style={{ fontFamily: 'var(--sans)', fontSize: '.65rem', color: TXT, lineHeight: 1.45 }}>{d}</span>
                 </div>
               ))}
             </div>
@@ -478,8 +481,8 @@ function LeftPanel({ confidence, leadingCar, topProbs, deductions, refineLeft })
 
         {/* Footer */}
         <footer className="lx-reveal" style={{ '--lx-delay': '.65s' }}>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.1em', color: '#000', lineHeight: 1.7, display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
-            <span style={{ color: GOLD, fontSize: '.6rem', flexShrink: 0, marginTop: '1px' }}>✦</span>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: '.52rem', letterSpacing: '.1em', color: MUTE, lineHeight: 1.7, display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
+            <span style={{ color: TXT, fontSize: '.6rem', flexShrink: 0, marginTop: '1px' }}>✦</span>
             <span>Analyse parmi {CARS.length} véhicules en temps réel</span>
           </p>
         </footer>
