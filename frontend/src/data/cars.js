@@ -1,5 +1,6 @@
-// AUTO-GENERATED — run: node backend/scripts/generateStaticCars.js
-// 295 voitures — 2026-07-03
+// FICHIER GÉNÉRÉ — ne pas modifier à la main.
+// Source : data-pipeline/sources/ — régénérer avec : cd data-pipeline && npm run build
+// 277 voitures
 
 export const CARS = [
   {
@@ -72,7 +73,7 @@ export const CARS = [
     "consumption_l100k": 5.2,
     "co2_g_km": 119,
     "category": "eco",
-    "photo_url": null,
+    "photo_url": "https://www.moteur.ma/storage/media/images/models/nouvelle-a1-994.png",
     "carquery_id": "ma_audi_a1_2025",
     "description": "Citadine premium allemande — la plus petite Audi, premium dès l'entrée. Idéale pour Casablanca.",
     "created_at": "2026-07-03 12:26:22"
@@ -147,7 +148,7 @@ export const CARS = [
     "consumption_l100k": 6.8,
     "co2_g_km": 155,
     "category": "luxury",
-    "photo_url": null,
+    "photo_url": "https://www.moteur.ma/storage/media/images/models/nouvelle-a5-870.jpg",
     "carquery_id": "ma_audi_a5_2025",
     "description": "Berline/Sportback premium — 204ch, design sculpté, cockpit virtuel. L'Audi du cadre ambitieux.",
     "created_at": "2026-07-03 12:26:22"
@@ -192,7 +193,7 @@ export const CARS = [
     "consumption_l100k": 7.2,
     "co2_g_km": 164,
     "category": "luxury",
-    "photo_url": null,
+    "photo_url": "https://www.moteur.ma/storage/media/images/models/nouvelle-a6-906.png",
     "carquery_id": "ma_audi_a6_2025",
     "description": "Berline executive Audi — technologie mild-hybrid, habitacle ultra-premium, le choix des dirigeants marocains.",
     "created_at": "2026-07-03 12:26:22"
@@ -207,7 +208,7 @@ export const CARS = [
     "consumption_l100k": 7.8,
     "co2_g_km": 178,
     "category": "luxury",
-    "photo_url": null,
+    "photo_url": "https://www.moteur.ma/storage/media/images/models/nouvelle-a7-596.png",
     "carquery_id": "ma_audi_a7_2025",
     "description": "Sportback grand tourisme — 340ch, silhouette coupé 5 portes, le summum de l'élégance sportive Audi.",
     "created_at": "2026-07-03 12:26:22"
@@ -222,7 +223,7 @@ export const CARS = [
     "consumption_l100k": 8,
     "co2_g_km": 183,
     "category": "luxury",
-    "photo_url": null,
+    "photo_url": "https://www.moteur.ma/storage/media/images/models/nouvelle-a8-570.png",
     "carquery_id": "ma_audi_a8_2025",
     "description": "La limousine Audi ultime — prestige absolu, massage, suspension pneumatique. La rivale de la Classe S au Maroc.",
     "created_at": "2026-07-03 12:26:22"
@@ -237,7 +238,7 @@ export const CARS = [
     "consumption_l100k": 5.5,
     "co2_g_km": 126,
     "category": "eco",
-    "photo_url": null,
+    "photo_url": "https://www.moteur.ma/storage/media/images/models/nouvelle-q2-435.png",
     "carquery_id": "ma_audi_q2_2025",
     "description": "SUV compact premium urbain — le plus petit SUV Audi, style assertif, parfait pour les ruelles de Marrakech.",
     "created_at": "2026-07-03 12:26:22"
@@ -252,7 +253,7 @@ export const CARS = [
     "consumption_l100k": 6.5,
     "co2_g_km": 148,
     "category": "practical",
-    "photo_url": null,
+    "photo_url": "https://www.moteur.ma/storage/media/images/models/nouvelle-q3-612.png",
     "carquery_id": "ma_audi_q3_2025",
     "description": "SUV familial premium — espace, technologie, prestige accessible. L'entrée dans les SUV Audi au Maroc.",
     "created_at": "2026-07-03 12:26:22"
@@ -267,7 +268,7 @@ export const CARS = [
     "consumption_l100k": 6.7,
     "co2_g_km": 153,
     "category": "practical",
-    "photo_url": null,
+    "photo_url": "https://www.moteur.ma/storage/media/images/models/nouvelle-q3-sportback-294.png",
     "carquery_id": "ma_audi_q3_sportback_2025",
     "description": "SUV coupé premium — la ligne sportive du Q3, toit fuyant élégant. Style avant la raison.",
     "created_at": "2026-07-03 12:26:22"
@@ -513,21 +514,6 @@ export const CARS = [
     "created_at": "2026-07-03 12:37:18"
   },
   {
-    "id": 137,
-    "make": "BMW",
-    "model": "Série 3",
-    "year": 2023,
-    "price_eur": 48500,
-    "power_hp": 156,
-    "consumption_l100k": 6.5,
-    "co2_g_km": 149,
-    "category": "luxury",
-    "photo_url": null,
-    "carquery_id": "bmw-série-3-2023",
-    "description": "BMW Série 3 2023 — La référence des berlines sportives premium, entre dynamisme et raffinement.",
-    "created_at": "2026-05-21 10:12:01"
-  },
-  {
     "id": 138,
     "make": "BMW",
     "model": "Série 3",
@@ -571,21 +557,6 @@ export const CARS = [
     "carquery_id": "ma_bmw_serie4_2025",
     "description": "Coupé 4 portes BMW — la grande gueule de la gamme, sportivité assumée et présence imposante.",
     "created_at": "2026-07-03 12:37:18"
-  },
-  {
-    "id": 139,
-    "make": "BMW",
-    "model": "Série 5",
-    "year": 2023,
-    "price_eur": 62000,
-    "power_hp": 252,
-    "consumption_l100k": 6.8,
-    "co2_g_km": 154,
-    "category": "luxury",
-    "photo_url": null,
-    "carquery_id": "bmw-série-5-2023",
-    "description": "BMW Série 5 2023 — Berline executive alliant confort supérieur et performances affirmées.",
-    "created_at": "2026-05-21 10:12:01"
   },
   {
     "id": 140,
@@ -691,21 +662,6 @@ export const CARS = [
     "carquery_id": "ma_bmw_x4_2025",
     "description": "SAV coupé BMW — la sportivité du X3 sous une ligne de toit sculptée. Style avant tout.",
     "created_at": "2026-07-03 12:37:18"
-  },
-  {
-    "id": 141,
-    "make": "BMW",
-    "model": "X5",
-    "year": 2023,
-    "price_eur": 82000,
-    "power_hp": 340,
-    "consumption_l100k": 8.2,
-    "co2_g_km": 188,
-    "category": "luxury",
-    "photo_url": null,
-    "carquery_id": "bmw-x5-2023",
-    "description": "BMW X5 2023 — SUV premium imposant, synonyme de prestige et de puissance.",
-    "created_at": "2026-05-21 10:12:01"
   },
   {
     "id": 142,
@@ -2028,21 +1984,6 @@ export const CARS = [
     "created_at": "2026-07-03 12:22:20"
   },
   {
-    "id": 187,
-    "make": "Hyundai",
-    "model": "Tucson",
-    "year": 2023,
-    "price_eur": 35000,
-    "power_hp": 230,
-    "consumption_l100k": 5.9,
-    "co2_g_km": 134,
-    "category": "practical",
-    "photo_url": null,
-    "carquery_id": "hyundai-tucson-2023",
-    "description": "Hyundai Tucson 2023 — SUV hybride familial au design audacieux et technologique.",
-    "created_at": "2026-05-21 10:12:01"
-  },
-  {
     "id": 188,
     "make": "Hyundai",
     "model": "Tucson",
@@ -2266,21 +2207,6 @@ export const CARS = [
     "carquery_id": "ma_kia_picanto_2023",
     "description": "Citadine compacte coréenne, idéale pour les embouteillages de Casablanca.",
     "created_at": "2026-06-13 12:02:41"
-  },
-  {
-    "id": 195,
-    "make": "Kia",
-    "model": "Sportage",
-    "year": 2023,
-    "price_eur": 33000,
-    "power_hp": 230,
-    "consumption_l100k": 5.9,
-    "co2_g_km": 135,
-    "category": "practical",
-    "photo_url": null,
-    "carquery_id": "kia-sportage-2023",
-    "description": "Kia Sportage 2023 — SUV hybride au design affirmé, technologie et confort réunis.",
-    "created_at": "2026-05-21 10:12:01"
   },
   {
     "id": 196,
@@ -2613,66 +2539,6 @@ export const CARS = [
     "created_at": "2026-07-03 13:03:11"
   },
   {
-    "id": 273,
-    "make": "Mercedes",
-    "model": "Classe C",
-    "year": 2023,
-    "price_eur": 54000,
-    "power_hp": 170,
-    "consumption_l100k": 6.6,
-    "co2_g_km": 150,
-    "category": "luxury",
-    "photo_url": null,
-    "carquery_id": "ma_mercedes_classec_2023",
-    "description": "La berline premium qui définit le standing à Casablanca. La Classe C, ça se remarque.",
-    "created_at": "2026-06-13 12:02:41"
-  },
-  {
-    "id": 274,
-    "make": "Mercedes",
-    "model": "Classe E",
-    "year": 2023,
-    "price_eur": 88000,
-    "power_hp": 197,
-    "consumption_l100k": 7.1,
-    "co2_g_km": 161,
-    "category": "luxury",
-    "photo_url": null,
-    "carquery_id": "ma_mercedes_classe_e_2023",
-    "description": "L'excellence executive de Mercedes — pour ceux qui ont tout accompli. Le choix des grands patrons.",
-    "created_at": "2026-06-13 12:02:41"
-  },
-  {
-    "id": 294,
-    "make": "Mercedes",
-    "model": "GLC",
-    "year": 2024,
-    "price_eur": 111111,
-    "power_hp": 258,
-    "consumption_l100k": 7.8,
-    "co2_g_km": 183,
-    "category": "luxury",
-    "photo_url": null,
-    "carquery_id": "ma_mercedes_glc_2024",
-    "description": "SUV premium compact Mercedes — le symbole du succès à Casa et Rabat.",
-    "created_at": "2026-06-14 15:04:44"
-  },
-  {
-    "id": 275,
-    "make": "Mercedes",
-    "model": "GLE",
-    "year": 2023,
-    "price_eur": 105000,
-    "power_hp": 258,
-    "consumption_l100k": 9.2,
-    "co2_g_km": 211,
-    "category": "luxury",
-    "photo_url": null,
-    "carquery_id": "ma_mercedes_gle_2023",
-    "description": "Le SUV de luxe iconique — présence totale, confort de limousine. Incontournable à Marrakech.",
-    "created_at": "2026-06-13 12:02:41"
-  },
-  {
     "id": 151,
     "make": "Mercedes-Benz",
     "model": "AMG GT",
@@ -2763,21 +2629,6 @@ export const CARS = [
     "created_at": "2026-07-03 13:01:43"
   },
   {
-    "id": 147,
-    "make": "Mercedes-Benz",
-    "model": "Classe C",
-    "year": 2023,
-    "price_eur": 51000,
-    "power_hp": 204,
-    "consumption_l100k": 6.5,
-    "co2_g_km": 148,
-    "category": "luxury",
-    "photo_url": null,
-    "carquery_id": "mercedes-benz-classe-c-2023",
-    "description": "Mercedes Classe C 2023 — Berline intermédiaire alliant élégance et technologies de pointe.",
-    "created_at": "2026-05-21 10:12:01"
-  },
-  {
     "id": 148,
     "make": "Mercedes-Benz",
     "model": "Classe C",
@@ -2791,6 +2642,21 @@ export const CARS = [
     "carquery_id": "mercedes-benz-classe-c-2024",
     "description": "Mercedes Classe C 2024 — Berline intermédiaire alliant élégance et technologies de pointe.",
     "created_at": "2026-05-21 10:12:01"
+  },
+  {
+    "id": 273,
+    "make": "Mercedes-Benz",
+    "model": "Classe C",
+    "year": 2023,
+    "price_eur": 54000,
+    "power_hp": 170,
+    "consumption_l100k": 6.6,
+    "co2_g_km": 150,
+    "category": "luxury",
+    "photo_url": null,
+    "carquery_id": "ma_mercedes_classec_2023",
+    "description": "La berline premium qui définit le standing à Casablanca. La Classe C, ça se remarque.",
+    "created_at": "2026-06-13 12:02:41"
   },
   {
     "id": 389,
@@ -2821,6 +2687,21 @@ export const CARS = [
     "carquery_id": "ma_mb_classcla_2025",
     "description": "Berline coupé 4 portes premium — ligne fastback élégante, profil sport, prestige Mercedes à prix compact. Le style sans concession.",
     "created_at": "2026-07-03 13:01:43"
+  },
+  {
+    "id": 274,
+    "make": "Mercedes-Benz",
+    "model": "Classe E",
+    "year": 2023,
+    "price_eur": 88000,
+    "power_hp": 197,
+    "consumption_l100k": 7.1,
+    "co2_g_km": 161,
+    "category": "luxury",
+    "photo_url": null,
+    "carquery_id": "ma_mercedes_classe_e_2023",
+    "description": "L'excellence executive de Mercedes — pour ceux qui ont tout accompli. Le choix des grands patrons.",
+    "created_at": "2026-06-13 12:02:41"
   },
   {
     "id": 391,
@@ -2973,19 +2854,19 @@ export const CARS = [
     "created_at": "2026-07-03 13:01:43"
   },
   {
-    "id": 149,
+    "id": 294,
     "make": "Mercedes-Benz",
-    "model": "GLE",
-    "year": 2023,
-    "price_eur": 82000,
-    "power_hp": 367,
-    "consumption_l100k": 8.5,
-    "co2_g_km": 193,
+    "model": "GLC",
+    "year": 2024,
+    "price_eur": 111111,
+    "power_hp": 258,
+    "consumption_l100k": 7.8,
+    "co2_g_km": 183,
     "category": "luxury",
     "photo_url": null,
-    "carquery_id": "mercedes-benz-gle-2023",
-    "description": "Mercedes GLE 2023 — SUV luxueux par excellence, spacieux, puissant et raffiné.",
-    "created_at": "2026-05-21 10:12:01"
+    "carquery_id": "ma_mercedes_glc_2024",
+    "description": "SUV premium compact Mercedes — le symbole du succès à Casa et Rabat.",
+    "created_at": "2026-06-14 15:04:44"
   },
   {
     "id": 150,
@@ -3001,6 +2882,21 @@ export const CARS = [
     "carquery_id": "mercedes-benz-gle-2024",
     "description": "Mercedes GLE 2024 — SUV luxueux par excellence, spacieux, puissant et raffiné.",
     "created_at": "2026-05-21 10:12:01"
+  },
+  {
+    "id": 275,
+    "make": "Mercedes-Benz",
+    "model": "GLE",
+    "year": 2023,
+    "price_eur": 105000,
+    "power_hp": 258,
+    "consumption_l100k": 9.2,
+    "co2_g_km": 211,
+    "category": "luxury",
+    "photo_url": null,
+    "carquery_id": "ma_mercedes_gle_2023",
+    "description": "Le SUV de luxe iconique — présence totale, confort de limousine. Incontournable à Marrakech.",
+    "created_at": "2026-06-13 12:02:41"
   },
   {
     "id": 291,
@@ -3078,21 +2974,6 @@ export const CARS = [
     "created_at": "2026-06-13 12:02:41"
   },
   {
-    "id": 209,
-    "make": "Peugeot",
-    "model": "208",
-    "year": 2023,
-    "price_eur": 19500,
-    "power_hp": 100,
-    "consumption_l100k": 5.2,
-    "co2_g_km": 119,
-    "category": "practical",
-    "photo_url": null,
-    "carquery_id": "peugeot-208-2023",
-    "description": "Peugeot 208 2023 — Citadine stylée et accessible, primée voiture de l'année 2020.",
-    "created_at": "2026-05-21 10:12:01"
-  },
-  {
     "id": 210,
     "make": "Peugeot",
     "model": "208",
@@ -3138,21 +3019,6 @@ export const CARS = [
     "created_at": "2026-05-21 10:12:01"
   },
   {
-    "id": 214,
-    "make": "Peugeot",
-    "model": "3008",
-    "year": 2024,
-    "price_eur": 48500,
-    "power_hp": 300,
-    "consumption_l100k": 2.1,
-    "co2_g_km": 48,
-    "category": "practical",
-    "photo_url": null,
-    "carquery_id": "peugeot-3008-2024",
-    "description": "Peugeot 3008 2024 — SUV hybride rechargeable plébiscité, design et technologie au sommet.",
-    "created_at": "2026-05-21 10:12:01"
-  },
-  {
     "id": 280,
     "make": "Peugeot",
     "model": "3008",
@@ -3166,21 +3032,6 @@ export const CARS = [
     "carquery_id": "ma_peugeot_3008_2024",
     "description": "SUV français au design distinct — l'un des préférés des familles aisées.",
     "created_at": "2026-06-14 15:04:44"
-  },
-  {
-    "id": 211,
-    "make": "Peugeot",
-    "model": "308",
-    "year": 2023,
-    "price_eur": 28500,
-    "power_hp": 130,
-    "consumption_l100k": 5.5,
-    "co2_g_km": 125,
-    "category": "practical",
-    "photo_url": null,
-    "carquery_id": "peugeot-308-2023",
-    "description": "Peugeot 308 2023 — Compacte au i-Cockpit raffiné, confortable et bien équipée.",
-    "created_at": "2026-05-21 10:12:01"
   },
   {
     "id": 212,
@@ -3558,21 +3409,6 @@ export const CARS = [
     "created_at": "2026-05-21 10:12:01"
   },
   {
-    "id": 201,
-    "make": "Renault",
-    "model": "Clio",
-    "year": 2023,
-    "price_eur": 18500,
-    "power_hp": 91,
-    "consumption_l100k": 5.2,
-    "co2_g_km": 115,
-    "category": "eco",
-    "photo_url": null,
-    "carquery_id": "renault-clio-2023",
-    "description": "Renault Clio 2023 — La citadine hybride française par excellence, légère et économique.",
-    "created_at": "2026-05-21 10:12:01"
-  },
-  {
     "id": 202,
     "make": "Renault",
     "model": "Clio",
@@ -3783,21 +3619,6 @@ export const CARS = [
     "created_at": "2026-05-21 10:12:01"
   },
   {
-    "id": 170,
-    "make": "Tesla",
-    "model": "Model 3",
-    "year": 2024,
-    "price_eur": 41000,
-    "power_hp": 283,
-    "consumption_l100k": 0,
-    "co2_g_km": 0,
-    "category": "eco",
-    "photo_url": null,
-    "carquery_id": "tesla-model-3-2024",
-    "description": "Tesla Model 3 2024 — Berline électrique technologique et performante, la plus vendue au monde.",
-    "created_at": "2026-05-21 10:12:01"
-  },
-  {
     "id": 298,
     "make": "Tesla",
     "model": "Model 3",
@@ -3873,21 +3694,6 @@ export const CARS = [
     "created_at": "2026-05-21 10:12:01"
   },
   {
-    "id": 171,
-    "make": "Tesla",
-    "model": "Model Y",
-    "year": 2023,
-    "price_eur": 49000,
-    "power_hp": 299,
-    "consumption_l100k": 0,
-    "co2_g_km": 0,
-    "category": "eco",
-    "photo_url": null,
-    "carquery_id": "tesla-model-y-2023",
-    "description": "Tesla Model Y 2023 — SUV électrique familial, le véhicule le plus vendu en Europe.",
-    "created_at": "2026-05-21 10:12:01"
-  },
-  {
     "id": 172,
     "make": "Tesla",
     "model": "Model Y",
@@ -3946,21 +3752,6 @@ export const CARS = [
     "carquery_id": "ma_toyota_chr_2025",
     "description": "Crossover hybride au design avant-gardiste — silhouette coupé, technologie hybride Toyota, faible consommation. Le crossover qui ose se démarquer.",
     "created_at": "2026-07-03 13:05:07"
-  },
-  {
-    "id": 123,
-    "make": "Toyota",
-    "model": "Corolla",
-    "year": 2023,
-    "price_eur": 25800,
-    "power_hp": 140,
-    "consumption_l100k": 4.5,
-    "co2_g_km": 102,
-    "category": "eco",
-    "photo_url": null,
-    "carquery_id": "toyota-corolla-2023",
-    "description": "Toyota Corolla 2023 — Berline hybride fiable, idéale pour les longs trajets.",
-    "created_at": "2026-05-21 10:12:01"
   },
   {
     "id": 124,
@@ -4053,21 +3844,6 @@ export const CARS = [
     "created_at": "2026-05-21 10:12:01"
   },
   {
-    "id": 128,
-    "make": "Toyota",
-    "model": "GR86",
-    "year": 2024,
-    "price_eur": 34200,
-    "power_hp": 234,
-    "consumption_l100k": 9.2,
-    "co2_g_km": 208,
-    "category": "performance",
-    "photo_url": null,
-    "carquery_id": "toyota-gr86-2024",
-    "description": "Toyota GR86 2024 — Coupé sportif pur, conçu pour le plaisir de conduite.",
-    "created_at": "2026-05-21 10:12:01"
-  },
-  {
     "id": 290,
     "make": "Toyota",
     "model": "GR86",
@@ -4143,21 +3919,6 @@ export const CARS = [
     "created_at": "2026-07-03 13:05:07"
   },
   {
-    "id": 125,
-    "make": "Toyota",
-    "model": "RAV4",
-    "year": 2023,
-    "price_eur": 38500,
-    "power_hp": 222,
-    "consumption_l100k": 5,
-    "co2_g_km": 132,
-    "category": "practical",
-    "photo_url": null,
-    "carquery_id": "toyota-rav4-2023",
-    "description": "Toyota RAV4 2023 — SUV hybride familial, alliant espace et efficience énergétique.",
-    "created_at": "2026-05-21 10:12:01"
-  },
-  {
     "id": 126,
     "make": "Toyota",
     "model": "RAV4",
@@ -4186,21 +3947,6 @@ export const CARS = [
     "carquery_id": "ma_toyota_rav4_2023",
     "description": "SUV hybride référence mondiale — robuste, économique, polyvalent.",
     "created_at": "2026-06-14 15:04:44"
-  },
-  {
-    "id": 121,
-    "make": "Toyota",
-    "model": "Yaris",
-    "year": 2023,
-    "price_eur": 19500,
-    "power_hp": 116,
-    "consumption_l100k": 3.8,
-    "co2_g_km": 87,
-    "category": "eco",
-    "photo_url": null,
-    "carquery_id": "toyota-yaris-2023",
-    "description": "Toyota Yaris 2023 — La citadine hybride de référence, économique et agile en ville.",
-    "created_at": "2026-05-21 10:12:01"
   },
   {
     "id": 122,
@@ -4261,21 +4007,6 @@ export const CARS = [
     "carquery_id": "ma_toyota_bz4x_2025",
     "description": "SUV 100% électrique Toyota — 218ch, 516km d'autonomie, charge rapide. La transition vers l'électrique selon Toyota : fiabilité légendaire, zéro émission.",
     "created_at": "2026-07-03 13:05:07"
-  },
-  {
-    "id": 161,
-    "make": "Volkswagen",
-    "model": "Golf",
-    "year": 2023,
-    "price_eur": 30000,
-    "power_hp": 150,
-    "consumption_l100k": 5.8,
-    "co2_g_km": 131,
-    "category": "practical",
-    "photo_url": null,
-    "carquery_id": "volkswagen-golf-2023",
-    "description": "Volkswagen Golf 2023 — La référence absolue des compactes, équilibrée et fiable.",
-    "created_at": "2026-05-21 10:12:01"
   },
   {
     "id": 162,
@@ -4446,7 +4177,6 @@ export const ALL_MAKES = [
   "Lamborghini",
   "Land Rover",
   "Maserati",
-  "Mercedes",
   "Mercedes-Benz",
   "Nissan",
   "Peugeot",

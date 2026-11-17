@@ -1,9 +1,7 @@
-'use strict';
+// Catalogue « marché marocain » : prix en euros obtenus à partir du prix en dirhams (MAD / 10,8).
+// Les identifiants commencent par « ma_ ».
 
-const { run, get } = require('../database');
-
-// Cars popular on the Moroccan market — prices in EUR (approx MAD/10.8)
-const MOROCCAN_CARS = [
+export const MOROCCAN_CARS = [
   // ── ECO / BUDGET ───────────────────────────────────────────────────────
   {
     make: 'Dacia', model: 'Sandero', year: 2023,
@@ -1193,69 +1191,36 @@ const MOROCCAN_CARS = [
   }
 ];
 
-async function seedMoroccanCars() {
-  let added = 0;
-  let skipped = 0;
+// Correction des prix selon les tarifs officiels Maroc 2025 (MAD / 10,8).
+// Appliquée après le chargement des deux catalogues.
+export const PRICE_CORRECTIONS = [
+  { carquery_id: 'ma_dacia_sandero_2023',  price_eur: 12222 },  // 132 000 MAD
+  { carquery_id: 'ma_dacia_logan_2023',    price_eur: 12870 },  // 139 000 MAD
+  { carquery_id: 'ma_dacia_duster_2023',   price_eur: 21481 },  // 232 000 MAD
+  { carquery_id: 'ma_hyundai_i10_2023',    price_eur: 15083 },  // 162 900 MAD
+  { carquery_id: 'ma_hyundai_i20_2023',    price_eur: 18046 },  // 194 900 MAD
+  { carquery_id: 'ma_hyundai_creta_2024',  price_eur: 24528 },  // 264 900 MAD
+  { carquery_id: 'ma_hyundai_tucson_2023',        price_eur: 33324  },  // 359 900 MAD
+  { carquery_id: 'ma_landrover_rrover_sport_2023', price_eur: 107083 },  // 1 156 500 MAD
+  { carquery_id: 'ma_landrover_rr_2023',           price_eur: 152870 },  // 1 650 900 MAD (Range Rover)
+  { carquery_id: 'ma_byd_seagull_2024',  price_eur: 18509  },  // 199 900 MAD
+  { carquery_id: 'ma_bmw_serie3_2023',  price_eur: 54537  },  // 589 000 MAD
+  { carquery_id: 'ma_bmw_serie5_2023',  price_eur: 54167  },  // 585 000 MAD
+  { carquery_id: 'ma_bmw_x5_2023',      price_eur: 77963  },  // 842 000 MAD
+  { carquery_id: 'ma_audi_a3_2023',     price_eur: 35833  },  // 387 000 MAD
+  { carquery_id: 'ma_audi_a4_2024',               price_eur: 81019  },  // keep existing
+];
 
-  for (const car of MOROCCAN_CARS) {
-    try {
-      const existing = await get('SELECT id FROM cars WHERE carquery_id = ?', [car.carquery_id]);
-      if (existing) { skipped++; continue; }
-
-      await run(
-        `INSERT INTO cars (make, model, year, price_eur, power_hp, consumption_l100k, co2_g_km, category, description, carquery_id, photo_url)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-        [car.make, car.model, car.year, car.price_eur, car.power_hp,
-         car.consumption_l100k, car.co2_g_km, car.category, car.description, car.carquery_id, car.photo_url || null]
-      );
-      added++;
-    } catch (err) {
-      console.warn(`⚠️  Skip ${car.make} ${car.model}: ${err.message}`);
-    }
-  }
-
-  // Correction des prix selon tarifs officiels Maroc 2025 (MAD/10.8)
-  const priceUpdates = [
-    { carquery_id: 'ma_dacia_sandero_2023',  price_eur: 12222 },  // 132 000 MAD
-    { carquery_id: 'ma_dacia_logan_2023',    price_eur: 12870 },  // 139 000 MAD
-    { carquery_id: 'ma_dacia_duster_2023',   price_eur: 21481 },  // 232 000 MAD
-    { carquery_id: 'ma_hyundai_i10_2023',    price_eur: 15083 },  // 162 900 MAD
-    { carquery_id: 'ma_hyundai_i20_2023',    price_eur: 18046 },  // 194 900 MAD
-    { carquery_id: 'ma_hyundai_creta_2024',  price_eur: 24528 },  // 264 900 MAD
-    { carquery_id: 'ma_hyundai_tucson_2023',        price_eur: 33324  },  // 359 900 MAD
-    { carquery_id: 'ma_landrover_rrover_sport_2023', price_eur: 107083 },  // 1 156 500 MAD
-    { carquery_id: 'ma_landrover_rr_2023',           price_eur: 152870 },  // 1 650 900 MAD (Range Rover)
-    { carquery_id: 'ma_byd_seagull_2024',  price_eur: 18509  },  // 199 900 MAD
-    { carquery_id: 'ma_bmw_serie3_2023',  price_eur: 54537  },  // 589 000 MAD
-    { carquery_id: 'ma_bmw_serie5_2023',  price_eur: 54167  },  // 585 000 MAD
-    { carquery_id: 'ma_bmw_x5_2023',      price_eur: 77963  },  // 842 000 MAD
-    { carquery_id: 'ma_audi_a3_2023',     price_eur: 35833  },  // 387 000 MAD
-    { carquery_id: 'ma_audi_a4_2024',               price_eur: 81019  },  // keep existing
-  ];
-  for (const { carquery_id, price_eur } of priceUpdates) {
-    await run('UPDATE cars SET price_eur = ? WHERE carquery_id = ?', [price_eur, carquery_id]);
-  }
-
-  // Inject photo_url for cars already inserted without photo
-  const photoUpdates = [
-    { carquery_id: 'ma_bmw_serie3_2023', photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-serie%203-385.png' },
-    { carquery_id: 'ma_bmw_serie5_2023', photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-serie%205-632.png' },
-    { carquery_id: 'ma_bmw_x5_2023',    photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-x5-414.png' },
-    { carquery_id: 'ma_byd_seagull_2024', photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-seagull-876.png' },
-    { carquery_id: 'ma_alfaromeo_giulia_2025',  photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-giulia-484.png' },
-    { carquery_id: 'ma_alfaromeo_junior_2025',  photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-junior-515.png' },
-    { carquery_id: 'ma_alfaromeo_stelvio_2025', photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-stelvio-276.png' },
-    { carquery_id: 'ma_alfaromeo_tonale_2025',  photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-tonale-190.png' },
-    { carquery_id: 'ma_audi_a3_2023',           photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-a3-602.png' },
-    { carquery_id: 'ma_audi_a4_2024',    photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-a5-870.jpg' },
-  ];
-  for (const { carquery_id, photo_url } of photoUpdates) {
-    await run('UPDATE cars SET photo_url = ? WHERE carquery_id = ? AND (photo_url IS NULL OR photo_url = "")', [photo_url, carquery_id]);
-  }
-
-  if (added > 0) console.log(`🇲🇦  Maroc: +${added} voitures ajoutées`);
-  else console.log(`🇲🇦  Maroc: ${skipped} voitures déjà en base`);
-  return added;
-}
-
-module.exports = { seedMoroccanCars };
+// Photos ajoutées aux voitures qui n'en ont pas encore.
+export const PHOTO_CORRECTIONS = [
+  { carquery_id: 'ma_bmw_serie3_2023', photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-serie%203-385.png' },
+  { carquery_id: 'ma_bmw_serie5_2023', photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-serie%205-632.png' },
+  { carquery_id: 'ma_bmw_x5_2023',    photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-x5-414.png' },
+  { carquery_id: 'ma_byd_seagull_2024', photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-seagull-876.png' },
+  { carquery_id: 'ma_alfaromeo_giulia_2025',  photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-giulia-484.png' },
+  { carquery_id: 'ma_alfaromeo_junior_2025',  photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-junior-515.png' },
+  { carquery_id: 'ma_alfaromeo_stelvio_2025', photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-stelvio-276.png' },
+  { carquery_id: 'ma_alfaromeo_tonale_2025',  photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-tonale-190.png' },
+  { carquery_id: 'ma_audi_a3_2023',           photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-a3-602.png' },
+  { carquery_id: 'ma_audi_a4_2024',    photo_url: 'https://www.moteur.ma/storage/media/images/models/nouvelle-a5-870.jpg' },
+];

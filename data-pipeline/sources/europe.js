@@ -1,10 +1,11 @@
-const { run, get, all } = require('../database');
+// Catalogue « Europe » : un modèle par ligne, avec un prix 2023 et un prix 2024 (en euros).
+// Chaque modèle génère deux voitures (une par année) dans le jeu de données final.
+// Champs : power_hp, consumption_l100k (0 = électrique), co2_g_km (0 = électrique),
+//          price_2023 / price_2024 (€), category, description.
 
-// ─── DATASET ──────────────────────────────────────────────────────────────────
-// Real specs per model: power_hp, consumption (L/100 — 0 = electric), co2 (g/km — 0 = electric),
-// price_2023 (€), price_2024 (€), category, description
+export const EUROPE_YEARS = [2023, 2024];
 
-const CARS_DATA = [
+export const EUROPE_MODELS = [
   // ── TOYOTA ──────────────────────────────────────────────────────────────────
   { make: 'Toyota',  model: 'Yaris',    category: 'eco',         power_hp: 116,  consumption_l100k: 3.8,  co2_g_km: 87,  price_2023: 19500,  price_2024: 20100,  description: 'Toyota Yaris — La citadine hybride de référence, économique et agile en ville.' },
   { make: 'Toyota',  model: 'Corolla',  category: 'eco',         power_hp: 140,  consumption_l100k: 4.5,  co2_g_km: 102, price_2023: 25800,  price_2024: 26500,  description: 'Toyota Corolla — Berline hybride fiable, idéale pour les longs trajets.' },
@@ -95,40 +96,3 @@ const CARS_DATA = [
   { make: 'Lamborghini', model: 'Revuelto', category: 'performance', power_hp: 1001, consumption_l100k: 10.4, co2_g_km: 237, price_2023: 520000, price_2024: 540000, description: 'Lamborghini Revuelto — 1001 ch hybride, le successeur légendaire de l\'Aventador.' },
   { make: 'Lamborghini', model: 'Sterrato', category: 'performance', power_hp: 640,  consumption_l100k: 13.9, co2_g_km: 329, price_2023: 260000, price_2024: 268000, description: 'Lamborghini Sterrato — L\'Huracán tout-terrain, l\'absurde magnifique à l\'état pur.' },
 ];
-
-// ─── SEED ─────────────────────────────────────────────────────────────────────
-
-async function seedDatabase() {
-  const { db } = require('../database');
-
-  await new Promise((resolve, reject) => {
-    db.run('DELETE FROM cars', (err) => err ? reject(err) : resolve());
-  });
-
-  let count = 0;
-  for (const car of CARS_DATA) {
-    for (const year of [2023, 2024]) {
-      const price = year === 2023 ? car.price_2023 : car.price_2024;
-      const id = `${car.make}-${car.model}-${year}`.toLowerCase().replace(/[\s']/g, '-');
-      try {
-        await run(
-          `INSERT OR IGNORE INTO cars (make, model, year, price_eur, power_hp, consumption_l100k, co2_g_km, category, carquery_id, description)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-          [car.make, car.model, year, price, car.power_hp, car.consumption_l100k, car.co2_g_km, car.category, id,
-           `${car.description.replace(/—/, `${year} —`)}`]
-        );
-        count++;
-      } catch { /* ignore duplicates */ }
-    }
-  }
-
-  console.log(`✅ Dataset: ${count} voitures insérées (${CARS_DATA.length} modèles × 2 années)`);
-  return count;
-}
-
-// kept for compatibility — now just calls seedDatabase
-async function syncCarsFromCarQuery() {
-  return seedDatabase();
-}
-
-module.exports = { syncCarsFromCarQuery, seedDatabase };
