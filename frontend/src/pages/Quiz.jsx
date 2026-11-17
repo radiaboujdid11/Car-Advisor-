@@ -9,7 +9,7 @@ import {
   getTopCars,
   displayConfidence,
   formatQuestion,
-  getMatchReason,
+  getRecommendations,
 } from '../engine/quiz';
 
 /* ── Design tokens — palette du site ── */
@@ -227,16 +227,7 @@ export default function Quiz({ onComplete }) {
     requestAnimationFrame(() => setVisible(true));
   }
 
-  function buildTop3(s, excluded = excludedIds) {
-    return getTopCars(s, CARS, 3 + excluded.size + 2)
-      .filter((car) => !excluded.has(car.id))
-      .slice(0, 3)
-      .map((car) => ({
-        ...car,
-        matchScore: Math.min(Math.round(52 + car._prob * 140), 99),
-        matchReason: getMatchReason(car),
-      }));
-  }
+  const buildTop3 = (s) => getRecommendations(s, CARS, excludedIds);
 
   function excludeCar(carId) {
     setExcludedIds((prev) => {
@@ -377,7 +368,7 @@ function Intro({ onStart }) {
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: 'url(/sunset.jpg)',
+          backgroundImage: 'url(/sunset.webp)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           filter: 'blur(6px)',

@@ -1,13 +1,18 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Suspense, lazy, useState, useEffect } from 'react';
 import Header from './components/Header';
 import Cursor from './components/Cursor';
 import Landing from './pages/Landing';
-import Quiz from './pages/Quiz';
-import Results from './pages/Results';
-import Catalog from './pages/Catalog';
-import CarDetail from './pages/CarDetail';
-import Comparator from './pages/Comparator';
+
+// Les pages hors accueil sont chargées à la demande : le moteur du quiz et la
+// banque de questions ne sont téléchargés qu'à l'ouverture de /quiz.
+const Quiz = lazy(() => import('./pages/Quiz'));
+const Results = lazy(() => import('./pages/Results'));
+const Catalog = lazy(() => import('./pages/Catalog'));
+const CarDetail = lazy(() => import('./pages/CarDetail'));
+const Comparator = lazy(() => import('./pages/Comparator'));
+
+const PageFallback = () => <div style={{ minHeight: '100vh', background: 'var(--bg)' }} />;
 
 const HEADER_ROUTES = ['/results', '/cars', '/compare'];
 
@@ -84,25 +89,27 @@ export default function App() {
   return (
     <BrowserRouter>
       <AppShell compareCars={compareCars}>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/quiz" element={<Quiz onComplete={(r) => setQuizResults(r)} />} />
-          <Route
-            path="/results"
-            element={
-              quizResults ? (
-                <Results results={quizResults} {...shared} />
-              ) : (
-                <Navigate to="/quiz" replace />
-              )
-            }
-          />
-          <Route path="/cars" element={<Catalog {...shared} />} />
-          <Route path="/cars/:id" element={<CarDetail {...shared} />} />
-          <Route path="/compare" element={<Comparator cars={compareCars} {...shared} />} />
-          <Route path="/search" element={<Navigate to="/cars" replace />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+        <Suspense fallback={<PageFallback />}>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/quiz" element={<Quiz onComplete={(r) => setQuizResults(r)} />} />
+            <Route
+              path="/results"
+              element={
+                quizResults ? (
+                  <Results results={quizResults} {...shared} />
+                ) : (
+                  <Navigate to="/quiz" replace />
+                )
+              }
+            />
+            <Route path="/cars" element={<Catalog {...shared} />} />
+            <Route path="/cars/:id" element={<CarDetail {...shared} />} />
+            <Route path="/compare" element={<Comparator cars={compareCars} {...shared} />} />
+            <Route path="/search" element={<Navigate to="/cars" replace />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Suspense>
       </AppShell>
     </BrowserRouter>
   );

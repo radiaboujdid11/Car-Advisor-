@@ -14,13 +14,13 @@ const STEPS = [
     n: '02',
     title: 'Votre budget',
     body: 'Achat, leasing ou coût total sur la durée. On calcule tout, frais compris.',
-    img: '/budget.jpg',
+    img: '/budget.webp',
   },
   {
     n: '03',
     title: 'Votre voiture',
     body: 'Le moteur bayésien croise votre profil et 59 modèles. Résultat en 3 minutes.',
-    img: '/mcqueen.jpg',
+    img: '/mcqueen.webp',
   },
 ];
 
@@ -224,7 +224,7 @@ export default function Landing() {
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: 'url(/hero2.png)',
+            backgroundImage: 'url(/hero2.webp)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             animation: 'slowZoom 22s ease-in-out infinite alternate',
@@ -418,6 +418,8 @@ export default function Landing() {
                 }}
               >
                 <img
+                  loading="lazy"
+                  decoding="async"
                   src={car.photo_url}
                   alt={`${car.make} ${car.model}`}
                   style={{
@@ -480,6 +482,8 @@ export default function Landing() {
               {/* Image — plein, sans cadre */}
               <div style={{ borderRadius: '20px', overflow: 'hidden', aspectRatio: '16/10' }}>
                 <img
+                  loading="lazy"
+                  decoding="async"
                   src={s.img}
                   alt={s.title}
                   style={{
@@ -702,6 +706,8 @@ export default function Landing() {
                 }}
               >
                 <img
+                  loading="lazy"
+                  decoding="async"
                   src={f.img}
                   alt={f.title}
                   style={{
@@ -869,6 +875,8 @@ export default function Landing() {
                     }}
                   >
                     <img
+                      loading="lazy"
+                      decoding="async"
                       src={car.photo_url}
                       alt={`${car.make} ${car.model}`}
                       style={{

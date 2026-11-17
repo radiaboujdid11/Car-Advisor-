@@ -215,6 +215,8 @@ function CarCard({ car, onDetail, onCompare }) {
       >
         {photo ? (
           <img
+            loading="lazy"
+            decoding="async"
             src={photo}
             alt={`${car.make} ${car.model}`}
             style={{
