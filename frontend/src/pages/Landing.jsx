@@ -149,7 +149,7 @@ export default function Landing() {
             const isRoute = href.startsWith('/');
             const style = {
               fontFamily: 'var(--sans)',
-              fontSize: '.72rem',
+              fontSize: '.75rem',
               letterSpacing: '.1em',
               textTransform: 'uppercase',
               color: 'rgba(255,255,255,.8)',
@@ -160,6 +160,7 @@ export default function Landing() {
               <Link
                 key={href}
                 to={href}
+                className="inline-flex min-h-[44px] items-center"
                 style={style}
                 onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,.8)')}
@@ -170,6 +171,7 @@ export default function Landing() {
               <a
                 key={href}
                 href={href}
+                className="inline-flex min-h-[44px] items-center"
                 style={style}
                 onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,.8)')}
@@ -183,6 +185,7 @@ export default function Landing() {
         <button
           onClick={() => navigate('/quiz')}
           style={{
+            minHeight: '44px',
             background: 'rgba(255,255,255,.15)',
             color: '#fff',
             border: '1.5px solid rgba(255,255,255,.7)',
@@ -211,20 +214,20 @@ export default function Landing() {
 
       {/* ── HERO: full bleed ── */}
       <section
+        className="hero-full"
         style={{
           position: 'relative',
           width: '100%',
-          height: '100vh',
           minHeight: '600px',
           overflow: 'hidden',
         }}
       >
-        {/* Full image */}
+        {/* Full image : 1280 px sur téléphone, 2560 px à partir de 768 px (voir .hero-bg) */}
         <div
+          className="hero-bg"
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: 'url(/hero2.webp)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             animation: 'slowZoom 22s ease-in-out infinite alternate',
@@ -276,7 +279,7 @@ export default function Landing() {
             style={{
               fontFamily: 'var(--sans)',
               fontWeight: 400,
-              fontSize: '.72rem',
+              fontSize: '.75rem',
               letterSpacing: '.2em',
               textTransform: 'uppercase',
               color: 'rgba(255,255,255,.75)',
@@ -391,7 +394,7 @@ export default function Landing() {
         <p
           style={{
             fontFamily: 'var(--sans)',
-            fontSize: '.68rem',
+            fontSize: '.75rem',
             letterSpacing: '.25em',
             textTransform: 'uppercase',
             color: 'var(--ink-mute)',
@@ -454,7 +457,7 @@ export default function Landing() {
             <span
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '.62rem',
+                fontSize: '.75rem',
                 letterSpacing: '.26em',
                 textTransform: 'uppercase',
                 color: 'var(--gold)',
@@ -537,7 +540,7 @@ export default function Landing() {
                 <p
                   style={{
                     fontFamily: 'var(--sans)',
-                    fontSize: '.68rem',
+                    fontSize: '.75rem',
                     letterSpacing: '.18em',
                     textTransform: 'uppercase',
                     color: 'var(--ink-mute)',
@@ -576,7 +579,7 @@ export default function Landing() {
                 <span
                   style={{
                     fontFamily: 'var(--sans)',
-                    fontSize: '.62rem',
+                    fontSize: '.75rem',
                     letterSpacing: '.26em',
                     textTransform: 'uppercase',
                     color: 'var(--gold)',
@@ -606,7 +609,7 @@ export default function Landing() {
               <p
                 style={{
                   fontFamily: 'var(--sans)',
-                  fontSize: '.68rem',
+                  fontSize: '.75rem',
                   letterSpacing: '.15em',
                   textTransform: 'uppercase',
                   color: 'var(--ink-mute)',
@@ -670,7 +673,7 @@ export default function Landing() {
             <span
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '.62rem',
+                fontSize: '.75rem',
                 letterSpacing: '.26em',
                 textTransform: 'uppercase',
                 color: 'var(--gold)',
@@ -709,6 +712,8 @@ export default function Landing() {
                   loading="lazy"
                   decoding="async"
                   src={f.img}
+                  srcSet={`${f.img.replace('w=800', 'w=480')} 480w, ${f.img} 800w`}
+                  sizes="(max-width: 767px) 92vw, 400px"
                   alt={f.title}
                   style={{
                     width: '100%',
@@ -728,7 +733,7 @@ export default function Landing() {
                 <p
                   style={{
                     fontFamily: 'var(--sans)',
-                    fontSize: '.6rem',
+                    fontSize: '.75rem',
                     letterSpacing: '.3em',
                     textTransform: 'uppercase',
                     color: 'var(--gold)',
@@ -761,7 +766,7 @@ export default function Landing() {
                 <p
                   style={{
                     fontFamily: 'var(--sans)',
-                    fontSize: '.68rem',
+                    fontSize: '.75rem',
                     letterSpacing: '.18em',
                     textTransform: 'uppercase',
                     color: 'var(--ink-mute)',
@@ -801,7 +806,7 @@ export default function Landing() {
               <span
                 style={{
                   fontFamily: 'var(--sans)',
-                  fontSize: '.62rem',
+                  fontSize: '.75rem',
                   letterSpacing: '.26em',
                   textTransform: 'uppercase',
                   color: 'var(--gold)',
@@ -814,9 +819,10 @@ export default function Landing() {
             </div>
             <Link
               to="/cars"
+              className="min-h-[44px]"
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '.7rem',
+                fontSize: '.75rem',
                 letterSpacing: '.12em',
                 textTransform: 'uppercase',
                 color: 'var(--ink-mute)',
@@ -895,7 +901,7 @@ export default function Landing() {
                     <span
                       style={{
                         fontFamily: 'var(--sans)',
-                        fontSize: '.58rem',
+                        fontSize: '.75rem',
                         letterSpacing: '.18em',
                         textTransform: 'uppercase',
                         color: 'var(--gold)',
@@ -953,7 +959,7 @@ export default function Landing() {
             <p
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '.62rem',
+                fontSize: '.75rem',
                 letterSpacing: '.26em',
                 textTransform: 'uppercase',
                 color: 'rgba(240,235,227,.55)',
@@ -1022,7 +1028,7 @@ export default function Landing() {
         <p
           style={{
             fontFamily: 'var(--sans)',
-            fontSize: '.62rem',
+            fontSize: '.75rem',
             letterSpacing: '.06em',
             color: 'var(--ink-mute)',
             opacity: 0.45,
@@ -1038,9 +1044,10 @@ export default function Landing() {
             <Link
               key={to}
               to={to}
+              className="inline-flex min-h-[44px] items-center"
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '.65rem',
+                fontSize: '.75rem',
                 letterSpacing: '.1em',
                 textTransform: 'uppercase',
                 color: 'var(--ink-mute)',
