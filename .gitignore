@@ -1,8 +1,22 @@
+# Dépendances
 node_modules/
-.env
-*.db
-*.db-wal
-*.db-shm
+
+# Builds et rapports
 dist/
+coverage/
+*.log
+npm-debug.log*
+
+# Variables d'environnement
+.env
+.env.*
+!.env.example
+
+# Déploiement
+.vercel/
+
+# Éditeurs et systèmes
+.vscode/
+.idea/
 .DS_Store
 Thumbs.db
