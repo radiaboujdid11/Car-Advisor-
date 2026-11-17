@@ -508,6 +508,12 @@ textarea {
   }
 }
 
+/* ── Hauteur plein écran du quiz : 100dvh (barres du navigateur mobile) avec repli 100vh ── */
+.quiz-shell {
+  height: 100vh;
+  height: 100dvh;
+}
+
 /* ── Focus clavier visible partout ── */
 :focus-visible {
   outline: 2px solid var(--gold-2);
