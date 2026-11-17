@@ -514,6 +514,17 @@ textarea {
   height: 100dvh;
 }
 
+/* ── Comparateur : largeur de la colonne des critères ── */
+.compare-scroll {
+  --crit: 104px;
+  scroll-snap-type: x proximity;
+}
+@media (min-width: 768px) {
+  .compare-scroll {
+    --crit: 180px;
+  }
+}
+
 /* ── Focus clavier visible partout ── */
 :focus-visible {
   outline: 2px solid var(--gold-2);
