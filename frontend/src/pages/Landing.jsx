@@ -160,7 +160,7 @@ export default function Landing() {
               <Link
                 key={href}
                 to={href}
-                className="inline-flex min-h-[44px] items-center"
+                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center"
                 style={style}
                 onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,.8)')}
@@ -171,7 +171,7 @@ export default function Landing() {
               <a
                 key={href}
                 href={href}
-                className="inline-flex min-h-[44px] items-center"
+                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center"
                 style={style}
                 onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,.8)')}

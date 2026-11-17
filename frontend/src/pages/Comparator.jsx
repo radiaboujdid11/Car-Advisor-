@@ -183,7 +183,7 @@ export default function Comparator({ cars = [], removeFromCompare }) {
                 <span
                   style={{
                     fontFamily: 'var(--sans)',
-                    fontSize: '11px',
+                    fontSize: '12px',
                     letterSpacing: '0.12em',
                     textTransform: 'uppercase',
                     color: '#fff',
@@ -282,7 +282,7 @@ export default function Comparator({ cars = [], removeFromCompare }) {
                     <span
                       style={{
                         fontFamily: 'var(--sans)',
-                        fontSize: '11px',
+                        fontSize: '12px',
                         letterSpacing: '0.08em',
                         textTransform: 'uppercase',
                         color: '#fff',
@@ -326,7 +326,7 @@ export default function Comparator({ cars = [], removeFromCompare }) {
                             style={{
                               display: 'block',
                               fontFamily: 'var(--sans)',
-                              fontSize: '11px',
+                              fontSize: '12px',
                               letterSpacing: '0.1em',
                               textTransform: 'uppercase',
                               color: 'var(--gold-deep)',

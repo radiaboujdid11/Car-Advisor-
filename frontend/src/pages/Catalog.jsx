@@ -323,7 +323,7 @@ function CarCard({ car, onDetail, onCompare }) {
           <span
             style={{
               fontFamily: 'var(--sans)',
-              fontSize: '11px',
+              fontSize: '12px',
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
               color: '#fff',
@@ -416,7 +416,7 @@ function CarCard({ car, onDetail, onCompare }) {
               <p
                 style={{
                   fontFamily: 'var(--sans)',
-                  fontSize: '11px',
+                  fontSize: '12px',
                   letterSpacing: '0.06em',
                   textTransform: 'uppercase',
                   color: 'var(--ink-soft)',
