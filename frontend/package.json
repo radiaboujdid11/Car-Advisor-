@@ -20,7 +20,8 @@
     "postcss": "^8.4.33",
     "prettier": "^3.10.1",
     "tailwindcss": "^3.2.7",
-    "vite": "^5.0.11"
+    "vite": "^5.0.11",
+    "vitest": "^2.1.9"
   },
   "scripts": {
     "dev": "vite",
@@ -28,6 +29,8 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write --ignore-path ../.prettierignore ..",
-    "format:check": "prettier --check --ignore-path ../.prettierignore .."
+    "format:check": "prettier --check --ignore-path ../.prettierignore ..",
+    "test": "vitest run",
+    "test:watch": "vitest"
   }
 }

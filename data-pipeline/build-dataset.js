@@ -62,11 +62,10 @@ const cars = sortCars(assignIds(unique, previous, today)).map(pickFields);
 
 const errors = validate(cars);
 const makes = [...new Set(cars.map((c) => c.make))].sort();
-const byCategory = Object.groupBy
-  ? Object.fromEntries(
-      Object.entries(Object.groupBy(cars, (c) => c.category)).map(([k, v]) => [k, v.length]),
-    )
-  : {};
+const byCategory = cars.reduce(
+  (acc, c) => ({ ...acc, [c.category]: (acc[c.category] || 0) + 1 }),
+  {},
+);
 
 console.log(
   `Lignes sources        : ${raw.length} (Europe ${raw.length - MOROCCAN_CARS.length}, Maroc ${MOROCCAN_CARS.length})`,
