@@ -63,10 +63,14 @@ const cars = sortCars(assignIds(unique, previous, today)).map(pickFields);
 const errors = validate(cars);
 const makes = [...new Set(cars.map((c) => c.make))].sort();
 const byCategory = Object.groupBy
-  ? Object.fromEntries(Object.entries(Object.groupBy(cars, (c) => c.category)).map(([k, v]) => [k, v.length]))
+  ? Object.fromEntries(
+      Object.entries(Object.groupBy(cars, (c) => c.category)).map(([k, v]) => [k, v.length]),
+    )
   : {};
 
-console.log(`Lignes sources        : ${raw.length} (Europe ${raw.length - MOROCCAN_CARS.length}, Maroc ${MOROCCAN_CARS.length})`);
+console.log(
+  `Lignes sources        : ${raw.length} (Europe ${raw.length - MOROCCAN_CARS.length}, Maroc ${MOROCCAN_CARS.length})`,
+);
 console.log(`Doublons écartés      : ${dropped.length}`);
 for (const d of dropped) console.log(`  - ${d.make} ${d.model} ${d.year} (${d.carquery_id})`);
 console.log(`Voitures finales      : ${cars.length} — ${makes.length} marques`);

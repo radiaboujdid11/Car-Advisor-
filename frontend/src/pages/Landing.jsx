@@ -4,27 +4,69 @@ import { CARS } from '../data/cars';
 import { categoryLabel, formatPriceMAD } from '../utils/format';
 
 const STEPS = [
-  { n: '01', title: 'Vos besoins', body: 'Usage, kilométrage, passagers, route ou ville. Chaque détail oriente l\'algorithme.', img: '/besoins.jpg' },
-  { n: '02', title: 'Votre budget', body: 'Achat, leasing ou coût total sur la durée. On calcule tout, frais compris.', img: '/budget.jpg' },
-  { n: '03', title: 'Votre voiture', body: 'Le moteur bayésien croise votre profil et 59 modèles. Résultat en 3 minutes.', img: '/mcqueen.jpg' },
+  {
+    n: '01',
+    title: 'Vos besoins',
+    body: "Usage, kilométrage, passagers, route ou ville. Chaque détail oriente l'algorithme.",
+    img: '/besoins.jpg',
+  },
+  {
+    n: '02',
+    title: 'Votre budget',
+    body: 'Achat, leasing ou coût total sur la durée. On calcule tout, frais compris.',
+    img: '/budget.jpg',
+  },
+  {
+    n: '03',
+    title: 'Votre voiture',
+    body: 'Le moteur bayésien croise votre profil et 59 modèles. Résultat en 3 minutes.',
+    img: '/mcqueen.jpg',
+  },
 ];
 
 const FEATURES = [
-  { label: 'AI', title: 'IA Contextuelle', body: "Chaque réponse réoriente l'algorithme vers les questions les plus révélatrices.", img: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80&auto=format&fit=crop' },
-  { label: '%',  title: 'Score personnalisé', body: 'Chaque véhicule reçoit un score calculé sur votre profil exact, pas une moyenne.', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format&fit=crop' },
-  { label: 'DH', title: 'Coût réel', body: 'Carburant, entretien et budget total estimés sur la durée de possession.', img: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&q=80&auto=format&fit=crop' },
-  { label: 'VS', title: 'Comparatif', body: 'Vos 3 matchs côte à côte avec tous les critères techniques et économiques.', img: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80&auto=format&fit=crop' },
-  { label: '59', title: '59 modèles', body: 'Citadine, SUV, berline — thermique, hybride ou électrique. Aucun oublié.', img: 'https://images.unsplash.com/photo-1537984822441-cff330075342?w=800&q=80&auto=format&fit=crop' },
-  { label: "3'", title: 'Résultat immédiat', body: 'De 15 à 30 questions adaptatives. Le meilleur rapport précision / rapidité.', img: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&q=80&auto=format&fit=crop' },
+  {
+    label: 'AI',
+    title: 'IA Contextuelle',
+    body: "Chaque réponse réoriente l'algorithme vers les questions les plus révélatrices.",
+    img: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80&auto=format&fit=crop',
+  },
+  {
+    label: '%',
+    title: 'Score personnalisé',
+    body: 'Chaque véhicule reçoit un score calculé sur votre profil exact, pas une moyenne.',
+    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format&fit=crop',
+  },
+  {
+    label: 'DH',
+    title: 'Coût réel',
+    body: 'Carburant, entretien et budget total estimés sur la durée de possession.',
+    img: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&q=80&auto=format&fit=crop',
+  },
+  {
+    label: 'VS',
+    title: 'Comparatif',
+    body: 'Vos 3 matchs côte à côte avec tous les critères techniques et économiques.',
+    img: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80&auto=format&fit=crop',
+  },
+  {
+    label: '59',
+    title: '59 modèles',
+    body: 'Citadine, SUV, berline — thermique, hybride ou électrique. Aucun oublié.',
+    img: 'https://images.unsplash.com/photo-1537984822441-cff330075342?w=800&q=80&auto=format&fit=crop',
+  },
+  {
+    label: "3'",
+    title: 'Résultat immédiat',
+    body: 'De 15 à 30 questions adaptatives. Le meilleur rapport précision / rapidité.',
+    img: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&q=80&auto=format&fit=crop',
+  },
 ];
 
-
-const BRANDS = ['Peugeot', 'Renault', 'Dacia', 'BMW', 'Mercedes', 'Audi', 'Toyota', 'Tesla', 'Kia', 'Volkswagen', 'Citroën', 'Volvo', 'Porsche', 'Alfa Romeo', 'Hyundai', 'Ford'];
-
 // Calculés une seule fois au chargement du module (les données sont statiques).
-const MARQUEE_CARS = CARS.filter(c => c.photo_url).slice(0, 20);
+const MARQUEE_CARS = CARS.filter((c) => c.photo_url).slice(0, 20);
 const MARQUEE_TILES = [...MARQUEE_CARS, ...MARQUEE_CARS];
-const pickWithPhoto = (cat, n) => CARS.filter(c => c.photo_url && c.category === cat).slice(0, n);
+const pickWithPhoto = (cat, n) => CARS.filter((c) => c.photo_url && c.category === cat).slice(0, n);
 const SHOWCASE = [
   ...pickWithPhoto('eco', 2),
   ...pickWithPhoto('practical', 2),
@@ -32,7 +74,6 @@ const SHOWCASE = [
   ...pickWithPhoto('performance', 2),
 ];
 
-const rule = { height: '1px', background: 'rgba(42,31,18,.08)' };
 const copper = 'rgba(42,31,18,.2)';
 
 export default function Landing() {
@@ -41,10 +82,13 @@ export default function Landing() {
   useEffect(() => {
     // Scroll reveal
     const obs = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-      { threshold: .12 }
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) e.target.classList.add('visible');
+        }),
+      { threshold: 0.12 },
     );
-    document.querySelectorAll('.reveal, .slide-left').forEach(el => obs.observe(el));
+    document.querySelectorAll('.reveal, .slide-left').forEach((el) => obs.observe(el));
 
     // Parallaxe du hero : le texte rétrécit et s'efface pendant le défilement
     const heroText = document.getElementById('hero-text');
@@ -56,251 +100,581 @@ export default function Landing() {
     };
     window.addEventListener('scroll', onScroll, { passive: true });
 
-    return () => { obs.disconnect(); window.removeEventListener('scroll', onScroll); };
+    return () => {
+      obs.disconnect();
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
   return (
     <div style={{ background: 'var(--bg)', color: 'var(--ink)' }}>
-
       {/* ── NAV ── */}
-      <nav style={{
-        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '1.4rem 3.5rem',
-        background: 'transparent',
-      }}>
-        <div style={{ fontFamily: 'var(--serif-display)', fontSize: '1.15rem', letterSpacing: '-.02em', userSelect: 'none', color: '#fff' }}>
+      <nav
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 200,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '1.4rem 3.5rem',
+          background: 'transparent',
+        }}
+      >
+        <div
+          style={{
+            fontFamily: 'var(--serif-display)',
+            fontSize: '1.15rem',
+            letterSpacing: '-.02em',
+            userSelect: 'none',
+            color: '#fff',
+          }}
+        >
           Auto<span style={{ color: 'var(--gold)' }}>Assist</span>
         </div>
 
-        <div className="nav-mobile-links" style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}>
-          {[['#how', 'Méthode'], ['#quiz', 'Quiz'], ['#features', 'Fonctionnalités'], ['/cars', 'Catalogue'], ['/compare', 'Comparateur']].map(([href, label]) => {
+        <div
+          className="nav-mobile-links"
+          style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}
+        >
+          {[
+            ['#how', 'Méthode'],
+            ['#quiz', 'Quiz'],
+            ['#features', 'Fonctionnalités'],
+            ['/cars', 'Catalogue'],
+            ['/compare', 'Comparateur'],
+          ].map(([href, label]) => {
             const isRoute = href.startsWith('/');
-            const style = { fontFamily: 'var(--sans)', fontSize: '.72rem', letterSpacing: '.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,.8)', cursor: 'pointer', textDecoration: 'none' };
-            return isRoute
-              ? <Link key={href} to={href} style={style}
-                  onMouseEnter={e => e.currentTarget.style.color = '#fff'}
-                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,.8)'}
-                >{label}</Link>
-              : <a key={href} href={href} style={style}
-                  onMouseEnter={e => e.currentTarget.style.color = '#fff'}
-                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,.8)'}
-                >{label}</a>;
+            const style = {
+              fontFamily: 'var(--sans)',
+              fontSize: '.72rem',
+              letterSpacing: '.1em',
+              textTransform: 'uppercase',
+              color: 'rgba(255,255,255,.8)',
+              cursor: 'pointer',
+              textDecoration: 'none',
+            };
+            return isRoute ? (
+              <Link
+                key={href}
+                to={href}
+                style={style}
+                onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,.8)')}
+              >
+                {label}
+              </Link>
+            ) : (
+              <a
+                key={href}
+                href={href}
+                style={style}
+                onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,.8)')}
+              >
+                {label}
+              </a>
+            );
           })}
         </div>
 
         <button
           onClick={() => navigate('/quiz')}
-          style={{ background: 'rgba(255,255,255,.15)', color: '#fff', border: '1.5px solid rgba(255,255,255,.7)', padding: '.65rem 1.8rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', cursor: 'pointer', borderRadius: '50px', backdropFilter: 'blur(8px)' }}
-          onMouseEnter={e => { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.borderColor = 'var(--gold)'; }}
-          onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,.15)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.7)'; }}
-        >Commencer</button>
+          style={{
+            background: 'rgba(255,255,255,.15)',
+            color: '#fff',
+            border: '1.5px solid rgba(255,255,255,.7)',
+            padding: '.65rem 1.8rem',
+            fontFamily: 'var(--sans)',
+            fontWeight: 700,
+            fontSize: '.75rem',
+            letterSpacing: '.1em',
+            textTransform: 'uppercase',
+            cursor: 'pointer',
+            borderRadius: '50px',
+            backdropFilter: 'blur(8px)',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'var(--gold)';
+            e.currentTarget.style.borderColor = 'var(--gold)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'rgba(255,255,255,.15)';
+            e.currentTarget.style.borderColor = 'rgba(255,255,255,.7)';
+          }}
+        >
+          Commencer
+        </button>
       </nav>
 
       {/* ── HERO: full bleed ── */}
-      <section style={{ position: 'relative', width: '100%', height: '100vh', minHeight: '600px', overflow: 'hidden' }}>
-
+      <section
+        style={{
+          position: 'relative',
+          width: '100%',
+          height: '100vh',
+          minHeight: '600px',
+          overflow: 'hidden',
+        }}
+      >
         {/* Full image */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          backgroundImage: 'url(/hero2.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          animation: 'slowZoom 22s ease-in-out infinite alternate',
-        }} />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: 'url(/hero2.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            animation: 'slowZoom 22s ease-in-out infinite alternate',
+          }}
+        />
 
         {/* Gradient overlay */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'linear-gradient(to top, rgba(42,31,18,.85) 0%, rgba(42,31,18,.4) 45%, transparent 75%)',
-        }} />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background:
+              'linear-gradient(to top, rgba(42,31,18,.85) 0%, rgba(42,31,18,.4) 45%, transparent 75%)',
+          }}
+        />
 
         {/* Text overlay — bottom left */}
-        <div id="hero-text" style={{
-          position: 'absolute',
-          bottom: 'clamp(2.5rem,6vh,5rem)',
-          left: 'clamp(1.5rem,5vw,5rem)',
-          maxWidth: '600px',
-          willChange: 'transform, opacity',
-        }}>
-          <h1 style={{
-            fontFamily: 'var(--sans)',
-            fontWeight: 900,
-            fontSize: 'clamp(3rem,7vw,6rem)',
-            lineHeight: 1,
-            letterSpacing: '-.01em',
-            textTransform: 'uppercase',
-            background: 'linear-gradient(135deg, #ffffff 0%, #E8D5C4 50%, #C17B5A 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            marginBottom: '.85rem',
-          }}>
-            TROUVE TON<br />MCQUEEN
+        <div
+          id="hero-text"
+          style={{
+            position: 'absolute',
+            bottom: 'clamp(2.5rem,6vh,5rem)',
+            left: 'clamp(1.5rem,5vw,5rem)',
+            maxWidth: '600px',
+            willChange: 'transform, opacity',
+          }}
+        >
+          <h1
+            style={{
+              fontFamily: 'var(--sans)',
+              fontWeight: 900,
+              fontSize: 'clamp(3rem,7vw,6rem)',
+              lineHeight: 1,
+              letterSpacing: '-.01em',
+              textTransform: 'uppercase',
+              background: 'linear-gradient(135deg, #ffffff 0%, #E8D5C4 50%, #C17B5A 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              marginBottom: '.85rem',
+            }}
+          >
+            TROUVE TON
+            <br />
+            MCQUEEN
           </h1>
 
-          <p style={{
-            fontFamily: 'var(--sans)',
-            fontWeight: 400,
-            fontSize: '.72rem',
-            letterSpacing: '.2em',
-            textTransform: 'uppercase',
-            color: 'rgba(255,255,255,.75)',
-            lineHeight: 2,
-            marginBottom: '1.75rem',
-            maxWidth: '480px',
-          }}>
+          <p
+            style={{
+              fontFamily: 'var(--sans)',
+              fontWeight: 400,
+              fontSize: '.72rem',
+              letterSpacing: '.2em',
+              textTransform: 'uppercase',
+              color: 'rgba(255,255,255,.75)',
+              lineHeight: 2,
+              marginBottom: '1.75rem',
+              maxWidth: '480px',
+            }}
+          >
             Quinze questions. Un moteur bayésien. Le véhicule qui correspond exactement à votre vie.
           </p>
 
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <button
               onClick={() => navigate('/quiz')}
-              style={{ background: 'var(--gold)', color: '#ffffff', border: '2px solid var(--gold)', padding: '1rem 2.6rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.82rem', letterSpacing: '.15em', textTransform: 'uppercase', cursor: 'pointer', transition: 'background .2s, border-color .2s', borderRadius: '50px' }}
-              onMouseEnter={e => { e.currentTarget.style.background = 'var(--gold-2)'; e.currentTarget.style.borderColor = 'var(--gold-2)'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.borderColor = 'var(--gold)'; }}
-            >DÉMARRER LE QUIZ</button>
+              style={{
+                background: 'var(--gold)',
+                color: '#ffffff',
+                border: '2px solid var(--gold)',
+                padding: '1rem 2.6rem',
+                fontFamily: 'var(--sans)',
+                fontWeight: 700,
+                fontSize: '.82rem',
+                letterSpacing: '.15em',
+                textTransform: 'uppercase',
+                cursor: 'pointer',
+                transition: 'background .2s, border-color .2s',
+                borderRadius: '50px',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'var(--gold-2)';
+                e.currentTarget.style.borderColor = 'var(--gold-2)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'var(--gold)';
+                e.currentTarget.style.borderColor = 'var(--gold)';
+              }}
+            >
+              DÉMARRER LE QUIZ
+            </button>
             <button
               onClick={() => navigate('/cars')}
-              style={{ background: 'transparent', color: '#ffffff', border: '2px solid rgba(255,255,255,.7)', padding: '1rem 2.6rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.82rem', letterSpacing: '.15em', textTransform: 'uppercase', cursor: 'pointer', transition: 'background .2s, border-color .2s', borderRadius: '50px' }}
-              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(193,123,90,.8)'; e.currentTarget.style.borderColor = 'var(--gold)'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.7)'; }}
-            >CATALOGUE</button>
+              style={{
+                background: 'transparent',
+                color: '#ffffff',
+                border: '2px solid rgba(255,255,255,.7)',
+                padding: '1rem 2.6rem',
+                fontFamily: 'var(--sans)',
+                fontWeight: 700,
+                fontSize: '.82rem',
+                letterSpacing: '.15em',
+                textTransform: 'uppercase',
+                cursor: 'pointer',
+                transition: 'background .2s, border-color .2s',
+                borderRadius: '50px',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(193,123,90,.8)';
+                e.currentTarget.style.borderColor = 'var(--gold)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,.7)';
+              }}
+            >
+              CATALOGUE
+            </button>
           </div>
         </div>
 
         {/* By Radia — bas-droite */}
-        <div style={{
-          position: 'absolute',
-          bottom: 'clamp(1rem,3vh,2rem)',
-          right: 0,
-          background: 'linear-gradient(to right, transparent, rgba(42,31,18,.92) 25%)',
-          padding: 'clamp(0.8rem,2vh,1.2rem) clamp(1.5rem,4vw,3rem) clamp(0.8rem,2vh,1.2rem) clamp(3rem,8vw,6rem)',
-        }}>
-          <p style={{
-            fontFamily: 'var(--serif-display)',
-            fontSize: 'clamp(2rem,4.5vw,3.5rem)',
-            fontWeight: 700,
-            fontStyle: 'italic',
-            background: 'linear-gradient(135deg, #ffffff 0%, #E8D5C4 40%, #C17B5A 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            letterSpacing: '0.04em',
-            lineHeight: 1,
-          }}>
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 'clamp(1rem,3vh,2rem)',
+            right: 0,
+            background: 'linear-gradient(to right, transparent, rgba(42,31,18,.92) 25%)',
+            padding:
+              'clamp(0.8rem,2vh,1.2rem) clamp(1.5rem,4vw,3rem) clamp(0.8rem,2vh,1.2rem) clamp(3rem,8vw,6rem)',
+          }}
+        >
+          <p
+            style={{
+              fontFamily: 'var(--serif-display)',
+              fontSize: 'clamp(2rem,4.5vw,3.5rem)',
+              fontWeight: 700,
+              fontStyle: 'italic',
+              background: 'linear-gradient(135deg, #ffffff 0%, #E8D5C4 40%, #C17B5A 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              letterSpacing: '0.04em',
+              lineHeight: 1,
+            }}
+          >
             By Radia
           </p>
         </div>
-
       </section>
 
       {/* ── SÉPARATEUR ── */}
-      <div style={{ background: 'var(--bg)', padding: '4rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+      <div
+        style={{
+          background: 'var(--bg)',
+          padding: '4rem 0',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '1rem',
+        }}
+      >
         <div style={{ width: '40px', height: '1px', background: 'var(--gold)' }} />
-        <p style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', letterSpacing: '.25em', textTransform: 'uppercase', color: 'var(--ink-mute)' }}>
+        <p
+          style={{
+            fontFamily: 'var(--sans)',
+            fontSize: '.68rem',
+            letterSpacing: '.25em',
+            textTransform: 'uppercase',
+            color: 'var(--ink-mute)',
+          }}
+        >
           Nos véhicules
         </p>
         <div style={{ width: '40px', height: '1px', background: 'var(--gold)' }} />
       </div>
 
       {/* ── PHOTO MARQUEE ── */}
-      {(
-          <div style={{ background: 'transparent', padding: '1rem 0', overflow: 'hidden' }}>
-            <div className="marquee-track">
-              {MARQUEE_TILES.map((car, i) => (
-                <div key={i} style={{ flexShrink: 0, width: '260px', height: '150px', marginRight: '0.5rem', background: 'var(--bg)' }}>
-                  <img
-                    src={car.photo_url}
-                    alt={`${car.make} ${car.model}`}
-                    style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center', display: 'block', mixBlendMode: 'multiply' }}
-                  />
-                </div>
-              ))}
-            </div>
+      {
+        <div style={{ background: 'transparent', padding: '1rem 0', overflow: 'hidden' }}>
+          <div className="marquee-track">
+            {MARQUEE_TILES.map((car, i) => (
+              <div
+                key={i}
+                style={{
+                  flexShrink: 0,
+                  width: '260px',
+                  height: '150px',
+                  marginRight: '0.5rem',
+                  background: 'var(--bg)',
+                }}
+              >
+                <img
+                  src={car.photo_url}
+                  alt={`${car.make} ${car.model}`}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    objectPosition: 'center',
+                    display: 'block',
+                    mixBlendMode: 'multiply',
+                  }}
+                />
+              </div>
+            ))}
           </div>
-      )}
+        </div>
+      }
 
       {/* ── HOW IT WORKS — scroll panels ── */}
-      <section id="how" style={{ padding: '9rem 5vw 6rem', borderBottom: '1px solid rgba(42,31,18,.08)', overflow: 'hidden' }}>
+      <section
+        id="how"
+        style={{
+          padding: '9rem 5vw 6rem',
+          borderBottom: '1px solid rgba(42,31,18,.08)',
+          overflow: 'hidden',
+        }}
+      >
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-
-          <div className="reveal" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '6rem' }}>
-            <span style={{ fontFamily: 'var(--sans)', fontSize: '.62rem', letterSpacing: '.26em', textTransform: 'uppercase', color: 'var(--gold)', whiteSpace: 'nowrap' }}>Comment ça marche</span>
+          <div
+            className="reveal"
+            style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '6rem' }}
+          >
+            <span
+              style={{
+                fontFamily: 'var(--sans)',
+                fontSize: '.62rem',
+                letterSpacing: '.26em',
+                textTransform: 'uppercase',
+                color: 'var(--gold)',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              Comment ça marche
+            </span>
             <div style={{ flex: 1, height: '1px', background: copper }} />
           </div>
 
           {STEPS.map((s, i) => (
-            <div key={i} className="reveal" style={{
-              display: 'grid',
-              gridTemplateColumns: '1.15fr 1fr',
-              gap: 'clamp(3rem,6vw,6rem)',
-              alignItems: 'center',
-              paddingBottom: i < STEPS.length - 1 ? '7rem' : 0,
-              '--reveal-delay': `${i * 0.1}s`,
-            }}>
+            <div
+              key={i}
+              className="reveal"
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1.15fr 1fr',
+                gap: 'clamp(3rem,6vw,6rem)',
+                alignItems: 'center',
+                paddingBottom: i < STEPS.length - 1 ? '7rem' : 0,
+                '--reveal-delay': `${i * 0.1}s`,
+              }}
+            >
               {/* Image — plein, sans cadre */}
               <div style={{ borderRadius: '20px', overflow: 'hidden', aspectRatio: '16/10' }}>
-                <img src={s.img} alt={s.title}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block', transition: 'transform .9s ease' }}
-                  onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.04)'}
-                  onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                <img
+                  src={s.img}
+                  alt={s.title}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                    display: 'block',
+                    transition: 'transform .9s ease',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.04)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
                 />
               </div>
 
               {/* Texte */}
               <div>
-                <p style={{ fontFamily: 'var(--mono)', fontSize: '.8rem', fontWeight: 700, color: 'var(--gold)', marginBottom: '1.2rem', letterSpacing: '.06em' }}>{s.n}</p>
-                <h3 style={{ fontFamily: 'var(--serif-display)', fontSize: 'clamp(2rem,3.2vw,2.8rem)', fontWeight: 400, color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-.01em', marginBottom: '1.4rem' }}>{s.title}</h3>
-                <div style={{ width: '32px', height: '1px', background: 'var(--gold)', marginBottom: '1.4rem' }} />
-                <p style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--ink-mute)', lineHeight: 2, maxWidth: '340px' }}>{s.body}</p>
+                <p
+                  style={{
+                    fontFamily: 'var(--mono)',
+                    fontSize: '.8rem',
+                    fontWeight: 700,
+                    color: 'var(--gold)',
+                    marginBottom: '1.2rem',
+                    letterSpacing: '.06em',
+                  }}
+                >
+                  {s.n}
+                </p>
+                <h3
+                  style={{
+                    fontFamily: 'var(--serif-display)',
+                    fontSize: 'clamp(2rem,3.2vw,2.8rem)',
+                    fontWeight: 400,
+                    color: 'var(--ink)',
+                    lineHeight: 1.05,
+                    letterSpacing: '-.01em',
+                    marginBottom: '1.4rem',
+                  }}
+                >
+                  {s.title}
+                </h3>
+                <div
+                  style={{
+                    width: '32px',
+                    height: '1px',
+                    background: 'var(--gold)',
+                    marginBottom: '1.4rem',
+                  }}
+                />
+                <p
+                  style={{
+                    fontFamily: 'var(--sans)',
+                    fontSize: '.68rem',
+                    letterSpacing: '.18em',
+                    textTransform: 'uppercase',
+                    color: 'var(--ink-mute)',
+                    lineHeight: 2,
+                    maxWidth: '340px',
+                  }}
+                >
+                  {s.body}
+                </p>
               </div>
             </div>
           ))}
-
         </div>
       </section>
 
       {/* ── QUIZ PREVIEW ── */}
-      <section id="quiz" style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(42,31,18,.08)', background: 'var(--bg-2)' }}>
+      <section
+        id="quiz"
+        style={{
+          padding: '9rem 5vw',
+          borderBottom: '1px solid rgba(42,31,18,.08)',
+          background: 'var(--bg-2)',
+        }}
+      >
         <div style={{ maxWidth: '1160px', margin: '0 auto' }}>
-
           <div style={{ maxWidth: '600px' }}>
             <div className="reveal">
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2.5rem' }}>
-                <span style={{ fontFamily: 'var(--sans)', fontSize: '.62rem', letterSpacing: '.26em', textTransform: 'uppercase', color: 'var(--gold)', whiteSpace: 'nowrap' }}>Le quiz</span>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '1.5rem',
+                  marginBottom: '2.5rem',
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: 'var(--sans)',
+                    fontSize: '.62rem',
+                    letterSpacing: '.26em',
+                    textTransform: 'uppercase',
+                    color: 'var(--gold)',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  Le quiz
+                </span>
                 <div style={{ flex: 1, height: '1px', background: copper }} />
               </div>
 
-              <h2 style={{ fontFamily: 'var(--serif-display)', fontSize: 'clamp(2.8rem,5vw,5rem)', lineHeight: .88, letterSpacing: '-.04em', color: 'var(--ink)', marginBottom: '2rem' }}>
-                Des questions<br /><span style={{ color: 'var(--gold)' }}>qui comptent.</span>
+              <h2
+                style={{
+                  fontFamily: 'var(--serif-display)',
+                  fontSize: 'clamp(2.8rem,5vw,5rem)',
+                  lineHeight: 0.88,
+                  letterSpacing: '-.04em',
+                  color: 'var(--ink)',
+                  marginBottom: '2rem',
+                }}
+              >
+                Des questions
+                <br />
+                <span style={{ color: 'var(--gold)' }}>qui comptent.</span>
               </h2>
 
-              <p style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--ink-mute)', lineHeight: 2, maxWidth: '400px', marginBottom: '2.5rem' }}>
-                Chaque réponse affine l'algorithme. En 10 questions, le système en sait plus sur vos besoins qu'un vendeur en deux heures.
+              <p
+                style={{
+                  fontFamily: 'var(--sans)',
+                  fontSize: '.68rem',
+                  letterSpacing: '.15em',
+                  textTransform: 'uppercase',
+                  color: 'var(--ink-mute)',
+                  lineHeight: 2,
+                  maxWidth: '400px',
+                  marginBottom: '2.5rem',
+                }}
+              >
+                Chaque réponse affine l'algorithme. En 10 questions, le système en sait plus sur vos
+                besoins qu'un vendeur en deux heures.
               </p>
 
               <button
                 onClick={() => navigate('/quiz')}
-                style={{ background: 'transparent', color: 'var(--gold)', border: '1px solid var(--gold)', padding: '.9rem 2rem', fontFamily: 'var(--sans)', fontWeight: 600, fontSize: '.75rem', letterSpacing: '.12em', textTransform: 'uppercase', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '.7rem', borderRadius: '50px' }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.color = '#ffffff'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--gold)'; }}
+                style={{
+                  background: 'transparent',
+                  color: 'var(--gold)',
+                  border: '1px solid var(--gold)',
+                  padding: '.9rem 2rem',
+                  fontFamily: 'var(--sans)',
+                  fontWeight: 600,
+                  fontSize: '.75rem',
+                  letterSpacing: '.12em',
+                  textTransform: 'uppercase',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '.7rem',
+                  borderRadius: '50px',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'var(--gold)';
+                  e.currentTarget.style.color = '#ffffff';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'transparent';
+                  e.currentTarget.style.color = 'var(--gold)';
+                }}
               >
                 Commencer <span>→</span>
               </button>
             </div>
-
           </div>
-
         </div>
       </section>
 
       {/* ── FEATURES ── */}
-      <section id="features" style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(42,31,18,.08)', overflow: 'hidden' }}>
+      <section
+        id="features"
+        style={{
+          padding: '9rem 5vw',
+          borderBottom: '1px solid rgba(42,31,18,.08)',
+          overflow: 'hidden',
+        }}
+      >
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-
-          <div className="reveal" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '6rem' }}>
-            <span style={{ fontFamily: 'var(--sans)', fontSize: '.62rem', letterSpacing: '.26em', textTransform: 'uppercase', color: 'var(--gold)', whiteSpace: 'nowrap' }}>Fonctionnalités</span>
+          <div
+            className="reveal"
+            style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '6rem' }}
+          >
+            <span
+              style={{
+                fontFamily: 'var(--sans)',
+                fontSize: '.62rem',
+                letterSpacing: '.26em',
+                textTransform: 'uppercase',
+                color: 'var(--gold)',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              Fonctionnalités
+            </span>
             <div style={{ flex: 1, height: '1px', background: copper }} />
           </div>
 
@@ -308,29 +682,87 @@ export default function Landing() {
             <div
               key={i}
               className="slide-left"
-              style={{ '--slide-delay': `${i * 0.07}s`, display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 'clamp(2.5rem,5vw,5rem)', alignItems: 'center', padding: '3.5rem 0', borderBottom: i < FEATURES.length - 1 ? '1px solid rgba(42,31,18,.06)' : 'none' }}
+              style={{
+                '--slide-delay': `${i * 0.07}s`,
+                display: 'grid',
+                gridTemplateColumns: '1.1fr 1fr',
+                gap: 'clamp(2.5rem,5vw,5rem)',
+                alignItems: 'center',
+                padding: '3.5rem 0',
+                borderBottom: i < FEATURES.length - 1 ? '1px solid rgba(42,31,18,.06)' : 'none',
+              }}
             >
               {/* Photo */}
-              <div style={{ borderRadius: '18px', overflow: 'hidden', aspectRatio: '16/10', position: 'relative' }}>
+              <div
+                style={{
+                  borderRadius: '18px',
+                  overflow: 'hidden',
+                  aspectRatio: '16/10',
+                  position: 'relative',
+                }}
+              >
                 <img
                   src={f.img}
                   alt={f.title}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block', transition: 'transform .7s ease' }}
-                  onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.04)'}
-                  onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                    display: 'block',
+                    transition: 'transform .7s ease',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.04)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
                 />
               </div>
 
               {/* Texte */}
               <div style={{ paddingLeft: 'clamp(0px,2vw,1.5rem)' }}>
-                <p style={{ fontFamily: 'var(--sans)', fontSize: '.6rem', letterSpacing: '.3em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '1.1rem' }}>
+                <p
+                  style={{
+                    fontFamily: 'var(--sans)',
+                    fontSize: '.6rem',
+                    letterSpacing: '.3em',
+                    textTransform: 'uppercase',
+                    color: 'var(--gold)',
+                    marginBottom: '1.1rem',
+                  }}
+                >
                   {f.label}
                 </p>
-                <h3 style={{ fontFamily: 'var(--serif-display)', fontSize: 'clamp(2rem,3.2vw,2.8rem)', fontWeight: 400, color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-.01em', marginBottom: '1.4rem' }}>
+                <h3
+                  style={{
+                    fontFamily: 'var(--serif-display)',
+                    fontSize: 'clamp(2rem,3.2vw,2.8rem)',
+                    fontWeight: 400,
+                    color: 'var(--ink)',
+                    lineHeight: 1.05,
+                    letterSpacing: '-.01em',
+                    marginBottom: '1.4rem',
+                  }}
+                >
                   {f.title}
                 </h3>
-                <div style={{ width: '32px', height: '1px', background: 'var(--gold)', marginBottom: '1.4rem' }} />
-                <p style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--ink-mute)', lineHeight: 2, maxWidth: '340px' }}>
+                <div
+                  style={{
+                    width: '32px',
+                    height: '1px',
+                    background: 'var(--gold)',
+                    marginBottom: '1.4rem',
+                  }}
+                />
+                <p
+                  style={{
+                    fontFamily: 'var(--sans)',
+                    fontSize: '.68rem',
+                    letterSpacing: '.18em',
+                    textTransform: 'uppercase',
+                    color: 'var(--ink-mute)',
+                    lineHeight: 2,
+                    maxWidth: '340px',
+                  }}
+                >
                   {f.body}
                 </p>
               </div>
@@ -340,64 +772,224 @@ export default function Landing() {
       </section>
 
       {/* ── CAR SHOWCASE ── */}
-      <section style={{ padding: '9rem 5vw', borderBottom: '1px solid rgba(42,31,18,.08)', background: 'var(--bg-2)' }}>
+      <section
+        style={{
+          padding: '9rem 5vw',
+          borderBottom: '1px solid rgba(42,31,18,.08)',
+          background: 'var(--bg-2)',
+        }}
+      >
         <div style={{ maxWidth: '1160px', margin: '0 auto' }}>
-
-          <div className="reveal" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '2rem', marginBottom: '3.5rem', flexWrap: 'wrap' }}>
+          <div
+            className="reveal"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '2rem',
+              marginBottom: '3.5rem',
+              flexWrap: 'wrap',
+            }}
+          >
             <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-              <span style={{ fontFamily: 'var(--sans)', fontSize: '.62rem', letterSpacing: '.26em', textTransform: 'uppercase', color: 'var(--gold)', whiteSpace: 'nowrap' }}>Quelques modèles</span>
+              <span
+                style={{
+                  fontFamily: 'var(--sans)',
+                  fontSize: '.62rem',
+                  letterSpacing: '.26em',
+                  textTransform: 'uppercase',
+                  color: 'var(--gold)',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                Quelques modèles
+              </span>
               <div style={{ width: '60px', height: '1px', background: copper }} />
             </div>
-            <Link to="/cars" style={{ fontFamily: 'var(--sans)', fontSize: '.7rem', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--ink-mute)', display: 'flex', alignItems: 'center', gap: '.5rem' }}
-              onMouseEnter={e => e.currentTarget.style.color = 'var(--ink)'}
-              onMouseLeave={e => e.currentTarget.style.color = 'var(--ink-mute)'}
-            >Voir les {CARS.length} modèles →</Link>
+            <Link
+              to="/cars"
+              style={{
+                fontFamily: 'var(--sans)',
+                fontSize: '.7rem',
+                letterSpacing: '.12em',
+                textTransform: 'uppercase',
+                color: 'var(--ink-mute)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '.5rem',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--ink)')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--ink-mute)')}
+            >
+              Voir les {CARS.length} modèles →
+            </Link>
           </div>
 
-          {(
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '1.25rem' }}>
-                {SHOWCASE.map((car, si) => (
-                  <Link key={car.id} to={`/cars/${car.id}`} className="reveal" style={{ '--reveal-delay': `${si * 0.07}s`, display: 'block', background: 'var(--bg)', border: '1px solid rgba(193,123,90,.15)', borderRadius: '14px', overflow: 'hidden', transition: 'border-color .25s, transform .25s, box-shadow .25s' }}
-                    onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(193,123,90,.4)'; e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 12px 32px rgba(193,123,90,.1)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(193,123,90,.15)'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
+          {
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+                gap: '1.25rem',
+              }}
+            >
+              {SHOWCASE.map((car, si) => (
+                <Link
+                  key={car.id}
+                  to={`/cars/${car.id}`}
+                  className="reveal"
+                  style={{
+                    '--reveal-delay': `${si * 0.07}s`,
+                    display: 'block',
+                    background: 'var(--bg)',
+                    border: '1px solid rgba(193,123,90,.15)',
+                    borderRadius: '14px',
+                    overflow: 'hidden',
+                    transition: 'border-color .25s, transform .25s, box-shadow .25s',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = 'rgba(193,123,90,.4)';
+                    e.currentTarget.style.transform = 'translateY(-5px)';
+                    e.currentTarget.style.boxShadow = '0 12px 32px rgba(193,123,90,.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = 'rgba(193,123,90,.15)';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
+                >
+                  <div
+                    style={{
+                      height: '160px',
+                      overflow: 'hidden',
+                      background: 'var(--bg-3)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
                   >
-                    <div style={{ height: '160px', overflow: 'hidden', background: 'var(--bg-3)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <img src={car.photo_url} alt={`${car.make} ${car.model}`}
-                        style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center', padding: '8px', transition: 'transform .5s ease' }}
-                        onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.07)'}
-                        onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
-                      />
-                    </div>
-                    <div style={{ padding: '1.1rem 1.4rem' }}>
-                      <span style={{ fontFamily: 'var(--sans)', fontSize: '.58rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--gold)', background: 'rgba(193,123,90,.1)', padding: '2px 8px', borderRadius: '20px' }}>
-                        {categoryLabel(car.category)}
-                      </span>
-                      <h3 style={{ fontFamily: 'var(--serif-display)', fontSize: '1.05rem', color: 'var(--ink)', lineHeight: 1.15, marginTop: '.5rem', marginBottom: '.4rem' }}>{car.make} {car.model}</h3>
-                      <p style={{ fontFamily: 'var(--mono)', fontSize: '.78rem', color: 'var(--gold)', fontWeight: 700 }}>
-                        {formatPriceMAD(car.price_eur, 'Sur demande')}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-          )}
+                    <img
+                      src={car.photo_url}
+                      alt={`${car.make} ${car.model}`}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain',
+                        objectPosition: 'center',
+                        padding: '8px',
+                        transition: 'transform .5s ease',
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.07)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                    />
+                  </div>
+                  <div style={{ padding: '1.1rem 1.4rem' }}>
+                    <span
+                      style={{
+                        fontFamily: 'var(--sans)',
+                        fontSize: '.58rem',
+                        letterSpacing: '.18em',
+                        textTransform: 'uppercase',
+                        color: 'var(--gold)',
+                        background: 'rgba(193,123,90,.1)',
+                        padding: '2px 8px',
+                        borderRadius: '20px',
+                      }}
+                    >
+                      {categoryLabel(car.category)}
+                    </span>
+                    <h3
+                      style={{
+                        fontFamily: 'var(--serif-display)',
+                        fontSize: '1.05rem',
+                        color: 'var(--ink)',
+                        lineHeight: 1.15,
+                        marginTop: '.5rem',
+                        marginBottom: '.4rem',
+                      }}
+                    >
+                      {car.make} {car.model}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: 'var(--mono)',
+                        fontSize: '.78rem',
+                        color: 'var(--gold)',
+                        fontWeight: 700,
+                      }}
+                    >
+                      {formatPriceMAD(car.price_eur, 'Sur demande')}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          }
         </div>
       </section>
 
       {/* ── CTA ── */}
       <section style={{ background: 'var(--gold)', padding: '7rem 5vw' }}>
-        <div style={{ maxWidth: '1160px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '3rem', flexWrap: 'wrap' }}>
+        <div
+          style={{
+            maxWidth: '1160px',
+            margin: '0 auto',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: '3rem',
+            flexWrap: 'wrap',
+          }}
+        >
           <div>
-            <p style={{ fontFamily: 'var(--sans)', fontSize: '.62rem', letterSpacing: '.26em', textTransform: 'uppercase', color: 'rgba(240,235,227,.55)', marginBottom: '1rem' }}>Prêt ?</p>
-            <h2 style={{ fontFamily: 'var(--serif-display)', fontSize: 'clamp(2.8rem,5vw,5rem)', lineHeight: .88, letterSpacing: '-.04em', color: '#ffffff' }}>
-              Votre McQueen<br />vous attend.
+            <p
+              style={{
+                fontFamily: 'var(--sans)',
+                fontSize: '.62rem',
+                letterSpacing: '.26em',
+                textTransform: 'uppercase',
+                color: 'rgba(240,235,227,.55)',
+                marginBottom: '1rem',
+              }}
+            >
+              Prêt ?
+            </p>
+            <h2
+              style={{
+                fontFamily: 'var(--serif-display)',
+                fontSize: 'clamp(2.8rem,5vw,5rem)',
+                lineHeight: 0.88,
+                letterSpacing: '-.04em',
+                color: '#ffffff',
+              }}
+            >
+              Votre McQueen
+              <br />
+              vous attend.
             </h2>
           </div>
           <button
             onClick={() => navigate('/quiz')}
-            style={{ background: '#ffffff', color: 'var(--gold)', border: 'none', padding: '1.2rem 3.2rem', fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '.78rem', letterSpacing: '.12em', textTransform: 'uppercase', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '.75rem', flexShrink: 0, whiteSpace: 'nowrap', borderRadius: '50px' }}
-            onMouseEnter={e => e.currentTarget.style.background = '#EFF6FF'}
-            onMouseLeave={e => e.currentTarget.style.background = '#ffffff'}
+            style={{
+              background: '#ffffff',
+              color: 'var(--gold)',
+              border: 'none',
+              padding: '1.2rem 3.2rem',
+              fontFamily: 'var(--sans)',
+              fontWeight: 700,
+              fontSize: '.78rem',
+              letterSpacing: '.12em',
+              textTransform: 'uppercase',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '.75rem',
+              flexShrink: 0,
+              whiteSpace: 'nowrap',
+              borderRadius: '50px',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = '#EFF6FF')}
+            onMouseLeave={(e) => (e.currentTarget.style.background = '#ffffff')}
           >
             Démarrer le quiz <span style={{ fontSize: '1rem' }}>→</span>
           </button>
@@ -405,23 +997,54 @@ export default function Landing() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer style={{ padding: '2rem 3.5rem', borderTop: '1px solid rgba(30,58,138,.07)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem', flexWrap: 'wrap' }}>
+      <footer
+        style={{
+          padding: '2rem 3.5rem',
+          borderTop: '1px solid rgba(30,58,138,.07)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '1.5rem',
+          flexWrap: 'wrap',
+        }}
+      >
         <div style={{ fontFamily: 'var(--serif-display)', fontSize: '1rem' }}>
           Auto<span style={{ color: 'var(--gold)' }}>Assist</span>
         </div>
-        <p style={{ fontFamily: 'var(--sans)', fontSize: '.62rem', letterSpacing: '.06em', color: 'var(--ink-mute)', opacity: .45 }}>
+        <p
+          style={{
+            fontFamily: 'var(--sans)',
+            fontSize: '.62rem',
+            letterSpacing: '.06em',
+            color: 'var(--ink-mute)',
+            opacity: 0.45,
+          }}
+        >
           © 2026 AutoAssist · Propulsé par l'inférence bayésienne
         </p>
         <div style={{ display: 'flex', gap: '2rem' }}>
-          {[['Catalogue', '/cars'], ['Comparateur', '/compare']].map(([l, to]) => (
-            <Link key={to} to={to} style={{ fontFamily: 'var(--sans)', fontSize: '.65rem', letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--ink-mute)' }}
-              onMouseEnter={e => e.currentTarget.style.color = 'var(--ink)'}
-              onMouseLeave={e => e.currentTarget.style.color = 'var(--ink-mute)'}
-            >{l}</Link>
+          {[
+            ['Catalogue', '/cars'],
+            ['Comparateur', '/compare'],
+          ].map(([l, to]) => (
+            <Link
+              key={to}
+              to={to}
+              style={{
+                fontFamily: 'var(--sans)',
+                fontSize: '.65rem',
+                letterSpacing: '.1em',
+                textTransform: 'uppercase',
+                color: 'var(--ink-mute)',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--ink)')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--ink-mute)')}
+            >
+              {l}
+            </Link>
           ))}
         </div>
       </footer>
-
     </div>
   );
 }

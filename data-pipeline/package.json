@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "description": "Construit le jeu de données statique des voitures utilisé par le frontend.",
-  "engines": { "node": ">=18" },
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "build": "node build-dataset.js",
     "check": "node build-dataset.js --dry-run",

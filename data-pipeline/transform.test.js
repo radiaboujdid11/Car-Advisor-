@@ -19,7 +19,16 @@ const base = {
 
 test('expandEuropeModels crée une voiture par année avec le bon prix', () => {
   const cars = expandEuropeModels(
-    [{ ...base, make: 'Kia', model: 'Ceed', price_2023: 100, price_2024: 110, description: 'Kia Ceed — x' }],
+    [
+      {
+        ...base,
+        make: 'Kia',
+        model: 'Ceed',
+        price_2023: 100,
+        price_2024: 110,
+        description: 'Kia Ceed — x',
+      },
+    ],
     [2023, 2024],
   );
   assert.equal(cars.length, 2);
@@ -52,9 +61,27 @@ test("applyCorrections remplace le prix et n'écrase pas une photo existante", (
 });
 
 test('dedupe garde la fiche marocaine en cas de doublon', () => {
-  const eu = { ...base, make: 'Renault', model: 'Clio', year: 2023, carquery_id: 'renault-clio-2023' };
-  const ma = { ...base, make: 'Renault', model: 'Clio', year: 2023, carquery_id: 'ma_renault_clio_2023' };
-  const other = { ...base, make: 'Renault', model: 'Clio', year: 2024, carquery_id: 'renault-clio-2024' };
+  const eu = {
+    ...base,
+    make: 'Renault',
+    model: 'Clio',
+    year: 2023,
+    carquery_id: 'renault-clio-2023',
+  };
+  const ma = {
+    ...base,
+    make: 'Renault',
+    model: 'Clio',
+    year: 2023,
+    carquery_id: 'ma_renault_clio_2023',
+  };
+  const other = {
+    ...base,
+    make: 'Renault',
+    model: 'Clio',
+    year: 2024,
+    carquery_id: 'renault-clio-2024',
+  };
   const { cars, dropped } = dedupe([eu, other, ma]);
   assert.deepEqual(
     cars.map((c) => c.carquery_id),

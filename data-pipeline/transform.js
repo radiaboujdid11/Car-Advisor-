@@ -104,7 +104,8 @@ export function validate(cars) {
     if (!Number.isInteger(car.year)) errors.push(`${label} : année invalide`);
     if (!(car.price_eur > 0)) errors.push(`${label} : prix invalide`);
     if (!(car.power_hp > 0)) errors.push(`${label} : puissance invalide`);
-    if (!CATEGORIES.includes(car.category)) errors.push(`${label} : catégorie inconnue « ${car.category} »`);
+    if (!CATEGORIES.includes(car.category))
+      errors.push(`${label} : catégorie inconnue « ${car.category} »`);
   }
   return errors;
 }

@@ -13,16 +13,19 @@ const HEADER_ROUTES = ['/results', '/cars', '/compare'];
 
 function AppShell({ compareCars, children }) {
   const { pathname } = useLocation();
-  const showHeader = HEADER_ROUTES.some(r => pathname === r || pathname.startsWith('/cars/'));
+  const showHeader = HEADER_ROUTES.some((r) => pathname === r || pathname.startsWith('/cars/'));
 
   // Animation de rebond à la sortie du survol des boutons et liens de navigation
   useEffect(() => {
-    const BTN_CLASSES = ['btn-primary','btn-ghost','btn-outline','btn-secondary'];
-    const isBounceTarget = el =>
-      el && (el.tagName === 'BUTTON' || el.tagName === 'A') &&
-      (BTN_CLASSES.some(c => el.classList.contains(c)) || el.closest('nav') || el.closest('header'));
+    const BTN_CLASSES = ['btn-primary', 'btn-ghost', 'btn-outline', 'btn-secondary'];
+    const isBounceTarget = (el) =>
+      el &&
+      (el.tagName === 'BUTTON' || el.tagName === 'A') &&
+      (BTN_CLASSES.some((c) => el.classList.contains(c)) ||
+        el.closest('nav') ||
+        el.closest('header'));
 
-    const onLeave = e => {
+    const onLeave = (e) => {
       if (isBounceTarget(e.target)) {
         e.target.style.animation = 'ff-btn-out .35s cubic-bezier(0.23,1,0.32,1) forwards';
       }
@@ -44,10 +47,18 @@ function AppShell({ compareCars, children }) {
 
 export default function App() {
   const [quizResults, setQuizResults] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('carAdvisor_results')) || null; } catch { return null; }
+    try {
+      return JSON.parse(localStorage.getItem('carAdvisor_results')) || null;
+    } catch {
+      return null;
+    }
   });
   const [compareCars, setCompareCars] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('carAdvisor_compare')) || []; } catch { return []; }
+    try {
+      return JSON.parse(localStorage.getItem('carAdvisor_compare')) || [];
+    } catch {
+      return [];
+    }
   });
 
   useEffect(() => {
@@ -58,13 +69,15 @@ export default function App() {
   }, [compareCars]);
 
   function addToCompare(car) {
-    setCompareCars(prev => {
-      if (prev.find(c => c.id === car.id)) return prev;
+    setCompareCars((prev) => {
+      if (prev.find((c) => c.id === car.id)) return prev;
       if (prev.length >= 4) return prev;
       return [...prev, car];
     });
   }
-  function removeFromCompare(carId) { setCompareCars(prev => prev.filter(c => c.id !== carId)); }
+  function removeFromCompare(carId) {
+    setCompareCars((prev) => prev.filter((c) => c.id !== carId));
+  }
 
   const shared = { addToCompare, removeFromCompare, compareCars };
 
@@ -72,14 +85,23 @@ export default function App() {
     <BrowserRouter>
       <AppShell compareCars={compareCars}>
         <Routes>
-          <Route path="/"         element={<Landing />} />
-          <Route path="/quiz"     element={<Quiz onComplete={r => setQuizResults(r)} />} />
-          <Route path="/results"  element={quizResults ? <Results results={quizResults} {...shared} /> : <Navigate to="/quiz" replace />} />
-          <Route path="/cars"     element={<Catalog {...shared} />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/quiz" element={<Quiz onComplete={(r) => setQuizResults(r)} />} />
+          <Route
+            path="/results"
+            element={
+              quizResults ? (
+                <Results results={quizResults} {...shared} />
+              ) : (
+                <Navigate to="/quiz" replace />
+              )
+            }
+          />
+          <Route path="/cars" element={<Catalog {...shared} />} />
           <Route path="/cars/:id" element={<CarDetail {...shared} />} />
-          <Route path="/compare"  element={<Comparator cars={compareCars} {...shared} />} />
-          <Route path="/search"   element={<Navigate to="/cars" replace />} />
-          <Route path="*"         element={<Navigate to="/" replace />} />
+          <Route path="/compare" element={<Comparator cars={compareCars} {...shared} />} />
+          <Route path="/search" element={<Navigate to="/cars" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AppShell>
     </BrowserRouter>

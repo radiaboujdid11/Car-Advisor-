@@ -1,0 +1,6 @@
+node_modules
+dist
+package-lock.json
+# Fichiers de données : générés ou alignés en colonnes à la main
+frontend/src/data/cars.js
+data-pipeline/sources/
