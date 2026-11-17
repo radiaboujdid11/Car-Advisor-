@@ -502,6 +502,34 @@ textarea {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+  /* Animations continues : arrêtées plutôt qu'accélérées */
+  .marquee-track {
+    animation: none !important;
+  }
+}
+
+/* ── Focus clavier visible partout ── */
+:focus-visible {
+  outline: 2px solid var(--gold-2);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Écrans tactiles : curseur natif, pas de curseur personnalisé ── */
+@media (hover: none), (pointer: coarse) {
+  #cursor {
+    display: none;
+  }
+  html,
+  body,
+  button {
+    cursor: auto;
+  }
+}
+
+html {
+  -webkit-tap-highlight-color: rgba(193, 123, 90, 0.18);
+  -webkit-text-size-adjust: 100%;
 }
 
 /* ── Mobile responsive ── */

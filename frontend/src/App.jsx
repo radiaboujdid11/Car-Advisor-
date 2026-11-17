@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import { Suspense, lazy, useState, useEffect } from 'react';
 import Header from './components/Header';
 import Cursor from './components/Cursor';
+import MobileTabBar from './components/MobileTabBar';
 import Landing from './pages/Landing';
 
 // Les pages hors accueil sont chargées à la demande : le moteur du quiz et la
@@ -43,9 +44,14 @@ function AppShell({ compareCars, children }) {
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       <Cursor />
       {showHeader && <Header compareCars={compareCars} />}
-      <main key={pathname} className="page-enter" style={{ position: 'relative' }}>
+      <main
+        key={pathname}
+        className={`page-enter${showHeader ? ' pb-[calc(60px+env(safe-area-inset-bottom))] md:pb-0' : ''}`}
+        style={{ position: 'relative' }}
+      >
         {children}
       </main>
+      {showHeader && <MobileTabBar compareCount={compareCars.length} />}
     </div>
   );
 }
