@@ -27,10 +27,10 @@ export default function Results({ results, addToCompare }) {
 
   return (
     <div
+      className="px-4 py-10 sm:px-6 md:px-8 md:py-20"
       style={{
         background: 'var(--bg)',
         minHeight: '100vh',
-        padding: '5rem 2rem',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -41,7 +41,7 @@ export default function Results({ results, addToCompare }) {
           top: 0,
           left: '50%',
           transform: 'translateX(-50%)',
-          width: '700px',
+          width: 'min(700px, 100%)',
           height: '400px',
           background:
             'radial-gradient(ellipse at center top, rgba(240,240,240,.08) 0%, transparent 70%)',
@@ -51,7 +51,7 @@ export default function Results({ results, addToCompare }) {
 
       <div style={{ maxWidth: '960px', margin: '0 auto', position: 'relative' }}>
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
+        <div className="mb-10 md:mb-20" style={{ textAlign: 'center' }}>
           <div
             style={{
               display: 'inline-flex',
@@ -59,7 +59,7 @@ export default function Results({ results, addToCompare }) {
               gap: '.5rem',
               background: 'rgba(240,240,240,.14)',
               border: '1px solid rgba(240,240,240,.3)',
-              color: 'var(--gold)',
+              color: 'var(--gold-deep)',
               fontSize: '.75rem',
               letterSpacing: '.12em',
               textTransform: 'uppercase',
@@ -87,7 +87,8 @@ export default function Results({ results, addToCompare }) {
 
         {/* Top 3 */}
         <div
-          style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '3rem' }}
+          className="gap-4 md:gap-6"
+          style={{ display: 'flex', flexDirection: 'column', marginBottom: '3rem' }}
         >
           {top3.map((car, i) => (
             <ResultCard
@@ -102,14 +103,14 @@ export default function Results({ results, addToCompare }) {
         </div>
 
         {/* Actions */}
-        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <button onClick={() => navigate('/compare')} className="btn-primary">
+        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
+          <button onClick={() => navigate('/compare')} className="btn-primary min-h-[48px]">
             Comparer les résultats
           </button>
-          <button onClick={() => navigate('/cars')} className="btn-ghost">
+          <button onClick={() => navigate('/cars')} className="btn-ghost min-h-[48px]">
             Explorer le catalogue
           </button>
-          <button onClick={() => navigate('/quiz')} className="btn-secondary">
+          <button onClick={() => navigate('/quiz')} className="btn-secondary min-h-[48px]">
             Recommencer
           </button>
         </div>
@@ -125,9 +126,9 @@ function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
   return (
     <div
       data-result-card
+      className="p-5 sm:p-7 md:p-10"
       style={{
         background: hovered ? 'var(--bg-3)' : 'var(--bg-2)',
-        padding: '2.5rem',
         borderRadius: '16px',
         border: isFirst ? '1px solid rgba(240,235,227,.4)' : '1px solid rgba(240,240,240,.14)',
         position: 'relative',
@@ -160,12 +161,14 @@ function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
         {rank}
       </span>
 
-      <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+      <div
+        className="gap-x-8 gap-y-4"
+        style={{ display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap' }}
+      >
         {photo && (
           <div
+            className="h-[150px] w-full sm:h-[110px] sm:w-[160px]"
             style={{
-              width: '160px',
-              height: '110px',
               flexShrink: 0,
               borderRadius: '8px',
               overflow: 'hidden',
@@ -175,17 +178,20 @@ function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
             <img
               src={photo}
               alt={`${car.make} ${car.model}`}
+              decoding="async"
+              width="320"
+              height="220"
               style={{ width: '100%', height: '100%', objectFit: 'contain' }}
             />
           </div>
         )}
-        <div style={{ flex: 1, minWidth: '200px' }}>
+        <div style={{ flex: 1, minWidth: 'min(200px, 100%)' }}>
           <p
             style={{
-              fontSize: '.72rem',
-              letterSpacing: '.22em',
+              fontSize: '.75rem',
+              letterSpacing: '.14em',
               textTransform: 'uppercase',
-              color: 'var(--gold)',
+              color: 'var(--gold-deep)',
               marginBottom: '.5rem',
               fontFamily: 'var(--sans)',
             }}
@@ -203,7 +209,7 @@ function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
           >
             {car.make} {car.model}
           </h2>
-          <p style={{ fontSize: '.8rem', color: 'var(--ink-mute)' }}>{car.year}</p>
+          <p style={{ fontSize: '.875rem', color: 'var(--ink-soft)' }}>{car.year}</p>
         </div>
 
         <div style={{ textAlign: 'center' }}>
@@ -221,10 +227,10 @@ function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
           </p>
           <p
             style={{
-              fontSize: '.68rem',
-              letterSpacing: '.18em',
+              fontSize: '.75rem',
+              letterSpacing: '.12em',
               textTransform: 'uppercase',
-              color: 'var(--ink-mute)',
+              color: 'var(--ink-soft)',
               marginTop: '4px',
             }}
           >
@@ -244,7 +250,7 @@ function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
             {formatPriceMAD(car.price_eur)}
           </p>
           {car.power_hp && (
-            <p style={{ fontSize: '.8rem', color: 'var(--ink-mute)', marginTop: '4px' }}>
+            <p style={{ fontSize: '.875rem', color: 'var(--ink-soft)', marginTop: '4px' }}>
               {car.power_hp} ch
             </p>
           )}
@@ -255,11 +261,11 @@ function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
         <p
           style={{
             fontFamily: 'var(--sans)',
-            fontSize: '.68rem',
-            letterSpacing: '.15em',
+            fontSize: '.8125rem',
+            letterSpacing: '.06em',
             textTransform: 'uppercase',
-            color: 'var(--ink-mute)',
-            lineHeight: 2,
+            color: 'var(--ink-soft)',
+            lineHeight: 1.8,
             borderTop: '1px solid var(--line)',
             paddingTop: '1.25rem',
             marginTop: '1.5rem',
@@ -275,15 +281,16 @@ function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
       >
         <button
           onClick={onDetail}
-          className="btn-outline"
-          style={{ fontSize: '.78rem', padding: '.5rem 1.2rem' }}
+          className="btn-outline min-h-[44px] flex-1 whitespace-nowrap sm:flex-none"
+          style={{ fontSize: '.8125rem', padding: '.5rem 1.2rem' }}
         >
           Voir la fiche
         </button>
         <button
           onClick={onCompare}
-          className="btn-secondary"
-          style={{ fontSize: '.78rem', padding: '.5rem 1.2rem' }}
+          aria-label={`Ajouter ${car.make} ${car.model} au comparateur`}
+          className="btn-secondary min-h-[44px] flex-1 whitespace-nowrap sm:flex-none"
+          style={{ fontSize: '.8125rem', padding: '.5rem 1.2rem' }}
         >
           Comparer
         </button>
