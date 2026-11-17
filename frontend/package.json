@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
+    "@playwright/test": "^1.55.0",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.16",
     "eslint": "^9.39.5",
@@ -31,6 +32,7 @@
     "format": "prettier --write --ignore-path ../.prettierignore ..",
     "format:check": "prettier --check --ignore-path ../.prettierignore ..",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:e2e": "playwright test"
   }
 }

@@ -1189,6 +1189,8 @@ function AnswerCard({ answer, isSelected, disabled, onClick }) {
 
   return (
     <button
+      type="button"
+      data-testid="answer"
       onClick={onClick}
       disabled={disabled}
       onMouseEnter={() => {

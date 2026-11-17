@@ -83,13 +83,14 @@ npm run dev          # http://localhost:3000
 
 Autres commandes (dans `frontend/`) :
 
-| Commande          | Rôle                                      |
-| ----------------- | ----------------------------------------- |
-| `npm run build`   | Build de production dans `frontend/dist/` |
-| `npm run preview` | Sert le build sur http://localhost:4173   |
-| `npm test`        | Tests unitaires du moteur (Vitest)        |
-| `npm run lint`    | Analyse ESLint                            |
-| `npm run format`  | Formate tout le dépôt avec Prettier       |
+| Commande           | Rôle                                                                          |
+| ------------------ | ----------------------------------------------------------------------------- |
+| `npm run build`    | Build de production dans `frontend/dist/`                                     |
+| `npm run preview`  | Sert le build sur http://localhost:4173                                       |
+| `npm test`         | Tests unitaires du moteur (Vitest)                                            |
+| `npm run test:e2e` | Tests d'affichage Playwright (téléphone et ordinateur, après `npm run build`) |
+| `npm run lint`     | Analyse ESLint                                                                |
+| `npm run format`   | Formate tout le dépôt avec Prettier                                           |
 
 ## Comment ça marche
 
