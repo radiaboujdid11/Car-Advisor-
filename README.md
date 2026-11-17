@@ -4,19 +4,23 @@
 
 **Démo en ligne : [car-advisor-omega.vercel.app](https://car-advisor-omega.vercel.app)**
 
-AutoAssist recommande une voiture parmi **277 modèles** vendus au Maroc à partir d'un quiz
-adaptatif. Les questions ne sont pas tirées au hasard : un moteur d'inférence bayésienne
-choisit à chaque étape la question qui apporte le plus d'information, puis met à jour la
-probabilité de chaque voiture après la réponse.
+AutoAssist recommande une voiture adaptée au marché marocain à partir d'un quiz adaptatif, parmi
+**277 voitures** (197 modèles, déclinés par année). Les questions ne sont pas tirées au hasard :
+un moteur d'inférence bayésienne choisit à chaque étape la question qui apporte le plus
+d'information, puis met à jour la probabilité de chaque voiture après la réponse.
 
 L'application est **100 % statique** : tout le calcul se fait dans le navigateur. Le jeu de
 données est produit en amont par un petit pipeline Node.js (`data-pipeline/`).
+
+<!--
+Captures d'écran : décommenter ce bloc une fois les fichiers ajoutés dans docs/screenshots/.
 
 ![Accueil](docs/screenshots/accueil.png)
 
 | Quiz                               | Résultats                                    |
 | ---------------------------------- | -------------------------------------------- |
 | ![Quiz](docs/screenshots/quiz.png) | ![Résultats](docs/screenshots/resultats.png) |
+-->
 
 ---
 
@@ -192,7 +196,7 @@ contre 7,5 ms avant l'optimisation, avec des résultats identiques (mesures sous
 
 ### Contenu
 
-`frontend/src/data/cars.js` contient **277 voitures de 25 marques**, réparties en 4 catégories
+`frontend/src/data/cars.js` contient **277 voitures (197 modèles) de 25 marques**, réparties en 4 catégories
 (économique 82, luxe 80, pratique 68, performance 47). Chaque fiche comporte : marque, modèle,
 année (2020 à 2025), prix, puissance, consommation, émissions de CO₂, catégorie, description et,
 pour 103 d'entre elles, une photo.
@@ -213,9 +217,9 @@ Le jeu de données est assemblé à partir de deux catalogues saisis manuellemen
 Les photos sont des liens vers les images de modèles publiées sur
 [moteur.ma](https://www.moteur.ma).
 
-> **Source des prix et caractéristiques : à compléter.** Les sites ou documents d'où proviennent
-> les prix et les fiches techniques ne sont pas indiqués dans le code. Ajouter ici la ou les
-> sources exactes.
+> **Limite connue :** les prix et les fiches techniques ont été relevés manuellement ; la source
+> exacte de chaque valeur n'est pas tracée dans le dépôt. Le jeu de données sert à illustrer le
+> moteur de recommandation et ne remplace pas un tarif officiel de concessionnaire.
 
 ### Date de collecte
 
