@@ -1,12 +1,13 @@
 import { useNavigate } from 'react-router-dom';
+import { categoryLabel, formatPriceMAD } from '../utils/format';
 
 const SPECS = [
-  { key: 'price_eur',         label: 'Prix',         format: v => v ? `${Math.round(v * 10.8).toLocaleString('fr-FR')} DH` : '—', lowerIsBetter: true },
+  { key: 'price_eur',         label: 'Prix',         format: v => formatPriceMAD(v), lowerIsBetter: true },
   { key: 'power_hp',          label: 'Puissance',    format: v => v ? `${v} ch` : '—',                                              lowerIsBetter: false },
   { key: 'consumption_l100k', label: 'Consommation', format: v => v === 0 ? 'Électrique' : v ? `${v} L/100` : '—',                  lowerIsBetter: true },
   { key: 'co2_g_km',          label: 'CO₂',          format: v => v === 0 ? 'Zéro' : v ? `${v} g/km` : '—',                        lowerIsBetter: true },
   { key: 'year',              label: 'Millésime',    format: v => v || '—',                                                          lowerIsBetter: false },
-  { key: 'category',          label: 'Catégorie',    format: v => ({ eco: 'Écologique', luxury: 'Luxe', practical: 'Pratique', performance: 'Performance' }[v] || v || '—'), lowerIsBetter: null },
+  { key: 'category',          label: 'Catégorie',    format: v => (v ? categoryLabel(v) : '—'), lowerIsBetter: null },
 ];
 
 function getBestIdx(cars, spec) {

@@ -1,6 +1,7 @@
-﻿import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { CARS } from '../data/cars';
+import { categoryLabel, formatPriceMAD } from '../utils/format';
 
 const STEPS = [
   { n: '01', title: 'Vos besoins', body: 'Usage, kilométrage, passagers, route ou ville. Chaque détail oriente l\'algorithme.', img: '/besoins.jpg' },
@@ -20,6 +21,17 @@ const FEATURES = [
 
 const BRANDS = ['Peugeot', 'Renault', 'Dacia', 'BMW', 'Mercedes', 'Audi', 'Toyota', 'Tesla', 'Kia', 'Volkswagen', 'Citroën', 'Volvo', 'Porsche', 'Alfa Romeo', 'Hyundai', 'Ford'];
 
+// Calculés une seule fois au chargement du module (les données sont statiques).
+const MARQUEE_CARS = CARS.filter(c => c.photo_url).slice(0, 20);
+const MARQUEE_TILES = [...MARQUEE_CARS, ...MARQUEE_CARS];
+const pickWithPhoto = (cat, n) => CARS.filter(c => c.photo_url && c.category === cat).slice(0, n);
+const SHOWCASE = [
+  ...pickWithPhoto('eco', 2),
+  ...pickWithPhoto('practical', 2),
+  ...pickWithPhoto('luxury', 2),
+  ...pickWithPhoto('performance', 2),
+];
+
 const rule = { height: '1px', background: 'rgba(42,31,18,.08)' };
 const copper = 'rgba(42,31,18,.2)';
 
@@ -34,7 +46,7 @@ export default function Landing() {
     );
     document.querySelectorAll('.reveal, .slide-left').forEach(el => obs.observe(el));
 
-    // Hero parallax — scale + fade text as user scrolls (FeedForge pattern)
+    // Parallaxe du hero : le texte rétrécit et s'efface pendant le défilement
     const heroText = document.getElementById('hero-text');
     const onScroll = () => {
       if (!heroText) return;
@@ -193,13 +205,10 @@ export default function Landing() {
       </div>
 
       {/* ── PHOTO MARQUEE ── */}
-      {(() => {
-        const marquee20 = CARS.filter(c => c.photo_url).slice(0, 20);
-        const tiles = [...marquee20, ...marquee20];
-        return (
+      {(
           <div style={{ background: 'transparent', padding: '1rem 0', overflow: 'hidden' }}>
             <div className="marquee-track">
-              {tiles.map((car, i) => (
+              {MARQUEE_TILES.map((car, i) => (
                 <div key={i} style={{ flexShrink: 0, width: '260px', height: '150px', marginRight: '0.5rem', background: 'var(--bg)' }}>
                   <img
                     src={car.photo_url}
@@ -210,8 +219,7 @@ export default function Landing() {
               ))}
             </div>
           </div>
-        );
-      })()}
+      )}
 
       {/* ── HOW IT WORKS — scroll panels ── */}
       <section id="how" style={{ padding: '9rem 5vw 6rem', borderBottom: '1px solid rgba(42,31,18,.08)', overflow: 'hidden' }}>
@@ -346,18 +354,9 @@ export default function Landing() {
             >Voir les {CARS.length} modèles →</Link>
           </div>
 
-          {(() => {
-            const CAT_LABEL = { eco: 'Écologique', luxury: 'Luxe', practical: 'Pratique', performance: 'Performance' };
-            const pick = (cat, n) => CARS.filter(c => c.photo_url && c.category === cat).slice(0, n);
-            const showcase = [
-              ...pick('eco', 2),
-              ...pick('practical', 2),
-              ...pick('luxury', 2),
-              ...pick('performance', 2),
-            ];
-            return (
+          {(
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '1.25rem' }}>
-                {showcase.map((car, si) => (
+                {SHOWCASE.map((car, si) => (
                   <Link key={car.id} to={`/cars/${car.id}`} className="reveal" style={{ '--reveal-delay': `${si * 0.07}s`, display: 'block', background: 'var(--bg)', border: '1px solid rgba(193,123,90,.15)', borderRadius: '14px', overflow: 'hidden', transition: 'border-color .25s, transform .25s, box-shadow .25s' }}
                     onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(193,123,90,.4)'; e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 12px 32px rgba(193,123,90,.1)'; }}
                     onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(193,123,90,.15)'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
@@ -371,18 +370,17 @@ export default function Landing() {
                     </div>
                     <div style={{ padding: '1.1rem 1.4rem' }}>
                       <span style={{ fontFamily: 'var(--sans)', fontSize: '.58rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--gold)', background: 'rgba(193,123,90,.1)', padding: '2px 8px', borderRadius: '20px' }}>
-                        {CAT_LABEL[car.category] || car.category}
+                        {categoryLabel(car.category)}
                       </span>
                       <h3 style={{ fontFamily: 'var(--serif-display)', fontSize: '1.05rem', color: 'var(--ink)', lineHeight: 1.15, marginTop: '.5rem', marginBottom: '.4rem' }}>{car.make} {car.model}</h3>
                       <p style={{ fontFamily: 'var(--mono)', fontSize: '.78rem', color: 'var(--gold)', fontWeight: 700 }}>
-                        {car.price_eur ? `${Math.round(car.price_eur * 10.8).toLocaleString('fr-FR')} DH` : 'Sur demande'}
+                        {formatPriceMAD(car.price_eur, 'Sur demande')}
                       </p>
                     </div>
                   </Link>
                 ))}
               </div>
-            );
-          })()}
+          )}
         </div>
       </section>
 

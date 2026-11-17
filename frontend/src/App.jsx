@@ -1,4 +1,4 @@
-﻿import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Cursor from './components/Cursor';
@@ -15,7 +15,7 @@ function AppShell({ compareCars, children }) {
   const { pathname } = useLocation();
   const showHeader = HEADER_ROUTES.some(r => pathname === r || pathname.startsWith('/cars/'));
 
-  // Global bounce-out on all buttons (FeedForge pattern)
+  // Animation de rebond à la sortie du survol des boutons et liens de navigation
   useEffect(() => {
     const BTN_CLASSES = ['btn-primary','btn-ghost','btn-outline','btn-secondary'];
     const isBounceTarget = el =>
@@ -49,9 +49,6 @@ export default function App() {
   const [compareCars, setCompareCars] = useState(() => {
     try { return JSON.parse(localStorage.getItem('carAdvisor_compare')) || []; } catch { return []; }
   });
-  const [favorites, setFavorites] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('carAdvisor_favorites')) || []; } catch { return []; }
-  });
 
   useEffect(() => {
     if (quizResults) localStorage.setItem('carAdvisor_results', JSON.stringify(quizResults));
@@ -59,9 +56,6 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('carAdvisor_compare', JSON.stringify(compareCars));
   }, [compareCars]);
-  useEffect(() => {
-    localStorage.setItem('carAdvisor_favorites', JSON.stringify(favorites));
-  }, [favorites]);
 
   function addToCompare(car) {
     setCompareCars(prev => {
@@ -71,12 +65,8 @@ export default function App() {
     });
   }
   function removeFromCompare(carId) { setCompareCars(prev => prev.filter(c => c.id !== carId)); }
-  function toggleFavorite(car) {
-    setFavorites(prev => prev.find(f => f.id === car.id) ? prev.filter(f => f.id !== car.id) : [...prev, car]);
-  }
-  function isFavorite(carId) { return favorites.some(f => f.id === carId); }
 
-  const shared = { addToCompare, removeFromCompare, toggleFavorite, isFavorite, compareCars };
+  const shared = { addToCompare, removeFromCompare, compareCars };
 
   return (
     <BrowserRouter>

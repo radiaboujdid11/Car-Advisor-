@@ -1,4 +1,4 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -26,7 +26,7 @@
   --line:      rgba(42,31,18,.12); /* ligne subtile */
 
   /* ── Typography ── */
-  --serif-display: 'Cormorant Garamond', 'Playfair Display', serif; /* hero h1 élégant */
+  --serif-display: 'Playfair Display', serif; /* hero h1 élégant */
   --serif-body:    'Playfair Display', serif;        /* h2/h3, titres sections */
   --sans:          'Poppins', system-ui, sans-serif; /* boutons, nav, labels */
   --mono:          'Space Mono', monospace;          /* prix, chiffres */
@@ -55,7 +55,7 @@ input, select, textarea { transition: border-color .25s ease, background .25s ea
 #cursor-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; position: absolute; transform: translate(-50%,-50%); transition: transform .1s; }
 #cursor-ring { width: 36px; height: 36px; border: 1.5px solid var(--gold); border-radius: 50%; position: absolute; transform: translate(-50%,-50%); transition: all .18s ease; opacity: .4; }
 
-/* ── Button bounce (FeedForge) ── */
+/* ── Rebond des boutons ── */
 @keyframes ff-btn-in  { to { transform: scale(1.06); } }
 @keyframes ff-btn-out { 0% { transform: scale(1.06); } 50% { transform: scale(0.975); } 100% { transform: scale(1); } }
 

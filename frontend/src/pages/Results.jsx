@@ -1,7 +1,7 @@
-﻿import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { categoryLabel, formatPriceMAD } from '../utils/format';
 
-const CAT_LABEL = { eco: 'Écologique', luxury: 'Luxe', practical: 'Pratique', performance: 'Performance' };
 const RANK = ['01', '02', '03'];
 
 export default function Results({ results, addToCompare }) {
@@ -58,7 +58,6 @@ export default function Results({ results, addToCompare }) {
 
 function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
   const [hovered, setHovered] = useState(false);
-  const formatPrice = p => p ? `${Math.round(p * 10.8).toLocaleString('fr-FR')} DH` : '—';
   const photo = car.photo_url || car.image || null;
 
   return (
@@ -82,7 +81,7 @@ function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
         )}
         <div style={{ flex: 1, minWidth: '200px' }}>
           <p style={{ fontSize: '.72rem', letterSpacing: '.22em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '.5rem', fontFamily: 'var(--sans)' }}>
-            {rank} · {CAT_LABEL[car.category] || car.category}
+            {rank} · {categoryLabel(car.category)}
           </p>
           <h2 style={{ fontFamily: 'var(--serif-display)', fontWeight: 800, fontSize: 'clamp(1.4rem,3vw,2.2rem)', lineHeight: 1.1, marginBottom: '.4rem' }}>
             {car.make} {car.model}
@@ -99,7 +98,7 @@ function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
 
         <div style={{ textAlign: 'right' }}>
           <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 700, fontSize: 'clamp(1.1rem,2vw,1.6rem)', color: 'var(--gold-2)' }}>
-            {formatPrice(car.price_eur)}
+            {formatPriceMAD(car.price_eur)}
           </p>
           {car.power_hp && <p style={{ fontSize: '.8rem', color: 'var(--ink-mute)', marginTop: '4px' }}>{car.power_hp} ch</p>}
         </div>

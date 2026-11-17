@@ -1,16 +1,12 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CARS, ALL_MAKES } from '../data/cars';
+import { CATEGORY_LABELS, EUR_TO_MAD, categoryLabel, formatPriceMAD } from '../utils/format';
 
 const CATEGORIES = [
   { value: '', label: 'Toutes catégories' },
-  { value: 'eco', label: 'Écologique' },
-  { value: 'luxury', label: 'Luxe' },
-  { value: 'practical', label: 'Pratique' },
-  { value: 'performance', label: 'Performance' },
+  ...Object.entries(CATEGORY_LABELS).map(([value, label]) => ({ value, label })),
 ];
-
-const CAT_LABEL = { eco: 'Écologique', luxury: 'Luxe', practical: 'Pratique', performance: 'Performance' };
 
 const inputStyle = {
   fontFamily: 'var(--sans)', fontSize: '12px', letterSpacing: '0.06em',
@@ -32,7 +28,7 @@ export default function Catalog({ addToCompare }) {
       if (q && !`${car.make} ${car.model}`.toLowerCase().includes(q)) return false;
       if (make && car.make !== make) return false;
       if (category && car.category !== category) return false;
-      if (maxBudget && car.price_eur * 10.8 > Number(maxBudget)) return false;
+      if (maxBudget && car.price_eur * EUR_TO_MAD > Number(maxBudget)) return false;
       return true;
     });
   }, [search, make, category, maxBudget]);
@@ -106,7 +102,6 @@ export default function Catalog({ addToCompare }) {
 function CarCard({ car, onDetail, onCompare }) {
   const [hovered, setHovered] = useState(false);
   const photo = car.photo_url || car.image || null;
-  const formatPrice = p => p ? `${Math.round(p * 10.8).toLocaleString('fr-FR')} DH` : 'Sur demande';
 
   return (
     <div
@@ -127,7 +122,7 @@ function CarCard({ car, onDetail, onCompare }) {
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '70px', background: 'linear-gradient(to top, var(--bg-2), transparent)' }} />
         <div style={{ position: 'absolute', top: '0.75rem', left: '0.75rem' }}>
           <span style={{ fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ink-mute)', background: 'rgba(30,58,138,.6)', backdropFilter: 'blur(8px)', padding: '3px 10px', borderRadius: '20px' }}>
-            {CAT_LABEL[car.category] || car.category}
+            {categoryLabel(car.category)}
           </span>
         </div>
       </div>
@@ -141,7 +136,7 @@ function CarCard({ car, onDetail, onCompare }) {
             <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: 'var(--ink-mute)', marginTop: '3px' }}>{car.year}</p>
           </div>
           <p style={{ fontFamily: 'var(--serif-display)', fontSize: '16px', color: 'var(--gold)', textAlign: 'right', whiteSpace: 'nowrap' }}>
-            {formatPrice(car.price_eur)}
+            {formatPriceMAD(car.price_eur, 'Sur demande')}
           </p>
         </div>
 

@@ -1,8 +1,7 @@
-﻿import { useState, useMemo } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useState, useMemo } from 'react';
+import { Navigate, useParams, useNavigate } from 'react-router-dom';
 import { CARS } from '../data/cars';
-
-const CAT_LABEL = { eco: 'Écologique', luxury: 'Luxe', practical: 'Pratique', performance: 'Performance' };
+import { categoryLabel, formatPriceMAD } from '../utils/format';
 
 export default function CarDetail({ addToCompare }) {
   const { id } = useParams();
@@ -22,9 +21,9 @@ export default function CarDetail({ addToCompare }) {
     if (car) { addToCompare(car); setAdded(true); }
   }
 
-  if (!car) { navigate('/cars'); return null; }
+  // Identifiant inconnu : redirection déclarative (et non un navigate() pendant le rendu).
+  if (!car) return <Navigate to="/cars" replace />;
 
-  const formatPrice = p => p ? `${Math.round(p * 10.8).toLocaleString('fr-FR')} DH` : 'Prix sur demande';
   const isElectric = car.consumption_l100k === 0 || car.co2_g_km === 0;
 
   const SPECS = [
@@ -32,8 +31,8 @@ export default function CarDetail({ addToCompare }) {
     { label: 'Consommation', value: isElectric ? '100 % électrique' : car.consumption_l100k ? `${car.consumption_l100k} L / 100 km` : '—' },
     { label: 'Émissions CO₂', value: isElectric ? 'Zéro émission' : car.co2_g_km ? `${car.co2_g_km} g / km` : '—' },
     { label: 'Année', value: car.year || '—' },
-    { label: 'Catégorie', value: CAT_LABEL[car.category] || car.category },
-    { label: 'Prix', value: formatPrice(car.price_eur) },
+    { label: 'Catégorie', value: categoryLabel(car.category) },
+    { label: 'Prix', value: formatPriceMAD(car.price_eur, 'Prix sur demande') },
   ];
 
   return (
@@ -79,7 +78,7 @@ export default function CarDetail({ addToCompare }) {
           </span>
 
           <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold-deep)', marginBottom: '0.75rem', position: 'relative' }}>
-            {CAT_LABEL[car.category]} · {car.year}
+            {categoryLabel(car.category)} · {car.year}
           </p>
           <h1 style={{ fontFamily: 'var(--serif-display)', fontSize: 'clamp(40px, 7vw, 72px)', color: 'var(--ink)', lineHeight: 1, position: 'relative' }}>
             {car.make}<br />
@@ -175,7 +174,7 @@ export default function CarDetail({ addToCompare }) {
                   </p>
                   <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: 'var(--ink-mute)', marginBottom: '8px' }}>{s.year}</p>
                   <p style={{ fontFamily: 'var(--serif-display)', fontSize: '16px', color: 'var(--gold)' }}>
-                    {s.price_eur ? `${Math.round(s.price_eur * 10.8).toLocaleString('fr-FR')} DH` : '—'}
+                    {formatPriceMAD(s.price_eur)}
                   </p>
                 </div>
               ))}
