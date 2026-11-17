@@ -472,7 +472,7 @@ function CarCard({ car, onDetail, onCompare }) {
           </button>
           <button
             onClick={onCompare}
-            aria-label={`Ajouter ${car.make} ${car.model} au comparateur`}
+            aria-label={`Comparer ${car.make} ${car.model}`}
             style={{
               minHeight: '44px',
               fontFamily: 'var(--sans)',

@@ -288,7 +288,7 @@ function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
         </button>
         <button
           onClick={onCompare}
-          aria-label={`Ajouter ${car.make} ${car.model} au comparateur`}
+          aria-label={`Comparer ${car.make} ${car.model}`}
           className="btn-secondary min-h-[44px] flex-1 whitespace-nowrap sm:flex-none"
           style={{ fontSize: '.8125rem', padding: '.5rem 1.2rem' }}
         >
