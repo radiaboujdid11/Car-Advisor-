@@ -446,7 +446,7 @@ function Intro({ onStart }) {
             fontWeight: 300,
           }}
         >
-          Entre 15 et 30 questions adaptatives. Un résultat sur mesure.
+          Entre 15 et 25 questions adaptatives. Un résultat sur mesure.
         </p>
         <button
           onClick={onStart}

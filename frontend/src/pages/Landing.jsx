@@ -19,7 +19,7 @@ const STEPS = [
   {
     n: '03',
     title: 'Votre voiture',
-    body: 'Le moteur bayésien croise votre profil et 59 modèles. Résultat en 3 minutes.',
+    body: `Le moteur bayésien croise votre profil et ${CARS.length} modèles. Résultat en 3 minutes.`,
     img: '/mcqueen.webp',
   },
 ];
@@ -50,15 +50,15 @@ const FEATURES = [
     img: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80&auto=format&fit=crop',
   },
   {
-    label: '59',
-    title: '59 modèles',
+    label: String(CARS.length),
+    title: `${CARS.length} modèles`,
     body: 'Citadine, SUV, berline — thermique, hybride ou électrique. Aucun oublié.',
     img: 'https://images.unsplash.com/photo-1537984822441-cff330075342?w=800&q=80&auto=format&fit=crop',
   },
   {
     label: "3'",
     title: 'Résultat immédiat',
-    body: 'De 15 à 30 questions adaptatives. Le meilleur rapport précision / rapidité.',
+    body: 'De 15 à 25 questions adaptatives. Le meilleur rapport précision / rapidité.',
     img: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&q=80&auto=format&fit=crop',
   },
 ];
