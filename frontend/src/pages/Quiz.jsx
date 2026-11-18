@@ -22,7 +22,8 @@ const C = {
   text: 'var(--ink)',
   mute: 'var(--ink-mute)',
   faint: 'var(--ink-mute)',
-  accent: 'var(--gold)',
+  accent: 'var(--gold-deep)', // texte doré sur fond clair (contraste 6,4)
+  accentBg: 'var(--gold-2)', // fond des boutons, texte blanc (contraste 4,8)
   gold: 'var(--gold-2)',
   border: 'var(--line)',
   borderHi: 'var(--gold)',
@@ -602,7 +603,7 @@ function LeftPanel({ className, confidence, topProbs, deductions, refineLeft }) 
   const GOLDR = '#C17B5A';
 
   const TXT = '#D4B07A'; /* crème dorée — texte principal */
-  const MUTE = '#A07840'; /* dorée atténuée — labels */
+  const MUTE = '#C9A06A'; /* dorée atténuée — labels */
 
   return (
     <div
@@ -1346,8 +1347,8 @@ function AIComment({ message, leadingCar, onContinue }) {
             fontSize: '.8125rem',
             letterSpacing: '.18em',
             textTransform: 'uppercase',
-            color: C.bg,
-            background: C.accent,
+            color: '#fff',
+            background: C.accentBg,
             border: 'none',
             padding: '.75rem 2.5rem',
             minHeight: '48px',
@@ -1559,8 +1560,8 @@ function InterimProposal({ top3, confidence, excludedIds, onExclude, onAccept, o
               fontSize: '.8125rem',
               letterSpacing: '.18em',
               textTransform: 'uppercase',
-              color: C.bg,
-              background: visibleCars.length > 0 ? C.accent : C.border,
+              color: '#fff',
+              background: visibleCars.length > 0 ? C.accentBg : C.border,
               border: 'none',
               padding: '.85rem 1.25rem',
               minHeight: '48px',

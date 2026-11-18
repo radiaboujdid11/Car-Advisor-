@@ -200,8 +200,8 @@ export default function Landing() {
             backdropFilter: 'blur(8px)',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'var(--gold)';
-            e.currentTarget.style.borderColor = 'var(--gold)';
+            e.currentTarget.style.background = 'var(--gold-2)';
+            e.currentTarget.style.borderColor = 'var(--gold-2)';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = 'rgba(255,255,255,.15)';
@@ -295,9 +295,9 @@ export default function Landing() {
             <button
               onClick={() => navigate('/quiz')}
               style={{
-                background: 'var(--gold)',
+                background: 'var(--gold-2)',
                 color: '#ffffff',
-                border: '2px solid var(--gold)',
+                border: '2px solid var(--gold-2)',
                 padding: '1rem 2.6rem',
                 fontFamily: 'var(--sans)',
                 fontWeight: 700,
@@ -309,12 +309,12 @@ export default function Landing() {
                 borderRadius: '50px',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'var(--gold-2)';
-                e.currentTarget.style.borderColor = 'var(--gold-2)';
+                e.currentTarget.style.background = 'var(--gold-deep)';
+                e.currentTarget.style.borderColor = 'var(--gold-deep)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'var(--gold)';
-                e.currentTarget.style.borderColor = 'var(--gold)';
+                e.currentTarget.style.background = 'var(--gold-2)';
+                e.currentTarget.style.borderColor = 'var(--gold-2)';
               }}
             >
               DÉMARRER LE QUIZ
@@ -460,7 +460,7 @@ export default function Landing() {
                 fontSize: '.75rem',
                 letterSpacing: '.26em',
                 textTransform: 'uppercase',
-                color: 'var(--gold)',
+                color: 'var(--gold-deep)',
                 whiteSpace: 'nowrap',
               }}
             >
@@ -509,7 +509,7 @@ export default function Landing() {
                     fontFamily: 'var(--mono)',
                     fontSize: '.8rem',
                     fontWeight: 700,
-                    color: 'var(--gold)',
+                    color: 'var(--gold-deep)',
                     marginBottom: '1.2rem',
                     letterSpacing: '.06em',
                   }}
@@ -582,7 +582,7 @@ export default function Landing() {
                     fontSize: '.75rem',
                     letterSpacing: '.26em',
                     textTransform: 'uppercase',
-                    color: 'var(--gold)',
+                    color: 'var(--gold-deep)',
                     whiteSpace: 'nowrap',
                   }}
                 >
@@ -603,7 +603,7 @@ export default function Landing() {
               >
                 Des questions
                 <br />
-                <span style={{ color: 'var(--gold)' }}>qui comptent.</span>
+                <span style={{ color: 'var(--gold-2)' }}>qui comptent.</span>
               </h2>
 
               <p
@@ -626,8 +626,8 @@ export default function Landing() {
                 onClick={() => navigate('/quiz')}
                 style={{
                   background: 'transparent',
-                  color: 'var(--gold)',
-                  border: '1px solid var(--gold)',
+                  color: 'var(--gold-deep)',
+                  border: '1px solid var(--gold-2)',
                   padding: '.9rem 2rem',
                   fontFamily: 'var(--sans)',
                   fontWeight: 600,
@@ -641,12 +641,12 @@ export default function Landing() {
                   borderRadius: '50px',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'var(--gold)';
+                  e.currentTarget.style.background = 'var(--gold-2)';
                   e.currentTarget.style.color = '#ffffff';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.background = 'transparent';
-                  e.currentTarget.style.color = 'var(--gold)';
+                  e.currentTarget.style.color = 'var(--gold-deep)';
                 }}
               >
                 Commencer <span>→</span>
@@ -676,7 +676,7 @@ export default function Landing() {
                 fontSize: '.75rem',
                 letterSpacing: '.26em',
                 textTransform: 'uppercase',
-                color: 'var(--gold)',
+                color: 'var(--gold-deep)',
                 whiteSpace: 'nowrap',
               }}
             >
@@ -736,7 +736,7 @@ export default function Landing() {
                     fontSize: '.75rem',
                     letterSpacing: '.3em',
                     textTransform: 'uppercase',
-                    color: 'var(--gold)',
+                    color: 'var(--gold-deep)',
                     marginBottom: '1.1rem',
                   }}
                 >
@@ -809,7 +809,7 @@ export default function Landing() {
                   fontSize: '.75rem',
                   letterSpacing: '.26em',
                   textTransform: 'uppercase',
-                  color: 'var(--gold)',
+                  color: 'var(--gold-deep)',
                   whiteSpace: 'nowrap',
                 }}
               >
@@ -904,7 +904,7 @@ export default function Landing() {
                         fontSize: '.75rem',
                         letterSpacing: '.18em',
                         textTransform: 'uppercase',
-                        color: 'var(--gold)',
+                        color: 'var(--gold-deep)',
                         background: 'rgba(193,123,90,.1)',
                         padding: '2px 8px',
                         borderRadius: '20px',
@@ -928,7 +928,7 @@ export default function Landing() {
                       style={{
                         fontFamily: 'var(--mono)',
                         fontSize: '.78rem',
-                        color: 'var(--gold)',
+                        color: 'var(--gold-deep)',
                         fontWeight: 700,
                       }}
                     >
@@ -943,7 +943,7 @@ export default function Landing() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ background: 'var(--gold)', padding: '7rem 5vw' }}>
+      <section style={{ background: 'var(--gold-2)', padding: '7rem 5vw' }}>
         <div
           style={{
             maxWidth: '1160px',
@@ -962,7 +962,7 @@ export default function Landing() {
                 fontSize: '.75rem',
                 letterSpacing: '.26em',
                 textTransform: 'uppercase',
-                color: 'rgba(240,235,227,.55)',
+                color: '#fff',
                 marginBottom: '1rem',
               }}
             >
@@ -986,7 +986,7 @@ export default function Landing() {
             onClick={() => navigate('/quiz')}
             style={{
               background: '#ffffff',
-              color: 'var(--gold)',
+              color: 'var(--gold-deep)',
               border: 'none',
               padding: '1.2rem 3.2rem',
               fontFamily: 'var(--sans)',
@@ -1031,7 +1031,7 @@ export default function Landing() {
             fontSize: '.75rem',
             letterSpacing: '.06em',
             color: 'var(--ink-mute)',
-            opacity: 0.45,
+            opacity: 1,
           }}
         >
           © 2026 AutoAssist · Propulsé par l'inférence bayésienne

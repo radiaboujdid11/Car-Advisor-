@@ -65,7 +65,7 @@ export default function CarDetail({ addToCompare }) {
             cursor: 'pointer',
             transition: 'color 0.2s',
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--gold)')}
+          onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--gold-deep)')}
           onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--ink-mute)')}
         >
           ← Retour au catalogue
@@ -103,6 +103,7 @@ export default function CarDetail({ addToCompare }) {
         <div style={{ position: 'relative', marginBottom: '4rem' }}>
           {/* Decorative make name */}
           <span
+            aria-hidden="true"
             style={{
               position: 'absolute',
               top: '-20px',
@@ -144,7 +145,7 @@ export default function CarDetail({ addToCompare }) {
           >
             {car.make}
             <br />
-            <span style={{ color: 'var(--gold)' }}>{car.model}</span>
+            <span style={{ color: 'var(--gold-2)' }}>{car.model}</span>
           </h1>
 
           <div
@@ -239,9 +240,9 @@ export default function CarDetail({ addToCompare }) {
               textTransform: 'uppercase',
               background: added
                 ? 'transparent'
-                : 'linear-gradient(180deg, var(--gold-2), var(--gold) 60%, var(--gold-deep))',
-              color: added ? 'var(--gold)' : '#ffffff',
-              border: `1px solid ${added ? 'var(--gold-deep)' : 'var(--gold)'}`,
+                : 'linear-gradient(180deg, var(--gold-2), var(--gold-deep))',
+              color: added ? 'var(--gold-deep)' : '#ffffff',
+              border: `1px solid ${added ? 'var(--gold-deep)' : 'var(--gold-2)'}`,
               padding: '1rem 2rem',
               cursor: added ? 'default' : 'pointer',
               borderRadius: '50px',
@@ -258,7 +259,7 @@ export default function CarDetail({ addToCompare }) {
               fontWeight: 600,
               letterSpacing: '0.25em',
               textTransform: 'uppercase',
-              color: 'var(--gold-2)',
+              color: 'var(--gold-deep)',
               border: '1px solid var(--gold-deep)',
               background: 'none',
               padding: '1rem 2rem',
@@ -358,7 +359,7 @@ export default function CarDetail({ addToCompare }) {
                     style={{
                       fontFamily: 'var(--serif-display)',
                       fontSize: '16px',
-                      color: 'var(--gold)',
+                      color: 'var(--gold-deep)',
                     }}
                   >
                     {formatPriceMAD(s.price_eur)}

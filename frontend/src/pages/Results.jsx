@@ -143,6 +143,7 @@ function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
     >
       {/* Ghost rank */}
       <span
+        aria-hidden="true"
         style={{
           position: 'absolute',
           right: '2rem',
@@ -218,7 +219,7 @@ function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
               fontFamily: 'var(--serif-display)',
               fontWeight: 800,
               fontSize: 'clamp(2.5rem,5vw,3.5rem)',
-              color: isFirst ? 'var(--gold)' : 'var(--ink-soft)',
+              color: isFirst ? 'var(--gold-2)' : 'var(--ink-soft)',
               lineHeight: 1,
             }}
           >
@@ -244,7 +245,7 @@ function ResultCard({ car, rank, isFirst, onDetail, onCompare }) {
               fontFamily: 'var(--serif-display)',
               fontWeight: 700,
               fontSize: 'clamp(1.1rem,2vw,1.6rem)',
-              color: 'var(--gold-2)',
+              color: 'var(--gold-deep)',
             }}
           >
             {formatPriceMAD(car.price_eur)}

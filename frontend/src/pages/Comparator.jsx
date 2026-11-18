@@ -251,7 +251,7 @@ export default function Comparator({ cars = [], removeFromCompare }) {
                       transition: 'all .2s',
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.color = 'var(--gold)';
+                      e.currentTarget.style.color = 'var(--gold-deep)';
                       e.currentTarget.style.borderColor = 'var(--gold)';
                     }}
                     onMouseLeave={(e) => {
@@ -315,7 +315,7 @@ export default function Comparator({ cars = [], removeFromCompare }) {
                           style={{
                             fontFamily: 'var(--serif-display)',
                             fontSize: '16px',
-                            color: isBest ? 'var(--gold)' : 'var(--ink-soft)',
+                            color: isBest ? 'var(--gold-deep)' : 'var(--ink-soft)',
                             fontWeight: isBest ? 700 : 400,
                           }}
                         >
@@ -406,7 +406,7 @@ const btnPrimary = {
   fontWeight: 700,
   letterSpacing: '0.2em',
   textTransform: 'uppercase',
-  background: 'var(--gold)',
+  background: 'var(--gold-2)',
   color: '#fff',
   border: 'none',
   padding: '0.85rem 2rem',

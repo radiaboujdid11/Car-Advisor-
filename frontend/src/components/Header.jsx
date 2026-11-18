@@ -125,18 +125,18 @@ export default function Header({ compareCars = [] }) {
         <Link
           to="/quiz"
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'var(--gold-2)';
+            e.currentTarget.style.background = 'var(--gold-deep)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'var(--gold)';
+            e.currentTarget.style.background = 'var(--gold-2)';
           }}
           className="inline-flex min-h-[44px] items-center"
           style={{
             fontFamily: 'var(--sans)',
             fontWeight: 600,
             fontSize: '.75rem',
-            background: 'var(--gold)',
-            color: 'var(--bg)',
+            background: 'var(--gold-2)',
+            color: '#fff',
             padding: '.55rem 1.4rem',
             borderRadius: '50px',
             letterSpacing: '.06em',

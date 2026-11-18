@@ -164,7 +164,7 @@ export default function Catalog({ addToCompare }) {
               whiteSpace: 'nowrap',
               flexShrink: 0,
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--gold)')}
+            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--gold-deep)')}
             onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--ink-mute)')}
           >
             Réinitialiser
@@ -374,7 +374,7 @@ function CarCard({ car, onDetail, onCompare }) {
             style={{
               fontFamily: 'var(--serif-display)',
               fontSize: '16px',
-              color: 'var(--gold)',
+              color: 'var(--gold-deep)',
               textAlign: 'right',
               whiteSpace: 'nowrap',
             }}
@@ -458,8 +458,8 @@ function CarCard({ car, onDetail, onCompare }) {
               transition: 'all 0.2s',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'var(--gold)';
-              e.currentTarget.style.background = 'var(--gold)';
+              e.currentTarget.style.borderColor = 'var(--gold-2)';
+              e.currentTarget.style.background = 'var(--gold-2)';
               e.currentTarget.style.color = '#fff';
             }}
             onMouseLeave={(e) => {
