@@ -215,8 +215,9 @@ Le jeu de données est assemblé à partir de deux catalogues saisis manuellemen
 | `sources/maroc.js`  | 175 voitures du marché marocain (identifiants `ma_…`). Prix convertis depuis les dirhams (MAD / 10,8), dont une série corrigée d'après les tarifs officiels Maroc 2025 (`PRICE_CORRECTIONS`). |
 | `sources/europe.js` | 60 modèles avec un prix 2023 et un prix 2024 en euros, soit 120 voitures.                                                                                                                     |
 
-Les photos sont des liens vers les images de modèles publiées sur
-[moteur.ma](https://www.moteur.ma).
+Les photos des fiches voitures sont des liens vers les images de modèles publiées sur
+[moteur.ma](https://www.moteur.ma). Les photos du bandeau de l'accueil sont des photos libres de droits
+(licence Unsplash) hébergées dans le dépôt ; voir [docs/CREDITS.md](docs/CREDITS.md).
 
 > **Limite connue :** les prix et les fiches techniques ont été relevés manuellement ; la source
 > exacte de chaque valeur n'est pas tracée dans le dépôt. Le jeu de données sert à illustrer le

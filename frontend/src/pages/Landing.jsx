@@ -64,8 +64,14 @@ const FEATURES = [
 ];
 
 // Calculés une seule fois au chargement du module (les données sont statiques).
-const MARQUEE_CARS = CARS.filter((c) => c.photo_url).slice(0, 20);
-const MARQUEE_TILES = [...MARQUEE_CARS, ...MARQUEE_CARS];
+// Bandeau défilant : 11 photos libres de droits (licence Unsplash), hébergées dans public/marquee/
+// en WebP 520×300 (~25 Ko chacune). Crédits : docs/CREDITS.md.
+const MARQUEE_PHOTOS = Array.from(
+  { length: 11 },
+  (_, i) => `/marquee/voiture-${String(i + 1).padStart(2, '0')}.webp`,
+);
+// Liste doublée pour une boucle sans à-coup (translateX -50 %).
+const MARQUEE_TILES = [...MARQUEE_PHOTOS, ...MARQUEE_PHOTOS];
 const pickWithPhoto = (cat, n) => CARS.filter((c) => c.photo_url && c.category === cat).slice(0, n);
 const SHOWCASE = [
   ...pickWithPhoto('eco', 2),
@@ -407,9 +413,12 @@ export default function Landing() {
 
       {/* ── PHOTO MARQUEE ── */}
       {
-        <div style={{ background: 'transparent', padding: '1rem 0', overflow: 'hidden' }}>
+        <div
+          aria-hidden="true"
+          style={{ background: 'transparent', padding: '1rem 0', overflow: 'hidden' }}
+        >
           <div className="marquee-track">
-            {MARQUEE_TILES.map((car, i) => (
+            {MARQUEE_TILES.map((src, i) => (
               <div
                 key={i}
                 style={{
@@ -417,21 +426,23 @@ export default function Landing() {
                   width: '260px',
                   height: '150px',
                   marginRight: '0.5rem',
-                  background: 'var(--bg)',
+                  background: 'var(--bg-2)',
+                  borderRadius: '6px',
+                  overflow: 'hidden',
                 }}
               >
                 <img
                   loading="lazy"
                   decoding="async"
-                  src={car.photo_url}
-                  alt={`${car.make} ${car.model}`}
+                  src={src}
+                  alt=""
+                  width="260"
+                  height="150"
                   style={{
                     width: '100%',
                     height: '100%',
-                    objectFit: 'contain',
-                    objectPosition: 'center',
+                    objectFit: 'cover',
                     display: 'block',
-                    mixBlendMode: 'multiply',
                   }}
                 />
               </div>
