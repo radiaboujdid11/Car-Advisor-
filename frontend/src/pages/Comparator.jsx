@@ -12,6 +12,7 @@ const SPECS = [
   {
     key: 'consumption_l100k',
     label: 'Consommation',
+    shortLabel: 'Conso.',
     format: (v) => (v === 0 ? 'Électrique' : v ? `${v} L/100` : '—'),
     lowerIsBetter: true,
   },
@@ -96,10 +97,14 @@ export default function Comparator({ cars = [], removeFromCompare }) {
     );
   }
 
-  const gridCols = `180px repeat(${cols}, 1fr)`;
+  // Colonne des critères : 104 px sur téléphone, 180 px à partir de 768 px (variable CSS --crit).
+  const gridCols = `var(--crit) repeat(${cols}, minmax(140px, 1fr))`;
 
   return (
-    <div style={{ background: 'var(--bg)', minHeight: 'calc(100vh - 56px)', padding: '4rem 2rem' }}>
+    <div
+      className="px-4 py-8 md:px-8 md:py-16"
+      style={{ background: 'var(--bg)', minHeight: 'calc(100vh - 56px)' }}
+    >
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
         {/* ── Titre hors grille ── */}
         <div
@@ -116,10 +121,10 @@ export default function Comparator({ cars = [], removeFromCompare }) {
             <p
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '10px',
-                letterSpacing: '0.3em',
+                fontSize: '12px',
+                letterSpacing: '0.18em',
                 textTransform: 'uppercase',
-                color: 'var(--gold)',
+                color: 'var(--gold-deep)',
                 marginBottom: '0.5rem',
               }}
             >
@@ -141,16 +146,30 @@ export default function Comparator({ cars = [], removeFromCompare }) {
           </button>
         </div>
 
-        {/* ── Grille ── */}
+        {cols > 1 && (
+          <p
+            className="mb-2 md:hidden"
+            style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: 'var(--ink-soft)' }}
+          >
+            Faites glisser le tableau pour voir les autres voitures →
+          </p>
+        )}
+
+        {/* ── Grille : défilement horizontal, colonne des critères fixe ── */}
         <div
+          className="compare-scroll"
+          role="region"
+          aria-label="Tableau comparatif"
+          tabIndex={0}
           style={{
             background: 'transparent',
             borderRadius: '16px',
             padding: GAP,
             overflowX: 'auto',
+            WebkitOverflowScrolling: 'touch',
           }}
         >
-          <div style={{ minWidth: `${180 + cols * 160}px` }}>
+          <div style={{ minWidth: `calc(var(--crit) + ${cols * 145}px)` }}>
             {/* Ligne en-tête */}
             <div
               style={{
@@ -164,10 +183,10 @@ export default function Comparator({ cars = [], removeFromCompare }) {
                 <span
                   style={{
                     fontFamily: 'var(--sans)',
-                    fontSize: '9px',
-                    letterSpacing: '0.25em',
+                    fontSize: '12px',
+                    letterSpacing: '0.12em',
                     textTransform: 'uppercase',
-                    color: 'rgba(255,255,255,.55)',
+                    color: '#fff',
                   }}
                 >
                   Critère
@@ -178,10 +197,10 @@ export default function Comparator({ cars = [], removeFromCompare }) {
                   <p
                     style={{
                       fontFamily: 'var(--sans)',
-                      fontSize: '8px',
-                      letterSpacing: '0.2em',
+                      fontSize: '12px',
+                      letterSpacing: '0.1em',
                       textTransform: 'uppercase',
-                      color: 'var(--gold)',
+                      color: 'var(--gold-deep)',
                       marginBottom: '4px',
                     }}
                   >
@@ -205,8 +224,8 @@ export default function Comparator({ cars = [], removeFromCompare }) {
                     <p
                       style={{
                         fontFamily: 'var(--sans)',
-                        fontSize: '10px',
-                        color: 'var(--gold)',
+                        fontSize: '12px',
+                        color: 'var(--gold-deep)',
                         marginBottom: '6px',
                         fontWeight: 600,
                       }}
@@ -216,25 +235,27 @@ export default function Comparator({ cars = [], removeFromCompare }) {
                   )}
                   <button
                     onClick={() => removeFromCompare(car.id)}
+                    aria-label={`Retirer ${car.make} ${car.model} du comparateur`}
+                    className="inline-flex min-h-[44px] items-center"
                     style={{
                       fontFamily: 'var(--sans)',
-                      fontSize: '8px',
-                      letterSpacing: '0.15em',
+                      fontSize: '12px',
+                      letterSpacing: '0.08em',
                       textTransform: 'uppercase',
-                      color: 'var(--ink-mute)',
+                      color: 'var(--ink-soft)',
                       border: '1px solid rgba(42,31,18,.2)',
                       background: 'none',
-                      padding: '3px 10px',
+                      padding: '0 14px',
                       cursor: 'pointer',
-                      borderRadius: '20px',
+                      borderRadius: '22px',
                       transition: 'all .2s',
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.color = 'var(--gold)';
+                      e.currentTarget.style.color = 'var(--gold-deep)';
                       e.currentTarget.style.borderColor = 'var(--gold)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.color = 'var(--ink-mute)';
+                      e.currentTarget.style.color = 'var(--ink-soft)';
                       e.currentTarget.style.borderColor = 'rgba(42,31,18,.2)';
                     }}
                   >
@@ -261,14 +282,23 @@ export default function Comparator({ cars = [], removeFromCompare }) {
                     <span
                       style={{
                         fontFamily: 'var(--sans)',
-                        fontSize: '10px',
-                        letterSpacing: '0.18em',
+                        fontSize: '12px',
+                        letterSpacing: '0.08em',
                         textTransform: 'uppercase',
                         color: '#fff',
                         fontWeight: 700,
                       }}
                     >
-                      {spec.label}
+                      {spec.shortLabel ? (
+                        <>
+                          <span className="md:hidden" title={spec.label}>
+                            {spec.shortLabel}
+                          </span>
+                          <span className="hidden md:inline">{spec.label}</span>
+                        </>
+                      ) : (
+                        spec.label
+                      )}
                     </span>
                   </div>
                   {cars.map((car, colIdx) => {
@@ -285,7 +315,7 @@ export default function Comparator({ cars = [], removeFromCompare }) {
                           style={{
                             fontFamily: 'var(--serif-display)',
                             fontSize: '16px',
-                            color: isBest ? 'var(--gold)' : 'var(--ink-soft)',
+                            color: isBest ? 'var(--gold-deep)' : 'var(--ink-soft)',
                             fontWeight: isBest ? 700 : 400,
                           }}
                         >
@@ -296,10 +326,10 @@ export default function Comparator({ cars = [], removeFromCompare }) {
                             style={{
                               display: 'block',
                               fontFamily: 'var(--sans)',
-                              fontSize: '7px',
-                              letterSpacing: '0.2em',
+                              fontSize: '12px',
+                              letterSpacing: '0.1em',
                               textTransform: 'uppercase',
-                              color: 'var(--gold)',
+                              color: 'var(--gold-deep)',
                               marginTop: '4px',
                               fontWeight: 700,
                             }}
@@ -331,9 +361,17 @@ export default function Comparator({ cars = [], removeFromCompare }) {
 }
 
 const cellCriteria = {
-  background: 'var(--gold)',
+  background: 'var(--gold-deep)',
   borderRadius: R,
-  padding: '1.1rem 1rem',
+  padding: '1.1rem .75rem',
+  // Reste visible pendant le défilement horizontal
+  position: 'sticky',
+  left: 0,
+  zIndex: 2,
+  // Couvre les interstices pour que les colonnes qui défilent ne transparaissent pas
+  boxShadow: '0 0 0 5px var(--bg)',
+  hyphens: 'auto',
+  overflowWrap: 'anywhere',
   display: 'flex',
   alignItems: 'center',
   textAlign: 'center',
@@ -364,21 +402,22 @@ const cellData = {
 
 const btnPrimary = {
   fontFamily: 'var(--sans)',
-  fontSize: '11px',
+  fontSize: '12px',
   fontWeight: 700,
   letterSpacing: '0.2em',
   textTransform: 'uppercase',
-  background: 'var(--gold)',
+  background: 'var(--gold-2)',
   color: '#fff',
   border: 'none',
   padding: '0.85rem 2rem',
+  minHeight: '48px',
   cursor: 'pointer',
   borderRadius: '50px',
 };
 
 const btnGhost = {
   fontFamily: 'var(--sans)',
-  fontSize: '11px',
+  fontSize: '12px',
   fontWeight: 600,
   letterSpacing: '0.2em',
   textTransform: 'uppercase',
@@ -386,6 +425,7 @@ const btnGhost = {
   border: '1px solid rgba(42,31,18,.3)',
   background: 'none',
   padding: '0.85rem 2rem',
+  minHeight: '48px',
   cursor: 'pointer',
   borderRadius: '50px',
 };

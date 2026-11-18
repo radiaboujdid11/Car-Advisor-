@@ -17,7 +17,7 @@
   /* ── Text ── */
   --ink: #2a1f12; /* brun foncé */
   --ink-soft: rgba(42, 31, 18, 0.7);
-  --ink-mute: rgba(42, 31, 18, 0.45);
+  --ink-mute: rgba(42, 31, 18, 0.68);
 
   /* ── Accents chauds ── */
   --gold-2: #a0624a; /* terracotta foncé */
@@ -301,8 +301,8 @@ textarea {
 @layer components {
   .btn-primary {
     @apply font-semibold transition-all duration-300 active:scale-95;
-    background: var(--gold);
-    color: var(--bg);
+    background: var(--gold-2);
+    color: #fff;
     border: none;
     padding: 0.85rem 2.2rem;
     border-radius: 50px;
@@ -313,7 +313,7 @@ textarea {
     font-weight: 600;
   }
   .btn-primary:hover {
-    background: var(--gold-2);
+    background: var(--gold-deep);
     animation: ff-btn-in 0.42s cubic-bezier(0.34, 2.8, 0.64, 1) forwards;
     box-shadow: 0 20px 50px rgba(193, 123, 90, 0.18);
   }
@@ -337,8 +337,8 @@ textarea {
 
   .btn-outline {
     @apply font-semibold transition-all duration-300 active:scale-95;
-    border: 1px solid var(--gold);
-    color: var(--gold);
+    border: 1px solid var(--gold-2);
+    color: var(--gold-deep);
     background: transparent;
     padding: 0.7rem 1.8rem;
     border-radius: 50px;
@@ -349,8 +349,8 @@ textarea {
     text-transform: uppercase;
   }
   .btn-outline:hover {
-    background: var(--gold);
-    color: var(--bg);
+    background: var(--gold-2);
+    color: #fff;
     animation: ff-btn-in 0.42s cubic-bezier(0.34, 2.8, 0.64, 1) forwards;
   }
 
@@ -368,8 +368,8 @@ textarea {
     text-transform: uppercase;
   }
   .btn-secondary:hover {
-    border-color: var(--gold);
-    color: var(--gold);
+    border-color: var(--gold-2);
+    color: var(--gold-deep);
     animation: ff-btn-in 0.42s cubic-bezier(0.34, 2.8, 0.64, 1) forwards;
   }
 
@@ -395,7 +395,7 @@ textarea {
     @apply inline-flex items-center gap-1 text-xs font-medium;
     background: rgba(37, 99, 235, 0.1);
     border: 1px solid rgba(37, 99, 235, 0.3);
-    color: var(--gold);
+    color: var(--gold-deep);
     padding: 0.35rem 1rem;
     border-radius: 20px;
     letter-spacing: 0.12em;
@@ -404,7 +404,7 @@ textarea {
   }
 
   .section-tag {
-    color: var(--gold);
+    color: var(--gold-deep);
     font-size: 0.75rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -502,6 +502,65 @@ textarea {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+  /* Animations continues : arrêtées plutôt qu'accélérées */
+  .marquee-track {
+    animation: none !important;
+  }
+}
+
+/* ── Hauteur plein écran du quiz : 100dvh (barres du navigateur mobile) avec repli 100vh ── */
+.quiz-shell {
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* ── Comparateur : largeur de la colonne des critères ── */
+.compare-scroll {
+  --crit: 104px;
+  scroll-snap-type: x proximity;
+}
+@media (min-width: 768px) {
+  .compare-scroll {
+    --crit: 180px;
+  }
+}
+
+/* ── Accueil : hauteur et image adaptées à l'écran ── */
+.hero-full {
+  height: 100vh;
+  height: 100svh;
+}
+.hero-bg {
+  background-image: url(/hero2-1280.webp);
+}
+@media (min-width: 768px) {
+  .hero-bg {
+    background-image: url(/hero2.webp);
+  }
+}
+
+/* ── Focus clavier visible partout ── */
+:focus-visible {
+  outline: 2px solid var(--gold-2);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Écrans tactiles : curseur natif, pas de curseur personnalisé ── */
+@media (hover: none), (pointer: coarse) {
+  #cursor {
+    display: none;
+  }
+  html,
+  body,
+  button {
+    cursor: auto;
+  }
+}
+
+html {
+  -webkit-tap-highlight-color: rgba(193, 123, 90, 0.18);
+  -webkit-text-size-adjust: 100%;
 }
 
 /* ── Mobile responsive ── */

@@ -50,21 +50,22 @@ export default function CarDetail({ addToCompare }) {
   return (
     <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       {/* Back */}
-      <div style={{ borderBottom: '1px solid var(--line)', padding: '1rem 2rem' }}>
+      <div className="px-2 py-1 md:px-6" style={{ borderBottom: '1px solid var(--line)' }}>
         <button
           onClick={() => navigate('/cars')}
+          className="inline-flex min-h-[44px] items-center px-2"
           style={{
             fontFamily: 'var(--sans)',
-            fontSize: '11px',
+            fontSize: '12px',
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
-            color: 'var(--ink-mute)',
+            color: 'var(--ink-soft)',
             background: 'none',
             border: 'none',
             cursor: 'pointer',
             transition: 'color 0.2s',
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--gold)')}
+          onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--gold-deep)')}
           onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--ink-mute)')}
         >
           ← Retour au catalogue
@@ -97,11 +98,12 @@ export default function CarDetail({ addToCompare }) {
         </div>
       )}
 
-      <div style={{ maxWidth: '900px', margin: '0 auto', padding: '4rem 2rem' }}>
+      <div className="px-4 py-8 md:px-8 md:py-16" style={{ maxWidth: '900px', margin: '0 auto' }}>
         {/* Hero header */}
         <div style={{ position: 'relative', marginBottom: '4rem' }}>
           {/* Decorative make name */}
           <span
+            aria-hidden="true"
             style={{
               position: 'absolute',
               top: '-20px',
@@ -122,7 +124,7 @@ export default function CarDetail({ addToCompare }) {
           <p
             style={{
               fontFamily: 'var(--sans)',
-              fontSize: '11px',
+              fontSize: '12px',
               letterSpacing: '0.3em',
               textTransform: 'uppercase',
               color: 'var(--gold-deep)',
@@ -143,7 +145,7 @@ export default function CarDetail({ addToCompare }) {
           >
             {car.make}
             <br />
-            <span style={{ color: 'var(--gold)' }}>{car.model}</span>
+            <span style={{ color: 'var(--gold-2)' }}>{car.model}</span>
           </h1>
 
           <div
@@ -166,7 +168,7 @@ export default function CarDetail({ addToCompare }) {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(150px, 100%), 1fr))',
             gap: '1px',
             background: 'var(--line)',
             marginBottom: '4rem',
@@ -175,14 +177,14 @@ export default function CarDetail({ addToCompare }) {
           }}
         >
           {SPECS.map(({ label, value }) => (
-            <div key={label} style={{ background: 'var(--bg-2)', padding: '1.5rem 2rem' }}>
+            <div key={label} className="p-4 md:px-8 md:py-6" style={{ background: 'var(--bg-2)' }}>
               <p
                 style={{
                   fontFamily: 'var(--sans)',
-                  fontSize: '10px',
+                  fontSize: '12px',
                   letterSpacing: '0.2em',
                   textTransform: 'uppercase',
-                  color: 'var(--ink-mute)',
+                  color: 'var(--ink-soft)',
                   marginBottom: '8px',
                 }}
               >
@@ -213,7 +215,7 @@ export default function CarDetail({ addToCompare }) {
             <p
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '.68rem',
+                fontSize: '.75rem',
                 letterSpacing: '.15em',
                 textTransform: 'uppercase',
                 color: 'var(--ink-soft)',
@@ -232,15 +234,15 @@ export default function CarDetail({ addToCompare }) {
             disabled={added}
             style={{
               fontFamily: 'var(--sans)',
-              fontSize: '11px',
+              fontSize: '12px',
               fontWeight: 600,
               letterSpacing: '0.25em',
               textTransform: 'uppercase',
               background: added
                 ? 'transparent'
-                : 'linear-gradient(180deg, var(--gold-2), var(--gold) 60%, var(--gold-deep))',
-              color: added ? 'var(--gold)' : '#ffffff',
-              border: `1px solid ${added ? 'var(--gold-deep)' : 'var(--gold)'}`,
+                : 'linear-gradient(180deg, var(--gold-2), var(--gold-deep))',
+              color: added ? 'var(--gold-deep)' : '#ffffff',
+              border: `1px solid ${added ? 'var(--gold-deep)' : 'var(--gold-2)'}`,
               padding: '1rem 2rem',
               cursor: added ? 'default' : 'pointer',
               borderRadius: '50px',
@@ -253,11 +255,11 @@ export default function CarDetail({ addToCompare }) {
             onClick={() => navigate('/quiz')}
             style={{
               fontFamily: 'var(--sans)',
-              fontSize: '11px',
+              fontSize: '12px',
               fontWeight: 600,
               letterSpacing: '0.25em',
               textTransform: 'uppercase',
-              color: 'var(--gold-2)',
+              color: 'var(--gold-deep)',
               border: '1px solid var(--gold-deep)',
               background: 'none',
               padding: '1rem 2rem',
@@ -291,7 +293,7 @@ export default function CarDetail({ addToCompare }) {
               <p
                 style={{
                   fontFamily: 'var(--sans)',
-                  fontSize: '11px',
+                  fontSize: '12px',
                   letterSpacing: '0.3em',
                   textTransform: 'uppercase',
                   color: 'var(--gold-deep)',
@@ -346,8 +348,8 @@ export default function CarDetail({ addToCompare }) {
                   <p
                     style={{
                       fontFamily: 'var(--sans)',
-                      fontSize: '11px',
-                      color: 'var(--ink-mute)',
+                      fontSize: '12px',
+                      color: 'var(--ink-soft)',
                       marginBottom: '8px',
                     }}
                   >
@@ -357,7 +359,7 @@ export default function CarDetail({ addToCompare }) {
                     style={{
                       fontFamily: 'var(--serif-display)',
                       fontSize: '16px',
-                      color: 'var(--gold)',
+                      color: 'var(--gold-deep)',
                     }}
                   >
                     {formatPriceMAD(s.price_eur)}

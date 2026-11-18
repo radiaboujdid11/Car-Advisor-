@@ -29,15 +29,11 @@ export default function Header({ compareCars = [] }) {
 
   return (
     <header
+      className="flex h-14 items-center justify-between px-4 sm:px-8 md:h-[68px] lg:px-16"
       style={{
         position: 'sticky',
         top: 0,
         zIndex: 100,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '0 4rem',
-        height: '68px',
         borderBottom: '1px solid rgba(255,255,255,.08)',
         backgroundImage:
           'linear-gradient(rgba(4,8,14,.72), rgba(4,8,14,.72)), url("/pexels-photo-2770516.avif")',
@@ -45,7 +41,12 @@ export default function Header({ compareCars = [] }) {
         backgroundPosition: 'center 60%',
       }}
     >
-      <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+      <Link
+        to="/"
+        aria-label="AutoAssist — accueil"
+        className="flex min-h-[44px] items-center"
+        style={{ gap: '10px' }}
+      >
         <span
           style={{
             width: '28px',
@@ -69,10 +70,13 @@ export default function Header({ compareCars = [] }) {
         </span>
       </Link>
 
+      {/* Navigation complète à partir de la tablette ; sur téléphone : barre d'onglets en bas (MobileTabBar) */}
       <nav
         ref={navRef}
         onMouseLeave={hideHl}
-        style={{ display: 'flex', alignItems: 'center', gap: '.25rem', position: 'relative' }}
+        aria-label="Navigation principale"
+        className="hidden items-center md:flex"
+        style={{ gap: '.25rem', position: 'relative' }}
       >
         {/* Sliding highlight pill */}
         <span
@@ -99,6 +103,8 @@ export default function Header({ compareCars = [] }) {
             key={to}
             to={to}
             onMouseEnter={moveHl}
+            aria-current={isActive(to) ? 'page' : undefined}
+            className="inline-flex min-h-[44px] items-center"
             style={{
               fontFamily: 'var(--sans)',
               fontSize: '.78rem',
@@ -119,22 +125,22 @@ export default function Header({ compareCars = [] }) {
         <Link
           to="/quiz"
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'var(--gold-2)';
+            e.currentTarget.style.background = 'var(--gold-deep)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'var(--gold)';
+            e.currentTarget.style.background = 'var(--gold-2)';
           }}
+          className="inline-flex min-h-[44px] items-center"
           style={{
             fontFamily: 'var(--sans)',
             fontWeight: 600,
             fontSize: '.75rem',
-            background: 'var(--gold)',
-            color: 'var(--bg)',
+            background: 'var(--gold-2)',
+            color: '#fff',
             padding: '.55rem 1.4rem',
             borderRadius: '50px',
             letterSpacing: '.06em',
             textTransform: 'uppercase',
-            display: 'inline-block',
             marginLeft: '1rem',
             transition: 'background .2s',
             position: 'relative',

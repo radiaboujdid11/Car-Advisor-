@@ -64,8 +64,14 @@ const FEATURES = [
 ];
 
 // Calculés une seule fois au chargement du module (les données sont statiques).
-const MARQUEE_CARS = CARS.filter((c) => c.photo_url).slice(0, 20);
-const MARQUEE_TILES = [...MARQUEE_CARS, ...MARQUEE_CARS];
+// Bandeau défilant : 11 photos libres de droits (licence Unsplash), hébergées dans public/marquee/
+// en WebP 520×300 (~25 Ko chacune). Crédits : docs/CREDITS.md.
+const MARQUEE_PHOTOS = Array.from(
+  { length: 11 },
+  (_, i) => `/marquee/voiture-${String(i + 1).padStart(2, '0')}.webp`,
+);
+// Liste doublée pour une boucle sans à-coup (translateX -50 %).
+const MARQUEE_TILES = [...MARQUEE_PHOTOS, ...MARQUEE_PHOTOS];
 const pickWithPhoto = (cat, n) => CARS.filter((c) => c.photo_url && c.category === cat).slice(0, n);
 const SHOWCASE = [
   ...pickWithPhoto('eco', 2),
@@ -149,7 +155,7 @@ export default function Landing() {
             const isRoute = href.startsWith('/');
             const style = {
               fontFamily: 'var(--sans)',
-              fontSize: '.72rem',
+              fontSize: '.75rem',
               letterSpacing: '.1em',
               textTransform: 'uppercase',
               color: 'rgba(255,255,255,.8)',
@@ -160,6 +166,7 @@ export default function Landing() {
               <Link
                 key={href}
                 to={href}
+                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center"
                 style={style}
                 onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,.8)')}
@@ -170,6 +177,7 @@ export default function Landing() {
               <a
                 key={href}
                 href={href}
+                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center"
                 style={style}
                 onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,.8)')}
@@ -183,6 +191,7 @@ export default function Landing() {
         <button
           onClick={() => navigate('/quiz')}
           style={{
+            minHeight: '44px',
             background: 'rgba(255,255,255,.15)',
             color: '#fff',
             border: '1.5px solid rgba(255,255,255,.7)',
@@ -197,8 +206,8 @@ export default function Landing() {
             backdropFilter: 'blur(8px)',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'var(--gold)';
-            e.currentTarget.style.borderColor = 'var(--gold)';
+            e.currentTarget.style.background = 'var(--gold-2)';
+            e.currentTarget.style.borderColor = 'var(--gold-2)';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = 'rgba(255,255,255,.15)';
@@ -211,20 +220,20 @@ export default function Landing() {
 
       {/* ── HERO: full bleed ── */}
       <section
+        className="hero-full"
         style={{
           position: 'relative',
           width: '100%',
-          height: '100vh',
           minHeight: '600px',
           overflow: 'hidden',
         }}
       >
-        {/* Full image */}
+        {/* Full image : 1280 px sur téléphone, 2560 px à partir de 768 px (voir .hero-bg) */}
         <div
+          className="hero-bg"
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: 'url(/hero2.webp)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             animation: 'slowZoom 22s ease-in-out infinite alternate',
@@ -276,7 +285,7 @@ export default function Landing() {
             style={{
               fontFamily: 'var(--sans)',
               fontWeight: 400,
-              fontSize: '.72rem',
+              fontSize: '.75rem',
               letterSpacing: '.2em',
               textTransform: 'uppercase',
               color: 'rgba(255,255,255,.75)',
@@ -292,9 +301,9 @@ export default function Landing() {
             <button
               onClick={() => navigate('/quiz')}
               style={{
-                background: 'var(--gold)',
+                background: 'var(--gold-2)',
                 color: '#ffffff',
-                border: '2px solid var(--gold)',
+                border: '2px solid var(--gold-2)',
                 padding: '1rem 2.6rem',
                 fontFamily: 'var(--sans)',
                 fontWeight: 700,
@@ -306,12 +315,12 @@ export default function Landing() {
                 borderRadius: '50px',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'var(--gold-2)';
-                e.currentTarget.style.borderColor = 'var(--gold-2)';
+                e.currentTarget.style.background = 'var(--gold-deep)';
+                e.currentTarget.style.borderColor = 'var(--gold-deep)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'var(--gold)';
-                e.currentTarget.style.borderColor = 'var(--gold)';
+                e.currentTarget.style.background = 'var(--gold-2)';
+                e.currentTarget.style.borderColor = 'var(--gold-2)';
               }}
             >
               DÉMARRER LE QUIZ
@@ -391,7 +400,7 @@ export default function Landing() {
         <p
           style={{
             fontFamily: 'var(--sans)',
-            fontSize: '.68rem',
+            fontSize: '.75rem',
             letterSpacing: '.25em',
             textTransform: 'uppercase',
             color: 'var(--ink-mute)',
@@ -404,9 +413,12 @@ export default function Landing() {
 
       {/* ── PHOTO MARQUEE ── */}
       {
-        <div style={{ background: 'transparent', padding: '1rem 0', overflow: 'hidden' }}>
+        <div
+          aria-hidden="true"
+          style={{ background: 'transparent', padding: '1rem 0', overflow: 'hidden' }}
+        >
           <div className="marquee-track">
-            {MARQUEE_TILES.map((car, i) => (
+            {MARQUEE_TILES.map((src, i) => (
               <div
                 key={i}
                 style={{
@@ -414,21 +426,23 @@ export default function Landing() {
                   width: '260px',
                   height: '150px',
                   marginRight: '0.5rem',
-                  background: 'var(--bg)',
+                  background: 'var(--bg-2)',
+                  borderRadius: '6px',
+                  overflow: 'hidden',
                 }}
               >
                 <img
                   loading="lazy"
                   decoding="async"
-                  src={car.photo_url}
-                  alt={`${car.make} ${car.model}`}
+                  src={src}
+                  alt=""
+                  width="260"
+                  height="150"
                   style={{
                     width: '100%',
                     height: '100%',
-                    objectFit: 'contain',
-                    objectPosition: 'center',
+                    objectFit: 'cover',
                     display: 'block',
-                    mixBlendMode: 'multiply',
                   }}
                 />
               </div>
@@ -454,10 +468,10 @@ export default function Landing() {
             <span
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '.62rem',
+                fontSize: '.75rem',
                 letterSpacing: '.26em',
                 textTransform: 'uppercase',
-                color: 'var(--gold)',
+                color: 'var(--gold-deep)',
                 whiteSpace: 'nowrap',
               }}
             >
@@ -506,7 +520,7 @@ export default function Landing() {
                     fontFamily: 'var(--mono)',
                     fontSize: '.8rem',
                     fontWeight: 700,
-                    color: 'var(--gold)',
+                    color: 'var(--gold-deep)',
                     marginBottom: '1.2rem',
                     letterSpacing: '.06em',
                   }}
@@ -537,7 +551,7 @@ export default function Landing() {
                 <p
                   style={{
                     fontFamily: 'var(--sans)',
-                    fontSize: '.68rem',
+                    fontSize: '.75rem',
                     letterSpacing: '.18em',
                     textTransform: 'uppercase',
                     color: 'var(--ink-mute)',
@@ -576,10 +590,10 @@ export default function Landing() {
                 <span
                   style={{
                     fontFamily: 'var(--sans)',
-                    fontSize: '.62rem',
+                    fontSize: '.75rem',
                     letterSpacing: '.26em',
                     textTransform: 'uppercase',
-                    color: 'var(--gold)',
+                    color: 'var(--gold-deep)',
                     whiteSpace: 'nowrap',
                   }}
                 >
@@ -600,13 +614,13 @@ export default function Landing() {
               >
                 Des questions
                 <br />
-                <span style={{ color: 'var(--gold)' }}>qui comptent.</span>
+                <span style={{ color: 'var(--gold-2)' }}>qui comptent.</span>
               </h2>
 
               <p
                 style={{
                   fontFamily: 'var(--sans)',
-                  fontSize: '.68rem',
+                  fontSize: '.75rem',
                   letterSpacing: '.15em',
                   textTransform: 'uppercase',
                   color: 'var(--ink-mute)',
@@ -623,8 +637,8 @@ export default function Landing() {
                 onClick={() => navigate('/quiz')}
                 style={{
                   background: 'transparent',
-                  color: 'var(--gold)',
-                  border: '1px solid var(--gold)',
+                  color: 'var(--gold-deep)',
+                  border: '1px solid var(--gold-2)',
                   padding: '.9rem 2rem',
                   fontFamily: 'var(--sans)',
                   fontWeight: 600,
@@ -638,12 +652,12 @@ export default function Landing() {
                   borderRadius: '50px',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'var(--gold)';
+                  e.currentTarget.style.background = 'var(--gold-2)';
                   e.currentTarget.style.color = '#ffffff';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.background = 'transparent';
-                  e.currentTarget.style.color = 'var(--gold)';
+                  e.currentTarget.style.color = 'var(--gold-deep)';
                 }}
               >
                 Commencer <span>→</span>
@@ -670,10 +684,10 @@ export default function Landing() {
             <span
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '.62rem',
+                fontSize: '.75rem',
                 letterSpacing: '.26em',
                 textTransform: 'uppercase',
-                color: 'var(--gold)',
+                color: 'var(--gold-deep)',
                 whiteSpace: 'nowrap',
               }}
             >
@@ -709,6 +723,8 @@ export default function Landing() {
                   loading="lazy"
                   decoding="async"
                   src={f.img}
+                  srcSet={`${f.img.replace('w=800', 'w=480')} 480w, ${f.img} 800w`}
+                  sizes="(max-width: 767px) 92vw, 400px"
                   alt={f.title}
                   style={{
                     width: '100%',
@@ -728,10 +744,10 @@ export default function Landing() {
                 <p
                   style={{
                     fontFamily: 'var(--sans)',
-                    fontSize: '.6rem',
+                    fontSize: '.75rem',
                     letterSpacing: '.3em',
                     textTransform: 'uppercase',
-                    color: 'var(--gold)',
+                    color: 'var(--gold-deep)',
                     marginBottom: '1.1rem',
                   }}
                 >
@@ -761,7 +777,7 @@ export default function Landing() {
                 <p
                   style={{
                     fontFamily: 'var(--sans)',
-                    fontSize: '.68rem',
+                    fontSize: '.75rem',
                     letterSpacing: '.18em',
                     textTransform: 'uppercase',
                     color: 'var(--ink-mute)',
@@ -801,10 +817,10 @@ export default function Landing() {
               <span
                 style={{
                   fontFamily: 'var(--sans)',
-                  fontSize: '.62rem',
+                  fontSize: '.75rem',
                   letterSpacing: '.26em',
                   textTransform: 'uppercase',
-                  color: 'var(--gold)',
+                  color: 'var(--gold-deep)',
                   whiteSpace: 'nowrap',
                 }}
               >
@@ -814,9 +830,10 @@ export default function Landing() {
             </div>
             <Link
               to="/cars"
+              className="min-h-[44px]"
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '.7rem',
+                fontSize: '.75rem',
                 letterSpacing: '.12em',
                 textTransform: 'uppercase',
                 color: 'var(--ink-mute)',
@@ -895,10 +912,10 @@ export default function Landing() {
                     <span
                       style={{
                         fontFamily: 'var(--sans)',
-                        fontSize: '.58rem',
+                        fontSize: '.75rem',
                         letterSpacing: '.18em',
                         textTransform: 'uppercase',
-                        color: 'var(--gold)',
+                        color: 'var(--gold-deep)',
                         background: 'rgba(193,123,90,.1)',
                         padding: '2px 8px',
                         borderRadius: '20px',
@@ -922,7 +939,7 @@ export default function Landing() {
                       style={{
                         fontFamily: 'var(--mono)',
                         fontSize: '.78rem',
-                        color: 'var(--gold)',
+                        color: 'var(--gold-deep)',
                         fontWeight: 700,
                       }}
                     >
@@ -937,7 +954,7 @@ export default function Landing() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ background: 'var(--gold)', padding: '7rem 5vw' }}>
+      <section style={{ background: 'var(--gold-2)', padding: '7rem 5vw' }}>
         <div
           style={{
             maxWidth: '1160px',
@@ -953,10 +970,10 @@ export default function Landing() {
             <p
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '.62rem',
+                fontSize: '.75rem',
                 letterSpacing: '.26em',
                 textTransform: 'uppercase',
-                color: 'rgba(240,235,227,.55)',
+                color: '#fff',
                 marginBottom: '1rem',
               }}
             >
@@ -980,7 +997,7 @@ export default function Landing() {
             onClick={() => navigate('/quiz')}
             style={{
               background: '#ffffff',
-              color: 'var(--gold)',
+              color: 'var(--gold-deep)',
               border: 'none',
               padding: '1.2rem 3.2rem',
               fontFamily: 'var(--sans)',
@@ -1022,10 +1039,10 @@ export default function Landing() {
         <p
           style={{
             fontFamily: 'var(--sans)',
-            fontSize: '.62rem',
+            fontSize: '.75rem',
             letterSpacing: '.06em',
             color: 'var(--ink-mute)',
-            opacity: 0.45,
+            opacity: 1,
           }}
         >
           © 2026 AutoAssist · Propulsé par l'inférence bayésienne
@@ -1038,9 +1055,10 @@ export default function Landing() {
             <Link
               key={to}
               to={to}
+              className="inline-flex min-h-[44px] items-center"
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '.65rem',
+                fontSize: '.75rem',
                 letterSpacing: '.1em',
                 textTransform: 'uppercase',
                 color: 'var(--ink-mute)',

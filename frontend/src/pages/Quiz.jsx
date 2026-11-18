@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CARS } from '../data/cars';
+import { useIsDesktop } from '../hooks/useMediaQuery';
 import {
   createSession,
   getBestQuestion,
@@ -21,7 +22,8 @@ const C = {
   text: 'var(--ink)',
   mute: 'var(--ink-mute)',
   faint: 'var(--ink-mute)',
-  accent: 'var(--gold)',
+  accent: 'var(--gold-deep)', // texte doré sur fond clair (contraste 6,4)
+  accentBg: 'var(--gold-2)', // fond des boutons, texte blanc (contraste 4,8)
   gold: 'var(--gold-2)',
   border: 'var(--line)',
   borderHi: 'var(--gold)',
@@ -113,6 +115,12 @@ export default function Quiz({ onComplete }) {
   const [excludedIds, setExcludedIds] = useState(new Set());
 
   const rawQuestionRef = useRef(null);
+  // Historique des états avant chaque réponse : permet « Question précédente »
+  // sans toucher au moteur (chaque réponse produit une nouvelle session).
+  const historyRef = useRef([]);
+  const [canGoBack, setCanGoBack] = useState(false);
+  const [analysisOpen, setAnalysisOpen] = useState(false);
+  const isDesktop = useIsDesktop();
 
   async function startQuiz() {
     setPhase('init');
@@ -130,6 +138,8 @@ export default function Quiz({ onComplete }) {
     setAnsweredCount(0);
     setInterimDone(false);
     setRefineLeft(0);
+    historyRef.current = [];
+    setCanGoBack(false);
     setVisible(false);
     setPhase('asking');
     requestAnimationFrame(() => setVisible(true));
@@ -138,6 +148,19 @@ export default function Quiz({ onComplete }) {
   async function handleAnswer(answerIndex) {
     if (submittingRef.current) return;
     submittingRef.current = true;
+    historyRef.current.push({
+      session,
+      rawQuestion: rawQuestionRef.current,
+      question,
+      confidence,
+      leadingCar,
+      topProbs,
+      deductions,
+      answeredCount,
+      interimDone,
+      refineLeft,
+    });
+    setCanGoBack(true);
     setPendingAnswer(answerIndex);
     setSubmitting(true);
     setVisible(false);
@@ -229,6 +252,27 @@ export default function Quiz({ onComplete }) {
 
   const buildTop3 = (s) => getRecommendations(s, CARS, excludedIds);
 
+  function goBack() {
+    if (submittingRef.current) return;
+    const prev = historyRef.current.pop();
+    if (!prev) return;
+    rawQuestionRef.current = prev.rawQuestion;
+    setSession(prev.session);
+    setQuestion(prev.question);
+    setConfidence(prev.confidence);
+    setLeadingCar(prev.leadingCar);
+    setTopProbs(prev.topProbs);
+    setDeductions(prev.deductions);
+    setAnsweredCount(prev.answeredCount);
+    setInterimDone(prev.interimDone);
+    setRefineLeft(prev.refineLeft);
+    setPendingAnswer(null);
+    setCanGoBack(historyRef.current.length > 0);
+    setVisible(false);
+    setPhase('asking');
+    requestAnimationFrame(() => setVisible(true));
+  }
+
   function excludeCar(carId) {
     setExcludedIds((prev) => {
       const next = new Set(prev);
@@ -272,55 +316,72 @@ export default function Quiz({ onComplete }) {
 
   return (
     <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        overflow: 'hidden',
-        background: C.bg,
-        position: 'relative',
-      }}
+      className="quiz-shell flex flex-col overflow-hidden md:flex-row"
+      style={{ background: C.bg, position: 'relative' }}
     >
-      {/* Video background — right panel only */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        style={{
-          position: 'absolute',
-          right: 0,
-          top: 0,
-          width: 'calc(100% - 330px)',
-          height: '100%',
-          objectFit: 'cover',
-          opacity: 0.38,
-          pointerEvents: 'none',
-          zIndex: 0,
-        }}
-      >
-        <source src="/car-bg.mp4" type="video/mp4" />
-      </video>
-      {/* Overlay to keep text readable over video */}
-      <div
-        style={{
-          position: 'absolute',
-          right: 0,
-          top: 0,
-          width: 'calc(100% - 330px)',
-          height: '100%',
-          background: 'rgba(240,232,220,0.28)',
-          pointerEvents: 'none',
-          zIndex: 0,
-        }}
-      />
+      {/* Vidéo de fond (panneau droit) : uniquement à partir de 768 px, jamais téléchargée sur téléphone */}
+      {isDesktop && (
+        <>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              width: 'calc(100% - 330px)',
+              height: '100%',
+              objectFit: 'cover',
+              opacity: 0.38,
+              pointerEvents: 'none',
+              zIndex: 0,
+            }}
+          >
+            <source src="/car-bg.mp4" type="video/mp4" />
+          </video>
+          {/* Overlay to keep text readable over video */}
+          <div
+            style={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              width: 'calc(100% - 330px)',
+              height: '100%',
+              background: 'rgba(240,232,220,0.28)',
+              pointerEvents: 'none',
+              zIndex: 0,
+            }}
+          />
+        </>
+      )}
 
       <LeftPanel
+        className="hidden h-full w-[330px] shrink-0 md:flex md:flex-col"
         confidence={confidence}
         topProbs={topProbs}
         deductions={deductions}
         refineLeft={refineLeft}
       />
-      <div style={{ flex: 1, overflow: 'hidden auto', position: 'relative', zIndex: 1 }}>
+      <MobileAnalysisBar
+        topProbs={topProbs}
+        confidence={confidence}
+        open={analysisOpen}
+        onOpen={() => setAnalysisOpen(true)}
+      />
+      {analysisOpen && !isDesktop && (
+        <AnalysisDrawer onClose={() => setAnalysisOpen(false)}>
+          <LeftPanel
+            className="flex h-full w-full flex-col"
+            confidence={confidence}
+            topProbs={topProbs}
+            deductions={deductions}
+            refineLeft={refineLeft}
+          />
+        </AnalysisDrawer>
+      )}
+      <div className="relative z-[1] min-h-0 flex-1 overflow-y-auto overflow-x-hidden">
         {phase === 'asking' && (
           <QuestionCard
             question={question}
@@ -330,6 +391,8 @@ export default function Quiz({ onComplete }) {
             confidence={confidence}
             refineLeft={refineLeft}
             onAnswer={handleAnswer}
+            canGoBack={canGoBack}
+            onBack={goBack}
           />
         )}
         {phase === 'ai-comment' && (
@@ -402,7 +465,7 @@ function Intro({ onStart }) {
         <p
           style={{
             fontFamily: 'var(--sans)',
-            fontSize: '.52rem',
+            fontSize: '.75rem',
             letterSpacing: '.3em',
             textTransform: 'uppercase',
             color: 'rgba(255,255,255,.4)',
@@ -514,7 +577,7 @@ function InitScreen() {
         <p
           style={{
             fontFamily: 'var(--sans)',
-            fontSize: '.68rem',
+            fontSize: '.8125rem',
             letterSpacing: '.25em',
             textTransform: 'uppercase',
             color: C.mute,
@@ -528,7 +591,7 @@ function InitScreen() {
 }
 
 /* ── LEFT PANEL ── */
-function LeftPanel({ confidence, topProbs, deductions, refineLeft }) {
+function LeftPanel({ className, confidence, topProbs, deductions, refineLeft }) {
   const top1 = topProbs[0];
   const top2 = topProbs[1];
   const top3 = topProbs[2];
@@ -540,18 +603,14 @@ function LeftPanel({ confidence, topProbs, deductions, refineLeft }) {
   const GOLDR = '#C17B5A';
 
   const TXT = '#D4B07A'; /* crème dorée — texte principal */
-  const MUTE = '#A07840'; /* dorée atténuée — labels */
+  const MUTE = '#C9A06A'; /* dorée atténuée — labels */
 
   return (
     <div
+      className={className}
       style={{
-        width: '330px',
-        flexShrink: 0,
-        height: '100vh',
         position: 'relative',
         overflow: 'hidden',
-        display: 'flex',
-        flexDirection: 'column',
         background: '#170E00',
       }}
     >
@@ -604,7 +663,7 @@ function LeftPanel({ confidence, topProbs, deductions, refineLeft }) {
           <span
             style={{
               fontFamily: 'var(--sans)',
-              fontSize: '.54rem',
+              fontSize: '.75rem',
               letterSpacing: '.28em',
               textTransform: 'uppercase',
               color: TXT,
@@ -635,7 +694,7 @@ function LeftPanel({ confidence, topProbs, deductions, refineLeft }) {
           <p
             style={{
               fontFamily: 'var(--sans)',
-              fontSize: '.52rem',
+              fontSize: '.75rem',
               letterSpacing: '.22em',
               textTransform: 'uppercase',
               color: MUTE,
@@ -713,7 +772,7 @@ function LeftPanel({ confidence, topProbs, deductions, refineLeft }) {
             <span
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '.52rem',
+                fontSize: '.75rem',
                 letterSpacing: '.22em',
                 textTransform: 'uppercase',
                 color: MUTE,
@@ -749,7 +808,7 @@ function LeftPanel({ confidence, topProbs, deductions, refineLeft }) {
             <p
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '.52rem',
+                fontSize: '.75rem',
                 letterSpacing: '.22em',
                 textTransform: 'uppercase',
                 color: MUTE,
@@ -772,7 +831,7 @@ function LeftPanel({ confidence, topProbs, deductions, refineLeft }) {
                     border: '1px solid rgba(212,176,122,.15)',
                   }}
                 >
-                  <span style={{ fontFamily: 'var(--sans)', fontSize: '.68rem', color: TXT }}>
+                  <span style={{ fontFamily: 'var(--sans)', fontSize: '.8125rem', color: TXT }}>
                     {car.make} {car.model}
                   </span>
                   <span
@@ -792,7 +851,7 @@ function LeftPanel({ confidence, topProbs, deductions, refineLeft }) {
             <p
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '.52rem',
+                fontSize: '.75rem',
                 letterSpacing: '.22em',
                 textTransform: 'uppercase',
                 color: MUTE,
@@ -807,7 +866,7 @@ function LeftPanel({ confidence, topProbs, deductions, refineLeft }) {
                   key={tag}
                   style={{
                     fontFamily: 'var(--sans)',
-                    fontSize: '.6rem',
+                    fontSize: '.75rem',
                     letterSpacing: '.08em',
                     color: TXT,
                     background: 'rgba(212,176,122,.1)',
@@ -836,7 +895,7 @@ function LeftPanel({ confidence, topProbs, deductions, refineLeft }) {
             <p
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '.52rem',
+                fontSize: '.75rem',
                 letterSpacing: '.2em',
                 textTransform: 'uppercase',
                 color: MUTE,
@@ -864,7 +923,7 @@ function LeftPanel({ confidence, topProbs, deductions, refineLeft }) {
             <p
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '.52rem',
+                fontSize: '.75rem',
                 letterSpacing: '.2em',
                 textTransform: 'uppercase',
                 color: GOLD,
@@ -885,7 +944,7 @@ function LeftPanel({ confidence, topProbs, deductions, refineLeft }) {
             <p
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '.52rem',
+                fontSize: '.75rem',
                 letterSpacing: '.22em',
                 textTransform: 'uppercase',
                 color: MUTE,
@@ -907,14 +966,14 @@ function LeftPanel({ confidence, topProbs, deductions, refineLeft }) {
                   }}
                 >
                   <span
-                    style={{ color: GOLD, fontSize: '.55rem', flexShrink: 0, marginTop: '2px' }}
+                    style={{ color: GOLD, fontSize: '.75rem', flexShrink: 0, marginTop: '2px' }}
                   >
                     ✓
                   </span>
                   <span
                     style={{
                       fontFamily: 'var(--sans)',
-                      fontSize: '.65rem',
+                      fontSize: '.8125rem',
                       color: TXT,
                       lineHeight: 1.45,
                     }}
@@ -941,7 +1000,7 @@ function LeftPanel({ confidence, topProbs, deductions, refineLeft }) {
           <p
             style={{
               fontFamily: 'var(--sans)',
-              fontSize: '.52rem',
+              fontSize: '.75rem',
               letterSpacing: '.1em',
               color: MUTE,
               lineHeight: 1.7,
@@ -970,36 +1029,44 @@ function QuestionCard({
   confidence,
   refineLeft,
   onAnswer,
+  canGoBack,
+  onBack,
 }) {
   if (!question) return null;
 
+  // Progression : vers la proposition intermédiaire (15 questions), puis dans l'affinage.
+  const inRefine = refineLeft > 0;
+  const progress = inRefine
+    ? (REFINE_Q - refineLeft) / REFINE_Q
+    : Math.min((question.number - 1) / INTERIM_Q, 1);
+  const progressLabel = inRefine
+    ? `Affinage — ${refineLeft} question${refineLeft > 1 ? 's' : ''} au plus`
+    : `Question ${question.number} sur ${INTERIM_Q}`;
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '0 3rem',
-      }}
-    >
-      {/* Progress */}
-      <div style={{ width: '100%', maxWidth: '580px', paddingBottom: '2.5rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+    <div className="flex min-h-full flex-col items-center px-4 pb-6 pt-5 sm:px-6 md:justify-center md:px-12 md:py-10">
+      {/* Progression */}
+      <div className="w-full max-w-[580px] pb-5 md:pb-10">
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'baseline',
+            marginBottom: '8px',
+            gap: '1rem',
+          }}
+        >
           <span
             style={{
               fontFamily: 'var(--sans)',
-              fontSize: '.58rem',
-              letterSpacing: '.22em',
+              fontSize: '.75rem',
+              letterSpacing: '.12em',
               textTransform: 'uppercase',
               color: '#000',
               fontWeight: 600,
             }}
           >
-            {refineLeft > 0
-              ? `Raffinement — ${refineLeft} restant${refineLeft > 1 ? 's' : ''}`
-              : 'Analyse de compatibilité'}
+            {progressLabel}
           </span>
           <span
             style={{
@@ -1007,26 +1074,32 @@ function QuestionCard({
               fontWeight: 800,
               fontSize: '.85rem',
               color: '#000',
+              whiteSpace: 'nowrap',
             }}
           >
-            {confidence}%
+            {confidence}% <span style={{ fontWeight: 500 }}>de confiance</span>
           </span>
         </div>
         <div
+          role="progressbar"
+          aria-label="Progression du quiz"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(progress * 100)}
           style={{
-            height: '2px',
+            height: '4px',
             background: 'rgba(0,0,0,.15)',
-            borderRadius: '2px',
+            borderRadius: '4px',
             overflow: 'hidden',
           }}
         >
           <div
             style={{
               height: '100%',
-              width: `${Math.max(confidence, 2)}%`,
+              width: `${Math.max(progress * 100, 3)}%`,
               background: '#000',
-              borderRadius: '2px',
-              transition: 'width .8s cubic-bezier(.4,0,.2,1)',
+              borderRadius: '4px',
+              transition: 'width .6s cubic-bezier(.4,0,.2,1)',
             }}
           />
         </div>
@@ -1034,12 +1107,8 @@ function QuestionCard({
 
       {/* Question + Answers */}
       <div
+        className="flex w-full max-w-[580px] flex-col gap-5 md:gap-8"
         style={{
-          width: '100%',
-          maxWidth: '580px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '2rem',
           opacity: visible ? 1 : 0,
           transform: visible ? 'translateY(0)' : 'translateY(22px)',
           transition: 'opacity .4s ease, transform .4s ease',
@@ -1050,8 +1119,9 @@ function QuestionCard({
           style={{
             fontFamily: 'var(--sans)',
             fontWeight: 900,
-            fontSize: 'clamp(2rem,5vw,3.4rem)',
-            lineHeight: 1.05,
+            fontSize: 'clamp(1.45rem,5vw,3.4rem)',
+            lineHeight: 1.1,
+            textWrap: 'balance',
             letterSpacing: '-.02em',
             color: '#000',
             textAlign: 'center',
@@ -1074,19 +1144,40 @@ function QuestionCard({
           ))}
         </div>
 
-        <p
-          style={{
-            fontFamily: 'var(--sans)',
-            fontWeight: 500,
-            fontSize: '.58rem',
-            letterSpacing: '.22em',
-            textTransform: 'uppercase',
-            color: '#000',
-            textAlign: 'center',
-          }}
-        >
-          Sélectionnez une réponse pour continuer
-        </p>
+        {/* Retour : en bas, à portée de pouce */}
+        <div className="flex min-h-[44px] items-center justify-between gap-4">
+          <button
+            type="button"
+            onClick={onBack}
+            disabled={!canGoBack || submitting}
+            className="inline-flex min-h-[44px] items-center rounded-full px-4"
+            style={{
+              fontFamily: 'var(--sans)',
+              fontSize: '.875rem',
+              fontWeight: 600,
+              color: '#000',
+              border: '1.5px solid rgba(0,0,0,.25)',
+              background: 'rgba(255,255,255,.6)',
+              visibility: canGoBack ? 'visible' : 'hidden',
+            }}
+          >
+            ← Question précédente
+          </button>
+          <p
+            className="hidden sm:block"
+            style={{
+              fontFamily: 'var(--sans)',
+              fontWeight: 500,
+              fontSize: '.75rem',
+              letterSpacing: '.12em',
+              textTransform: 'uppercase',
+              color: '#000',
+              textAlign: 'right',
+            }}
+          >
+            Choisissez une réponse pour continuer
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -1099,6 +1190,8 @@ function AnswerCard({ answer, isSelected, disabled, onClick }) {
 
   return (
     <button
+      type="button"
+      data-testid="answer"
       onClick={onClick}
       disabled={disabled}
       onMouseEnter={() => {
@@ -1114,7 +1207,8 @@ function AnswerCard({ answer, isSelected, disabled, onClick }) {
           : hovered
             ? 'rgba(255,255,255,.92)'
             : 'rgba(255,255,255,.78)',
-        padding: '1rem 1.3rem',
+        padding: '.9rem 1.1rem',
+        minHeight: '56px',
         borderRadius: '10px',
         transition: 'all .22s cubic-bezier(.4,0,.2,1)',
         display: 'flex',
@@ -1132,10 +1226,10 @@ function AnswerCard({ answer, isSelected, disabled, onClick }) {
       <span
         style={{
           fontFamily: 'var(--sans)',
-          fontSize: '.6rem',
-          letterSpacing: '.2em',
+          fontSize: '.8125rem',
+          letterSpacing: '.1em',
           textTransform: 'uppercase',
-          color: isSelected ? 'rgba(255,255,255,.55)' : '#000',
+          color: isSelected ? 'rgba(255,255,255,.7)' : '#000',
           fontWeight: 700,
           flexShrink: 0,
           width: '16px',
@@ -1148,7 +1242,7 @@ function AnswerCard({ answer, isSelected, disabled, onClick }) {
         <p
           style={{
             fontFamily: 'var(--sans)',
-            fontSize: 'clamp(.9rem,2vw,1.05rem)',
+            fontSize: 'clamp(1rem,2vw,1.05rem)',
             fontWeight: isSelected ? 700 : 500,
             color: isSelected ? '#FFF' : '#000',
             lineHeight: 1.35,
@@ -1161,9 +1255,9 @@ function AnswerCard({ answer, isSelected, disabled, onClick }) {
           <p
             style={{
               fontFamily: 'var(--sans)',
-              fontSize: '.72rem',
+              fontSize: '.8125rem',
               fontWeight: 400,
-              color: isSelected ? 'rgba(255,255,255,.6)' : '#000',
+              color: isSelected ? 'rgba(255,255,255,.75)' : '#000',
               marginTop: '3px',
               lineHeight: 1.5,
               transition: 'color .2s',
@@ -1186,13 +1280,8 @@ function AIComment({ message, leadingCar, onContinue }) {
 
   return (
     <div
+      className="flex min-h-full flex-col items-center justify-center px-5 py-10 md:p-12"
       style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '3rem',
         opacity: vis ? 1 : 0,
         transition: 'opacity .5s ease',
       }}
@@ -1213,7 +1302,7 @@ function AIComment({ message, leadingCar, onContinue }) {
           <span
             style={{
               fontFamily: 'var(--sans)',
-              fontSize: '.54rem',
+              fontSize: '.75rem',
               letterSpacing: '.28em',
               textTransform: 'uppercase',
               color: C.accent,
@@ -1240,7 +1329,7 @@ function AIComment({ message, leadingCar, onContinue }) {
           <p
             style={{
               fontFamily: 'var(--sans)',
-              fontSize: '.72rem',
+              fontSize: '.875rem',
               color: C.mute,
               marginBottom: '2.5rem',
             }}
@@ -1255,13 +1344,14 @@ function AIComment({ message, leadingCar, onContinue }) {
           onClick={onContinue}
           style={{
             fontFamily: 'var(--sans)',
-            fontSize: '.65rem',
+            fontSize: '.8125rem',
             letterSpacing: '.18em',
             textTransform: 'uppercase',
-            color: C.bg,
-            background: C.accent,
+            color: '#fff',
+            background: C.accentBg,
             border: 'none',
             padding: '.75rem 2.5rem',
+            minHeight: '48px',
             borderRadius: '50px',
             cursor: 'pointer',
             transition: 'opacity .2s',
@@ -1291,18 +1381,13 @@ function InterimProposal({ top3, confidence, excludedIds, onExclude, onAccept, o
 
   return (
     <div
+      className="flex min-h-full flex-col justify-center px-4 sm:px-6 md:px-14"
       style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        padding: '0 3.5rem',
         opacity: vis ? 1 : 0,
         transition: 'opacity .5s ease',
-        overflowY: 'auto',
       }}
     >
-      <div style={{ maxWidth: '520px', paddingTop: '2rem', paddingBottom: '2rem' }}>
+      <div style={{ maxWidth: '520px', width: '100%', paddingTop: '2rem', paddingBottom: '2rem' }}>
         <div
           style={{
             display: 'inline-flex',
@@ -1323,7 +1408,7 @@ function InterimProposal({ top3, confidence, excludedIds, onExclude, onAccept, o
           <span
             style={{
               fontFamily: 'var(--sans)',
-              fontSize: '.54rem',
+              fontSize: '.75rem',
               letterSpacing: '.28em',
               textTransform: 'uppercase',
               color: C.accent,
@@ -1349,7 +1434,7 @@ function InterimProposal({ top3, confidence, excludedIds, onExclude, onAccept, o
         <p
           style={{
             fontFamily: 'var(--sans)',
-            fontSize: '.72rem',
+            fontSize: '.875rem',
             color: C.mute,
             marginBottom: '2rem',
             lineHeight: 1.6,
@@ -1366,7 +1451,7 @@ function InterimProposal({ top3, confidence, excludedIds, onExclude, onAccept, o
             <p
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '.72rem',
+                fontSize: '.875rem',
                 color: C.faint,
                 padding: '1rem 0',
               }}
@@ -1382,7 +1467,8 @@ function InterimProposal({ top3, confidence, excludedIds, onExclude, onAccept, o
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                padding: '1rem 1.25rem',
+                padding: '.75rem 1rem',
+                gap: '.5rem',
                 background: i === 0 ? 'rgba(200,149,106,.1)' : C.surface,
                 borderRadius: '10px',
                 border: `1px solid ${i === 0 ? C.borderHi : C.border}`,
@@ -1405,7 +1491,7 @@ function InterimProposal({ top3, confidence, excludedIds, onExclude, onAccept, o
                   <p
                     style={{
                       fontFamily: 'var(--sans)',
-                      fontSize: '.55rem',
+                      fontSize: '.75rem',
                       letterSpacing: '.15em',
                       textTransform: 'uppercase',
                       color: C.faint,
@@ -1431,17 +1517,19 @@ function InterimProposal({ top3, confidence, excludedIds, onExclude, onAccept, o
               </p>
               <button
                 onClick={() => onExclude(car.id)}
+                aria-label={`Exclure ${car.make} ${car.model}`}
+                className="inline-flex min-h-[44px] items-center"
                 style={{
-                  marginLeft: '1rem',
+                  marginLeft: '.25rem',
                   fontFamily: 'var(--sans)',
-                  fontSize: '.55rem',
+                  fontSize: '.75rem',
                   letterSpacing: '.15em',
                   textTransform: 'uppercase',
                   color: C.faint,
                   background: 'none',
                   border: `1px solid ${C.border}`,
-                  padding: '4px 10px',
-                  borderRadius: '20px',
+                  padding: '0 12px',
+                  borderRadius: '22px',
                   cursor: 'pointer',
                   transition: 'all .2s',
                   flexShrink: 0,
@@ -1469,13 +1557,14 @@ function InterimProposal({ top3, confidence, excludedIds, onExclude, onAccept, o
             disabled={visibleCars.length === 0}
             style={{
               fontFamily: 'var(--sans)',
-              fontSize: '.7rem',
+              fontSize: '.8125rem',
               letterSpacing: '.18em',
               textTransform: 'uppercase',
-              color: C.bg,
-              background: visibleCars.length > 0 ? C.accent : C.border,
+              color: '#fff',
+              background: visibleCars.length > 0 ? C.accentBg : C.border,
               border: 'none',
-              padding: '.85rem 2rem',
+              padding: '.85rem 1.25rem',
+              minHeight: '48px',
               borderRadius: '50px',
               cursor: visibleCars.length > 0 ? 'pointer' : 'default',
               transition: 'opacity .2s',
@@ -1494,13 +1583,14 @@ function InterimProposal({ top3, confidence, excludedIds, onExclude, onAccept, o
             onClick={onRefine}
             style={{
               fontFamily: 'var(--sans)',
-              fontSize: '.7rem',
+              fontSize: '.8125rem',
               letterSpacing: '.18em',
               textTransform: 'uppercase',
               color: C.mute,
               background: 'none',
               border: `1px solid ${C.border}`,
-              padding: '.85rem 2rem',
+              padding: '.85rem 1.25rem',
+              minHeight: '48px',
               borderRadius: '50px',
               cursor: 'pointer',
               transition: 'all .2s',
@@ -1605,7 +1695,7 @@ function FinalReveal({ onDone }) {
             <span
               style={{
                 fontFamily: 'var(--sans)',
-                fontSize: '.62rem',
+                fontSize: '.75rem',
                 letterSpacing: '.28em',
                 textTransform: 'uppercase',
                 color: C.mute,
@@ -1686,4 +1776,103 @@ function FinalReveal({ onDone }) {
 
 function delay(ms) {
   return new Promise((r) => setTimeout(r, ms));
+}
+
+/* ── BANDEAU D'ANALYSE COMPACT (téléphone) ── */
+function MobileAnalysisBar({ topProbs, confidence, open, onOpen }) {
+  const top1 = topProbs[0];
+  const TXT = '#E2C391';
+  return (
+    <div
+      className="flex shrink-0 items-center gap-3 px-4 py-2 md:hidden"
+      style={{ background: '#170E00', color: TXT, borderBottom: '1px solid rgba(212,176,122,.18)' }}
+    >
+      <div className="min-w-0 flex-1">
+        <p
+          style={{
+            fontFamily: 'var(--sans)',
+            fontSize: '.75rem',
+            letterSpacing: '.1em',
+            textTransform: 'uppercase',
+            color: '#C9A06A',
+          }}
+        >
+          Correspondance actuelle
+        </p>
+        <p
+          className="truncate"
+          style={{ fontFamily: 'var(--serif-display)', fontSize: '1rem', fontWeight: 700 }}
+        >
+          {top1 ? `${top1.make} ${top1.model}` : 'Analyse en cours…'}
+        </p>
+      </div>
+      <p
+        aria-label={`Confiance ${confidence} %`}
+        style={{ fontFamily: 'var(--serif-display)', fontSize: '1.25rem', fontWeight: 800 }}
+      >
+        {confidence}
+        <span style={{ fontSize: '.6em' }}>%</span>
+      </p>
+      <button
+        type="button"
+        onClick={onOpen}
+        aria-expanded={open}
+        aria-controls="quiz-analyse"
+        className="inline-flex min-h-[44px] items-center rounded-full px-4"
+        style={{
+          fontFamily: 'var(--sans)',
+          fontSize: '.875rem',
+          fontWeight: 600,
+          color: '#170E00',
+          background: TXT,
+        }}
+      >
+        Analyse
+      </button>
+    </div>
+  );
+}
+
+/* ── TIROIR : panneau d'analyse complet sur téléphone ── */
+function AnalysisDrawer({ onClose, children }) {
+  const closeRef = useRef(null);
+  useEffect(() => {
+    closeRef.current?.focus();
+    const onKey = (e) => e.key === 'Escape' && onClose();
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [onClose]);
+
+  return (
+    <div className="fixed inset-0 z-[200] flex flex-col justify-end md:hidden">
+      <button
+        type="button"
+        aria-label="Fermer l'analyse"
+        tabIndex={-1}
+        onClick={onClose}
+        className="absolute inset-0"
+        style={{ background: 'rgba(0,0,0,.55)' }}
+      />
+      <div
+        id="quiz-analyse"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Analyse en direct"
+        className="relative flex h-[85vh] flex-col overflow-hidden rounded-t-2xl"
+        style={{ background: '#170E00' }}
+      >
+        <button
+          ref={closeRef}
+          type="button"
+          onClick={onClose}
+          className="absolute right-3 top-3 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full"
+          style={{ color: '#E2C391', background: 'rgba(255,255,255,.08)', fontSize: '1.1rem' }}
+          aria-label="Fermer l'analyse"
+        >
+          ✕
+        </button>
+        {children}
+      </div>
+    </div>
+  );
 }

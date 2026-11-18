@@ -28,7 +28,7 @@ export default [
     },
   },
   {
-    files: ['*.config.js', 'src/**/*.test.js'],
+    files: ['*.config.js', 'src/**/*.test.js', 'e2e/**/*.js'],
     languageOptions: { globals: { ...globals.node } },
   },
   prettier,
