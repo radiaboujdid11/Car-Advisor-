@@ -1,0 +1,16 @@
+{
+  "name": "car-advisor-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Fonction serveur Vercel de l'assistant conversationnel (api/).",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test api/"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "1.6.0"
+  }
+}
