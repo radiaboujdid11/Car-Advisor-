@@ -66,7 +66,9 @@ export async function streamChat({ messages, quiz, onEvent, signal, endpoint = '
 export function describeHttpError(err) {
   if (err?.name === 'AbortError') return null;
   if (err instanceof ChatHttpError) {
-    if (err.status === 503) return "L'assistant n'est pas encore activé sur ce site.";
+    if (err.status === 503) {
+      return "L'assistant IA est en cours d'activation et sera bientôt disponible. En attendant, le quiz et le catalogue vous aident à trouver votre voiture.";
+    }
     if (err.status === 429) {
       const min = Math.ceil((err.body?.retryAfterSec || 60) / 60);
       return `Vous avez envoyé beaucoup de messages. Réessayez dans ${min} minute${min > 1 ? 's' : ''}.`;

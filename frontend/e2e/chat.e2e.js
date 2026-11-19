@@ -103,7 +103,7 @@ test('assistant non configuré (503) : message clair', async ({ page }) => {
   await page.getByRole('button', { name: "Ouvrir l'assistant AutoAssist" }).click();
   await page.getByLabel('Votre message').fill('Bonjour');
   await page.getByRole('button', { name: 'Envoyer' }).click();
-  await expect(page.getByText("L'assistant n'est pas encore activé sur ce site.")).toBeVisible();
+  await expect(page.getByText(/assistant IA est en cours d'activation/)).toBeVisible();
 });
 
 test('le bouton est absent du quiz et ne masque pas la barre d’onglets', async ({

@@ -278,6 +278,10 @@ une `category` parmi `eco`, `practical`, `performance`, `luxury`, et un prix en 
 
 ## Assistant IA
 
+> **Statut : en attente d'activation.** L'interface et la fonction serveur sont en ligne et
+> testées ; l'assistant répondra dès qu'une clé API Anthropic sera ajoutée dans Vercel. En
+> attendant, il affiche « bientôt disponible ».
+
 ### Ce qu'il fait
 
 Une bulle « Assistant » est présente sur toutes les pages (sauf pendant le quiz). Le visiteur pose
