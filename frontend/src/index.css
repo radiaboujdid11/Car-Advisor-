@@ -539,6 +539,20 @@ textarea {
   }
 }
 
+/* ── Assistant : bouton flottant (au-dessus de la barre d'onglets sur téléphone) ── */
+.chat-launcher {
+  bottom: calc(16px + env(safe-area-inset-bottom));
+}
+.chat-launcher--tabbar {
+  bottom: calc(60px + 16px + env(safe-area-inset-bottom));
+}
+@media (min-width: 768px) {
+  .chat-launcher,
+  .chat-launcher--tabbar {
+    bottom: 24px;
+  }
+}
+
 /* ── Focus clavier visible partout ── */
 :focus-visible {
   outline: 2px solid var(--gold-2);
