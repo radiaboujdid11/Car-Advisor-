@@ -9,8 +9,10 @@ AutoAssist recommande une voiture adaptée au marché marocain à partir d'un qu
 un moteur d'inférence bayésienne choisit à chaque étape la question qui apporte le plus
 d'information, puis met à jour la probabilité de chaque voiture après la réponse.
 
-L'application est **100 % statique** : tout le calcul se fait dans le navigateur. Le jeu de
-données est produit en amont par un petit pipeline Node.js (`data-pipeline/`).
+Le quiz et le moteur bayésien tournent **entièrement dans le navigateur**. Un **assistant IA**
+(Claude, d'Anthropic) répond aussi aux questions des visiteurs : il cherche dans le catalogue, compare
+des modèles et explique les résultats du quiz, via une petite fonction serveur Vercel (`api/`). Le jeu
+de données est produit en amont par un pipeline Node.js (`data-pipeline/`).
 
 <!--
 Captures d'écran : décommenter ce bloc une fois les fichiers ajoutés dans docs/screenshots/.
@@ -31,19 +33,21 @@ Captures d'écran : décommenter ce bloc une fois les fichiers ajoutés dans doc
 - [Installation locale](#installation-locale)
 - [Comment ça marche](#comment-ça-marche)
 - [Données](#données)
+- [Assistant IA](#assistant-ia)
 - [Qualité et tests](#qualité-et-tests)
 - [Licence](#licence)
 
 ## Stack technique
 
-| Couche      | Outils                                                        |
-| ----------- | ------------------------------------------------------------- |
-| Interface   | React 18, React Router 6, Tailwind CSS (base) + styles inline |
-| Build       | Vite 5 (pages chargées à la demande)                          |
-| Moteur      | JavaScript pur, sans dépendance (`frontend/src/engine/`)      |
-| Données     | Pipeline Node.js sans dépendance → module JS statique         |
-| Qualité     | ESLint 9, Prettier, Vitest, `node:test`, GitHub Actions       |
-| Hébergement | Vercel (site statique)                                        |
+| Couche      | Outils                                                           |
+| ----------- | ---------------------------------------------------------------- |
+| Interface   | React 18, React Router 6, Tailwind CSS (base) + styles inline    |
+| Build       | Vite 5 (pages chargées à la demande)                             |
+| Moteur      | JavaScript pur, sans dépendance (`frontend/src/engine/`)         |
+| Données     | Pipeline Node.js sans dépendance → module JS statique            |
+| Qualité     | ESLint 9, Prettier, Vitest, `node:test`, GitHub Actions          |
+| Assistant   | Claude (API Messages, outils, streaming) via `@anthropic-ai/sdk` |
+| Hébergement | Vercel (site statique + une fonction serverless `api/chat`)      |
 
 ## Structure du dépôt
 
@@ -58,8 +62,11 @@ Captures d'écran : décommenter ce bloc une fois les fichiers ajoutés dans doc
 │       │   └── quiz.test.js   Tests unitaires du moteur (Vitest)
 │       ├── data/cars.js       Jeu de données GÉNÉRÉ par data-pipeline/ (ne pas éditer)
 │       ├── pages/             Accueil, Quiz, Résultats, Catalogue, Fiche, Comparateur
-│       ├── components/        En-tête, curseur personnalisé
+│       ├── components/        En-tête, barre d'onglets, curseur ; chat/ : interface de l'assistant
 │       └── utils/format.js    Libellés de catégories, conversion € → DH
+├── api/                       Fonction serverless de l'assistant (Vercel)
+│   ├── chat.js                POST /api/chat : flux SSE, limite de débit, erreurs
+│   └── _lib/                  Boucle de l'agent, outils du catalogue, tests (node:test)
 ├── data-pipeline/             Construction du jeu de données
 │   ├── sources/               Catalogues d'origine (Europe, Maroc) et corrections
 │   ├── transform.js           Corrections, normalisation, dédoublonnage, validation
@@ -268,6 +275,66 @@ une `category` parmi `eco`, `practical`, `performance`, `luxury`, et un prix en 
 > Les réponses « Je ne sais pas » ou « Peu importe » ne sont pas neutres : ce sont des réponses
 > comme les autres, avec leurs propres vraisemblances (par exemple, ne pas connaître son budget
 > d'entretien oriente légèrement vers les voitures économiques et pratiques).
+
+## Assistant IA
+
+### Ce qu'il fait
+
+Une bulle « Assistant » est présente sur toutes les pages (sauf pendant le quiz). Le visiteur pose
+sa question en langage naturel ; l'assistant répond en français, au fil de l'eau, avec des liens
+vers les fiches du catalogue.
+
+C'est un **agent avec outils** : le modèle décide lui-même d'appeler des fonctions qui lisent le
+jeu de données. Les faits (prix, puissance, modèles) viennent uniquement de ces outils, jamais de
+la mémoire du modèle :
+
+| Outil                 | Rôle                                                                   |
+| --------------------- | ---------------------------------------------------------------------- |
+| `rechercher_voitures` | Filtre le catalogue : budget, catégorie, marque, puissance, électrique |
+| `fiche_voiture`       | Fiche complète d'un modèle                                             |
+| `comparer_voitures`   | Fiches de 2 à 4 modèles pour une comparaison                           |
+| `resultats_quiz`      | Les 3 recommandations du dernier quiz du visiteur                      |
+
+Les outils sont en **lecture seule** et valident chaque entrée envoyée par le modèle. Pour les
+résultats du quiz, le navigateur n'envoie que des identifiants et des scores : les fiches sont
+relues côté serveur.
+
+### Architecture
+
+```
+Navigateur ──POST /api/chat──▶ Fonction Vercel ──API Messages (streaming)──▶ Claude
+   ▲   (historique + ids du quiz)      │  boucle : réponse → appel d'outil →
+   └──── flux SSE (texte, étapes) ◀────┘  exécution sur cars.js → résultat → réponse
+```
+
+- **Clé API côté serveur uniquement** (variable d'environnement `ANTHROPIC_API_KEY` sur Vercel).
+- **Streaming** : le texte s'affiche mot à mot ; les étapes (« Recherche dans le catalogue… »)
+  sont envoyées au fur et à mesure.
+- **Cache de prompt** sur le préfixe stable (prompt système + outils + historique).
+- **Garde-fous** : 6 appels d'outils au plus par question, réponses plafonnées, messages de
+  800 caractères au plus, 20 messages par visiteur et par 10 minutes (limite en mémoire, par
+  instance), arrêt propre en cas de refus ou de troncature.
+- Le panneau de discussion n'est téléchargé qu'au premier clic (8 kB).
+
+### Configuration
+
+| Variable d'environnement (Vercel) | Rôle                                                                                   |
+| --------------------------------- | -------------------------------------------------------------------------------------- |
+| `ANTHROPIC_API_KEY`               | Clé de l'API Anthropic (obligatoire ; sans elle, l'assistant l'indique)                |
+| `ASSISTANT_MODEL` (facultatif)    | Modèle utilisé ; `claude-opus-5-5` par défaut, `claude-haiku-5-5` pour réduire le coût |
+
+En local : `ANTHROPIC_API_KEY=... npm run dev` dans `frontend/` sert aussi `/api/chat`.
+
+**Fixer un plafond de dépenses mensuel dans la console Anthropic** : le site est public et la
+limite de débit en mémoire n'est qu'un frein. Chaque conversation écrit une ligne d'utilisation
+(tokens, cache, outils appelés) dans les journaux Vercel, ce qui permet de mesurer le coût réel.
+
+### Tests
+
+`npm test` à la racine lance 17 tests `node:test` (outils sur le vrai catalogue, boucle de
+l'agent avec un faux client Anthropic, erreurs, limites) et `frontend/e2e/chat.e2e.js` teste
+l'interface avec une API simulée : **aucun test n'appelle l'API réelle ni ne coûte quoi que ce
+soit**.
 
 ## Licence
 

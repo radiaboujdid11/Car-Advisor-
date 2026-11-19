@@ -49,6 +49,19 @@ jobs:
           path: frontend/test-results/
           retention-days: 7
 
+  api:
+    name: Assistant IA — tests de la fonction serveur (API simulée)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+      - run: npm test
+
   data-pipeline:
     name: Pipeline de données — tests et validation
     runs-on: ubuntu-latest
