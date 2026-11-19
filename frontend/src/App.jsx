@@ -3,6 +3,7 @@ import { Suspense, lazy, useState, useEffect } from 'react';
 import Header from './components/Header';
 import Cursor from './components/Cursor';
 import MobileTabBar from './components/MobileTabBar';
+import ChatLauncher from './components/chat/ChatLauncher';
 import Landing from './pages/Landing';
 
 // Les pages hors accueil sont chargées à la demande : le moteur du quiz et la
@@ -52,6 +53,8 @@ function AppShell({ compareCars, children }) {
         {children}
       </main>
       {showHeader && <MobileTabBar compareCount={compareCars.length} />}
+      {/* Assistant : partout sauf pendant le quiz (le bouton masquerait les réponses) */}
+      {pathname !== '/quiz' && <ChatLauncher aboveTabBar={showHeader} />}
     </div>
   );
 }
