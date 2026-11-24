@@ -125,7 +125,12 @@ test('applyVerifications remplace le prix vérifié et ajoute date, source et li
   const { cars: out, unknown } = applyVerifications(
     cars,
     {
-      ma_a: { prix_dh: 216000, source: 'marque', url: 'https://marque.test/a', verifie_le: '2026-11-25' },
+      ma_a: {
+        prix_dh: 216000,
+        source: 'marque',
+        url: 'https://marque.test/a',
+        verifie_le: '2026-11-25',
+      },
       ma_disparue: { prix_dh: 1, source: 'moteur.ma', verifie_le: '2026-11-25' },
     },
     10.8,
