@@ -1,1 +1,170 @@
-{}
+{
+  "bmw-série-3-2024": {
+    "prix_dh": 589000,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/bmw/serie-3/",
+    "verifie_le": "2026-11-24",
+    "modele": "BMW Série 3",
+    "commentaire": "Proposition Claude (à relire) : page à jour"
+  },
+  "ford-focus-2024": {
+    "prix_dh": 285000,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/ford/focus/",
+    "verifie_le": "2026-11-24",
+    "modele": "Ford Focus",
+    "commentaire": "Proposition Claude (à relire) : page à jour (nov. 2026)"
+  },
+  "kia-ceed-2024": {
+    "prix_dh": 295000,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/kia/ceed/",
+    "verifie_le": "2026-11-24",
+    "modele": "Kia Ceed",
+    "commentaire": "Proposition Claude (à relire) : page à jour (oct. 2026)"
+  },
+  "kia-ev6-2024": {
+    "prix_dh": 685000,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/kia/ev6/",
+    "verifie_le": "2026-11-24",
+    "modele": "Kia EV6",
+    "commentaire": "Proposition Claude (à relire) : même modèle électrique, page à jour"
+  },
+  "kia-niro-2024": {
+    "prix_dh": 379000,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/kia/niro/",
+    "verifie_le": "2026-11-24",
+    "modele": "Kia Niro",
+    "commentaire": "Proposition Claude (à relire) : même hybride 141 ch"
+  },
+  "ma_audi_a4_2024": {
+    "prix_dh": 460000,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/audi/a4/",
+    "verifie_le": "2026-11-24",
+    "modele": "Audi A4",
+    "commentaire": "Proposition Claude (à relire) : prix du catalogue manifestement trop élevé ; page à jour (fév. 2026), entrée diesel 163 ch"
+  },
+  "ma_audi_q3_sportback_2025": {
+    "prix_dh": 564000,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/audi/q3-sportback/",
+    "verifie_le": "2026-11-24",
+    "modele": "Audi Q3 Sportback",
+    "commentaire": "Proposition Claude (à relire) : fiches 2026, même moteur 150 ch"
+  },
+  "ma_audi_q6_2025": {
+    "prix_dh": 898000,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/audi/q6/",
+    "verifie_le": "2026-11-24",
+    "modele": "Audi Q6",
+    "commentaire": "Proposition Claude (à relire) : Q6 e-tron, page à jour"
+  },
+  "ma_audi_q7_2025": {
+    "prix_dh": 885165,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/audi/q7/",
+    "verifie_le": "2026-11-24",
+    "modele": "Audi Q7",
+    "commentaire": "Proposition Claude (à relire) : page à jour"
+  },
+  "ma_byd_seal_2025": {
+    "prix_dh": 471300,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/byd/seal/",
+    "verifie_le": "2026-11-24",
+    "modele": "BYD Seal",
+    "commentaire": "Proposition Claude (à relire) : même version 313 ch électrique, page à jour"
+  },
+  "ma_citroen_c3_2023": {
+    "prix_dh": 159900,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/citroen/c3/",
+    "verifie_le": "2026-11-24",
+    "modele": "Citroën C3",
+    "commentaire": "Proposition Claude (à relire) : fiches 2026, même motorisation 82 ch"
+  },
+  "ma_kia_picanto_2023": {
+    "prix_dh": 154900,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/kia/picanto/",
+    "verifie_le": "2026-11-24",
+    "modele": "Kia Picanto",
+    "commentaire": "Proposition Claude (à relire) : génération actuelle, page à jour"
+  },
+  "ma_landrover_defender_2025": {
+    "prix_dh": 995500,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/land-rover/defender/",
+    "verifie_le": "2026-11-24",
+    "modele": "Land Rover Defender",
+    "commentaire": "Proposition Claude (à relire) : page à jour, entrée de gamme diesel"
+  },
+  "ma_maserati_granturismo_2025": {
+    "prix_dh": 2500000,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/maserati/granturismo/",
+    "verifie_le": "2026-11-24",
+    "modele": "Maserati Granturismo",
+    "commentaire": "Proposition Claude (à relire) : même version Modena 490 ch, page à jour"
+  },
+  "ma_mb_classe_g_2025": {
+    "prix_dh": 1840000,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/mercedes-benz/classe-g/",
+    "verifie_le": "2026-11-24",
+    "modele": "Mercedes-Benz Classe G",
+    "commentaire": "Proposition Claude (à relire) : page à jour"
+  },
+  "ma_nissan_xtrail_2023": {
+    "prix_dh": 459000,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/nissan/x-trail/",
+    "verifie_le": "2026-11-24",
+    "modele": "Nissan X-Trail",
+    "commentaire": "Proposition Claude (à relire) : génération actuelle e-Power ; la puissance du catalogue (158 ch) reste à mettre à jour"
+  },
+  "ma_peugeot_2008_2023": {
+    "prix_dh": 289900,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/peugeot/2008/",
+    "verifie_le": "2026-11-24",
+    "modele": "Peugeot 2008",
+    "commentaire": "Proposition Claude (à relire) : page à jour, entrée hybride 145 ch"
+  },
+  "ma_seat_ibiza_2023": {
+    "prix_dh": 183900,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/seat/ibiza/",
+    "verifie_le": "2026-11-24",
+    "modele": "Seat Ibiza",
+    "commentaire": "Proposition Claude (à relire) : fiches 2026, page à jour"
+  },
+  "ma_seat_leon_2023": {
+    "prix_dh": 306900,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/seat/leon/",
+    "verifie_le": "2026-11-24",
+    "modele": "Seat Leon",
+    "commentaire": "Proposition Claude (à relire) : page à jour"
+  },
+  "ma_tesla_model3_2024": {
+    "prix_dh": 389990,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/tesla/model-3/",
+    "verifie_le": "2026-11-24",
+    "modele": "Tesla Model 3",
+    "commentaire": "Proposition Claude (à relire) : même modèle électrique, page mise à jour en nov. 2026"
+  },
+  "renault-clio-2024": {
+    "prix_dh": 220000,
+    "source": "moteur.ma",
+    "url": "https://www.moteur.ma/fr/neuf/voiture/renault/clio/",
+    "verifie_le": "2026-11-24",
+    "modele": "Renault Clio",
+    "commentaire": "Proposition Claude (à relire) : page à jour"
+  }
+}

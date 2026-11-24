@@ -86,6 +86,16 @@ test.describe('Fiche voiture', () => {
     ).toBeVisible();
   });
 
+  test('un prix vérifié par le contrôle qualité affiche sa date et sa source', async ({ page }) => {
+    await page.goto('/cars/256'); // Peugeot 2008 (sources/verifications.json)
+    const line = page.getByTestId('price-verified');
+    await expect(line).toContainText('Prix vérifié le 24 novembre 2026');
+    await expect(line.getByRole('link', { name: 'moteur.ma' })).toHaveAttribute(
+      'href',
+      /moteur\.ma\/fr\/neuf\/voiture\/peugeot\/2008/,
+    );
+  });
+
   test('un modèle ajouté depuis la presse cite la date et le journal', async ({ page }) => {
     await page.goto('/cars/416'); // Renault Austral (sources/ajouts-presse.json)
     const line = page.getByTestId('price-launch');

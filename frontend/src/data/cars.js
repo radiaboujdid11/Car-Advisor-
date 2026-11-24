@@ -160,7 +160,7 @@ export const CARS = [
     "make": "Audi",
     "model": "A4",
     "year": 2024,
-    "price_eur": 81019,
+    "price_eur": 42593,
     "power_hp": 245,
     "consumption_l100k": 7.5,
     "co2_g_km": 176,
@@ -169,10 +169,10 @@ export const CARS = [
     "carquery_id": "ma_audi_a4_2024",
     "description": "Berline premium Audi — cockpit virtuel, raffinement allemand discret.",
     "created_at": "2026-06-14 15:04:44",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/audi/a4/"
   },
   {
     "id": 324,
@@ -331,7 +331,7 @@ export const CARS = [
     "make": "Audi",
     "model": "Q3 Sportback",
     "year": 2025,
-    "price_eur": 48889,
+    "price_eur": 52222,
     "power_hp": 150,
     "consumption_l100k": 6.7,
     "co2_g_km": 153,
@@ -340,10 +340,10 @@ export const CARS = [
     "carquery_id": "ma_audi_q3_sportback_2025",
     "description": "SUV coupé premium — la ligne sportive du Q3, toit fuyant élégant. Style avant la raison.",
     "created_at": "2026-07-03 12:26:22",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/audi/q3-sportback/"
   },
   {
     "id": 157,
@@ -426,7 +426,7 @@ export const CARS = [
     "make": "Audi",
     "model": "Q6",
     "year": 2025,
-    "price_eur": 73704,
+    "price_eur": 83148,
     "power_hp": 299,
     "consumption_l100k": 17.5,
     "co2_g_km": 0,
@@ -435,17 +435,17 @@ export const CARS = [
     "carquery_id": "ma_audi_q6_2025",
     "description": "SUV électrique premium Audi — 299ch, 625km d'autonomie, technologie e-tron. Le futur du luxe allemand.",
     "created_at": "2026-07-03 12:28:19",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/audi/q6/"
   },
   {
     "id": 334,
     "make": "Audi",
     "model": "Q7",
     "year": 2025,
-    "price_eur": 73333,
+    "price_eur": 81960,
     "power_hp": 245,
     "consumption_l100k": 8.5,
     "co2_g_km": 195,
@@ -454,10 +454,10 @@ export const CARS = [
     "carquery_id": "ma_audi_q7_2025",
     "description": "Grand SUV 7 places luxueux — l'Audi familiale ultime, présence imposante, confort de limousine.",
     "created_at": "2026-07-03 12:28:19",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/audi/q7/"
   },
   {
     "id": 335,
@@ -654,7 +654,7 @@ export const CARS = [
     "make": "BMW",
     "model": "Série 3",
     "year": 2024,
-    "price_eur": 50000,
+    "price_eur": 54537,
     "power_hp": 156,
     "consumption_l100k": 6.5,
     "co2_g_km": 149,
@@ -663,10 +663,10 @@ export const CARS = [
     "carquery_id": "bmw-série-3-2024",
     "description": "BMW Série 3 2024 — La référence des berlines sportives premium, entre dynamisme et raffinement.",
     "created_at": "2026-05-21 10:12:01",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/bmw/serie-3/"
   },
   {
     "id": 270,
@@ -1110,7 +1110,7 @@ export const CARS = [
     "make": "BYD",
     "model": "Seal",
     "year": 2025,
-    "price_eur": 33324,
+    "price_eur": 43639,
     "power_hp": 313,
     "consumption_l100k": 15.9,
     "co2_g_km": 0,
@@ -1119,10 +1119,10 @@ export const CARS = [
     "carquery_id": "ma_byd_seal_2025",
     "description": "Berline sport électrique — 313ch, 570km, propulsion ou intégrale. La rivale de Tesla Model 3 au Maroc.",
     "created_at": "2026-07-03 12:52:27",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/byd/seal/"
   },
   {
     "id": 362,
@@ -1338,7 +1338,7 @@ export const CARS = [
     "make": "Citroën",
     "model": "C3",
     "year": 2023,
-    "price_eur": 13500,
+    "price_eur": 14806,
     "power_hp": 83,
     "consumption_l100k": 5.4,
     "co2_g_km": 123,
@@ -1347,10 +1347,10 @@ export const CARS = [
     "carquery_id": "ma_citroen_c3_2023",
     "description": "Citadine confortable — sa suspension unique absorbe les dos-d'âne marocains.",
     "created_at": "2026-06-13 12:02:41",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/citroen/c3/"
   },
   {
     "id": 424,
@@ -1889,7 +1889,7 @@ export const CARS = [
     "make": "Ford",
     "model": "Focus",
     "year": 2024,
-    "price_eur": 24200,
+    "price_eur": 26389,
     "power_hp": 125,
     "consumption_l100k": 5.8,
     "co2_g_km": 132,
@@ -1898,10 +1898,10 @@ export const CARS = [
     "carquery_id": "ford-focus-2024",
     "description": "Ford Focus 2024 — Compacte plaisante à conduire, solide et bien équipée.",
     "created_at": "2026-05-21 10:12:01",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/ford/focus/"
   },
   {
     "id": 266,
@@ -2725,7 +2725,7 @@ export const CARS = [
     "make": "Kia",
     "model": "Ceed",
     "year": 2024,
-    "price_eur": 24200,
+    "price_eur": 27315,
     "power_hp": 120,
     "consumption_l100k": 5.5,
     "co2_g_km": 125,
@@ -2734,10 +2734,10 @@ export const CARS = [
     "carquery_id": "kia-ceed-2024",
     "description": "Kia Ceed 2024 — Compacte équilibrée et fiable, avec une garantie 7 ans rassurante.",
     "created_at": "2026-05-21 10:12:01",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/kia/ceed/"
   },
   {
     "id": 197,
@@ -2763,7 +2763,7 @@ export const CARS = [
     "make": "Kia",
     "model": "EV6",
     "year": 2024,
-    "price_eur": 47000,
+    "price_eur": 63426,
     "power_hp": 325,
     "consumption_l100k": 0,
     "co2_g_km": 0,
@@ -2772,10 +2772,10 @@ export const CARS = [
     "carquery_id": "kia-ev6-2024",
     "description": "Kia EV6 2024 — Crossover électrique GT, recharge 800V et performances sportives.",
     "created_at": "2026-05-21 10:12:01",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/kia/ev6/"
   },
   {
     "id": 199,
@@ -2801,7 +2801,7 @@ export const CARS = [
     "make": "Kia",
     "model": "Niro",
     "year": 2024,
-    "price_eur": 29200,
+    "price_eur": 35093,
     "power_hp": 141,
     "consumption_l100k": 4.8,
     "co2_g_km": 110,
@@ -2810,17 +2810,17 @@ export const CARS = [
     "carquery_id": "kia-niro-2024",
     "description": "Kia Niro 2024 — Crossover hybride polyvalent, éco-responsable au quotidien.",
     "created_at": "2026-05-21 10:12:01",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/kia/niro/"
   },
   {
     "id": 247,
     "make": "Kia",
     "model": "Picanto",
     "year": 2023,
-    "price_eur": 11500,
+    "price_eur": 14343,
     "power_hp": 67,
     "consumption_l100k": 5,
     "co2_g_km": 113,
@@ -2829,10 +2829,10 @@ export const CARS = [
     "carquery_id": "ma_kia_picanto_2023",
     "description": "Citadine compacte coréenne, idéale pour les embouteillages de Casablanca.",
     "created_at": "2026-06-13 12:02:41",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/kia/picanto/"
   },
   {
     "id": 196,
@@ -3029,7 +3029,7 @@ export const CARS = [
     "make": "Land Rover",
     "model": "Defender",
     "year": 2025,
-    "price_eur": 74889,
+    "price_eur": 92176,
     "power_hp": 300,
     "consumption_l100k": 9.5,
     "co2_g_km": 218,
@@ -3038,10 +3038,10 @@ export const CARS = [
     "carquery_id": "ma_landrover_defender_2025",
     "description": "Le tout-terrain légendaire — robustesse iconique, capacités off-road extrêmes, présence imposante. L'aventure au summum du luxe.",
     "created_at": "2026-07-03 12:24:53",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/land-rover/defender/"
   },
   {
     "id": 314,
@@ -3238,7 +3238,7 @@ export const CARS = [
     "make": "Maserati",
     "model": "Granturismo",
     "year": 2025,
-    "price_eur": 120370,
+    "price_eur": 231481,
     "power_hp": 490,
     "consumption_l100k": 10.5,
     "co2_g_km": 240,
@@ -3247,10 +3247,10 @@ export const CARS = [
     "carquery_id": "ma_maserati_granturismo_2025",
     "description": "Grand Tourisme iconique Maserati — V6 biturbo 490ch, lignes sculpturales intemporelles. Le coupé 2+2 le plus beau du monde, renaissance de la légende.",
     "created_at": "2026-07-03 13:03:11",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/maserati/granturismo/"
   },
   {
     "id": 404,
@@ -3542,7 +3542,7 @@ export const CARS = [
     "make": "Mercedes-Benz",
     "model": "Classe G",
     "year": 2025,
-    "price_eur": 161111,
+    "price_eur": 170370,
     "power_hp": 340,
     "consumption_l100k": 12,
     "co2_g_km": 274,
@@ -3551,10 +3551,10 @@ export const CARS = [
     "carquery_id": "ma_mb_classe_g_2025",
     "description": "Icône 4x4 légendaire — carrosserie carrée intemporelle depuis 1979, capacités off-road extrêmes, luxe absolu. Le SUV le plus désirable du monde.",
     "created_at": "2026-07-03 13:01:43",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/mercedes-benz/classe-g/"
   },
   {
     "id": 393,
@@ -3827,7 +3827,7 @@ export const CARS = [
     "make": "Nissan",
     "model": "X-Trail",
     "year": 2023,
-    "price_eur": 56481,
+    "price_eur": 42500,
     "power_hp": 158,
     "consumption_l100k": 7.4,
     "co2_g_km": 174,
@@ -3836,17 +3836,17 @@ export const CARS = [
     "carquery_id": "ma_nissan_xtrail_2023",
     "description": "SUV familial fiable et spacieux — excellent pour les longs trajets.",
     "created_at": "2026-06-14 15:04:44",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/nissan/x-trail/"
   },
   {
     "id": 256,
     "make": "Peugeot",
     "model": "2008",
     "year": 2023,
-    "price_eur": 24000,
+    "price_eur": 26843,
     "power_hp": 130,
     "consumption_l100k": 6.1,
     "co2_g_km": 139,
@@ -3855,10 +3855,10 @@ export const CARS = [
     "carquery_id": "ma_peugeot_2008_2023",
     "description": "SUV compact au style distinctif — l'un des favoris des familles marocaines.",
     "created_at": "2026-06-13 12:02:41",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/peugeot/2008/"
   },
   {
     "id": 210,
@@ -4454,7 +4454,7 @@ export const CARS = [
     "make": "Renault",
     "model": "Clio",
     "year": 2024,
-    "price_eur": 19000,
+    "price_eur": 20370,
     "power_hp": 91,
     "consumption_l100k": 5.2,
     "co2_g_km": 115,
@@ -4463,10 +4463,10 @@ export const CARS = [
     "carquery_id": "renault-clio-2024",
     "description": "Renault Clio 2024 — La citadine hybride française par excellence, légère et économique.",
     "created_at": "2026-05-21 10:12:01",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/renault/clio/"
   },
   {
     "id": 243,
@@ -4682,7 +4682,7 @@ export const CARS = [
     "make": "Seat",
     "model": "Ibiza",
     "year": 2023,
-    "price_eur": 14000,
+    "price_eur": 17028,
     "power_hp": 90,
     "consumption_l100k": 5.3,
     "co2_g_km": 120,
@@ -4691,17 +4691,17 @@ export const CARS = [
     "carquery_id": "ma_seat_ibiza_2023",
     "description": "Citadine espagnole au style jeune, populaire chez les étudiants et jeunes actifs.",
     "created_at": "2026-06-13 12:02:41",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/seat/ibiza/"
   },
   {
     "id": 264,
     "make": "Seat",
     "model": "Leon",
     "year": 2023,
-    "price_eur": 26000,
+    "price_eur": 28417,
     "power_hp": 130,
     "consumption_l100k": 5.7,
     "co2_g_km": 130,
@@ -4710,10 +4710,10 @@ export const CARS = [
     "carquery_id": "ma_seat_leon_2023",
     "description": "Compacte sportive au design affûté, le bon rapport prix/fun.",
     "created_at": "2026-06-13 12:02:41",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/seat/leon/"
   },
   {
     "id": 422,
@@ -4758,7 +4758,7 @@ export const CARS = [
     "make": "Tesla",
     "model": "Model 3",
     "year": 2024,
-    "price_eur": 60185,
+    "price_eur": 36110,
     "power_hp": 283,
     "consumption_l100k": 10.8,
     "co2_g_km": 0,
@@ -4767,10 +4767,10 @@ export const CARS = [
     "carquery_id": "ma_tesla_model3_2024",
     "description": "La référence mondiale électrique — 558km, Autopilot, performance épurée.",
     "created_at": "2026-06-14 15:04:44",
-    "price_verified_at": null,
+    "price_verified_at": "2026-11-24",
     "price_launch_at": null,
-    "price_source": null,
-    "price_source_url": null
+    "price_source": "moteur.ma",
+    "price_source_url": "https://www.moteur.ma/fr/neuf/voiture/tesla/model-3/"
   },
   {
     "id": 173,

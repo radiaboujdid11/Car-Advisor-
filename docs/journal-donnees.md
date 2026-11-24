@@ -149,3 +149,30 @@ le prix affiché reste celui du lancement, daté).
 
 Repéré mais hors sélection initiale : Chery Tiggo 4 Cross HEV (229 000 DH, 211 ch, Le Matin
 22/09/2025). Il pourra être ajouté si la sélection est élargie.
+
+## 2026-11-24 — Première collecte complète et 21 prix vérifiés
+
+Collecte ciblée terminée : **672 versions** (154 modèles) lues en 445 requêtes, 6 versions en
+double écartées. Un délai dépassé de moteur.ma avait arrêté une première tentative à la fiche
+232 ; le collecteur réessaie désormais 3 fois puis ignore la page.
+
+| Mesure                               | Valeur           |
+| ------------------------------------ | ---------------- |
+| Modèles du catalogue retrouvés       | 158 / 206 (77 %) |
+| …dont prix dans la fourchette (±5 %) | 121 (77 %)       |
+| Écart de prix médian                 | 0 %              |
+| Corrections proposées                | 35               |
+| Corrections acceptées / refusées     | 21 / 14          |
+
+Règle de décision (pré-remplie par Claude, validée par l'auteure) : accepter quand la page est à
+jour et porte sur le même modèle, la même génération et la même énergie ; refuser quand la page est
+périmée (modèle plus vendu : EcoSport, C1, Mustang, Passat, Punto), partagée entre deux fiches
+(GLC), incohérente (RS Q8) ou quand la version la moins chère n'est pas une entrée de gamme
+comparable (Mégane E-Tech, Junior électrique, Macan électrique, 5008 GT seule, Série 4 cabriolet,
+Classe S hybride rechargeable). La justification de chaque ligne est dans la colonne
+`commentaire` du fichier local `corrections_proposees.csv`.
+
+Les 21 prix acceptés sont publiés avec la mention « Prix vérifié le 24 novembre 2026 · source :
+moteur.ma » et un lien vers la page du modèle (`sources/verifications.json`). Points ouverts : la
+puissance du Nissan X-Trail (ancienne génération au catalogue) et les modèles refusés comme « plus
+vendus », à retirer ou à marquer dans le catalogue.
