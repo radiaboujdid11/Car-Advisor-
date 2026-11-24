@@ -264,19 +264,32 @@ une `category` parmi `eco`, `practical`, `performance`, `luxury`, et un prix en 
 
 ### Vérification par collecte (moteur.ma)
 
-`data-pipeline/scraper/` collecte les fiches « voitures neuves » de moteur.ma pour **vérifier** le
-catalogue : prix, puissance, énergie, places, carrosserie, par version, puis agrégés par modèle.
+`data-pipeline/collecte/` est un collecteur **Python** (requests, BeautifulSoup, pandas) qui lit les
+fiches « voitures neuves » de moteur.ma pour **vérifier** le catalogue : prix showroom et clé en
+main, puissance, énergie, places, carrosserie, coffre, par version, puis agrégés par modèle.
 
 ```bash
-cd data-pipeline
-npm run scrape                  # échantillon de 20 fiches (≈ 4 min)
-npm run scrape -- --limit 200   # plus large
-npm run scrape -- --all         # tout le plan du site (≈ 12 h)
+cd data-pipeline/collecte
+python -m venv .venv && .venv\Scripts\activate     # macOS/Linux : source .venv/bin/activate
+pip install -e ".[dev]"
+python -m moteur_scraper                 # échantillon de 20 fiches (≈ 4 min)
+python -m moteur_scraper --limit 200     # plus large
+python -m moteur_scraper --all           # tout le plan du site (≈ 12 h)
+pytest && ruff check .                   # tests et lint
 ```
 
-Le rapport `data-pipeline/scraped/rapport.md` mesure : part du catalogue retrouvée, prix dans la
-fourchette de la source, écart de prix médian, accord de la règle de catégorie, taux de
-remplissage de chaque champ.
+| Fichier (`src/moteur_scraper/`) | Rôle                                                                 |
+| ------------------------------- | -------------------------------------------------------------------- |
+| `crawl.py`                      | Client poli : robots.txt, sitemap, délai, cache, arrêt sur refus     |
+| `parse.py`                      | Lecture d'une fiche HTML (BeautifulSoup)                             |
+| `normalize.py`                  | Nombres, énergie, agrégation par modèle (pandas), règle de catégorie |
+| `compare.py`                    | Comparaison avec `cars.js` et rapport Markdown                       |
+| `cli.py`                        | Commande `python -m moteur_scraper`                                  |
+
+Sorties dans `data-pipeline/scraped/` : `versions.parquet` et `.csv`, `modeles.csv`,
+`comparaison.csv` et `rapport.md`. Le rapport mesure la part du catalogue retrouvée, les prix dans
+la fourchette de la source, l'écart de prix médian, l'accord de la règle de catégorie et le taux de
+remplissage de chaque champ. Node.js est utilisé pour lire `cars.js` (module JavaScript généré).
 
 **Collecte respectueuse** : liste des pages via le plan du site officiel (`sitemap.xml`), règles du
 `robots.txt` appliquées (aucune image téléchargée : `/storage/` est exclu), **une requête toutes les
@@ -293,9 +306,10 @@ si le site refuse (HTTP 403 ou 429).
   comprises entre 0 et 1, probabilités qui somment à 1, réponse cohérente qui augmente la
   probabilité attendue, seuils d'arrêt (15 questions, 60 %, ratio 8, limite de 30), absence de
   question répétée, robustesse des réponses « je ne sais pas » / « peu importe ».
-- **16 tests `node:test`** sur le pipeline de données : transformations, et collecteur (lecture des
-  fiches sur une page HTML fictive, normalisation, catégorie, robots.txt, délai, cache, arrêt sur
-  refus du site, comparaison avec le catalogue).
+- **6 tests `node:test`** sur les transformations du pipeline de données.
+- **25 tests pytest** sur le collecteur Python (fiche HTML fictive, normalisation, agrégation,
+  catégorie, robots.txt, délai, cache, arrêt sur refus du site, comparaison avec le catalogue) et
+  lint **ruff**.
 - **GitHub Actions** : à chaque push, lint ESLint, vérification Prettier, tests, build du
   frontend et validation du jeu de données.
 

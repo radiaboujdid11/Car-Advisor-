@@ -10,7 +10,6 @@
   "scripts": {
     "build": "node build-dataset.js",
     "check": "node build-dataset.js --dry-run",
-    "test": "node --test",
-    "scrape": "node scraper/scrape.js"
+    "test": "node --test"
   }
 }
