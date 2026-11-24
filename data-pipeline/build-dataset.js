@@ -6,12 +6,14 @@
 // Étapes : chargement -> corrections -> normalisation des marques -> dédoublonnage
 //          -> identifiants stables -> tri -> validation -> écriture.
 
-import { writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { EUROPE_MODELS, EUROPE_YEARS } from './sources/europe.js';
 import { MOROCCAN_CARS, PRICE_CORRECTIONS, PHOTO_CORRECTIONS } from './sources/maroc.js';
+import { EUR_TO_MAD } from '../frontend/src/utils/format.js';
 import {
   applyCorrections,
+  applyVerifications,
   assignIds,
   dedupe,
   expandEuropeModels,
@@ -21,6 +23,8 @@ import {
 } from './transform.js';
 
 const OUTPUT = fileURLToPath(new URL('../frontend/src/data/cars.js', import.meta.url));
+// Prix vérifiés par le contrôle qualité (python -m moteur_scraper appliquer).
+const VERIFICATIONS = fileURLToPath(new URL('./sources/verifications.json', import.meta.url));
 const FIELDS = [
   'id',
   'make',
@@ -35,6 +39,9 @@ const FIELDS = [
   'carquery_id',
   'description',
   'created_at',
+  'price_verified_at',
+  'price_source',
+  'price_source_url',
 ];
 
 const dryRun = process.argv.includes('--dry-run');
@@ -53,14 +60,25 @@ const raw = [
   ...expandEuropeModels(EUROPE_MODELS, EUROPE_YEARS),
   ...MOROCCAN_CARS.map((car) => ({ photo_url: null, ...car })),
 ];
-const corrected = normalizeMakes(applyCorrections(raw, PRICE_CORRECTIONS, PHOTO_CORRECTIONS));
+const verifications = existsSync(VERIFICATIONS)
+  ? JSON.parse(readFileSync(VERIFICATIONS, 'utf8'))
+  : {};
+const { cars: verified, unknown } = applyVerifications(
+  applyCorrections(raw, PRICE_CORRECTIONS, PHOTO_CORRECTIONS),
+  verifications,
+  EUR_TO_MAD,
+);
+const corrected = normalizeMakes(verified);
 const { cars: unique, dropped } = dedupe(corrected);
 
 const previous = await loadPrevious();
 const today = new Date().toISOString().slice(0, 19).replace('T', ' ');
 const cars = sortCars(assignIds(unique, previous, today)).map(pickFields);
 
-const errors = validate(cars);
+const errors = [
+  ...validate(cars),
+  ...unknown.map((key) => `verifications.json : « ${key} » ne correspond à aucune voiture`),
+];
 const makes = [...new Set(cars.map((c) => c.make))].sort();
 const byCategory = cars.reduce(
   (acc, c) => ({ ...acc, [c.category]: (acc[c.category] || 0) + 1 }),
@@ -74,6 +92,9 @@ console.log(`Doublons écartés      : ${dropped.length}`);
 for (const d of dropped) console.log(`  - ${d.make} ${d.model} ${d.year} (${d.carquery_id})`);
 console.log(`Voitures finales      : ${cars.length} — ${makes.length} marques`);
 console.log(`Par catégorie         : ${JSON.stringify(byCategory)}`);
+console.log(
+  `Prix vérifiés         : ${cars.filter((c) => c.price_verified_at).length} (${VERIFICATIONS})`,
+);
 
 if (errors.length) {
   console.error(`\n${errors.length} erreur(s) de validation :`);

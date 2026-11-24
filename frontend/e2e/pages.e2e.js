@@ -76,3 +76,13 @@ test.describe('Comparateur', () => {
     await expectTouchTargets(page);
   });
 });
+
+test.describe('Fiche voiture', () => {
+  test('la provenance du prix est indiquée', async ({ page }) => {
+    await page.goto('/cars/319');
+    // Sans vérification enregistrée : mention « indicatif » ; sinon date et source.
+    await expect(
+      page.getByText(/Prix indicatif, à confirmer en concession|Prix vérifié le/),
+    ).toBeVisible();
+  });
+});

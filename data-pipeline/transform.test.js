@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  applyVerifications,
   applyCorrections,
   assignIds,
   dedupe,
@@ -114,4 +115,29 @@ test('validate signale les fiches incohérentes', () => {
   assert.deepEqual(validate([ok]), []);
   const errors = validate([ok, { ...ok, price_eur: 0, category: 'spaceship' }]);
   assert.equal(errors.length, 3); // id en double, prix, catégorie
+});
+
+test('applyVerifications remplace le prix vérifié et ajoute date, source et lien', () => {
+  const cars = [
+    { carquery_id: 'ma_a', price_eur: 1000 },
+    { carquery_id: 'ma_b', price_eur: 2000 },
+  ];
+  const { cars: out, unknown } = applyVerifications(
+    cars,
+    {
+      ma_a: { prix_dh: 216000, source: 'marque', url: 'https://marque.test/a', verifie_le: '2026-11-25' },
+      ma_disparue: { prix_dh: 1, source: 'moteur.ma', verifie_le: '2026-11-25' },
+    },
+    10.8,
+  );
+  assert.deepEqual(out[0], {
+    carquery_id: 'ma_a',
+    price_eur: 20000,
+    price_verified_at: '2026-11-25',
+    price_source: 'marque',
+    price_source_url: 'https://marque.test/a',
+  });
+  assert.equal(out[1].price_eur, 2000);
+  assert.equal(out[1].price_verified_at, null);
+  assert.deepEqual(unknown, ['ma_disparue']);
 });

@@ -27,6 +27,29 @@ export function expandEuropeModels(models, years) {
   );
 }
 
+/**
+ * Prix vérifiés (contrôle qualité, voir data-pipeline/collecte/) : remplace le prix et
+ * ajoute la date, la source et le lien de la vérification. Clé : carquery_id.
+ * Renvoie aussi les clés inconnues (vérification qui ne correspond plus à aucune voiture).
+ */
+export function applyVerifications(cars, verifications, eurToMad) {
+  const used = new Set();
+  const out = cars.map((car) => {
+    const v = verifications[car.carquery_id];
+    if (!v) return { ...car, price_verified_at: null, price_source: null, price_source_url: null };
+    used.add(car.carquery_id);
+    return {
+      ...car,
+      price_eur: Math.round(v.prix_dh / eurToMad),
+      price_verified_at: v.verifie_le,
+      price_source: v.source,
+      price_source_url: v.url ?? null,
+    };
+  });
+  const unknown = Object.keys(verifications).filter((key) => !used.has(key));
+  return { cars: out, unknown };
+}
+
 /** Applique les corrections de prix (toujours) et de photo (seulement si absente). */
 export function applyCorrections(cars, priceCorrections, photoCorrections) {
   const prices = new Map(priceCorrections.map((c) => [c.carquery_id, c.price_eur]));

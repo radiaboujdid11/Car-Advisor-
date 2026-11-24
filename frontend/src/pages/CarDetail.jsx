@@ -162,6 +162,7 @@ export default function CarDetail({ addToCompare }) {
           >
             {formatPriceMAD(car.price_eur, 'Prix sur demande')}
           </p>
+          <PriceProvenance car={car} />
         </div>
 
         {/* Specs grid */}
@@ -371,5 +372,52 @@ export default function CarDetail({ addToCompare }) {
         )}
       </div>
     </div>
+  );
+}
+
+const SOURCE_LABELS = { marque: 'site officiel de la marque', 'moteur.ma': 'moteur.ma' };
+
+/** Traçabilité du prix : date et source de la dernière vérification (contrôle qualité). */
+function PriceProvenance({ car }) {
+  const style = {
+    fontFamily: 'var(--sans)',
+    fontSize: '13px',
+    color: 'var(--ink-soft)',
+    marginTop: '.5rem',
+  };
+  if (!car.price_verified_at) {
+    return <p style={style}>Prix indicatif, à confirmer en concession.</p>;
+  }
+  const date = new Date(`${car.price_verified_at}T12:00:00`).toLocaleDateString('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+  const source = SOURCE_LABELS[car.price_source] || car.price_source;
+  return (
+    <p style={style} data-testid="price-verified">
+      <span aria-hidden="true" style={{ color: 'var(--gold-deep)', fontWeight: 700 }}>
+        ✓{' '}
+      </span>
+      Prix vérifié le {date}
+      {source && (
+        <>
+          {' '}
+          · source :{' '}
+          {car.price_source_url ? (
+            <a
+              href={car.price_source_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'var(--gold-deep)', textDecoration: 'underline' }}
+            >
+              {source}
+            </a>
+          ) : (
+            source
+          )}
+        </>
+      )}
+    </p>
   );
 }
