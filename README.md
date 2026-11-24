@@ -39,15 +39,16 @@ Captures d'écran : décommenter ce bloc une fois les fichiers ajoutés dans doc
 
 ## Stack technique
 
-| Couche      | Outils                                                           |
-| ----------- | ---------------------------------------------------------------- |
-| Interface   | React 18, React Router 6, Tailwind CSS (base) + styles inline    |
-| Build       | Vite 5 (pages chargées à la demande)                             |
-| Moteur      | JavaScript pur, sans dépendance (`frontend/src/engine/`)         |
-| Données     | Pipeline Node.js sans dépendance → module JS statique            |
-| Qualité     | ESLint 9, Prettier, Vitest, `node:test`, GitHub Actions          |
-| Assistant   | Claude (API Messages, outils, streaming) via `@anthropic-ai/sdk` |
-| Hébergement | Vercel (site statique + une fonction serverless `api/chat`)      |
+| Couche           | Outils                                                                |
+| ---------------- | --------------------------------------------------------------------- |
+| Interface        | React 18, React Router 6, Tailwind CSS (base) + styles inline         |
+| Build            | Vite 5 (pages chargées à la demande)                                  |
+| Moteur           | JavaScript pur, sans dépendance (`frontend/src/engine/`)              |
+| Données          | Pipeline Node.js sans dépendance → module JS statique                 |
+| Contrôle qualité | Python : requests, BeautifulSoup, pandas, Parquet                     |
+| Qualité          | ESLint 9, Prettier, Vitest, `node:test`, pytest, ruff, GitHub Actions |
+| Assistant        | Claude (API Messages, outils, streaming) via `@anthropic-ai/sdk`      |
+| Hébergement      | Vercel (site statique + une fonction serverless `api/chat`)           |
 
 ## Structure du dépôt
 
@@ -68,10 +69,12 @@ Captures d'écran : décommenter ce bloc une fois les fichiers ajoutés dans doc
 │   ├── chat.js                POST /api/chat : flux SSE, limite de débit, erreurs
 │   └── _lib/                  Boucle de l'agent, outils du catalogue, tests (node:test)
 ├── data-pipeline/             Construction du jeu de données
-│   ├── sources/               Catalogues d'origine (Europe, Maroc) et corrections
-│   ├── transform.js           Corrections, normalisation, dédoublonnage, validation
+│   ├── sources/               Catalogues d'origine, corrections, verifications.json (prix vérifiés)
+│   ├── transform.js           Corrections, prix vérifiés, normalisation, dédoublonnage, validation
 │   ├── build-dataset.js       Écrit frontend/src/data/cars.js
-│   └── transform.test.js      Tests du pipeline (node:test)
+│   ├── transform.test.js      Tests du pipeline (node:test)
+│   └── collecte/              Contrôle qualité des prix en Python (moteur.ma) : paquet moteur_scraper,
+│                              correspondances.csv, tests pytest
 ├── docs/screenshots/          Captures d'écran utilisées dans ce README
 ├── .github/workflows/ci.yml   Lint, tests et build à chaque push
 └── vercel.json                Configuration de déploiement
@@ -204,8 +207,8 @@ contre 7,5 ms avant l'optimisation, avec des résultats identiques (mesures sous
 
 ### Contenu
 
-`frontend/src/data/cars.js` contient **277 voitures (197 modèles) de 25 marques**, réparties en 4 catégories
-(économique 82, luxe 80, pratique 68, performance 47). Chaque fiche comporte : marque, modèle,
+`frontend/src/data/cars.js` contient **286 voitures (206 modèles) de 27 marques**, réparties en 4 catégories
+(économique 84, luxe 80, pratique 75, performance 47). Chaque fiche comporte : marque, modèle,
 année (2020 à 2025), prix, puissance, consommation, émissions de CO₂, catégorie, description et,
 pour 103 d'entre elles, une photo.
 
@@ -214,20 +217,23 @@ Les prix sont stockés en euros et affichés en dirhams avec un taux fixe de **1
 
 ### Sources
 
-Le jeu de données est assemblé à partir de deux catalogues saisis manuellement dans
-`data-pipeline/sources/` :
+Le jeu de données est assemblé à partir de deux catalogues saisis manuellement et d'une liste
+d'ajouts sourcés, dans `data-pipeline/sources/` :
 
-| Fichier             | Contenu                                                                                                                                                                                       |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sources/maroc.js`  | 175 voitures du marché marocain (identifiants `ma_…`). Prix convertis depuis les dirhams (MAD / 10,8), dont une série corrigée d'après les tarifs officiels Maroc 2025 (`PRICE_CORRECTIONS`). |
-| `sources/europe.js` | 60 modèles avec un prix 2023 et un prix 2024 en euros, soit 120 voitures.                                                                                                                     |
+| Fichier                      | Contenu                                                                                                                                                                                                                                                 |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sources/maroc.js`           | 175 voitures du marché marocain (identifiants `ma_…`). Prix convertis depuis les dirhams (MAD / 10,8), dont une série corrigée d'après les tarifs officiels Maroc 2025 (`PRICE_CORRECTIONS`).                                                           |
+| `sources/europe.js`          | 60 modèles avec un prix 2023 et un prix 2024 en euros, soit 120 voitures.                                                                                                                                                                               |
+| `sources/ajouts-presse.json` | 9 modèles récents ajoutés d'après un article de presse daté (prix de lancement, journal, lien, date). La fiche affiche « Prix de lancement annoncé le … · source : … ». Règles et modèles écartés : [docs/journal-donnees.md](docs/journal-donnees.md). |
 
 Les photos des fiches voitures sont des liens vers les images de modèles publiées sur
 [moteur.ma](https://www.moteur.ma). Les photos du bandeau de l'accueil sont des photos libres de droits
 (licence Unsplash) hébergées dans le dépôt ; voir [docs/CREDITS.md](docs/CREDITS.md).
 
-> **Limite connue :** les prix et les fiches techniques ont été relevés manuellement ; la source
-> exacte de chaque valeur n'est pas tracée dans le dépôt. Le jeu de données sert à illustrer le
+> **Limite connue :** les prix et les fiches techniques des deux catalogues ont été relevés
+> manuellement ; la source exacte de chaque valeur n'est pas tracée dans le dépôt (sauf pour les
+> ajouts de presse et les prix vérifiés par le contrôle qualité, qui gardent leur source et leur
+> date). Le jeu de données sert à illustrer le
 > moteur de recommandation et ne remplace pas un tarif officiel de concessionnaire.
 
 ### Date de collecte
@@ -237,7 +243,8 @@ voiture). Les prix reflètent les tarifs connus à cette période et peuvent avo
 
 ### Traitements appliqués par le pipeline
 
-1. **Chargement** des deux catalogues (295 lignes) ;
+1. **Chargement** des deux catalogues et des ajouts de presse (304 lignes ; un ajout de presse
+   invalide, par exemple un article antérieur à 2024 ou sans lien, fait échouer le build) ;
 2. **corrections** : prix mis à jour, photos ajoutées quand elles manquent ;
 3. **normalisation** des marques (« Mercedes » → « Mercedes-Benz ») ;
 4. **dédoublonnage** sur (marque, modèle, année) : 18 doublons supprimés, la fiche du catalogue
@@ -262,13 +269,77 @@ cd ../frontend && npm test   # 5. Vérifie que le moteur fonctionne avec les nou
 Une nouvelle voiture doit avoir un `carquery_id` unique (préfixe `ma_` pour le marché marocain),
 une `category` parmi `eco`, `practical`, `performance`, `luxury`, et un prix en euros.
 
+### Contrôle qualité des prix (moteur.ma)
+
+Les prix du catalogue sont vérifiés **une fois par mois** par un circuit semi-automatique :
+la machine repère les écarts, une personne valide chaque correction, et chaque prix corrigé garde
+sa source et sa date (affichées sur la fiche voiture : « Prix vérifié le … »).
+
+```
+moteur.ma ──collecte ciblée──▶ versions ──agrégation──▶ modèles ──comparaison──▶ écarts
+                                                                                  │
+cars.js ◀──npm run build── verifications.json ◀──appliquer── corrections validées ◀┘
+```
+
+`data-pipeline/collecte/` est un paquet **Python** (requests, BeautifulSoup, pandas, pytest, ruff).
+
+**Procédure mensuelle**
+
+```bash
+cd data-pipeline/collecte
+python -m venv .venv && .venv\Scripts\activate     # macOS/Linux : source .venv/bin/activate
+pip install -e ".[dev]"
+
+python -m moteur_scraper correspondances   # 1. relier les modèles du catalogue aux pages du site
+#    -> relire les lignes « a_verifier » de correspondances.csv (statut « valide » ou « rejete »)
+python -m moteur_scraper collecte          # 2. collecte ciblée (quelques heures, 1 requête / 10 s)
+#    -> ouvrir data-pipeline/scraped/corrections_proposees.csv dans Excel et remplir :
+#       accepter (oui/non), source_retenue (marque ou moteur.ma), url_preuve (si marque)
+python -m moteur_scraper appliquer         # 3. écrit data-pipeline/sources/verifications.json
+cd .. && npm run build && npm test         # 4. régénère cars.js et vérifie le pipeline
+```
+
+Les décisions déjà saisies (correspondances, corrections) sont conservées d'un mois à l'autre.
+Une ligne acceptée mais incomplète bloque l'application ; une vérification qui ne correspond plus
+à aucune voiture bloque le build.
+
+| Fichier (`src/moteur_scraper/`) | Rôle                                                                      |
+| ------------------------------- | ------------------------------------------------------------------------- |
+| `crawl.py`                      | Client poli : robots.txt, sitemap, délai, cache, arrêt sur refus          |
+| `parse.py`                      | Lecture des fiches et des pages modèles (BeautifulSoup)                   |
+| `normalize.py`                  | Nombres, énergie, agrégation par modèle (pandas), règle de catégorie      |
+| `dedupe.py`                     | Unicité : une URL et une version par fiche, contrôle final avant écriture |
+| `matching.py`                   | Table de correspondance catalogue ↔ pages modèles (`correspondances.csv`) |
+| `compare.py`                    | Comparaison avec `cars.js`, rapport Markdown                              |
+| `corrections.py`                | Corrections proposées, puis application des lignes validées               |
+| `cli.py`                        | Sous-commandes `correspondances`, `collecte`, `appliquer`, `echantillon`  |
+
+Sorties locales dans `data-pipeline/scraped/` : `versions.parquet` et `.csv`, `modeles.csv`,
+`comparaison.csv`, `doublons_ecartes.csv`, `corrections_proposees.csv` et `rapport.md` (part du
+catalogue retrouvée, prix dans la fourchette de la source, écart médian, doublons écartés, taux de
+remplissage de chaque champ). Node.js est utilisé pour lire `cars.js` (module JavaScript généré).
+
+**Collecte respectueuse** : liste des pages via le plan du site officiel (`sitemap.xml`), règles du
+`robots.txt` appliquées (aucune image téléchargée : `/storage/` est exclu), **une requête toutes les
+10 secondes**, collecte limitée aux modèles du catalogue, cache disque (une fiche n'est relue que si
+sa date `lastmod` change), arrêt immédiat si le site refuse (HTTP 403 ou 429).
+
+> **Droits** : les conditions d'utilisation de moteur.ma protègent leur base de données. La
+> collecte sert à **repérer** les écarts : ses résultats restent **en local**
+> (`data-pipeline/scraped/` est ignoré par git). Seuls des prix ponctuels validés à la main sont
+> publiés, de préférence vérifiés sur le site officiel de la marque (`source_retenue = marque`).
+
 ## Qualité et tests
 
 - **15 tests Vitest** sur le moteur (`frontend/src/engine/quiz.test.js`) : vraisemblances
   comprises entre 0 et 1, probabilités qui somment à 1, réponse cohérente qui augmente la
   probabilité attendue, seuils d'arrêt (15 questions, 60 %, ratio 8, limite de 30), absence de
   question répétée, robustesse des réponses « je ne sais pas » / « peu importe ».
-- **6 tests `node:test`** sur les transformations du pipeline de données.
+- **51 tests pytest** sur le contrôle qualité Python (lecture des fiches sur une page HTML
+  fictive, normalisation, agrégation, catégorie, doublons, table de correspondance, corrections,
+  robots.txt, délai, cache, arrêt sur refus du site) et lint **ruff**.
+- **7 tests `node:test`** sur le pipeline de génération de `cars.js`, dont l'application des prix
+  vérifiés.
 - **GitHub Actions** : à chaque push, lint ESLint, vérification Prettier, tests, build du
   frontend et validation du jeu de données.
 

@@ -1,0 +1,196 @@
+[
+  {
+    "marque": "Renault",
+    "modele": "Austral",
+    "annee": 2025,
+    "version": "E-Tech full hybrid 200, finition Techno",
+    "prix_dh": 342000,
+    "puissance_ch": 200,
+    "energie": "hybride",
+    "consommation_l100k": 4.7,
+    "co2_g_km": 106,
+    "categorie": "practical",
+    "description": "SUV familial du segment C en hybride complet : essence 1.2 turbo associée à deux moteurs électriques et boîte automatique. Lancé au Maroc en octobre 2025.",
+    "source": {
+      "journal": "Le Matin",
+      "url": "https://lematin.ma/automobile/renault-austral-e-tech-200-ch-le-suv-hybride-de-renault-arrive-au-maroc/307577",
+      "publie_le": "2025-10-14",
+      "annonceur": "Renault"
+    }
+  },
+  {
+    "marque": "Dacia",
+    "modele": "Bigster",
+    "annee": 2025,
+    "version": "1.5 dCi 115, boîte manuelle (entrée de gamme)",
+    "prix_dh": 264500,
+    "puissance_ch": 115,
+    "energie": "diesel",
+    "consommation_l100k": null,
+    "co2_g_km": null,
+    "categorie": "practical",
+    "description": "Le plus grand SUV de Dacia, sur le segment C. Proposé au lancement en diesel avec boîte manuelle, il vise les familles qui veulent de l'espace à prix contenu.",
+    "source": {
+      "journal": "Le Matin",
+      "url": "https://lematin.ma/automobile/dacia-commercialise-son-c-suv-bigster-au-maroc/279323",
+      "publie_le": "2025-05-13",
+      "annonceur": "Dacia Maroc"
+    },
+    "confirme_par": [
+      {
+        "journal": "Hespress FR",
+        "url": "https://fr.hespress.com/424254-dacia-maroc-lance-la-commercialisation-du-bigster-dacia-en-grand.html",
+        "publie_le": "2025-05-15"
+      }
+    ]
+  },
+  {
+    "marque": "MG",
+    "modele": "HS Hybrid+",
+    "annee": 2025,
+    "version": "Hybrid+ (entrée de gamme)",
+    "prix_dh": 269000,
+    "puissance_ch": 224,
+    "energie": "hybride",
+    "consommation_l100k": 5.5,
+    "co2_g_km": 126,
+    "categorie": "practical",
+    "description": "SUV compact de 4,67 m en hybride non rechargeable de 224 ch. Nouvelle génération du HS, ouverte à la réservation au Maroc en novembre 2025.",
+    "source": {
+      "journal": "Le Matin",
+      "url": "https://lematin.ma/automobile/mg-motor-lance-le-nouveau-hs-hybrid-au-maroc/315501",
+      "publie_le": "2025-11-25",
+      "annonceur": "MG Motor"
+    }
+  },
+  {
+    "marque": "MG",
+    "modele": "ZS Hybrid+",
+    "annee": 2025,
+    "version": "Hybrid+ (entrée de gamme)",
+    "prix_dh": 259000,
+    "puissance_ch": 197,
+    "energie": "hybride",
+    "consommation_l100k": 5,
+    "co2_g_km": 113,
+    "categorie": "practical",
+    "description": "SUV compact de 4,43 m, premier SUV hybride non rechargeable de MG. Lancé au Maroc en juillet 2025.",
+    "source": {
+      "journal": "Le Matin",
+      "url": "https://lematin.ma/automobile/mg-zs-full-hybrid-le-suv-compact-hybride-qui-muscle-le-jeu-au-maroc/292628",
+      "publie_le": "2025-07-22",
+      "annonceur": "MG Motor Maroc"
+    }
+  },
+  {
+    "marque": "MG",
+    "modele": "MG3 Hybrid+",
+    "annee": 2025,
+    "version": "Hybrid+ Drive",
+    "prix_dh": 189000,
+    "puissance_ch": 195,
+    "energie": "hybride",
+    "consommation_l100k": 4.4,
+    "co2_g_km": null,
+    "categorie": "eco",
+    "description": "Citadine hybride de 195 ch, sobre en ville. Lancée au Maroc en février 2025 en trois finitions.",
+    "source": {
+      "journal": "Le Matin",
+      "url": "https://lematin.ma/automobile/la-nouvelle-mg3-hybrid-officiellement-lancee-au-maroc/264841",
+      "publie_le": "2025-02-18",
+      "annonceur": "MG Maroc"
+    }
+  },
+  {
+    "marque": "Peugeot",
+    "modele": "408",
+    "annee": 2025,
+    "version": "1.2 Hybrid 145 e-DCS6, finition Allure",
+    "prix_dh": 317000,
+    "puissance_ch": 145,
+    "energie": "hybride léger",
+    "consommation_l100k": null,
+    "co2_g_km": null,
+    "categorie": "practical",
+    "description": "Silhouette originale entre berline, SUV et fastback, en essence hybride légère et boîte automatique à double embrayage. Arrivée au Maroc en mai 2025.",
+    "source": {
+      "journal": "Le Matin",
+      "url": "https://lematin.ma/automobile/peugeot-408-une-nouvelle-silhouette-pour-bousculer-le-segment-c-au-maroc/281220",
+      "publie_le": "2025-05-22",
+      "annonceur": "Peugeot Maroc"
+    },
+    "note": "L'article annonce 145 ch ; son corps de texte mentionne aussi « Hybrid 136 ». 145 ch retenu (chiffre du chapeau, cohérent avec la boîte e-DCS6)."
+  },
+  {
+    "marque": "Suzuki",
+    "modele": "Swift",
+    "annee": 2025,
+    "version": "1.2 hybride léger 82 ch, boîte CVT",
+    "prix_dh": 189000,
+    "puissance_ch": 82,
+    "energie": "hybride léger",
+    "consommation_l100k": 4.7,
+    "co2_g_km": null,
+    "categorie": "eco",
+    "description": "Citadine de 3,86 m en essence à hybridation légère, très sobre. Quatrième génération, ouverte à la précommande au Maroc en février 2025.",
+    "source": {
+      "journal": "Le Matin",
+      "url": "https://lematin.ma/automobile/la-nouvelle-suzuki-swift-hybride-disponible-en-precommande-au-maroc/266050",
+      "publie_le": "2025-02-26",
+      "annonceur": "CFAO Mobility (importateur)"
+    },
+    "confirme_par": [
+      {
+        "journal": "Challenge",
+        "url": "https://www.challenge.ma/suzuki-swift-hybride-cfao-lance-les-pre-commandes-au-maroc-297153/",
+        "publie_le": "2025-02-22"
+      }
+    ],
+    "note": "Prix de précommande, TVA comprise."
+  },
+  {
+    "marque": "Renault",
+    "modele": "Kardian",
+    "annee": 2024,
+    "version": "1.5 dCi 102, boîte manuelle 5 rapports",
+    "prix_dh": 179000,
+    "puissance_ch": 102,
+    "energie": "diesel",
+    "consommation_l100k": null,
+    "co2_g_km": null,
+    "categorie": "practical",
+    "description": "Petit SUV fabriqué à Casablanca (usine Somaca). Entrée de gamme en diesel avec boîte manuelle ; commandes ouvertes au Maroc en novembre 2024.",
+    "source": {
+      "journal": "Le Matin",
+      "url": "https://lematin.ma/automobile/renault-kardian-le-suv-compact-made-in-morocco-pret-a-conquerir-le-marche/251980",
+      "publie_le": "2024-11-19",
+      "annonceur": "Renault Maroc"
+    },
+    "confirme_par": [
+      {
+        "journal": "Challenge",
+        "url": "https://www.challenge.ma/renault-kardian-tarifs-motorisations-versions-voici-les-infos-cles-291209/",
+        "publie_le": "2024-11-13"
+      }
+    ]
+  },
+  {
+    "marque": "Citroën",
+    "modele": "C3 Aircross",
+    "annee": 2025,
+    "version": "Hybrid 145 e-DCT (entrée de gamme)",
+    "prix_dh": 234900,
+    "puissance_ch": 145,
+    "energie": "hybride léger",
+    "consommation_l100k": null,
+    "co2_g_km": 124,
+    "categorie": "practical",
+    "description": "SUV compact de 4,39 m, disponible en 7 places, en essence hybride légère avec boîte automatique. Nouvelle génération arrivée au Maroc en octobre 2025.",
+    "source": {
+      "journal": "Le Matin",
+      "url": "https://lematin.ma/automobile/citroen-c3-aircross-un-nouveau-souffle-pour-le-suv-familial/310374",
+      "publie_le": "2025-10-28",
+      "annonceur": "Citroën"
+    }
+  }
+]

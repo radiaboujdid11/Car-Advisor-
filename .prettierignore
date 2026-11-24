@@ -6,3 +6,16 @@ frontend/src/data/cars.js
 data-pipeline/sources/
 test-results
 playwright-report
+data-pipeline/scraped
+data-pipeline/.cache
+
+# Python
+.venv
+__pycache__
+.pytest_cache
+.ruff_cache
+*.egg-info
+# Fiche HTML fictive des tests : structure à garder telle quelle
+data-pipeline/collecte/tests/fixtures
+# Dossier local du plugin rederive
+.rederive
