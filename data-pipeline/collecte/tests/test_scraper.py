@@ -6,6 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 import pytest
+import requests
 
 from moteur_scraper.compare import compare_with_catalog, load_catalog, render_report
 from moteur_scraper.crawl import USER_AGENT, CrawlStopped, PoliteClient, parse_robots, parse_sitemap
@@ -204,7 +205,12 @@ class FakeSession:
 
     def get(self, url, timeout):
         self.calls.append(url)
-        status, body = self.routes.get(url, (404, ""))
+        route = self.routes.get(url, (404, ""))
+        if isinstance(route, list):  # suite de réponses ou d'exceptions, une par appel
+            route = route.pop(0) if len(route) > 1 else route[0]
+        if isinstance(route, Exception):
+            raise route
+        status, body = route
         return FakeResponse(status, body)
 
 
@@ -317,3 +323,23 @@ def test_lecture_du_vrai_catalogue():
     cars = load_catalog(REPO / "frontend" / "src" / "data" / "cars.js")
     assert len(cars) > 200
     assert {"make", "model", "year", "price_eur", "category"} <= cars[0].keys()
+
+
+def test_client_reessaie_apres_une_erreur_reseau(tmp_path):
+    url = "https://x.test/fiche.html"
+    client, session, clock = make_client(
+        tmp_path, {url: [requests.Timeout("lent"), (200, "<html>ok</html>")]}
+    )
+    result = client.get(url)
+    assert result.body == "<html>ok</html>"
+    assert len(session.calls) == 2
+    assert 30 in clock.sleeps  # attente supplémentaire avant le nouvel essai
+
+
+def test_client_ignore_la_page_apres_trois_erreurs_reseau(tmp_path):
+    url = "https://x.test/fiche.html"
+    client, session, _ = make_client(tmp_path, {url: [requests.ConnectionError("coupé")]})
+    result = client.get(url)  # pas d'exception : la collecte continue
+    assert result.body is None
+    assert len(session.calls) == 3
+    assert not list(tmp_path.iterdir())  # rien en cache : la page sera relue la prochaine fois
