@@ -118,13 +118,17 @@ def render_report(
     started_at: str,
     finished_at: str,
     partial: bool,
+    duplicates: dict[str, int] | None = None,
 ) -> str:
+    duplicates = duplicates or {}
     lines = [
         "# Rapport de collecte moteur.ma",
         "",
         f"- Collecte : {started_at} → {finished_at}"
         + (" (**partielle**, échantillon)" if partial else ""),
         f"- Fiches versions lues : {len(versions)} ; modèles agrégés : {len(models)}",
+        f"- Doublons écartés : {duplicates.get('urls', 0)} URL du plan du site, "
+        f"{duplicates.get('versions', 0)} versions (détail : doublons_ecartes.csv)",
         "",
         "## Comparaison avec le catalogue actuel",
         "",

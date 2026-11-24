@@ -20,6 +20,7 @@ import pandas as pd
 
 from .compare import compare_with_catalog, load_catalog, render_report
 from .crawl import DEFAULT_DELAY_S, CrawlStopped, PoliteClient, parse_sitemap
+from .dedupe import assert_unique, dedupe_entries, dedupe_versions
 from .normalize import aggregate_by_model, fill_rates, normalize_version
 from .parse import parse_fiche
 
@@ -78,6 +79,10 @@ def main(argv: list[str] | None = None) -> int:
         body = client.get(sitemap.loc, version=sitemap.lastmod or today).body or "<x/>"
         pages += [e for e in parse_sitemap(body) if FICHE_URL.search(e.loc)]
         log(f"{sitemap.loc} : {len(pages)} fiches listées")
+    # Une seule URL par fiche, même si le plan du site la liste plusieurs fois.
+    pages, duplicate_urls = dedupe_entries(pages)
+    if duplicate_urls:
+        log(f"{duplicate_urls} URL en double écartées du plan du site")
     todo = pages[:limit] if limit is not None else pages
     log(f"{len(todo)} fiches à lire (1 requête toutes les {args.delay:g} s, cache disque)")
 
@@ -97,9 +102,14 @@ def main(argv: list[str] | None = None) -> int:
         partial = True
         log(f"ARRÊT : {stop}")
 
-    # 3. Agrégation, qualité, comparaison, rapport
-    versions_df = pd.DataFrame(versions)
+    # 3. Unicité, agrégation, qualité, comparaison, rapport
+    versions_df, removed_versions = dedupe_versions(pd.DataFrame(versions))
+    if len(removed_versions):
+        log(f"{len(removed_versions)} versions en double écartées")
     models = aggregate_by_model(versions_df)
+    # Contrôle final : on n'écrit rien si une clé n'est pas unique.
+    assert_unique(versions_df, ["source_id"], "versions")
+    assert_unique(models, ["marque", "modele"], "modèles")
     rows, stats = compare_with_catalog(models, load_catalog(CATALOG))
     finished_at = datetime.now(UTC).isoformat(timespec="seconds")
 
@@ -108,11 +118,13 @@ def main(argv: list[str] | None = None) -> int:
     versions_df.to_csv(OUT_DIR / "versions.csv", index=False)
     models.to_csv(OUT_DIR / "modeles.csv", index=False)
     rows.to_csv(OUT_DIR / "comparaison.csv", index=False)
+    removed_versions.to_csv(OUT_DIR / "doublons_ecartes.csv", index=False)
     report = render_report(
         rows,
         stats,
         versions=versions_df,
         models=models,
+        duplicates={"urls": duplicate_urls, "versions": len(removed_versions)},
         fill=fill_rates(versions_df),
         started_at=started_at,
         finished_at=finished_at,
