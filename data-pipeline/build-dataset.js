@@ -17,6 +17,7 @@ import {
   assignIds,
   dedupe,
   expandEuropeModels,
+  fromPressAdditions,
   normalizeMakes,
   sortCars,
   validate,
@@ -25,6 +26,8 @@ import {
 const OUTPUT = fileURLToPath(new URL('../frontend/src/data/cars.js', import.meta.url));
 // Prix vérifiés par le contrôle qualité (python -m moteur_scraper appliquer).
 const VERIFICATIONS = fileURLToPath(new URL('./sources/verifications.json', import.meta.url));
+// Modèles ajoutés à partir d'articles de presse datés (prix de lancement annoncé).
+const PRESS = fileURLToPath(new URL('./sources/ajouts-presse.json', import.meta.url));
 const FIELDS = [
   'id',
   'make',
@@ -40,6 +43,7 @@ const FIELDS = [
   'description',
   'created_at',
   'price_verified_at',
+  'price_launch_at',
   'price_source',
   'price_source_url',
 ];
@@ -56,9 +60,14 @@ function pickFields(car) {
   return Object.fromEntries(FIELDS.map((f) => [f, car[f] ?? null]));
 }
 
+const press = fromPressAdditions(
+  existsSync(PRESS) ? JSON.parse(readFileSync(PRESS, 'utf8')) : [],
+  EUR_TO_MAD,
+);
 const raw = [
   ...expandEuropeModels(EUROPE_MODELS, EUROPE_YEARS),
   ...MOROCCAN_CARS.map((car) => ({ photo_url: null, ...car })),
+  ...press.cars,
 ];
 const verifications = existsSync(VERIFICATIONS)
   ? JSON.parse(readFileSync(VERIFICATIONS, 'utf8'))
@@ -76,6 +85,7 @@ const today = new Date().toISOString().slice(0, 19).replace('T', ' ');
 const cars = sortCars(assignIds(unique, previous, today)).map(pickFields);
 
 const errors = [
+  ...press.errors,
   ...validate(cars),
   ...unknown.map((key) => `verifications.json : « ${key} » ne correspond à aucune voiture`),
 ];
@@ -86,7 +96,7 @@ const byCategory = cars.reduce(
 );
 
 console.log(
-  `Lignes sources        : ${raw.length} (Europe ${raw.length - MOROCCAN_CARS.length}, Maroc ${MOROCCAN_CARS.length})`,
+  `Lignes sources        : ${raw.length} (Europe ${raw.length - MOROCCAN_CARS.length - press.cars.length}, Maroc ${MOROCCAN_CARS.length}, presse ${press.cars.length})`,
 );
 console.log(`Doublons écartés      : ${dropped.length}`);
 for (const d of dropped) console.log(`  - ${d.make} ${d.model} ${d.year} (${d.carquery_id})`);

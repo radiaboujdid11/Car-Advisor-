@@ -85,4 +85,14 @@ test.describe('Fiche voiture', () => {
       page.getByText(/Prix indicatif, à confirmer en concession|Prix vérifié le/),
     ).toBeVisible();
   });
+
+  test('un modèle ajouté depuis la presse cite la date et le journal', async ({ page }) => {
+    await page.goto('/cars/416'); // Renault Austral (sources/ajouts-presse.json)
+    const line = page.getByTestId('price-launch');
+    await expect(line).toContainText('Prix de lancement annoncé le 14 octobre 2025');
+    await expect(line.getByRole('link', { name: 'Le Matin' })).toHaveAttribute(
+      'href',
+      /lematin\.ma/,
+    );
+  });
 });

@@ -6,6 +6,7 @@ import {
   assignIds,
   dedupe,
   expandEuropeModels,
+  fromPressAdditions,
   normalizeMakes,
   validate,
 } from './transform.js';
@@ -139,10 +140,69 @@ test('applyVerifications remplace le prix vérifié et ajoute date, source et li
     carquery_id: 'ma_a',
     price_eur: 20000,
     price_verified_at: '2026-11-25',
+    price_launch_at: null,
     price_source: 'marque',
     price_source_url: 'https://marque.test/a',
   });
   assert.equal(out[1].price_eur, 2000);
   assert.equal(out[1].price_verified_at, null);
   assert.deepEqual(unknown, ['ma_disparue']);
+});
+
+const pressEntry = {
+  marque: 'Citroën',
+  modele: 'C3 Aircross',
+  annee: 2025,
+  prix_dh: 216000,
+  puissance_ch: 145,
+  consommation_l100k: null,
+  co2_g_km: 124,
+  categorie: 'practical',
+  description: 'SUV compact.',
+  source: { journal: 'Le Matin', url: 'https://lematin.ma/a', publie_le: '2025-10-28' },
+};
+
+test('fromPressAdditions crée une voiture avec la date et la source du prix de lancement', () => {
+  const { cars, errors } = fromPressAdditions([pressEntry], 10.8);
+  assert.deepEqual(errors, []);
+  assert.equal(cars.length, 1);
+  const car = cars[0];
+  assert.equal(car.carquery_id, 'ma_presse_citroen_c3_aircross_2025');
+  assert.equal(car.price_eur, 20000);
+  assert.equal(car.consumption_l100k, null);
+  assert.equal(car.price_launch_at, '2025-10-28');
+  assert.equal(car.price_source, 'Le Matin');
+  assert.equal(car.price_source_url, 'https://lematin.ma/a');
+});
+
+test('fromPressAdditions refuse un article ancien, sans lien https ou sans puissance', () => {
+  const { cars, errors } = fromPressAdditions(
+    [
+      { ...pressEntry, source: { ...pressEntry.source, publie_le: '2023-06-21' } },
+      { ...pressEntry, source: { ...pressEntry.source, url: 'http://x' } },
+      { ...pressEntry, puissance_ch: null },
+    ],
+    10.8,
+  );
+  assert.equal(cars.length, 0);
+  assert.equal(errors.length, 3);
+  assert.match(errors[0], /antérieur/);
+  assert.match(errors[1], /https/);
+  assert.match(errors[2], /puissance/);
+});
+
+test('un prix vérifié remplace le prix de lancement annoncé par la presse', () => {
+  const { cars } = fromPressAdditions([pressEntry], 10.8);
+  const id = cars[0].carquery_id;
+  const kept = applyVerifications(cars, {}, 10.8).cars[0];
+  assert.equal(kept.price_launch_at, '2025-10-28');
+  assert.equal(kept.price_source, 'Le Matin');
+  const verified = applyVerifications(
+    cars,
+    { [id]: { prix_dh: 226800, source: 'marque', url: 'https://m', verifie_le: '2026-11-24' } },
+    10.8,
+  ).cars[0];
+  assert.equal(verified.price_launch_at, null);
+  assert.equal(verified.price_verified_at, '2026-11-24');
+  assert.equal(verified.price_eur, 21000);
 });

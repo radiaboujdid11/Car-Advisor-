@@ -207,8 +207,8 @@ contre 7,5 ms avant l'optimisation, avec des résultats identiques (mesures sous
 
 ### Contenu
 
-`frontend/src/data/cars.js` contient **277 voitures (197 modèles) de 25 marques**, réparties en 4 catégories
-(économique 82, luxe 80, pratique 68, performance 47). Chaque fiche comporte : marque, modèle,
+`frontend/src/data/cars.js` contient **286 voitures (206 modèles) de 27 marques**, réparties en 4 catégories
+(économique 84, luxe 80, pratique 75, performance 47). Chaque fiche comporte : marque, modèle,
 année (2020 à 2025), prix, puissance, consommation, émissions de CO₂, catégorie, description et,
 pour 103 d'entre elles, une photo.
 
@@ -217,20 +217,23 @@ Les prix sont stockés en euros et affichés en dirhams avec un taux fixe de **1
 
 ### Sources
 
-Le jeu de données est assemblé à partir de deux catalogues saisis manuellement dans
-`data-pipeline/sources/` :
+Le jeu de données est assemblé à partir de deux catalogues saisis manuellement et d'une liste
+d'ajouts sourcés, dans `data-pipeline/sources/` :
 
-| Fichier             | Contenu                                                                                                                                                                                       |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sources/maroc.js`  | 175 voitures du marché marocain (identifiants `ma_…`). Prix convertis depuis les dirhams (MAD / 10,8), dont une série corrigée d'après les tarifs officiels Maroc 2025 (`PRICE_CORRECTIONS`). |
-| `sources/europe.js` | 60 modèles avec un prix 2023 et un prix 2024 en euros, soit 120 voitures.                                                                                                                     |
+| Fichier                      | Contenu                                                                                                                                                                                                                                                 |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sources/maroc.js`           | 175 voitures du marché marocain (identifiants `ma_…`). Prix convertis depuis les dirhams (MAD / 10,8), dont une série corrigée d'après les tarifs officiels Maroc 2025 (`PRICE_CORRECTIONS`).                                                           |
+| `sources/europe.js`          | 60 modèles avec un prix 2023 et un prix 2024 en euros, soit 120 voitures.                                                                                                                                                                               |
+| `sources/ajouts-presse.json` | 9 modèles récents ajoutés d'après un article de presse daté (prix de lancement, journal, lien, date). La fiche affiche « Prix de lancement annoncé le … · source : … ». Règles et modèles écartés : [docs/journal-donnees.md](docs/journal-donnees.md). |
 
 Les photos des fiches voitures sont des liens vers les images de modèles publiées sur
 [moteur.ma](https://www.moteur.ma). Les photos du bandeau de l'accueil sont des photos libres de droits
 (licence Unsplash) hébergées dans le dépôt ; voir [docs/CREDITS.md](docs/CREDITS.md).
 
-> **Limite connue :** les prix et les fiches techniques ont été relevés manuellement ; la source
-> exacte de chaque valeur n'est pas tracée dans le dépôt. Le jeu de données sert à illustrer le
+> **Limite connue :** les prix et les fiches techniques des deux catalogues ont été relevés
+> manuellement ; la source exacte de chaque valeur n'est pas tracée dans le dépôt (sauf pour les
+> ajouts de presse et les prix vérifiés par le contrôle qualité, qui gardent leur source et leur
+> date). Le jeu de données sert à illustrer le
 > moteur de recommandation et ne remplace pas un tarif officiel de concessionnaire.
 
 ### Date de collecte
@@ -240,7 +243,8 @@ voiture). Les prix reflètent les tarifs connus à cette période et peuvent avo
 
 ### Traitements appliqués par le pipeline
 
-1. **Chargement** des deux catalogues (295 lignes) ;
+1. **Chargement** des deux catalogues et des ajouts de presse (304 lignes ; un ajout de presse
+   invalide, par exemple un article antérieur à 2024 ou sans lien, fait échouer le build) ;
 2. **corrections** : prix mis à jour, photos ajoutées quand elles manquent ;
 3. **normalisation** des marques (« Mercedes » → « Mercedes-Benz ») ;
 4. **dédoublonnage** sur (marque, modèle, année) : 18 doublons supprimés, la fiche du catalogue

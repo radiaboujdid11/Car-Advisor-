@@ -1,6 +1,6 @@
 // FICHIER GÉNÉRÉ — ne pas modifier à la main.
 // Source : data-pipeline/sources/ — régénérer avec : cd data-pipeline && npm run build
-// 277 voitures
+// 286 voitures
 
 export const CARS = [
   {
@@ -18,6 +18,7 @@ export const CARS = [
     "description": "Berline sportive italienne — châssis propulsion, 280ch, design passionnel. La Ferrari des berlines accessibles.",
     "created_at": "2026-07-03 12:26:22",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -36,6 +37,7 @@ export const CARS = [
     "description": "SUV compact électrique/hybride — design Alfa moderne, le plus accessible de la gamme au Maroc.",
     "created_at": "2026-07-03 12:26:22",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -54,6 +56,7 @@ export const CARS = [
     "description": "SUV sportif premium italien — le seul SUV qui conduit comme une vraie sportive. Style romain, performance germanique.",
     "created_at": "2026-07-03 12:26:22",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -72,6 +75,7 @@ export const CARS = [
     "description": "SUV hybride compact — le pont entre l'émotion italienne et la praticité moderne. Style affirmé, technologie embarquée.",
     "created_at": "2026-07-03 12:26:22",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -90,6 +94,7 @@ export const CARS = [
     "description": "Citadine premium allemande — la plus petite Audi, premium dès l'entrée. Idéale pour Casablanca.",
     "created_at": "2026-07-03 12:26:22",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -108,6 +113,7 @@ export const CARS = [
     "description": "Audi A3 2023 — Compacte premium sobre et technologique, idéale au quotidien.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -126,6 +132,7 @@ export const CARS = [
     "description": "Audi A3 2024 — Compacte premium sobre et technologique, idéale au quotidien.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -144,6 +151,7 @@ export const CARS = [
     "description": "Premium compact allemand au cockpit virtuel — le premier niveau du luxe accessible.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -162,6 +170,7 @@ export const CARS = [
     "description": "Berline premium Audi — cockpit virtuel, raffinement allemand discret.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -180,6 +189,7 @@ export const CARS = [
     "description": "Berline/Sportback premium — 204ch, design sculpté, cockpit virtuel. L'Audi du cadre ambitieux.",
     "created_at": "2026-07-03 12:26:22",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -198,6 +208,7 @@ export const CARS = [
     "description": "Audi A6 2023 — Berline executive racée, alliant performances et grand confort.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -216,6 +227,7 @@ export const CARS = [
     "description": "Audi A6 2024 — Berline executive racée, alliant performances et grand confort.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -234,6 +246,7 @@ export const CARS = [
     "description": "Berline executive Audi — technologie mild-hybrid, habitacle ultra-premium, le choix des dirigeants marocains.",
     "created_at": "2026-07-03 12:26:22",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -252,6 +265,7 @@ export const CARS = [
     "description": "Sportback grand tourisme — 340ch, silhouette coupé 5 portes, le summum de l'élégance sportive Audi.",
     "created_at": "2026-07-03 12:26:22",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -270,6 +284,7 @@ export const CARS = [
     "description": "La limousine Audi ultime — prestige absolu, massage, suspension pneumatique. La rivale de la Classe S au Maroc.",
     "created_at": "2026-07-03 12:26:22",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -288,6 +303,7 @@ export const CARS = [
     "description": "SUV compact premium urbain — le plus petit SUV Audi, style assertif, parfait pour les ruelles de Marrakech.",
     "created_at": "2026-07-03 12:26:22",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -306,6 +322,7 @@ export const CARS = [
     "description": "SUV familial premium — espace, technologie, prestige accessible. L'entrée dans les SUV Audi au Maroc.",
     "created_at": "2026-07-03 12:26:22",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -324,6 +341,7 @@ export const CARS = [
     "description": "SUV coupé premium — la ligne sportive du Q3, toit fuyant élégant. Style avant la raison.",
     "created_at": "2026-07-03 12:26:22",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -342,6 +360,7 @@ export const CARS = [
     "description": "Audi Q5 2023 — SUV premium polyvalent, entre sportivité et élégance germanique.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -360,6 +379,7 @@ export const CARS = [
     "description": "Audi Q5 2024 — SUV premium polyvalent, entre sportivité et élégance germanique.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -378,6 +398,7 @@ export const CARS = [
     "description": "SUV familial premium référence — le best-seller Audi au Maroc. Équilibre parfait technologie/confort/prestige.",
     "created_at": "2026-07-03 12:28:19",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -396,6 +417,7 @@ export const CARS = [
     "description": "SUV coupé premium — le Q5 avec une ligne de toit fuyante spectaculaire. Style et prestige maximaux.",
     "created_at": "2026-07-03 12:28:19",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -414,6 +436,7 @@ export const CARS = [
     "description": "SUV électrique premium Audi — 299ch, 625km d'autonomie, technologie e-tron. Le futur du luxe allemand.",
     "created_at": "2026-07-03 12:28:19",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -432,6 +455,7 @@ export const CARS = [
     "description": "Grand SUV 7 places luxueux — l'Audi familiale ultime, présence imposante, confort de limousine.",
     "created_at": "2026-07-03 12:28:19",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -450,6 +474,7 @@ export const CARS = [
     "description": "Le SUV coupé flagship Audi — design spectaculaire, prestige absolu. Le sommet de la gamme SUV Audi au Maroc.",
     "created_at": "2026-07-03 12:28:19",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -468,6 +493,7 @@ export const CARS = [
     "description": "Compacte sportive ultime — 400ch, 5 cylindres iconique, 0-100 en 3.8s. La bombe compacte Audi.",
     "created_at": "2026-07-03 12:28:19",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -486,6 +512,7 @@ export const CARS = [
     "description": "Le SUV le plus rapide du monde — 600ch, 0-100 en 3.6s, Nürburgring record. L'absolu pour les passionnés.",
     "created_at": "2026-07-03 12:28:19",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -504,6 +531,7 @@ export const CARS = [
     "description": "Audi RS6 2023 — Break ultra-performant, 600 ch discrets pour une polyvalence extrême.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -522,6 +550,7 @@ export const CARS = [
     "description": "Audi RS6 2024 — Break ultra-performant, 600 ch discrets pour une polyvalence extrême.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -540,6 +569,7 @@ export const CARS = [
     "description": "La compacte BMW la plus sportive — propulsion, 340ch, sensations brutes.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -558,6 +588,7 @@ export const CARS = [
     "description": "BMW M3 2023 — La berline sportive ultime, 510 ch pour une expérience circuit légendaire.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -576,6 +607,7 @@ export const CARS = [
     "description": "BMW M3 2024 — La berline sportive ultime, 510 ch pour une expérience circuit légendaire.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -594,6 +626,7 @@ export const CARS = [
     "description": "Compacte premium BMW — entrée dans l'univers BMW, dynamisme et technologie au quotidien.",
     "created_at": "2026-07-03 12:37:18",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -612,6 +645,7 @@ export const CARS = [
     "description": "Coupé/Gran Coupé compact BMW — sport et élégance à prix accessible.",
     "created_at": "2026-07-03 12:37:18",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -630,6 +664,7 @@ export const CARS = [
     "description": "BMW Série 3 2024 — La référence des berlines sportives premium, entre dynamisme et raffinement.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -648,6 +683,7 @@ export const CARS = [
     "description": "La BMW Série 3 — le rêve de beaucoup de Marocains. Symbole de réussite.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -666,6 +702,7 @@ export const CARS = [
     "description": "Coupé 4 portes BMW — la grande gueule de la gamme, sportivité assumée et présence imposante.",
     "created_at": "2026-07-03 12:37:18",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -684,6 +721,7 @@ export const CARS = [
     "description": "BMW Série 5 2024 — Berline executive alliant confort supérieur et performances affirmées.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -702,6 +740,7 @@ export const CARS = [
     "description": "La berline executive — tu es arrivé. Les cadres et chefs d'entreprise la plébiscitent au Maroc.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -720,6 +759,7 @@ export const CARS = [
     "description": "Limousine flagship BMW — technologie i-Vision, écran arrière, le summum du luxe allemand au Maroc.",
     "created_at": "2026-07-03 12:37:18",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -738,6 +778,7 @@ export const CARS = [
     "description": "SAV compact BMW — le plus accessible des X, polyvalent et premium pour le quotidien urbain.",
     "created_at": "2026-07-03 12:37:18",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -756,6 +797,7 @@ export const CARS = [
     "description": "SAV coupé sportif BMW — toit fuyant, silhouette dynamique, le X compact avec du caractère.",
     "created_at": "2026-07-03 12:37:18",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -774,6 +816,7 @@ export const CARS = [
     "description": "SAV familial BMW référence — le best-seller BMW au Maroc, équilibre parfait entre luxe et praticité.",
     "created_at": "2026-07-03 12:37:18",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -792,6 +835,7 @@ export const CARS = [
     "description": "SAV coupé BMW — la sportivité du X3 sous une ligne de toit sculptée. Style avant tout.",
     "created_at": "2026-07-03 12:37:18",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -810,6 +854,7 @@ export const CARS = [
     "description": "BMW X5 2024 — SUV premium imposant, synonyme de prestige et de puissance.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -828,6 +873,7 @@ export const CARS = [
     "description": "SUV premium imposant — très prisé parmi les familles aisées de Casablanca et Rabat.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -846,6 +892,7 @@ export const CARS = [
     "description": "SAV coupé grand format — la provocation sur roues. Présence totale sur le boulevard Casa.",
     "created_at": "2026-07-03 12:37:18",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -864,6 +911,7 @@ export const CARS = [
     "description": "Grand SAV 7 places BMW — le plus grand, le plus luxueux. La réponse BMW au GLE de Mercedes.",
     "created_at": "2026-07-03 12:37:18",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -882,6 +930,7 @@ export const CARS = [
     "description": "Le SUV M le plus puissant — 653ch hybride, 0-100 en 4.3s. L'absolu de la performance BMW.",
     "created_at": "2026-07-03 12:37:18",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -900,6 +949,7 @@ export const CARS = [
     "description": "Roadster BMW — capote souple, propulsion, 258ch. Le plaisir de conduire à l'état pur sous le soleil marocain.",
     "created_at": "2026-07-03 12:37:18",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -918,6 +968,7 @@ export const CARS = [
     "description": "Berline électrique executive BMW — 340ch, 582km d'autonomie, le futur de la Série 5.",
     "created_at": "2026-07-03 12:37:18",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -936,6 +987,7 @@ export const CARS = [
     "description": "SUV électrique flagship BMW — 385ch, 630km, design statement. L'avenir du SAV BMW.",
     "created_at": "2026-07-03 12:37:18",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -954,6 +1006,7 @@ export const CARS = [
     "description": "Citadine électrique BYD abordable — 405km d'autonomie, technologie Blade Battery, la mobilité électrique accessible.",
     "created_at": "2026-07-03 12:52:27",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -972,6 +1025,7 @@ export const CARS = [
     "description": "SUV électrique compact — 420km, intérieur rotatif futuriste, le best-seller BYD au Maroc.",
     "created_at": "2026-07-03 12:52:27",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -990,6 +1044,7 @@ export const CARS = [
     "description": "Version évoluée de l'Atto 3 — autonomie améliorée, équipements enrichis, rapport qualité/prix imbattable.",
     "created_at": "2026-07-03 12:52:27",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1008,6 +1063,7 @@ export const CARS = [
     "description": "Berline électrique haute performance — 517ch, 0-100 en 3.9s, le flagship BYD rivalise avec Tesla Model S.",
     "created_at": "2026-07-03 12:52:27",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1026,6 +1082,7 @@ export const CARS = [
     "description": "SUV électrique compact économique — 430km, l'entrée de gamme SUV électrique BYD.",
     "created_at": "2026-07-03 12:52:27",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1044,6 +1101,7 @@ export const CARS = [
     "description": "Citadine électrique chinoise accessible — 305km d'autonomie, prix imbattable.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1062,6 +1120,7 @@ export const CARS = [
     "description": "Berline sport électrique — 313ch, 570km, propulsion ou intégrale. La rivale de Tesla Model 3 au Maroc.",
     "created_at": "2026-07-03 12:52:27",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1080,6 +1139,7 @@ export const CARS = [
     "description": "SUV électrique familial — 420km, espace généreux, le SUV électrique polyvalent de BYD.",
     "created_at": "2026-07-03 12:52:27",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1098,6 +1158,7 @@ export const CARS = [
     "description": "SUV électrique moderne — design affûté, 450km, technologie avancée à prix compétitif.",
     "created_at": "2026-07-03 12:52:27",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1116,6 +1177,7 @@ export const CARS = [
     "description": "Grand SUV électrique — 390ch intégrale, 502km, 7 places optionnel. L'électrique de la grande famille.",
     "created_at": "2026-07-03 12:52:27",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1134,6 +1196,7 @@ export const CARS = [
     "description": "Utilitaire électrique compact — grand volume de chargement, zéro émission, idéal pour les artisans et commerçants marocains.",
     "created_at": "2026-07-03 12:52:27",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1152,6 +1215,7 @@ export const CARS = [
     "description": "Grand SUV 7 places électrique — 517ch, 0-100 en 4.6s, luxe technologique chinois au sommet.",
     "created_at": "2026-07-03 12:52:27",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1170,6 +1234,7 @@ export const CARS = [
     "description": "SUV électrique compact BYD — 401km, technologie Blade Battery.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1188,6 +1253,7 @@ export const CARS = [
     "description": "Le SUV le plus luxueux du monde — 550ch, habitacle artisanal, le sommet du raffinement britannique au Maroc.",
     "created_at": "2026-07-03 12:29:37",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1206,6 +1272,7 @@ export const CARS = [
     "description": "Grand Tourisme britannique ultime — W12 650ch, cuir Mulliner, le coupé de prestige absolu.",
     "created_at": "2026-07-03 12:29:37",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1224,6 +1291,7 @@ export const CARS = [
     "description": "Berline de prestige — 4 portes, 635ch, l'expérience Rolls-Royce à la sportivité Bentley. L'ultime limousine.",
     "created_at": "2026-07-03 12:29:37",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1242,6 +1310,7 @@ export const CARS = [
     "description": "La limousine flagship Bentley — artisanat pur, 530ch, intérieur bois et cuir fait main. Le nec plus ultra.",
     "created_at": "2026-07-03 12:29:37",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1260,6 +1329,7 @@ export const CARS = [
     "description": "Citadine ultra-compacte pour les médinas — petite, maniable, économique.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1278,8 +1348,28 @@ export const CARS = [
     "description": "Citadine confortable — sa suspension unique absorbe les dos-d'âne marocains.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
+  },
+  {
+    "id": 424,
+    "make": "Citroën",
+    "model": "C3 Aircross",
+    "year": 2025,
+    "price_eur": 21750,
+    "power_hp": 145,
+    "consumption_l100k": null,
+    "co2_g_km": 124,
+    "category": "practical",
+    "photo_url": null,
+    "carquery_id": "ma_presse_citroen_c3_aircross_2025",
+    "description": "SUV compact de 4,39 m, disponible en 7 places, en essence hybride légère avec boîte automatique. Nouvelle génération arrivée au Maroc en octobre 2025.",
+    "created_at": "2026-11-24 16:29:21",
+    "price_verified_at": null,
+    "price_launch_at": "2025-10-28",
+    "price_source": "Le Matin",
+    "price_source_url": "https://lematin.ma/automobile/citroen-c3-aircross-un-nouveau-souffle-pour-le-suv-familial/310374"
   },
   {
     "id": 258,
@@ -1296,8 +1386,28 @@ export const CARS = [
     "description": "Fastback confortable — coussin de suspension unique, parfait Casablanca-Marrakech.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
+  },
+  {
+    "id": 417,
+    "make": "Dacia",
+    "model": "Bigster",
+    "year": 2025,
+    "price_eur": 24491,
+    "power_hp": 115,
+    "consumption_l100k": null,
+    "co2_g_km": null,
+    "category": "practical",
+    "photo_url": null,
+    "carquery_id": "ma_presse_dacia_bigster_2025",
+    "description": "Le plus grand SUV de Dacia, sur le segment C. Proposé au lancement en diesel avec boîte manuelle, il vise les familles qui veulent de l'espace à prix contenu.",
+    "created_at": "2026-11-24 16:29:21",
+    "price_verified_at": null,
+    "price_launch_at": "2025-05-13",
+    "price_source": "Le Matin",
+    "price_source_url": "https://lematin.ma/automobile/dacia-commercialise-son-c-suv-bigster-au-maroc/279323"
   },
   {
     "id": 254,
@@ -1314,6 +1424,7 @@ export const CARS = [
     "description": "Le SUV abordable par excellence. Parfait pour les routes de montagne et les pistes du Maroc.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1332,6 +1443,7 @@ export const CARS = [
     "description": "Familiale 7 places Dacia hybride — spacieuse, économique, le choix de la grande famille marocaine à prix raisonnable.",
     "created_at": "2026-07-03 12:18:27",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1350,6 +1462,7 @@ export const CARS = [
     "description": "Berline spacieuse et économique, référence absolue au Maroc depuis 2004.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1368,6 +1481,7 @@ export const CARS = [
     "description": "La voiture la plus vendue au Maroc. Fiable, économique, accessible. La Dacia Sandero c'est la voiture du peuple marocain.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1386,6 +1500,7 @@ export const CARS = [
     "description": "Version crossover surélevée de la Sandero — garde au sol plus haute, style baroudeur, polyvalence urbaine et piste.",
     "created_at": "2026-07-03 12:18:27",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1404,6 +1519,7 @@ export const CARS = [
     "description": "Citadine électrique la plus accessible du Maroc. 230 km d'autonomie, zéro émission — la mobilité verte à portée de tous.",
     "created_at": "2026-07-03 12:18:27",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1422,6 +1538,7 @@ export const CARS = [
     "description": "Ferrari 296 GTB 2023 — Hybride de 830 ch, l'avenir de Ferrari dans le respect de la tradition.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1440,6 +1557,7 @@ export const CARS = [
     "description": "Ferrari 296 GTB 2024 — Hybride de 830 ch, l'avenir de Ferrari dans le respect de la tradition.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1458,6 +1576,7 @@ export const CARS = [
     "description": "Ferrari F8 Tributo 2023 — La synthèse parfaite de la performance Ferrari, 720 ch biturbo.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1476,6 +1595,7 @@ export const CARS = [
     "description": "Ferrari F8 Tributo 2024 — La synthèse parfaite de la performance Ferrari, 720 ch biturbo.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1494,6 +1614,7 @@ export const CARS = [
     "description": "Ferrari Roma 2023 — Le grand tourisme de Maranello, élégance absolue à 620 chevaux.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1512,6 +1633,7 @@ export const CARS = [
     "description": "Ferrari Roma 2024 — Le grand tourisme de Maranello, élégance absolue à 620 chevaux.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1530,6 +1652,7 @@ export const CARS = [
     "description": "Ferrari SF90 Stradale 2023 — 1000 ch hybride, le Ferrari le plus puissant jamais produit.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1548,6 +1671,7 @@ export const CARS = [
     "description": "Ferrari SF90 Stradale 2024 — 1000 ch hybride, le Ferrari le plus puissant jamais produit.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1566,6 +1690,7 @@ export const CARS = [
     "description": "Icône du style italien — citadine ronde et charmante, symbole de la dolce vita. Parfaite pour les ruelles de Casablanca ou Rabat.",
     "created_at": "2026-07-03 12:56:58",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1584,6 +1709,7 @@ export const CARS = [
     "description": "La 500 en version cabriolet — toit ouvrant panoramique pour profiter du soleil marocain. Style et liberté réunis.",
     "created_at": "2026-07-03 12:56:58",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1602,6 +1728,7 @@ export const CARS = [
     "description": "Crossover compact au style 500 — l'élégance italienne et la praticité d'un SUV urbain. Le meilleur des deux mondes.",
     "created_at": "2026-07-03 12:56:58",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1620,6 +1747,7 @@ export const CARS = [
     "description": "Nouveau SUV compact Fiat — design moderne et accessible. L'entrée dans l'ère SUV à l'italienne pour le marché marocain.",
     "created_at": "2026-07-03 12:56:58",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1638,6 +1766,7 @@ export const CARS = [
     "description": "SUV compact 100% électrique — 154ch, 400km d'autonomie, zéro émission. Le futur de la mobilité urbaine à l'italienne.",
     "created_at": "2026-07-03 12:56:58",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1656,6 +1785,7 @@ export const CARS = [
     "description": "Utilitaire familial polyvalent — 5 ou 7 places, volume de chargement généreux. Le fourgon pratique à l'italienne pour les familles marocaines.",
     "created_at": "2026-07-03 12:56:58",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1674,6 +1804,7 @@ export const CARS = [
     "description": "Citadine italienne économique, très courante dans les médinas et les quartiers.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1692,6 +1823,7 @@ export const CARS = [
     "description": "Berline compacte pratique et spacieuse — rapport qualité/prix imbattable. La familiale italienne abordable pour le quotidien marocain.",
     "created_at": "2026-07-03 12:56:58",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1710,6 +1842,7 @@ export const CARS = [
     "description": "Micro-voiture électrique — 75km d'autonomie, ultra-compact. Idéal pour les déplacements urbains courts, zéro émission, facile à garer.",
     "created_at": "2026-07-03 12:56:58",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1728,6 +1861,7 @@ export const CARS = [
     "description": "SUV urbain compact à bon prix — idéal famille jeune au Maroc.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1746,6 +1880,7 @@ export const CARS = [
     "description": "Ford Focus 2023 — Compacte plaisante à conduire, solide et bien équipée.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1764,6 +1899,7 @@ export const CARS = [
     "description": "Ford Focus 2024 — Compacte plaisante à conduire, solide et bien équipée.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1782,6 +1918,7 @@ export const CARS = [
     "description": "Compacte au châssis dynamique et au bon espace familial.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1800,6 +1937,7 @@ export const CARS = [
     "description": "Monospace familial spacieux — idéal pour les voyages inter-villes.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1818,6 +1956,7 @@ export const CARS = [
     "description": "Ford Kuga PHEV 2023 — SUV hybride rechargeable, économique en usage mixte.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1836,6 +1975,7 @@ export const CARS = [
     "description": "Ford Kuga PHEV 2024 — SUV hybride rechargeable, économique en usage mixte.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1854,6 +1994,7 @@ export const CARS = [
     "description": "L'icône américaine — V8, sound légendaire, rêve absolu.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1872,6 +2013,7 @@ export const CARS = [
     "description": "Ford Mustang Mach-E 2023 — SUV électrique au caractère affirmé, héritier du mythe.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1890,6 +2032,7 @@ export const CARS = [
     "description": "Ford Mustang Mach-E 2024 — SUV électrique au caractère affirmé, héritier du mythe.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1908,6 +2051,7 @@ export const CARS = [
     "description": "Ford Puma 2023 — Crossover compact agile et économique, design sportif assumé.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1926,6 +2070,7 @@ export const CARS = [
     "description": "Ford Puma 2024 — Crossover compact agile et économique, design sportif assumé.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1944,6 +2089,7 @@ export const CARS = [
     "description": "Berline premium hybride — élégance japonaise, finitions soignées, confort longue distance. La référence Honda pour les cadres marocains.",
     "created_at": "2026-07-03 12:58:46",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1962,6 +2108,7 @@ export const CARS = [
     "description": "Honda CR-V 2023 — SUV hybride polyvalent, idéal pour la famille.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1980,6 +2127,7 @@ export const CARS = [
     "description": "Honda CR-V 2024 — SUV hybride polyvalent, idéal pour la famille.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -1998,6 +2146,7 @@ export const CARS = [
     "description": "SUV familial hybride iconique — espace généreux, fiabilité Honda légendaire, confort 5 places. Le SUV japonais de référence au Maroc.",
     "created_at": "2026-07-03 12:58:47",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2016,6 +2165,7 @@ export const CARS = [
     "description": "Honda Civic 2023 — Compacte sobre et bien équipée, un classique revisité.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2034,6 +2184,7 @@ export const CARS = [
     "description": "Honda Civic 2024 — Compacte sobre et bien équipée, un classique revisité.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2052,6 +2203,7 @@ export const CARS = [
     "description": "Honda HR-V 2023 — Crossover hybride élégant, silencieux et économe.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2070,6 +2222,7 @@ export const CARS = [
     "description": "Honda HR-V 2024 — Crossover hybride élégant, silencieux et économe.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2088,6 +2241,7 @@ export const CARS = [
     "description": "SUV compact hybride urbain — design coupé élégant, technologie e:HEV, économique en ville. Le SUV japonais accessible.",
     "created_at": "2026-07-03 12:58:47",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2106,6 +2260,7 @@ export const CARS = [
     "description": "Honda Jazz 2023 — Citadine hybride spacieuse et économique au quotidien.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2124,6 +2279,7 @@ export const CARS = [
     "description": "Honda Jazz 2024 — Citadine hybride spacieuse et économique au quotidien.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2142,6 +2298,7 @@ export const CARS = [
     "description": "Citadine hybride ultra-polyvalente — Magic Seats révolutionnaires, espace intérieur surprenant, très économique. La japonaise intelligente.",
     "created_at": "2026-07-03 12:58:47",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2160,6 +2317,7 @@ export const CARS = [
     "description": "Berline compacte coréenne fiable — 115ch, économique, très prisée dans les villes marocaines.",
     "created_at": "2026-07-03 12:22:20",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2178,6 +2336,7 @@ export const CARS = [
     "description": "SUV compact coréen spacieux — le rapport qualité/prix parfait.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2196,6 +2355,7 @@ export const CARS = [
     "description": "Berline hybride élégante — 141ch, design affûté, technologie hybride économique. Succès croissant au Maroc.",
     "created_at": "2026-07-03 12:22:20",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2214,6 +2374,7 @@ export const CARS = [
     "description": "Berline compacte coréenne accessible — 83ch, économique, idéale pour les trajets urbains au Maroc.",
     "created_at": "2026-07-03 12:21:23",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2232,6 +2393,7 @@ export const CARS = [
     "description": "Hyundai IONIQ 5 2023 — SUV électrique au style rétro-futuriste, recharge ultra-rapide.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2250,6 +2412,7 @@ export const CARS = [
     "description": "Hyundai IONIQ 5 2024 — SUV électrique au style rétro-futuriste, recharge ultra-rapide.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2268,6 +2431,7 @@ export const CARS = [
     "description": "SUV électrique iconique — jusqu'à 306ch, 507km d'autonomie, design rétro-futuriste. La star électrique de Hyundai au Maroc.",
     "created_at": "2026-07-03 12:23:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2286,6 +2450,7 @@ export const CARS = [
     "description": "Hyundai IONIQ 6 2023 — Berline électrique aérodynamique, autonomie exceptionnelle.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2304,6 +2469,7 @@ export const CARS = [
     "description": "Hyundai IONIQ 6 2024 — Berline électrique aérodynamique, autonomie exceptionnelle.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2322,6 +2488,7 @@ export const CARS = [
     "description": "Berline électrique aérodynamique — jusqu'à 325ch, 614km d'autonomie, Cx record 0.21. L'élite électrique Hyundai.",
     "created_at": "2026-07-03 12:23:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2340,6 +2507,7 @@ export const CARS = [
     "description": "SUV compact hybride coréen — 141ch, technologie avancée, confort moderne pour la famille marocaine.",
     "created_at": "2026-07-03 12:21:23",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2358,6 +2526,7 @@ export const CARS = [
     "description": "Grand SUV hybride familial — 215ch, 7 places optionnel, confort premium pour les longs trajets Maroc.",
     "created_at": "2026-07-03 12:23:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2376,6 +2545,7 @@ export const CARS = [
     "description": "Berline executive hybride — 195ch, habitacle premium, technologie de pointe. Le haut de gamme Hyundai au Maroc.",
     "created_at": "2026-07-03 12:22:20",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2394,6 +2564,7 @@ export const CARS = [
     "description": "Hyundai Tucson 2024 — SUV hybride familial au design audacieux et technologique.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2412,6 +2583,7 @@ export const CARS = [
     "description": "SUV familial élégant — un choix prisé de la classe moyenne marocaine montante.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2430,6 +2602,7 @@ export const CARS = [
     "description": "SUV hybride full — 230ch, confort supérieur, économique sur autoroute. Le Tucson le plus vendu au Maroc.",
     "created_at": "2026-07-03 12:23:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2448,6 +2621,7 @@ export const CARS = [
     "description": "SUV hybride rechargeable — 253ch, 50km en électrique pur, le choix premium pour les navetteurs marocains.",
     "created_at": "2026-07-03 12:23:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2466,6 +2640,7 @@ export const CARS = [
     "description": "Citadine coréenne, économique et fiable pour les ruelles de Fès ou les embouteillages de Casa.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2484,6 +2659,7 @@ export const CARS = [
     "description": "Compacte moderne avec technologie embarquée avancée. La référence jeune au Maroc.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2502,6 +2678,7 @@ export const CARS = [
     "description": "Hyundai i30 2023 — Compacte fiable et bien équipée, excellent rapport qualité-prix.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2520,6 +2697,7 @@ export const CARS = [
     "description": "Hyundai i30 2024 — Compacte fiable et bien équipée, excellent rapport qualité-prix.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2538,6 +2716,7 @@ export const CARS = [
     "description": "Kia Ceed 2023 — Compacte équilibrée et fiable, avec une garantie 7 ans rassurante.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2556,6 +2735,7 @@ export const CARS = [
     "description": "Kia Ceed 2024 — Compacte équilibrée et fiable, avec une garantie 7 ans rassurante.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2574,6 +2754,7 @@ export const CARS = [
     "description": "Kia EV6 2023 — Crossover électrique GT, recharge 800V et performances sportives.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2592,6 +2773,7 @@ export const CARS = [
     "description": "Kia EV6 2024 — Crossover électrique GT, recharge 800V et performances sportives.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2610,6 +2792,7 @@ export const CARS = [
     "description": "Kia Niro 2023 — Crossover hybride polyvalent, éco-responsable au quotidien.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2628,6 +2811,7 @@ export const CARS = [
     "description": "Kia Niro 2024 — Crossover hybride polyvalent, éco-responsable au quotidien.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2646,6 +2830,7 @@ export const CARS = [
     "description": "Citadine compacte coréenne, idéale pour les embouteillages de Casablanca.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2664,6 +2849,7 @@ export const CARS = [
     "description": "Kia Sportage 2024 — SUV hybride au design affirmé, technologie et confort réunis.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2682,6 +2868,7 @@ export const CARS = [
     "description": "SUV coréen au style affirmé — très apprécié au Maroc pour son rapport qualité/prix.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2700,6 +2887,7 @@ export const CARS = [
     "description": "Lamborghini Huracán 2023 — Le taureau de Sant'Agata, 640 ch d'une pureté absolue.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2718,6 +2906,7 @@ export const CARS = [
     "description": "Lamborghini Huracán 2024 — Le taureau de Sant'Agata, 640 ch d'une pureté absolue.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2736,6 +2925,7 @@ export const CARS = [
     "description": "Lamborghini Revuelto 2023 — 1001 ch hybride, le successeur légendaire de l'Aventador.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2754,6 +2944,7 @@ export const CARS = [
     "description": "Lamborghini Revuelto 2024 — 1001 ch hybride, le successeur légendaire de l'Aventador.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2772,6 +2963,7 @@ export const CARS = [
     "description": "Lamborghini Sterrato 2023 — L'Huracán tout-terrain, l'absurde magnifique à l'état pur.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2790,6 +2982,7 @@ export const CARS = [
     "description": "Lamborghini Sterrato 2024 — L'Huracán tout-terrain, l'absurde magnifique à l'état pur.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2808,6 +3001,7 @@ export const CARS = [
     "description": "Lamborghini Urus 2023 — Le SUV le plus rapide du monde, 666 ch de fureur italienne.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2826,6 +3020,7 @@ export const CARS = [
     "description": "Lamborghini Urus 2024 — Le SUV le plus rapide du monde, 666 ch de fureur italienne.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2844,6 +3039,7 @@ export const CARS = [
     "description": "Le tout-terrain légendaire — robustesse iconique, capacités off-road extrêmes, présence imposante. L'aventure au summum du luxe.",
     "created_at": "2026-07-03 12:24:53",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2862,6 +3058,7 @@ export const CARS = [
     "description": "Grand SUV 7 places aventurier — confort familial premium, capacités tout-terrain remarquables. Parfait Casa-Agadir avec famille.",
     "created_at": "2026-07-03 12:24:53",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2880,6 +3077,7 @@ export const CARS = [
     "description": "SUV compact premium — le Range Rover le plus accessible, design urbain sculptural, luxe British compact.",
     "created_at": "2026-07-03 12:24:53",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2898,6 +3096,7 @@ export const CARS = [
     "description": "Le SUV de luxe ultime — Marrakech, Tanger, Casa — il commande le respect.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2916,6 +3115,7 @@ export const CARS = [
     "description": "Le SUV de luxe sportif ultime — dynamisme et prestige absolus. Incontournable à Marrakech et Casablanca.",
     "created_at": "2026-07-03 12:24:53",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2934,6 +3134,7 @@ export const CARS = [
     "description": "SUV coupé élégant — silhouette fastback distinctive, cockpit Touch Pro Duo, luxe discret et contemporain.",
     "created_at": "2026-07-03 12:24:53",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2952,8 +3153,66 @@ export const CARS = [
     "description": "Le summum du luxe britannique — l'original Range Rover, berline du désert, symbole absolu de réussite au Maroc.",
     "created_at": "2026-07-03 12:24:53",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
+  },
+  {
+    "id": 418,
+    "make": "MG",
+    "model": "HS Hybrid+",
+    "year": 2025,
+    "price_eur": 24907,
+    "power_hp": 224,
+    "consumption_l100k": 5.5,
+    "co2_g_km": 126,
+    "category": "practical",
+    "photo_url": null,
+    "carquery_id": "ma_presse_mg_hs_hybrid_2025",
+    "description": "SUV compact de 4,67 m en hybride non rechargeable de 224 ch. Nouvelle génération du HS, ouverte à la réservation au Maroc en novembre 2025.",
+    "created_at": "2026-11-24 16:29:21",
+    "price_verified_at": null,
+    "price_launch_at": "2025-11-25",
+    "price_source": "Le Matin",
+    "price_source_url": "https://lematin.ma/automobile/mg-motor-lance-le-nouveau-hs-hybrid-au-maroc/315501"
+  },
+  {
+    "id": 420,
+    "make": "MG",
+    "model": "MG3 Hybrid+",
+    "year": 2025,
+    "price_eur": 17500,
+    "power_hp": 195,
+    "consumption_l100k": 4.4,
+    "co2_g_km": null,
+    "category": "eco",
+    "photo_url": null,
+    "carquery_id": "ma_presse_mg_mg3_hybrid_2025",
+    "description": "Citadine hybride de 195 ch, sobre en ville. Lancée au Maroc en février 2025 en trois finitions.",
+    "created_at": "2026-11-24 16:29:21",
+    "price_verified_at": null,
+    "price_launch_at": "2025-02-18",
+    "price_source": "Le Matin",
+    "price_source_url": "https://lematin.ma/automobile/la-nouvelle-mg3-hybrid-officiellement-lancee-au-maroc/264841"
+  },
+  {
+    "id": 419,
+    "make": "MG",
+    "model": "ZS Hybrid+",
+    "year": 2025,
+    "price_eur": 23981,
+    "power_hp": 197,
+    "consumption_l100k": 5,
+    "co2_g_km": 113,
+    "category": "practical",
+    "photo_url": null,
+    "carquery_id": "ma_presse_mg_zs_hybrid_2025",
+    "description": "SUV compact de 4,43 m, premier SUV hybride non rechargeable de MG. Lancé au Maroc en juillet 2025.",
+    "created_at": "2026-11-24 16:29:21",
+    "price_verified_at": null,
+    "price_launch_at": "2025-07-22",
+    "price_source": "Le Matin",
+    "price_source_url": "https://lematin.ma/automobile/mg-zs-full-hybrid-le-suv-compact-hybride-qui-muscle-le-jeu-au-maroc/292628"
   },
   {
     "id": 402,
@@ -2970,6 +3229,7 @@ export const CARS = [
     "description": "Berline sport italienne d'exception — V6 330ch, sonorité Maserati incomparable, caractère trident unique. La berline qui allie prestige et sensations.",
     "created_at": "2026-07-03 13:03:11",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -2988,6 +3248,7 @@ export const CARS = [
     "description": "Grand Tourisme iconique Maserati — V6 biturbo 490ch, lignes sculpturales intemporelles. Le coupé 2+2 le plus beau du monde, renaissance de la légende.",
     "created_at": "2026-07-03 13:03:11",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3006,6 +3267,7 @@ export const CARS = [
     "description": "SUV compact Maserati — l'entrée dans l'univers Trident en format SUV. Elégance italienne, performances généreuses, technologie de pointe.",
     "created_at": "2026-07-03 13:03:11",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3024,6 +3286,7 @@ export const CARS = [
     "description": "Grand SUV Maserati — le premier SUV de la marque au Trident, V8 430ch, luxe flamboyant. L'alliance parfaite entre SUV et supercar italienne.",
     "created_at": "2026-07-03 13:03:11",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3042,6 +3305,7 @@ export const CARS = [
     "description": "Supercar V6 biturbo mid-engine — 630ch, 0-100 en 2.9s, 325 km/h. La renaissance sportive Maserati, une hypercar italienne pure pour les passionnés.",
     "created_at": "2026-07-03 13:03:11",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3060,6 +3324,7 @@ export const CARS = [
     "description": "Mercedes-AMG GT 2023 — Coupé GT ultra-sportif, incarnation de la performance à l'état pur.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3078,6 +3343,7 @@ export const CARS = [
     "description": "Mercedes-AMG GT 2024 — Coupé GT ultra-sportif, incarnation de la performance à l'état pur.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3096,6 +3362,7 @@ export const CARS = [
     "description": "Coupé 2 portes Mercedes nouvelle génération — remplace CLC et C Coupé, design spectaculaire, équipements premium. L'élégance allemande dans toute sa splendeur.",
     "created_at": "2026-07-03 13:01:43",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3114,6 +3381,7 @@ export const CARS = [
     "description": "Mercedes Classe A 2023 — Compacte premium au design moderne et à la technologie avancée.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3132,6 +3400,7 @@ export const CARS = [
     "description": "Mercedes Classe A 2024 — Compacte premium au design moderne et à la technologie avancée.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3150,6 +3419,7 @@ export const CARS = [
     "description": "Compacte premium d'entrée Mercedes — technologie MBUX, style dynamique, intérieur sophistiqué. L'accès au monde Mercedes à prix accessible.",
     "created_at": "2026-07-03 13:01:43",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3168,6 +3438,7 @@ export const CARS = [
     "description": "Mercedes Classe C 2024 — Berline intermédiaire alliant élégance et technologies de pointe.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3186,6 +3457,7 @@ export const CARS = [
     "description": "La berline premium qui définit le standing à Casablanca. La Classe C, ça se remarque.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3204,6 +3476,7 @@ export const CARS = [
     "description": "Berline premium sportive — design W206 raffiné, technologie de pointe, confort premium. La Mercedes la plus vendue au Maroc.",
     "created_at": "2026-07-03 13:01:43",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3222,6 +3495,7 @@ export const CARS = [
     "description": "Berline coupé 4 portes premium — ligne fastback élégante, profil sport, prestige Mercedes à prix compact. Le style sans concession.",
     "created_at": "2026-07-03 13:01:43",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3240,6 +3514,7 @@ export const CARS = [
     "description": "L'excellence executive de Mercedes — pour ceux qui ont tout accompli. Le choix des grands patrons.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3258,6 +3533,7 @@ export const CARS = [
     "description": "Berline executive Mercedes — intérieur ultra-technologique, confort longue distance exceptionnel. La référence des berlines premium au Maroc.",
     "created_at": "2026-07-03 13:01:43",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3276,6 +3552,7 @@ export const CARS = [
     "description": "Icône 4x4 légendaire — carrosserie carrée intemporelle depuis 1979, capacités off-road extrêmes, luxe absolu. Le SUV le plus désirable du monde.",
     "created_at": "2026-07-03 13:01:43",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3294,6 +3571,7 @@ export const CARS = [
     "description": "SUV compact premium best-seller — espace, technologie MBUX, qualité Mercedes. Le SUV familial haut de gamme le plus populaire au Maroc.",
     "created_at": "2026-07-03 13:01:43",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3312,6 +3590,7 @@ export const CARS = [
     "description": "Grand SUV premium — 7 places en option, suspension pneumatique, performances hybrides. L'alternative luxueuse au ML pour les grandes familles.",
     "created_at": "2026-07-03 13:01:43",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3330,6 +3609,7 @@ export const CARS = [
     "description": "Le SUV de luxe 7 places ultime — limousine des SUV, trois rangées de sièges en cuir, technologie de pointe. Le summum des SUV premium.",
     "created_at": "2026-07-03 13:01:43",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3348,6 +3628,7 @@ export const CARS = [
     "description": "La limousine de prestige absolue — V8 biturbo, sièges massants, conduite semi-autonome. La Classe S définit le luxe automobile mondial depuis des décennies.",
     "created_at": "2026-07-03 13:01:43",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3366,6 +3647,7 @@ export const CARS = [
     "description": "SUV compact électrique Mercedes — 426km d'autonomie, 190ch, charge rapide. L'entrée dans l'univers EQ électrique, pratique et connecté.",
     "created_at": "2026-07-03 13:01:43",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3384,6 +3666,7 @@ export const CARS = [
     "description": "SUV électrique 7 places Mercedes — l'EQB propose une 3e rangée pour les familles. 419km d'autonomie, zéro émission, pratique et spacieux.",
     "created_at": "2026-07-03 13:01:43",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3402,6 +3685,7 @@ export const CARS = [
     "description": "Berline électrique premium — l'EQE allie luxe Classe E et motorisation électrique, 654km d'autonomie. La berline électrique pour les professionnels exigeants.",
     "created_at": "2026-07-03 13:01:43",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3420,6 +3704,7 @@ export const CARS = [
     "description": "Limousine électrique ultime — le summum de la technologie Mercedes. Hyperscreen 1.41m, 780km d'autonomie, silence absolu. L'avenir du luxe automobile.",
     "created_at": "2026-07-03 13:01:43",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3438,6 +3723,7 @@ export const CARS = [
     "description": "SUV premium compact Mercedes — le symbole du succès à Casa et Rabat.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3456,6 +3742,7 @@ export const CARS = [
     "description": "Mercedes GLE 2024 — SUV luxueux par excellence, spacieux, puissant et raffiné.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3474,6 +3761,7 @@ export const CARS = [
     "description": "Le SUV de luxe iconique — présence totale, confort de limousine. Incontournable à Marrakech.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3492,6 +3780,7 @@ export const CARS = [
     "description": "Roadster sportif japonais — propulsion, V6, sensations authentiques.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3510,6 +3799,7 @@ export const CARS = [
     "description": "SUV compact au style unique — un choix qui ne passe pas inaperçu.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3528,6 +3818,7 @@ export const CARS = [
     "description": "SUV familial fiable — l'inventeur du segment crossover.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3546,6 +3837,7 @@ export const CARS = [
     "description": "SUV familial fiable et spacieux — excellent pour les longs trajets.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3564,6 +3856,7 @@ export const CARS = [
     "description": "SUV compact au style distinctif — l'un des favoris des familles marocaines.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3582,6 +3875,7 @@ export const CARS = [
     "description": "Peugeot 208 2024 — Citadine stylée et accessible, primée voiture de l'année 2020.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3600,6 +3894,7 @@ export const CARS = [
     "description": "Citadine française au design soigné, succès confirmé dans tout le Maroc.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3618,6 +3913,7 @@ export const CARS = [
     "description": "Peugeot 3008 2023 — SUV hybride rechargeable plébiscité, design et technologie au sommet.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3636,6 +3932,7 @@ export const CARS = [
     "description": "SUV français au design distinct — l'un des préférés des familles aisées.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3654,6 +3951,7 @@ export const CARS = [
     "description": "Peugeot 308 2024 — Compacte au i-Cockpit raffiné, confortable et bien équipée.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3672,6 +3970,7 @@ export const CARS = [
     "description": "Berline compacte à l'intérieur luxueux — la 308 fait son effet à l'arrivée.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3690,8 +3989,28 @@ export const CARS = [
     "description": "Hot hatch français — 270ch, châssis Peugeot Sport, sensations pures.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
+  },
+  {
+    "id": 421,
+    "make": "Peugeot",
+    "model": "408",
+    "year": 2025,
+    "price_eur": 29352,
+    "power_hp": 145,
+    "consumption_l100k": null,
+    "co2_g_km": null,
+    "category": "practical",
+    "photo_url": null,
+    "carquery_id": "ma_presse_peugeot_408_2025",
+    "description": "Silhouette originale entre berline, SUV et fastback, en essence hybride légère et boîte automatique à double embrayage. Arrivée au Maroc en mai 2025.",
+    "created_at": "2026-11-24 16:29:21",
+    "price_verified_at": null,
+    "price_launch_at": "2025-05-22",
+    "price_source": "Le Matin",
+    "price_source_url": "https://lematin.ma/automobile/peugeot-408-une-nouvelle-silhouette-pour-bousculer-le-segment-c-au-maroc/281220"
   },
   {
     "id": 285,
@@ -3708,6 +4027,7 @@ export const CARS = [
     "description": "SUV 7 places premium — le choix de la famille qui veut tout.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3726,6 +4046,7 @@ export const CARS = [
     "description": "Peugeot 508 PSE 2023 — La fastback française la plus sportive, 360 ch hybride.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3744,6 +4065,7 @@ export const CARS = [
     "description": "Peugeot 508 PSE 2024 — La fastback française la plus sportive, 360 ch hybride.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3762,6 +4084,7 @@ export const CARS = [
     "description": "Roadster sport iconique — moteur central 4 cylindres turbo, sensations pures, toit ouvert. La quintessence du plaisir de conduite sportif.",
     "created_at": "2026-07-03 13:00:20",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3780,6 +4103,7 @@ export const CARS = [
     "description": "Coupé sport mid-engine — agilité chirurgicale, moteur 4 cylindres turbo central, le coupé sportif le plus équilibré du monde.",
     "created_at": "2026-07-03 13:00:20",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3798,6 +4122,7 @@ export const CARS = [
     "description": "Porsche 911 2023 — L'icône absolue du sport automobile, intemporelle et légendaire.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3816,6 +4141,7 @@ export const CARS = [
     "description": "Porsche 911 2024 — L'icône absolue du sport automobile, intemporelle et légendaire.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3834,6 +4160,7 @@ export const CARS = [
     "description": "La légende allemande absolue — flat-six arrière, 450ch, 0-100 en 3.5s. Le 911 est la voiture de sport ultime, inégalée depuis 60 ans.",
     "created_at": "2026-07-03 13:00:20",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3852,6 +4179,7 @@ export const CARS = [
     "description": "Roadster nouvelle génération Porsche — toit souple électrique, motorisation moderne, plaisir de conduite à l'air libre inégalé.",
     "created_at": "2026-07-03 13:00:20",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3870,6 +4198,7 @@ export const CARS = [
     "description": "Porsche Cayenne 2023 — Le SUV qui prouve qu'on peut tout avoir : luxe, sport et espace.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3888,6 +4217,7 @@ export const CARS = [
     "description": "Porsche Cayenne 2024 — Le SUV qui prouve qu'on peut tout avoir : luxe, sport et espace.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3906,6 +4236,7 @@ export const CARS = [
     "description": "SUV premium ultra-performant — le SUV qui conduit comme une sportive. Puissance, luxe et polyvalence pour les routes marocaines exigeantes.",
     "created_at": "2026-07-03 13:00:20",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3924,6 +4255,7 @@ export const CARS = [
     "description": "Coupé sport nouvelle génération — équilibre parfait, réponses précises, pur plaisir de conduite. Le coupé Porsche d'entrée de gamme, sans compromis.",
     "created_at": "2026-07-03 13:00:21",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3942,6 +4274,7 @@ export const CARS = [
     "description": "Porsche Macan 2023 — Le SUV compact le plus sportif de sa catégorie, sans concession.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3960,6 +4293,7 @@ export const CARS = [
     "description": "Porsche Macan 2024 — Le SUV compact le plus sportif de sa catégorie, sans concession.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3978,6 +4312,7 @@ export const CARS = [
     "description": "SUV compact électrique Porsche — 408ch, 0-100 en 5.2s, 613km d'autonomie. Le premier SUV électrique Porsche, sportif et luxueux.",
     "created_at": "2026-07-03 13:00:21",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -3996,6 +4331,7 @@ export const CARS = [
     "description": "Gran Turismo 4 portes Porsche — berline de sport ultime, 480ch, luxe raffiné, performances de supercar. La berlinesportive absolue.",
     "created_at": "2026-07-03 13:00:21",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4014,6 +4350,7 @@ export const CARS = [
     "description": "Porsche Taycan 2023 — La berline électrique la plus sportive au monde, pur ADN Porsche.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4032,6 +4369,7 @@ export const CARS = [
     "description": "Porsche Taycan 2024 — La berline électrique la plus sportive au monde, pur ADN Porsche.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4050,8 +4388,28 @@ export const CARS = [
     "description": "Sportive électrique révolutionnaire — 408ch, 0-100 en 5.4s, 484km. La Porsche qui prouve que l'électrique peut être excitant.",
     "created_at": "2026-07-03 13:00:21",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
+  },
+  {
+    "id": 416,
+    "make": "Renault",
+    "model": "Austral",
+    "year": 2025,
+    "price_eur": 31667,
+    "power_hp": 200,
+    "consumption_l100k": 4.7,
+    "co2_g_km": 106,
+    "category": "practical",
+    "photo_url": null,
+    "carquery_id": "ma_presse_renault_austral_2025",
+    "description": "SUV familial du segment C en hybride complet : essence 1.2 turbo associée à deux moteurs électriques et boîte automatique. Lancé au Maroc en octobre 2025.",
+    "created_at": "2026-11-24 16:29:21",
+    "price_verified_at": null,
+    "price_launch_at": "2025-10-14",
+    "price_source": "Le Matin",
+    "price_source_url": "https://lematin.ma/automobile/renault-austral-e-tech-200-ch-le-suv-hybride-de-renault-arrive-au-maroc/307577"
   },
   {
     "id": 205,
@@ -4068,6 +4426,7 @@ export const CARS = [
     "description": "Renault Captur 2023 — Crossover hybride rechargeable, pratique et économique.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4086,6 +4445,7 @@ export const CARS = [
     "description": "Renault Captur 2024 — Crossover hybride rechargeable, pratique et économique.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4104,6 +4464,7 @@ export const CARS = [
     "description": "Renault Clio 2024 — La citadine hybride française par excellence, légère et économique.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4122,6 +4483,7 @@ export const CARS = [
     "description": "Citadine polyvalente, très populaire en milieu urbain marocain.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4140,8 +4502,28 @@ export const CARS = [
     "description": "Grand SUV 7 places — parfait pour la grande famille marocaine.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
+  },
+  {
+    "id": 423,
+    "make": "Renault",
+    "model": "Kardian",
+    "year": 2024,
+    "price_eur": 16574,
+    "power_hp": 102,
+    "consumption_l100k": null,
+    "co2_g_km": null,
+    "category": "practical",
+    "photo_url": null,
+    "carquery_id": "ma_presse_renault_kardian_2024",
+    "description": "Petit SUV fabriqué à Casablanca (usine Somaca). Entrée de gamme en diesel avec boîte manuelle ; commandes ouvertes au Maroc en novembre 2024.",
+    "created_at": "2026-11-24 16:29:21",
+    "price_verified_at": null,
+    "price_launch_at": "2024-11-19",
+    "price_source": "Le Matin",
+    "price_source_url": "https://lematin.ma/automobile/renault-kardian-le-suv-compact-made-in-morocco-pret-a-conquerir-le-marche/251980"
   },
   {
     "id": 276,
@@ -4158,6 +4540,7 @@ export const CARS = [
     "description": "La voiture la plus accessible du Maroc — fiable, légère, économique.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4176,6 +4559,7 @@ export const CARS = [
     "description": "Berline familiale élégante, le bon équilibre entre confort et agrément de conduite.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4194,6 +4578,7 @@ export const CARS = [
     "description": "Renault Mégane E-Tech 2023 — Compacte hybride technologique, le meilleur de Renault.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4212,6 +4597,7 @@ export const CARS = [
     "description": "Renault Mégane E-Tech 2024 — Compacte hybride technologique, le meilleur de Renault.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4230,6 +4616,7 @@ export const CARS = [
     "description": "La compacte sportive française ultime — 280ch, comportement affûté.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4248,6 +4635,7 @@ export const CARS = [
     "description": "Berline compacte économique, très répandue dans les villes marocaines.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4266,6 +4654,7 @@ export const CARS = [
     "description": "Renault Zoé 2023 — Pionnière de l'électrique accessible en Europe, idéale en ville.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4284,6 +4673,7 @@ export const CARS = [
     "description": "Renault Zoé 2024 — Pionnière de l'électrique accessible en Europe, idéale en ville.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4302,6 +4692,7 @@ export const CARS = [
     "description": "Citadine espagnole au style jeune, populaire chez les étudiants et jeunes actifs.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4320,8 +4711,28 @@ export const CARS = [
     "description": "Compacte sportive au design affûté, le bon rapport prix/fun.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
+  },
+  {
+    "id": 422,
+    "make": "Suzuki",
+    "model": "Swift",
+    "year": 2025,
+    "price_eur": 17500,
+    "power_hp": 82,
+    "consumption_l100k": 4.7,
+    "co2_g_km": null,
+    "category": "eco",
+    "photo_url": null,
+    "carquery_id": "ma_presse_suzuki_swift_2025",
+    "description": "Citadine de 3,86 m en essence à hybridation légère, très sobre. Quatrième génération, ouverte à la précommande au Maroc en février 2025.",
+    "created_at": "2026-11-24 16:29:21",
+    "price_verified_at": null,
+    "price_launch_at": "2025-02-26",
+    "price_source": "Le Matin",
+    "price_source_url": "https://lematin.ma/automobile/la-nouvelle-suzuki-swift-hybride-disponible-en-precommande-au-maroc/266050"
   },
   {
     "id": 169,
@@ -4338,6 +4749,7 @@ export const CARS = [
     "description": "Tesla Model 3 2023 — Berline électrique technologique et performante, la plus vendue au monde.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4356,6 +4768,7 @@ export const CARS = [
     "description": "La référence mondiale électrique — 558km, Autopilot, performance épurée.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4374,6 +4787,7 @@ export const CARS = [
     "description": "Tesla Model S 2023 — Berline électrique de luxe, 670 ch pour une autonomie record.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4392,6 +4806,7 @@ export const CARS = [
     "description": "Tesla Model S 2024 — Berline électrique de luxe, 670 ch pour une autonomie record.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4410,6 +4825,7 @@ export const CARS = [
     "description": "Tesla Model X 2023 — SUV électrique de luxe aux portes papillon iconiques.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4428,6 +4844,7 @@ export const CARS = [
     "description": "Tesla Model X 2024 — SUV électrique de luxe aux portes papillon iconiques.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4446,6 +4863,7 @@ export const CARS = [
     "description": "Tesla Model Y 2024 — SUV électrique familial, le véhicule le plus vendu en Europe.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4464,6 +4882,7 @@ export const CARS = [
     "description": "SUV électrique le plus vendu au monde — espace, technologie, autonomie.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4482,6 +4901,7 @@ export const CARS = [
     "description": "SUV hybride au design avant-gardiste — moderne et économique.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4500,6 +4920,7 @@ export const CARS = [
     "description": "Crossover hybride au design avant-gardiste — silhouette coupé, technologie hybride Toyota, faible consommation. Le crossover qui ose se démarquer.",
     "created_at": "2026-07-03 13:05:07",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4518,6 +4939,7 @@ export const CARS = [
     "description": "Toyota Corolla 2024 — Berline hybride fiable, idéale pour les longs trajets.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4536,6 +4958,7 @@ export const CARS = [
     "description": "Berline hybride mondiale, plébiscitée pour sa fiabilité légendaire au Maroc.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4554,6 +4977,7 @@ export const CARS = [
     "description": "Berline hybride la plus vendue de l'histoire — fiabilité légendaire, faible consommation, confort quotidien. La Toyota Corolla, intemporelle au Maroc.",
     "created_at": "2026-07-03 13:05:07",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4572,6 +4996,7 @@ export const CARS = [
     "description": "SUV compact hybride Corolla — l'ADN Corolla dans un gabarit SUV. Transmission AWD-i, technologie hybride, polyvalence urbaine et piste.",
     "created_at": "2026-07-03 13:05:07",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4590,6 +5015,7 @@ export const CARS = [
     "description": "SUV 7 places tout-terrain robuste — châssis sur longerons, capacité off-road sérieuse, espace familial. Le Toyota de l'aventure au Maroc.",
     "created_at": "2026-07-03 13:05:07",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4608,6 +5034,7 @@ export const CARS = [
     "description": "Toyota GR86 2023 — Coupé sportif pur, conçu pour le plaisir de conduite.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4626,6 +5053,7 @@ export const CARS = [
     "description": "Sportive japonaise propulsion légère — plaisir de conduite pur.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4644,6 +5072,7 @@ export const CARS = [
     "description": "Pick-up légendaire Toyota — robustesse indestructible, double cabine, capacité de charge élevée. Le compagnon de travail et d'aventure incontournable au Maroc.",
     "created_at": "2026-07-03 13:05:07",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4662,6 +5091,7 @@ export const CARS = [
     "description": "Le 4x4 légendaire — incontournable pour les pistes du désert et les montagnes du Haut Atlas.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4680,6 +5110,7 @@ export const CARS = [
     "description": "Grand SUV 4x4 légendaire — 7 places, capacités hors route incomparables, fiabilité extrême. Le Land Cruiser, le roi des pistes marocaines depuis 70 ans.",
     "created_at": "2026-07-03 13:05:07",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4698,6 +5129,7 @@ export const CARS = [
     "description": "SUV hybride iconique — le plus vendu mondialement. Fiabilité Toyota absolue, technologie hybride mature, espace familial. Le SUV de référence au Maroc.",
     "created_at": "2026-07-03 13:05:07",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4716,6 +5148,7 @@ export const CARS = [
     "description": "Toyota RAV4 2024 — SUV hybride familial, alliant espace et efficience énergétique.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4734,6 +5167,7 @@ export const CARS = [
     "description": "SUV hybride référence mondiale — robuste, économique, polyvalent.",
     "created_at": "2026-06-14 15:04:44",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4752,6 +5186,7 @@ export const CARS = [
     "description": "Toyota Yaris 2024 — La citadine hybride de référence, économique et agile en ville.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4770,6 +5205,7 @@ export const CARS = [
     "description": "Citadine hybride japonaise, économique et indestructible.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4788,6 +5224,7 @@ export const CARS = [
     "description": "Citadine hybride ultra-économique — 3.8L/100km, faibles émissions, technologie hybride accessible. La Toyota abordable pour la ville marocaine au quotidien.",
     "created_at": "2026-07-03 13:05:07",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4806,6 +5243,7 @@ export const CARS = [
     "description": "SUV 100% électrique Toyota — 218ch, 516km d'autonomie, charge rapide. La transition vers l'électrique selon Toyota : fiabilité légendaire, zéro émission.",
     "created_at": "2026-07-03 13:05:07",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4824,6 +5262,7 @@ export const CARS = [
     "description": "Volkswagen Golf 2024 — La référence absolue des compactes, équilibrée et fiable.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4842,6 +5281,7 @@ export const CARS = [
     "description": "La référence des berlines compactes — avoir une Golf au Maroc, ça dit quelque chose.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4860,6 +5300,7 @@ export const CARS = [
     "description": "L'icône sportive compacte — plaisir de conduite pur, la GTI reste un rêve accessible au Maroc.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4878,6 +5319,7 @@ export const CARS = [
     "description": "Volkswagen ID.4 2023 — SUV 100 % électrique accessible, l'avenir sans compromis.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4896,6 +5338,7 @@ export const CARS = [
     "description": "Volkswagen ID.4 2024 — SUV 100 % électrique accessible, l'avenir sans compromis.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4914,6 +5357,7 @@ export const CARS = [
     "description": "Volkswagen Passat 2023 — Break confortable et spacieux, parfait pour les familles.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4932,6 +5376,7 @@ export const CARS = [
     "description": "Volkswagen Passat 2024 — Break confortable et spacieux, parfait pour les familles.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4950,6 +5395,7 @@ export const CARS = [
     "description": "Citadine allemande fiable — le signe que tu commences à t'en sortir.",
     "created_at": "2026-06-13 12:02:41",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4968,6 +5414,7 @@ export const CARS = [
     "description": "Volkswagen Tiguan 2023 — SUV familial solide et polyvalent, best-seller européen.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   },
@@ -4986,6 +5433,7 @@ export const CARS = [
     "description": "Volkswagen Tiguan 2024 — SUV familial solide et polyvalent, best-seller européen.",
     "created_at": "2026-05-21 10:12:01",
     "price_verified_at": null,
+    "price_launch_at": null,
     "price_source": null,
     "price_source_url": null
   }
@@ -5007,6 +5455,7 @@ export const ALL_MAKES = [
   "Kia",
   "Lamborghini",
   "Land Rover",
+  "MG",
   "Maserati",
   "Mercedes-Benz",
   "Nissan",
@@ -5014,6 +5463,7 @@ export const ALL_MAKES = [
   "Porsche",
   "Renault",
   "Seat",
+  "Suzuki",
   "Tesla",
   "Toyota",
   "Volkswagen"

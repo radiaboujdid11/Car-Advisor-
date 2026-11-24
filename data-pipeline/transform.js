@@ -36,18 +36,90 @@ export function applyVerifications(cars, verifications, eurToMad) {
   const used = new Set();
   const out = cars.map((car) => {
     const v = verifications[car.carquery_id];
-    if (!v) return { ...car, price_verified_at: null, price_source: null, price_source_url: null };
+    if (!v) {
+      return {
+        ...car,
+        price_verified_at: null,
+        price_launch_at: car.price_launch_at ?? null,
+        price_source: car.price_source ?? null,
+        price_source_url: car.price_source_url ?? null,
+      };
+    }
     used.add(car.carquery_id);
+    // Un prix vérifié remplace un éventuel prix de lancement annoncé par la presse.
     return {
       ...car,
       price_eur: Math.round(v.prix_dh / eurToMad),
       price_verified_at: v.verifie_le,
+      price_launch_at: null,
       price_source: v.source,
       price_source_url: v.url ?? null,
     };
   });
   const unknown = Object.keys(verifications).filter((key) => !used.has(key));
   return { cars: out, unknown };
+}
+
+// Règles des ajouts sourcés par la presse (voir docs/journal-donnees.md).
+const PRESS_MIN_DATE = '2024-01-01';
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+const slug = (s) =>
+  s
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '_')
+    .replace(/^_|_$/g, '');
+
+/**
+ * Modèles ajoutés à partir d'un article de presse daté (sources/ajouts-presse.json).
+ * Le prix est un prix de lancement annoncé : la fiche affiche sa date et le journal.
+ * Retourne les voitures et la liste des erreurs (une entrée invalide n'est pas ajoutée).
+ */
+export function fromPressAdditions(entries, eurToMad) {
+  const cars = [];
+  const errors = [];
+  for (const e of entries) {
+    const label = `ajouts-presse.json : ${e.marque ?? '?'} ${e.modele ?? '?'}`;
+    const src = e.source ?? {};
+    const problems = [];
+    if (!e.marque || !e.modele) problems.push('marque ou modèle manquant');
+    if (!Number.isInteger(e.annee)) problems.push('année invalide');
+    if (!(Number.isInteger(e.prix_dh) && e.prix_dh > 0)) problems.push('prix_dh invalide');
+    if (!(e.puissance_ch > 0)) problems.push('puissance_ch invalide');
+    if (!CATEGORIES.includes(e.categorie)) problems.push(`catégorie inconnue « ${e.categorie} »`);
+    if (!e.description) problems.push('description manquante');
+    for (const key of ['consommation_l100k', 'co2_g_km'])
+      if (e[key] !== null && !(typeof e[key] === 'number' && e[key] >= 0))
+        problems.push(`${key} doit être un nombre ou null`);
+    if (!src.journal) problems.push('journal manquant');
+    if (!/^https:\/\//.test(src.url ?? ''))
+      problems.push('lien de l’article manquant ou non https');
+    if (!ISO_DATE.test(src.publie_le ?? '')) problems.push('date de publication invalide');
+    else if (src.publie_le < PRESS_MIN_DATE)
+      problems.push(`article antérieur au ${PRESS_MIN_DATE}`);
+    if (problems.length) {
+      errors.push(...problems.map((p) => `${label} : ${p}`));
+      continue;
+    }
+    cars.push({
+      make: e.marque,
+      model: e.modele,
+      year: e.annee,
+      price_eur: Math.round(e.prix_dh / eurToMad),
+      power_hp: e.puissance_ch,
+      consumption_l100k: e.consommation_l100k,
+      co2_g_km: e.co2_g_km,
+      category: e.categorie,
+      photo_url: null,
+      carquery_id: `ma_presse_${slug(e.marque)}_${slug(e.modele)}_${e.annee}`,
+      description: e.description,
+      price_launch_at: src.publie_le,
+      price_source: src.journal,
+      price_source_url: src.url,
+    });
+  }
+  return { cars, errors };
 }
 
 /** Applique les corrections de prix (toujours) et de photo (seulement si absente). */
