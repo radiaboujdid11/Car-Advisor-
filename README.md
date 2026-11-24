@@ -262,13 +262,40 @@ cd ../frontend && npm test   # 5. Vérifie que le moteur fonctionne avec les nou
 Une nouvelle voiture doit avoir un `carquery_id` unique (préfixe `ma_` pour le marché marocain),
 une `category` parmi `eco`, `practical`, `performance`, `luxury`, et un prix en euros.
 
+### Vérification par collecte (moteur.ma)
+
+`data-pipeline/scraper/` collecte les fiches « voitures neuves » de moteur.ma pour **vérifier** le
+catalogue : prix, puissance, énergie, places, carrosserie, par version, puis agrégés par modèle.
+
+```bash
+cd data-pipeline
+npm run scrape                  # échantillon de 20 fiches (≈ 4 min)
+npm run scrape -- --limit 200   # plus large
+npm run scrape -- --all         # tout le plan du site (≈ 12 h)
+```
+
+Le rapport `data-pipeline/scraped/rapport.md` mesure : part du catalogue retrouvée, prix dans la
+fourchette de la source, écart de prix médian, accord de la règle de catégorie, taux de
+remplissage de chaque champ.
+
+**Collecte respectueuse** : liste des pages via le plan du site officiel (`sitemap.xml`), règles du
+`robots.txt` appliquées (aucune image téléchargée : `/storage/` est exclu), **une requête toutes les
+10 secondes**, cache disque (une page n'est relue que si sa date `lastmod` change), arrêt immédiat
+si le site refuse (HTTP 403 ou 429).
+
+> **Droits** : les conditions d'utilisation de moteur.ma protègent leur base de données. Les
+> résultats restent **en local** (`data-pipeline/scraped/` est ignoré par git) et ne sont pas
+> publiés sur le site sans l'accord écrit de moteur.ma.
+
 ## Qualité et tests
 
 - **15 tests Vitest** sur le moteur (`frontend/src/engine/quiz.test.js`) : vraisemblances
   comprises entre 0 et 1, probabilités qui somment à 1, réponse cohérente qui augmente la
   probabilité attendue, seuils d'arrêt (15 questions, 60 %, ratio 8, limite de 30), absence de
   question répétée, robustesse des réponses « je ne sais pas » / « peu importe ».
-- **6 tests `node:test`** sur les transformations du pipeline de données.
+- **16 tests `node:test`** sur le pipeline de données : transformations, et collecteur (lecture des
+  fiches sur une page HTML fictive, normalisation, catégorie, robots.txt, délai, cache, arrêt sur
+  refus du site, comparaison avec le catalogue).
 - **GitHub Actions** : à chaque push, lint ESLint, vérification Prettier, tests, build du
   frontend et validation du jeu de données.
 

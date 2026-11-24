@@ -6,3 +6,5 @@ frontend/src/data/cars.js
 data-pipeline/sources/
 test-results
 playwright-report
+data-pipeline/scraped
+data-pipeline/.cache

@@ -24,3 +24,7 @@ Thumbs.db
 # Tests Playwright
 test-results/
 playwright-report/
+
+# Collecte moteur.ma : données et cache LOCAUX uniquement (ne pas publier sans accord)
+data-pipeline/scraped/
+data-pipeline/.cache/
