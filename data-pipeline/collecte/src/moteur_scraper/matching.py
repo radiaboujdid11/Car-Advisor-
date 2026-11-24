@@ -109,7 +109,7 @@ def read_table(path: Path) -> pd.DataFrame | None:
 
 
 def write_table(table: pd.DataFrame, path: Path) -> None:
-    table.to_csv(path, index=False)
+    table.to_csv(path, index=False, lineterminator="\n")
 
 
 def usable(table: pd.DataFrame) -> pd.DataFrame:

@@ -3,6 +3,8 @@
     python -m moteur_scraper correspondances      met à jour correspondances.csv (2 requêtes)
     python -m moteur_scraper collecte             collecte ciblée : uniquement les modèles du
                                                   catalogue (statut auto ou valide)
+    python -m moteur_scraper appliquer            applique les corrections acceptées dans
+                                                  data-pipeline/sources/verifications.json
     python -m moteur_scraper echantillon --limit 20   essai sur les fiches les plus récentes
 
 Toujours : robots.txt respecté, 1 requête toutes les 10 s, cache disque, arrêt si le site refuse.
@@ -21,7 +23,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from . import matching
+from . import corrections, matching
 from .compare import compare_with_catalog, load_catalog, render_report
 from .crawl import DEFAULT_DELAY_S, CrawlStopped, PoliteClient, SitemapEntry, parse_sitemap
 from .dedupe import assert_unique, dedupe_entries, dedupe_versions
@@ -38,6 +40,7 @@ PACKAGE_ROOT = Path(__file__).resolve().parents[2]  # .../data-pipeline/collecte
 DATA_PIPELINE = PACKAGE_ROOT.parent
 REPO = DATA_PIPELINE.parent
 TABLE = PACKAGE_ROOT / "correspondances.csv"
+VERIFICATIONS = DATA_PIPELINE / "sources" / "verifications.json"
 OUT_DIR = DATA_PIPELINE / "scraped"
 CACHE_DIR = DATA_PIPELINE / ".cache" / "moteur-ma"
 CATALOG = REPO / "frontend" / "src" / "data" / "cars.js"
@@ -59,6 +62,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     sub = parser.add_subparsers(dest="command")
     sub.add_parser("correspondances", help="met à jour la table de correspondance")
     sub.add_parser("collecte", help="collecte ciblée sur les modèles du catalogue (défaut)")
+    sub.add_parser("appliquer", help="applique les corrections acceptées (aucune requête)")
     sample = sub.add_parser("echantillon", help="essai sur les fiches les plus récentes")
     sample.add_argument("--limit", type=int, default=20, help="nombre de fiches (défaut : 20)")
     args = parser.parse_args(argv)
@@ -196,6 +200,11 @@ def finish(client, versions, started_at, partial, duplicate_urls, mapping) -> in
         partial=partial,
     )
     (OUT_DIR / "rapport.md").write_text(report, encoding="utf-8")
+    if mapping is not None:
+        path = OUT_DIR / "corrections_proposees.csv"
+        proposals = corrections.propose_corrections(rows, corrections.read_proposals(path))
+        corrections.write_csv(proposals, path)
+        log(f"{len(proposals)} corrections proposées -> {path} (colonne « accepter » à remplir)")
     log(
         f"terminé : {len(versions_df)} versions, {len(models)} modèles, "
         f"{client.requests_made} requêtes réseau -> {OUT_DIR / 'rapport.md'}"
@@ -203,7 +212,29 @@ def finish(client, versions, started_at, partial, duplicate_urls, mapping) -> in
     return 0
 
 
+def cmd_appliquer(args: argparse.Namespace) -> int:
+    path = OUT_DIR / "corrections_proposees.csv"
+    proposals = corrections.read_proposals(path)
+    if proposals is None:
+        log(f"{path} absent : lancez d'abord « collecte »")
+        return 1
+    before = corrections.read_verifications(VERIFICATIONS)
+    try:
+        after = corrections.apply_corrections(
+            proposals, before, datetime.now(UTC).date().isoformat()
+        )
+    except corrections.CorrectionError as err:
+        log(str(err))
+        return 1
+    corrections.write_verifications(after, VERIFICATIONS)
+    n = len(corrections.accepted(proposals))
+    log(f"{n} corrections appliquées -> {VERIFICATIONS} ({len(after)} prix vérifiés au total)")
+    log("étape suivante : cd data-pipeline && npm run build (régénère cars.js)")
+    return 0
+
+
 COMMANDS = {
+    "appliquer": cmd_appliquer,
     "correspondances": cmd_correspondances,
     "collecte": cmd_collecte,
     "echantillon": cmd_echantillon,

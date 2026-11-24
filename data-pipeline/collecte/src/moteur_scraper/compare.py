@@ -77,6 +77,7 @@ def compare_with_catalog(
             status, url, src = None, None, by_key.get(model_key(make, model))
         row = {
             "id": car["id"],
+            "carquery_id": car.get("carquery_id"),
             "modele": f"{make} {model}",
             "annee_catalogue": car["year"],
             "statut_correspondance": status,
