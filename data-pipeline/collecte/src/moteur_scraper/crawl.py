@@ -3,7 +3,8 @@
 - robots.txt respecté (urllib.robotparser) : aucune image, /storage/ exclu ;
 - une requête toutes les 10 secondes ;
 - cache disque (une page n'est relue que si sa date lastmod change) ;
-- arrêt immédiat si le site refuse (HTTP 403 ou 429).
+- arrêt immédiat si le site refuse (HTTP 403 ou 429) ;
+- erreur réseau ou serveur : 3 essais, puis la page est ignorée sans arrêter la collecte.
 """
 
 from __future__ import annotations
@@ -109,7 +110,17 @@ class PoliteClient:
 
         for attempt in range(1, 4):
             self._wait_turn()
-            response = self.session.get(url, timeout=30)
+            try:
+                response = self.session.get(url, timeout=30)
+            except requests.RequestException as err:
+                # Délai dépassé ou connexion coupée : on patiente plus longtemps, puis on
+                # réessaie ; après 3 échecs la page est ignorée (elle sera relue au
+                # prochain lancement, puisqu'elle n'est pas en cache).
+                self.requests_made += 1
+                self._log(f"erreur réseau ({type(err).__name__}), essai {attempt}/3 : {url}")
+                if attempt < 3:
+                    self._sleep(self.delay_s * 3 * attempt)
+                continue
             self.requests_made += 1
             if response.status_code in (403, 429):
                 raise CrawlStopped(
