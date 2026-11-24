@@ -273,6 +273,7 @@ def test_comparaison_avec_le_catalogue():
     models = aggregate_by_model(pd.DataFrame([version(prix_showroom_dh=216000)]))
     catalog = [
         {
+            "id": 1,
             "make": "Exemplia",
             "model": "Familia",
             "year": 2025,
@@ -281,6 +282,7 @@ def test_comparaison_avec_le_catalogue():
             "power_hp": 130,
         },
         {
+            "id": 2,
             "make": "Autre",
             "model": "Absente",
             "year": 2025,

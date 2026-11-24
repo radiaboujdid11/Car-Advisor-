@@ -45,6 +45,13 @@ def energie(motorisation: object, propulsion: object) -> str | None:
     return f"autre:{m}" if m else None
 
 
+def model_url(source_url: object) -> str | None:
+    """Page modèle d'une fiche : …/marque/modele/fiche-1234.html -> …/marque/modele/."""
+    if not source_url or "/" not in str(source_url):
+        return None
+    return str(source_url).rsplit("/", 1)[0] + "/"
+
+
 def normalize_version(
     raw: dict, collected_at: str | None = None, lastmod: str | None = None
 ) -> dict:
@@ -52,6 +59,7 @@ def normalize_version(
     return {
         "source_id": raw.get("source_id"),
         "source_url": raw.get("source_url"),
+        "url_modele": model_url(raw.get("source_url")),
         "marque": (raw.get("marque") or "").strip() or None,
         "modele": (raw.get("modele") or "").strip() or None,
         "version": (raw.get("version") or "").strip() or None,
@@ -123,6 +131,7 @@ MODEL_COLUMNS = [
     "energies",
     "carrosserie",
     "categorie",
+    "url_modele",
     "source_urls",
     "date_collecte",
 ]
@@ -161,6 +170,7 @@ def aggregate_by_model(
             "places_max": _none(vs["places"].max()),
             "energies": sorted(vs["energie"].dropna().unique().tolist()),
             "carrosserie": entry["carrosserie"],
+            "url_modele": entry.get("url_modele"),
             "source_urls": vs["source_url"].tolist(),
             "date_collecte": _none(vs["date_collecte"].max()),
         }

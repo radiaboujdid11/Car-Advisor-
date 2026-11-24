@@ -61,6 +61,17 @@ def extract_pairs(html: str) -> dict[str, str]:
     return pairs
 
 
+def version_links(html: str, model_url: str) -> list[str]:
+    """Liens vers les fiches versions d'une page modèle (…/marque/modele/…-1234.html)."""
+    prefix = model_url.rstrip("/") + "/"
+    links = []
+    for a in BeautifulSoup(html, "html.parser").find_all("a", href=True):
+        href = a["href"].split("#")[0].split("?")[0]
+        if href.startswith(prefix) and re.search(r"-\d+\.html$", href) and href not in links:
+            links.append(href)
+    return links
+
+
 def source_id_from_url(url: str) -> int | None:
     """Identifiant numérique de la fiche : …-4809.html -> 4809."""
     match = re.search(r"-(\d+)\.html(?:$|[?#])", url)

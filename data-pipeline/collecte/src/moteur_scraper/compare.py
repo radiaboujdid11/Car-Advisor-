@@ -40,21 +40,47 @@ def model_key(make: object, model: object) -> str:
     return re.sub(r"[^a-z0-9]+", " ", key).strip()
 
 
-def compare_with_catalog(models: pd.DataFrame, catalog: list[dict]) -> tuple[pd.DataFrame, dict]:
-    """Pour chaque modèle du catalogue : présent dans la collecte ? écart de prix ? catégorie ?"""
-    by_key = {model_key(m["marque"], m["modele"]): m for m in models.to_dict("records")}
-    latest: dict[str, dict] = {}
+def compare_with_catalog(
+    models: pd.DataFrame, catalog: list[dict], mapping: pd.DataFrame | None = None
+) -> tuple[pd.DataFrame, dict]:
+    """Pour chaque modèle du catalogue : présent dans la collecte ? écart de prix ? catégorie ?
+
+    Avec `mapping` (table de correspondance), le rapprochement se fait par l'URL de la page
+    modèle validée ; sans, par ressemblance des noms.
+    """
+    records = models.to_dict("records")
+    by_key = {model_key(m["marque"], m["modele"]): m for m in records}
+    by_url = {m.get("url_modele"): m for m in records if m.get("url_modele")}
+
+    latest: dict[tuple[str, str], dict] = {}
     for car in catalog:
-        key = model_key(car["make"], car["model"])
+        key = (car["make"], car["model"])
         if key not in latest or car["year"] > latest[key]["year"]:
             latest[key] = car
 
+    links: dict[tuple[str, str], dict] = {}
+    shared: set[str] = set()
+    if mapping is not None and not mapping.empty:
+        links = {(r["marque"], r["modele"]): r for r in mapping.to_dict("records")}
+        counts = mapping[mapping["statut"].isin({"auto", "valide"})]["url_moteur"].value_counts()
+        shared = set(counts[counts > 1].index)
+
     rows = []
-    for key, car in latest.items():
+    for (make, model), car in latest.items():
         ours = round(car["price_eur"] * EUR_TO_MAD)
-        src = by_key.get(key)
+        if mapping is not None:
+            link = links.get((make, model), {})
+            status = link.get("statut") or "absent_de_la_table"
+            url = link.get("url_moteur") if status in {"auto", "valide"} else None
+            src = by_url.get(url) if url else None
+        else:
+            status, url, src = None, None, by_key.get(model_key(make, model))
         row = {
-            "modele": f"{car['make']} {car['model']}",
+            "id": car["id"],
+            "modele": f"{make} {model}",
+            "annee_catalogue": car["year"],
+            "statut_correspondance": status,
+            "page_partagee": url in shared,
             "trouve": src is not None,
             "prix_catalogue_dh": ours,
             "categorie_catalogue": car["category"],
@@ -69,12 +95,15 @@ def compare_with_catalog(models: pd.DataFrame, catalog: list[dict]) -> tuple[pd.
                 categorie_regle=src["categorie"],
                 puissance_catalogue=car["power_hp"],
                 puissance_source_max=src["puissance_max_ch"],
+                version_entree=src["version_entree"],
+                url_source=src.get("url_modele"),
+                date_collecte=src.get("date_collecte"),
             )
         rows.append(row)
 
     df = pd.DataFrame(rows)
     found = df[df["trouve"]] if not df.empty else df
-    known = set(latest)
+    known = {model_key(make, model) for make, model in latest}
     stats = {
         "modeles_catalogue": len(df),
         "trouves": len(found),
@@ -89,9 +118,9 @@ def compare_with_catalog(models: pd.DataFrame, catalog: list[dict]) -> tuple[pd.
         )
         if len(found)
         else 0,
-        "modeles_collectes_absents_du_catalogue": sum(
-            model_key(m["marque"], m["modele"]) not in known for m in models.to_dict("records")
-        ),
+        "modeles_collectes_absents_du_catalogue": 0
+        if mapping is not None
+        else sum(model_key(m["marque"], m["modele"]) not in known for m in records),
     }
     return df, stats
 
