@@ -39,15 +39,16 @@ Captures d'écran : décommenter ce bloc une fois les fichiers ajoutés dans doc
 
 ## Stack technique
 
-| Couche      | Outils                                                           |
-| ----------- | ---------------------------------------------------------------- |
-| Interface   | React 18, React Router 6, Tailwind CSS (base) + styles inline    |
-| Build       | Vite 5 (pages chargées à la demande)                             |
-| Moteur      | JavaScript pur, sans dépendance (`frontend/src/engine/`)         |
-| Données     | Pipeline Node.js sans dépendance → module JS statique            |
-| Qualité     | ESLint 9, Prettier, Vitest, `node:test`, GitHub Actions          |
-| Assistant   | Claude (API Messages, outils, streaming) via `@anthropic-ai/sdk` |
-| Hébergement | Vercel (site statique + une fonction serverless `api/chat`)      |
+| Couche           | Outils                                                                |
+| ---------------- | --------------------------------------------------------------------- |
+| Interface        | React 18, React Router 6, Tailwind CSS (base) + styles inline         |
+| Build            | Vite 5 (pages chargées à la demande)                                  |
+| Moteur           | JavaScript pur, sans dépendance (`frontend/src/engine/`)              |
+| Données          | Pipeline Node.js sans dépendance → module JS statique                 |
+| Contrôle qualité | Python : requests, BeautifulSoup, pandas, Parquet                     |
+| Qualité          | ESLint 9, Prettier, Vitest, `node:test`, pytest, ruff, GitHub Actions |
+| Assistant        | Claude (API Messages, outils, streaming) via `@anthropic-ai/sdk`      |
+| Hébergement      | Vercel (site statique + une fonction serverless `api/chat`)           |
 
 ## Structure du dépôt
 
@@ -68,10 +69,12 @@ Captures d'écran : décommenter ce bloc une fois les fichiers ajoutés dans doc
 │   ├── chat.js                POST /api/chat : flux SSE, limite de débit, erreurs
 │   └── _lib/                  Boucle de l'agent, outils du catalogue, tests (node:test)
 ├── data-pipeline/             Construction du jeu de données
-│   ├── sources/               Catalogues d'origine (Europe, Maroc) et corrections
-│   ├── transform.js           Corrections, normalisation, dédoublonnage, validation
+│   ├── sources/               Catalogues d'origine, corrections, verifications.json (prix vérifiés)
+│   ├── transform.js           Corrections, prix vérifiés, normalisation, dédoublonnage, validation
 │   ├── build-dataset.js       Écrit frontend/src/data/cars.js
-│   └── transform.test.js      Tests du pipeline (node:test)
+│   ├── transform.test.js      Tests du pipeline (node:test)
+│   └── collecte/              Contrôle qualité des prix en Python (moteur.ma) : paquet moteur_scraper,
+│                              correspondances.csv, tests pytest
 ├── docs/screenshots/          Captures d'écran utilisées dans ce README
 ├── .github/workflows/ci.yml   Lint, tests et build à chaque push
 └── vercel.json                Configuration de déploiement
@@ -262,43 +265,65 @@ cd ../frontend && npm test   # 5. Vérifie que le moteur fonctionne avec les nou
 Une nouvelle voiture doit avoir un `carquery_id` unique (préfixe `ma_` pour le marché marocain),
 une `category` parmi `eco`, `practical`, `performance`, `luxury`, et un prix en euros.
 
-### Vérification par collecte (moteur.ma)
+### Contrôle qualité des prix (moteur.ma)
 
-`data-pipeline/collecte/` est un collecteur **Python** (requests, BeautifulSoup, pandas) qui lit les
-fiches « voitures neuves » de moteur.ma pour **vérifier** le catalogue : prix showroom et clé en
-main, puissance, énergie, places, carrosserie, coffre, par version, puis agrégés par modèle.
+Les prix du catalogue sont vérifiés **une fois par mois** par un circuit semi-automatique :
+la machine repère les écarts, une personne valide chaque correction, et chaque prix corrigé garde
+sa source et sa date (affichées sur la fiche voiture : « Prix vérifié le … »).
+
+```
+moteur.ma ──collecte ciblée──▶ versions ──agrégation──▶ modèles ──comparaison──▶ écarts
+                                                                                  │
+cars.js ◀──npm run build── verifications.json ◀──appliquer── corrections validées ◀┘
+```
+
+`data-pipeline/collecte/` est un paquet **Python** (requests, BeautifulSoup, pandas, pytest, ruff).
+
+**Procédure mensuelle**
 
 ```bash
 cd data-pipeline/collecte
 python -m venv .venv && .venv\Scripts\activate     # macOS/Linux : source .venv/bin/activate
 pip install -e ".[dev]"
-python -m moteur_scraper                 # échantillon de 20 fiches (≈ 4 min)
-python -m moteur_scraper --limit 200     # plus large
-python -m moteur_scraper --all           # tout le plan du site (≈ 12 h)
-pytest && ruff check .                   # tests et lint
+
+python -m moteur_scraper correspondances   # 1. relier les modèles du catalogue aux pages du site
+#    -> relire les lignes « a_verifier » de correspondances.csv (statut « valide » ou « rejete »)
+python -m moteur_scraper collecte          # 2. collecte ciblée (quelques heures, 1 requête / 10 s)
+#    -> ouvrir data-pipeline/scraped/corrections_proposees.csv dans Excel et remplir :
+#       accepter (oui/non), source_retenue (marque ou moteur.ma), url_preuve (si marque)
+python -m moteur_scraper appliquer         # 3. écrit data-pipeline/sources/verifications.json
+cd .. && npm run build && npm test         # 4. régénère cars.js et vérifie le pipeline
 ```
 
-| Fichier (`src/moteur_scraper/`) | Rôle                                                                 |
-| ------------------------------- | -------------------------------------------------------------------- |
-| `crawl.py`                      | Client poli : robots.txt, sitemap, délai, cache, arrêt sur refus     |
-| `parse.py`                      | Lecture d'une fiche HTML (BeautifulSoup)                             |
-| `normalize.py`                  | Nombres, énergie, agrégation par modèle (pandas), règle de catégorie |
-| `compare.py`                    | Comparaison avec `cars.js` et rapport Markdown                       |
-| `cli.py`                        | Commande `python -m moteur_scraper`                                  |
+Les décisions déjà saisies (correspondances, corrections) sont conservées d'un mois à l'autre.
+Une ligne acceptée mais incomplète bloque l'application ; une vérification qui ne correspond plus
+à aucune voiture bloque le build.
 
-Sorties dans `data-pipeline/scraped/` : `versions.parquet` et `.csv`, `modeles.csv`,
-`comparaison.csv` et `rapport.md`. Le rapport mesure la part du catalogue retrouvée, les prix dans
-la fourchette de la source, l'écart de prix médian, l'accord de la règle de catégorie et le taux de
-remplissage de chaque champ. Node.js est utilisé pour lire `cars.js` (module JavaScript généré).
+| Fichier (`src/moteur_scraper/`) | Rôle                                                                      |
+| ------------------------------- | ------------------------------------------------------------------------- |
+| `crawl.py`                      | Client poli : robots.txt, sitemap, délai, cache, arrêt sur refus          |
+| `parse.py`                      | Lecture des fiches et des pages modèles (BeautifulSoup)                   |
+| `normalize.py`                  | Nombres, énergie, agrégation par modèle (pandas), règle de catégorie      |
+| `dedupe.py`                     | Unicité : une URL et une version par fiche, contrôle final avant écriture |
+| `matching.py`                   | Table de correspondance catalogue ↔ pages modèles (`correspondances.csv`) |
+| `compare.py`                    | Comparaison avec `cars.js`, rapport Markdown                              |
+| `corrections.py`                | Corrections proposées, puis application des lignes validées               |
+| `cli.py`                        | Sous-commandes `correspondances`, `collecte`, `appliquer`, `echantillon`  |
+
+Sorties locales dans `data-pipeline/scraped/` : `versions.parquet` et `.csv`, `modeles.csv`,
+`comparaison.csv`, `doublons_ecartes.csv`, `corrections_proposees.csv` et `rapport.md` (part du
+catalogue retrouvée, prix dans la fourchette de la source, écart médian, doublons écartés, taux de
+remplissage de chaque champ). Node.js est utilisé pour lire `cars.js` (module JavaScript généré).
 
 **Collecte respectueuse** : liste des pages via le plan du site officiel (`sitemap.xml`), règles du
 `robots.txt` appliquées (aucune image téléchargée : `/storage/` est exclu), **une requête toutes les
-10 secondes**, cache disque (une page n'est relue que si sa date `lastmod` change), arrêt immédiat
-si le site refuse (HTTP 403 ou 429).
+10 secondes**, collecte limitée aux modèles du catalogue, cache disque (une fiche n'est relue que si
+sa date `lastmod` change), arrêt immédiat si le site refuse (HTTP 403 ou 429).
 
-> **Droits** : les conditions d'utilisation de moteur.ma protègent leur base de données. Les
-> résultats restent **en local** (`data-pipeline/scraped/` est ignoré par git) et ne sont pas
-> publiés sur le site sans l'accord écrit de moteur.ma.
+> **Droits** : les conditions d'utilisation de moteur.ma protègent leur base de données. La
+> collecte sert à **repérer** les écarts : ses résultats restent **en local**
+> (`data-pipeline/scraped/` est ignoré par git). Seuls des prix ponctuels validés à la main sont
+> publiés, de préférence vérifiés sur le site officiel de la marque (`source_retenue = marque`).
 
 ## Qualité et tests
 
@@ -306,10 +331,11 @@ si le site refuse (HTTP 403 ou 429).
   comprises entre 0 et 1, probabilités qui somment à 1, réponse cohérente qui augmente la
   probabilité attendue, seuils d'arrêt (15 questions, 60 %, ratio 8, limite de 30), absence de
   question répétée, robustesse des réponses « je ne sais pas » / « peu importe ».
-- **6 tests `node:test`** sur les transformations du pipeline de données.
-- **25 tests pytest** sur le collecteur Python (fiche HTML fictive, normalisation, agrégation,
-  catégorie, robots.txt, délai, cache, arrêt sur refus du site, comparaison avec le catalogue) et
-  lint **ruff**.
+- **51 tests pytest** sur le contrôle qualité Python (lecture des fiches sur une page HTML
+  fictive, normalisation, agrégation, catégorie, doublons, table de correspondance, corrections,
+  robots.txt, délai, cache, arrêt sur refus du site) et lint **ruff**.
+- **7 tests `node:test`** sur le pipeline de génération de `cars.js`, dont l'application des prix
+  vérifiés.
 - **GitHub Actions** : à chaque push, lint ESLint, vérification Prettier, tests, build du
   frontend et validation du jeu de données.
 
