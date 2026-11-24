@@ -1,0 +1,3 @@
+# Le collecteur Python (contrôle qualité des prix) tourne en local : le site n'en a pas besoin.
+# Sans cette exclusion, Vercel détecte pyproject.toml et cherche une fonction Python.
+data-pipeline/collecte
